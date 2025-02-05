@@ -64,8 +64,8 @@ input, select, textarea {
 @-ms-viewport {
   width: device-width; }
 
-body {
-  -ms-overflow-style: scrollbar; }
+/* body {
+  -ms-overflow-style: scrollbar; } */
 
 @media screen and (max-width: 480px) {
   html, body {
@@ -95,16 +95,16 @@ body, input, select, textarea {
   font-family: Arial, Helvetica, sans-serif;
   font-size: 13pt;
   font-weight: 400;
-  line-height: 1.65; }
+  line-height: 1.5; }
   @media screen and (max-width: 1680px) {
     body, input, select, textarea {
-      font-size: 11pt; } }
+      font-size: 13pt; } }
   @media screen and (max-width: 1280px) {
     body, input, select, textarea {
-      font-size: 10pt; } }
+      font-size: 13pt; } }
   @media screen and (max-width: 360px) {
     body, input, select, textarea {
-      font-size: 9pt; } }
+      font-size: 13pt; } }
 
 /* Hyperlink */
 a {
@@ -1950,11 +1950,15 @@ button,
   #sidebar h2 {
     font-size: 1.38889em; }
   #sidebar > .inner {
+    overflow-y: scroll;
+    overflow-x: hidden;
     padding: 2.22222em 2.22222em 2.44444em 2.22222em ;
-    position: relative;
-    width: 26em; }
+    position: fixed;
+    width: 26em; 
+    max-height: 100vh;
+    scrollbar-color: #be5460 #1c1e21;}
     #sidebar > .inner > * {
-      border-bottom: solid 2px rgba(210, 215, 217, 0.75);
+      border-bottom: solid 2px #f56a6a;
       margin: 0 0 3.5em 0;
       padding: 0 0 3.5em 0; }
       #sidebar > .inner > * > :last-child {
@@ -2058,7 +2062,7 @@ button,
           height: 4em;
           width: 100%; }
       #sidebar .toggle {
-        text-indent: 6em;
+        text-indent: 7em;
         width: 6em; }
         #sidebar .toggle:before {
           font-size: 1.5rem;
@@ -2092,7 +2096,7 @@ button,
   display: -ms-flex;
   display: flex;
   border-bottom: solid 5px #f56a6a;
-  padding: 6em 0 1em 0;
+  padding: 6em 0 0.5em 0;
   position: relative; }
   #header > * {
     -moz-flex: 1;
