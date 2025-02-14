@@ -1,5 +1,6 @@
 @import url(fontawesome-all.min.css);
 @import url("https://fonts.googleapis.com/css?family=Open+Sans:400,600,400italic,600italic|Roboto+Slab:400,700");
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap");
 /*
 	Editorial by HTML5 UP
 	html5up.net | @ajlkn
@@ -92,7 +93,8 @@ body {
 /* Type */
 body, input, select, textarea {
   color: #e0e0e1;
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", 
+  Helvetica, Arial, "Lucida Grande", sans-serif;
   font-size: 13pt;
   font-weight: 400;
   line-height: 1.5; }
@@ -127,11 +129,16 @@ a {
     color: #99dddf; }
     a:hover strong {
       color: inherit; }
+  
+a.test {
+  color: #e0e0e1; }
+  a.test:visited:hover {
+    color: #e0e0e1; }
  
 
 strong, b {
   color: #f56a6a;
-  font-weight: 600; }
+  font-weight: 700; }
 
 em, i {
   font-style: italic; }
@@ -141,7 +148,7 @@ p {
 
 h1, h2, h3, h4, h5, h6 {
   color: #e0e0e1;
-  font-family: "Roboto Slab", serif;
+  font-family: "Montserrat", sans-serif;
   font-weight: 700;
   line-height: 1.5;
   margin: 0 0 1em 0; }
@@ -999,18 +1006,18 @@ section.special, article.special {
   text-align: center; }
 
 header p {
-  font-family: "Roboto Slab", serif;
+  font-family: "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
   font-size: 1em;
   font-weight: 400;
   letter-spacing: 0.075em;
-  margin-top: -0.5em;
-  text-transform: uppercase; }
+  margin-top: -0.5em;}
+  /* text-transform: uppercase; } */
 
 header.major > :last-child {
   border-bottom: solid 3px #f56a6a;
   display: inline-block;
   margin: 0 0 2em 0;
-  padding: 0 0.75em 0.5em 0; }
+  padding: 0 0.75em 0.25em 0; }
 
 header.main > :last-child {
   margin: 0 0 1em 0; }
@@ -1232,6 +1239,19 @@ input[type="radio"] + label:before {
     max-width: 40%; }
     .image.left img, .image.right img {
       width: 100%; }
+  .image.mini {
+    top: 0em;
+    max-width: 13%; }
+    .image.mini img {
+      width: 100%; }
+  .image.mini_left {
+    float: left;
+    padding: 0 0.5em 1em 0;
+    top: 0.25em; }
+  .image.mini_right {
+    float: right;
+    padding: 0 0 1em 0.5em;
+    top: 0.25em; }
   .image.left {
     float: left;
     padding: 0 1.5em 1em 0;
@@ -1952,7 +1972,7 @@ button,
   #sidebar > .inner {
     overflow-y: scroll;
     overflow-x: hidden;
-    padding: 2.22222em 2.22222em 2.44444em 2.22222em ;
+    padding: 4.22222em 2.22222em 2.44444em 2.22222em ;
     position: fixed;
     width: 26em; 
     max-height: 100vh;
@@ -2107,7 +2127,8 @@ button,
   #header .logo {
     border-bottom: 0;
     color: inherit;
-    font-family: "Roboto Slab", serif;
+    font-family: "Montserrat", sans-serif;
+    font-weight: 700;
     font-size: 1.225em; }
   #header .icons {
     text-align: right; }
@@ -2219,10 +2240,10 @@ button,
   -webkit-user-select: none;
   -ms-user-select: none;
   user-select: none;
-  color: #cccccc;
-  font-family: "Roboto Slab", serif;
-  font-weight: 400;
-  letter-spacing: 0.075em;
+  color: #ee7381;
+  font-family: "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+  font-weight: 700;
+  letter-spacing: 0.025em;
   list-style: none;
   margin-bottom: 0;
   padding: 0;
@@ -2235,6 +2256,7 @@ button,
     font-size: 0.9em;
     padding: 0.625em 0; }
     #menu ul a:hover, #menu ul span:hover {
+      background-color: #333639;
       color: #f56a6a; }
     #menu ul a.opener, #menu ul span.opener {
       -moz-transition: color 0.2s ease-in-out;
@@ -2260,7 +2282,7 @@ button,
         -webkit-transition: color 0.2s ease-in-out, -webkit-transform 0.2s ease-in-out;
         -ms-transition: color 0.2s ease-in-out, -ms-transform 0.2s ease-in-out;
         transition: color 0.2s ease-in-out, transform 0.2s ease-in-out;
-        color: #9fa3a6;
+        color: #e0e0e1;
         content: '\f078';
         position: absolute;
         right: 0; }
@@ -2277,12 +2299,17 @@ button,
 #menu > ul > li {
   border-top: solid 1px rgba(210, 215, 217, 0.75);
   margin: 0.5em 0 0 0;
-  padding: 0.5em 0 0 0; }
+  padding: 0.5em 0 0 0;}
   #menu > ul > li > ul {
-    color: #9fa3a6;
+    font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", 
+    Helvetica, Arial, "Lucida Grande", sans-serif;
+    font-size: 13pt;
+    font-weight: 400;
+    color: #e0e0e1;
     display: none;
     margin: 0.5em 0 1.5em 0;
-    padding-left: 1em; }
+    padding-left: 1em;  
+    text-transform: none;}
     #menu > ul > li > ul a, #menu > ul > li > ul span {
       font-size: 0.8em; }
     #menu > ul > li > ul > li {
