@@ -1,4 +1,4 @@
-@import url(fontawesome-all.min.css);
+@import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css");
 @import url("https://fonts.googleapis.com/css?family=Open+Sans:400,600,400italic,600italic|Roboto+Slab:400,700");
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap");
 /*
@@ -138,7 +138,7 @@ a.test {
 
 strong, b {
   color: #f56a6a;
-  font-weight: 700; }
+  font-weight: 600; }
 
 em, i {
   font-style: italic; }
