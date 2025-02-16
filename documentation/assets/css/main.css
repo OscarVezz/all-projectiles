@@ -1970,7 +1970,7 @@ button,
   #sidebar h2 {
     font-size: 1.38889em; }
   #sidebar > .inner {
-    overflow-y: scroll;
+    overflow-y: auto;
     overflow-x: hidden;
     padding: 4.22222em 2.22222em 2.44444em 2.22222em ;
     position: fixed;
