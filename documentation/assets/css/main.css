@@ -95,7 +95,7 @@ body, input, select, textarea {
   color: #e0e0e1;
   font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", 
   Helvetica, Arial, "Lucida Grande", sans-serif;
-  font-size: 13pt;
+  font-size: 13.5pt;
   font-weight: 400;
   line-height: 1.5; }
   @media screen and (max-width: 1680px) {
@@ -1018,6 +1018,11 @@ header.major > :last-child {
   display: inline-block;
   margin: 0 0 2em 0;
   padding: 0 0.75em 0.25em 0; }
+header.semimajor > :last-child {
+  border-bottom: solid 3px #f56a6a;
+  display: inline-block;
+  margin: -4em 0 0em 0;
+  padding: -4em 0.75em 0.25em 0; }
 
 header.main > :last-child {
   margin: 0 0 1em 0; }
@@ -1236,7 +1241,7 @@ input[type="radio"] + label:before {
     border-radius: 0.375em;
     display: block; }
   .image.left, .image.right {
-    max-width: 40%; }
+    max-width: 50%; }
     .image.left img, .image.right img {
       width: 100%; }
   .image.mini {
@@ -1890,7 +1895,7 @@ button,
   flex-shrink: 1;
   width: 100%; }
   #main > .inner {
-    padding: 0 6em 0.1em 6em ;
+    padding: 0 12em 0.1em 6em ;
     margin: 0 auto;
     max-width: 110em; }
     #main > .inner > section {
@@ -1900,12 +1905,12 @@ button,
         border-top: 0 !important; }
   @media screen and (max-width: 1680px) {
     #main > .inner {
-      padding: 0 5em 0.1em 5em ; }
+      padding: 0 10em 0.1em 5em ; }
       #main > .inner > section {
         padding: 5em 0 3em 0 ; } }
   @media screen and (max-width: 1280px) {
     #main > .inner {
-      padding: 0 4em 0.1em 4em ; }
+      padding: 0 6em 0.1em 4em ; }
       #main > .inner > section {
         padding: 4em 0 2em 0 ; } }
   @media screen and (max-width: 736px) {
