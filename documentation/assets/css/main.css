@@ -1975,6 +1975,10 @@ button,
   #sidebar h2 {
     font-size: 1.38889em; }
   #sidebar > .inner {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100vh;
     overflow-y: auto;
     overflow-x: hidden;
     padding: 4.22222em 2.22222em 2.44444em 2.22222em ;
@@ -2082,7 +2086,7 @@ button,
         position: absolute;
         top: 0; }
         #sidebar > .inner:after {
-          content: '';
+          /* content: ''; */
           display: block;
           height: 4em;
           width: 100%; }
