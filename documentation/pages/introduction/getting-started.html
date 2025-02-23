@@ -40,41 +40,71 @@
 										<h1>Getting Started</h1>
 									</header>
 
-									<!-- Content -->
-									
-									<p><span class="image right"><img src="../../gifs/magic_bolt.gif" alt="Example of All Projectiles used to cast magic bolts" /></span><h2 id="content">What is “All Projectiles”?</h2>    
-										<strong>All Projectiles</strong> is a compact, fast and efficient <strong>projectile engine</strong> made for Godot 4 designed as a hands off user approach to projectile instancing, managing and disposal.
-										<br><br>It provides a general, comprehensive and modular <strong>behavior based system</strong> crafted to create complex projectiles from any given scene.</p>
-										
-								</section>
-
-							<!-- Section -->
-								<section>
-									<header class="main">
-										<h1>Addon Nodes</h1>
+									<header class="semimajor">
+										<h2><strong><i class="fa-solid fa-square-caret-right"></i></strong> How do I spawn a Projectile?</h2>
 									</header>
+									<br>
 
-									<div class="row gtr-200">
-										<div class="col-6 col-12-small">
-											<p><span class="image left mini" style="max-width: 100px;"><img src="../../images/projectile_caller_2d.svg" alt="Projectile Caller icon"/></span> <header class="semimajor"><h2>Projectile Caller</h2></header></p>
-											<p>Projectile Callers are <strong>the gates between your code and the AP engine</strong>, they're the only node able to <strong>request the creation of new projectiles</strong> to the main processor. It also serves as a container for your Projectile Blueprints.</p>
+									<div class="row gtr-75">
+										<div class="col-4 col-12-small">
+											<ol start="1" class="copycat">
+												<li><h4>Add a <strong>ProjectileCaller</strong> component to your desired node.</h4></li>
+											  </ol>
 										</div>
 
-										<div class="col-6 col-12-small">
-											<p><span class="image left mini" style="max-width: 100px;"><img src="../../images/projectile_processor_2d.svg" alt="Projectile Processor icon"/></span> <header class="semimajor"><h2>Projectile Processor</h2></header></p>
-											<p>The Projectile Processor <strong>is the AP engine itself</strong>. As the main operator of the game it adds, draws and processes all requested projectiles from any Projectile Caller. And while it's a node, <strong>there is no need to add it to your scenes</strong>, one will be created  automatically once there is a request from any Projectile Caller.</p>
+										<div class="col-4 col-12-small">
+											<span class="image fit center"><img src="../../images/add_node.png" alt="Example of All Projectiles used to cast magic bolts" /></span>
 										</div>
-									</div>
-									<hr>
-									<div class="row gtr-200">
-										<div class="col-6 col-12-small">
-											<p><span class="image left mini" style="max-width: 100px;"><img src="../../images/projectile_resource_2d.svg" alt="Projectile Blueprint icon"/></span> <header class="semimajor"><h2>Projectile Blueprint</h2></header></p>
-											<p>Projectile Blueprints are <strong>custom Godot Resources</strong>, and like Textures and Materials <strong>they only serve as data containers</strong>. Projectile Blueprints are used by the AP engine to create the real-time Projectile Objects.</p>
+
+										<div class="col-4 col-12-small">
+											<span class="image fit center"><img src="../../images/add_proj_call.png" alt="Example of All Projectiles used to cast magic bolts" /></span>
 										</div>
 									</div>
 
+									<br>
+									<div class="row gtr-200">
+										<div class="col-4 col-12-small">
+											<ol start="2" class="copycat">
+												<li><h4>Add any <strong>ProjectileBlueprint</strong> in the Projectile Resources Array of the ProjectileCaller node.</h4></li>
+											  </ol>
+										</div>
+
+										<div class="col-4 col-12-small">
+											<span class="image fit center"><img src="../../images/add_proj_blueprint.png" alt="Example of All Projectiles used to cast magic bolts" /></span>
+										</div>
+
+										<div class="col-4 col-12-small">
+											<span class="image fit center"><img src="../../images/add_quick_load.png" alt="Example of All Projectiles used to cast magic bolts" /></span>
+										</div>
+									</div>
+
+									<br>
+									<div class="row gtr-200">
+										<div class="col-4 col-12-small">
+											<ol start="3" class="copycat">
+												<li><h4><strong>Call</strong> the ProjectileCaller from any of your scripts <strong>and request</strong> any of its Projectile Resources.  </h4></li>
+											  </ol>
+										</div>
+
+										<div class="col-8 col-12-small">
+											<pre><code><span class="keyword">extends</span> Node2D
+
+<span class="exported-property">@onready</span> <span class="keyword">var</span> projectile_caller <span class="operator">= $</span>ProjectileCaller2D
+									
+<span class="keyword">func</span> _process(_delta):
+	<span class="condicional">if</span> Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
+		<span class="keyword">var</span> destination = <span class="data">get_global_mouse_position</span>()
+		projectile_caller.<span class="method">request_projectile</span>(<span class="data">0</span>, position, destination)
+</code></pre>
+										</div>
+									</div>
 								</section>
 
+								<section>
+									<header class="semimajor">
+										<h2><strong><i class="fa-solid fa-square-caret-right"></i></strong> How do I spawn a Projectile?</h2>
+									</header>
+								</section>
 						</div>
 					</div>
 

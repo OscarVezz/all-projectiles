@@ -1,6 +1,7 @@
 @import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css");
 @import url("https://fonts.googleapis.com/css?family=Open+Sans:400,600,400italic,600italic|Roboto+Slab:400,700");
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap");
 /*
 	Editorial by HTML5 UP
 	html5up.net | @ajlkn
@@ -212,21 +213,50 @@ code {
   background: rgba(230, 235, 237, 0.25);
   border-radius: 0.375em;
   border: solid 1px rgba(210, 215, 217, 0.75);
-  font-family: "Courier New", monospace;
+  color: #dedee0;
+  font-family: "JetBrains Mono", SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", Courier, monospace;
   font-size: 0.9em;
+  font-weight: 500;
   margin: 0 0.25em;
   padding: 0.25em 0.65em; }
 
 pre {
   -webkit-overflow-scrolling: touch;
+  /* inline-size: min-content; */
   font-family: "Courier New", monospace;
   font-size: 0.9em;
-  margin: 0 0 2em 0; }
+  margin: 0 0 2em 0; 
+  -moz-tab-size:    4; /* Firefox 4+ */
+  -o-tab-size:      4; /* Opera 11.5 & 12.1 only */
+  tab-size:         4; /* Chrome 21+, Safari 6.1+, Opera 15+ */}
   pre code {
+    border-width: 3px;
+    border-color: #353c4c;
+    scrollbar-color: #be5460 #1c1e21;
+    background-color: #202531;
     display: block;
-    line-height: 1.75;
+    line-height: 1.5;
     padding: 1em 1.5em;
     overflow-x: auto; }
+
+.string {
+  color: #ffeca1; }
+.keyword {
+  color: #ff7085; }
+.exported-property {
+  color: #ffb373; }
+.data {
+  /* also for godot own methods, numbers & int, vector, void keyword */
+  color: #a1ffe0; }
+.condicional { 
+  /* if, elif, else, for, while, match, return */
+  color: #ff8ccc; }
+.operator { 
+  /* $, =, +, -, *, ->*/
+  color: #abc8ff; }
+.method { 
+  /*own tool methods*/
+  color: #9cdcfe; }
 
 hr {
   border: 0;
@@ -1021,7 +1051,7 @@ header.major > :last-child {
 header.semimajor > :last-child {
   border-bottom: solid 3px #f56a6a;
   display: inline-block;
-  margin: -4em 0 0em 0;
+  margin: 1em 0 em 0;
   padding: -4em 0.75em 0.25em 0; }
 
 header.main > :last-child {
@@ -1270,7 +1300,11 @@ input[type="radio"] + label:before {
     margin: 0 0 2em 0;
     width: 100%; }
     .image.fit img {
-      width: 100%; }
+      max-width: 100%; 
+      height: auto;}
+  .image.center img {
+    margin-left: auto;
+    margin-right: auto; }
   .image.main {
     display: block;
     margin: 0 0 3em 0;
@@ -1298,6 +1332,8 @@ ol {
   padding-left: 1.25em; }
   ol li {
     padding-left: 0.25em; }
+ol.copycat {
+  font-weight: 600;}
 
 ul {
   list-style: disc;
