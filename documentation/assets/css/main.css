@@ -221,6 +221,7 @@ code {
   padding: 0.25em 0.65em; }
 
 pre {
+  display: grid;
   -webkit-overflow-scrolling: touch;
   /* inline-size: min-content; */
   font-family: "Courier New", monospace;
@@ -230,7 +231,7 @@ pre {
   -o-tab-size:      4; /* Opera 11.5 & 12.1 only */
   tab-size:         4; /* Chrome 21+, Safari 6.1+, Opera 15+ */}
   pre code {
-    border-width: 3px;
+    border-width: 4px;
     border-color: #353c4c;
     scrollbar-color: #be5460 #1c1e21;
     background-color: #202531;
@@ -246,9 +247,9 @@ pre {
 .exported-property {
   color: #ffb373; }
 .data {
-  /* also for godot own methods, numbers & int, vector, void keyword */
+  /* also for godot own methods, numbers & int, vector, void, null keyword */
   color: #a1ffe0; }
-.condicional { 
+.conditional { 
   /* if, elif, else, for, while, match, return */
   color: #ff8ccc; }
 .operator { 
@@ -257,6 +258,9 @@ pre {
 .method { 
   /*own tool methods*/
   color: #9cdcfe; }
+.comment{
+  color: #ccced380;
+}
 
 hr {
   border: 0;
@@ -2364,3 +2368,12 @@ button,
     border-top: 0;
     margin-top: 0;
     padding-top: 0; }
+  #menu > ul > li > ul > ul{
+    font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", 
+    Helvetica, Arial, "Lucida Grande", sans-serif;
+    font-size: 13pt;
+    font-weight: 400;
+    color: #ebebf599;   
+    text-transform: none;
+    padding-left: 1em; 
+    line-height: 10px;}
