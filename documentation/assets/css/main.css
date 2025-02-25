@@ -2325,7 +2325,9 @@ button,
         line-height: 1;
         text-transform: none !important;
         font-family: 'Font Awesome 5 Free';
-        font-weight: 900; }
+        font-weight: 900; 
+        top: 20%; 
+        padding: 0.2em 1em 0.2em 1em;}
       #menu ul a.opener:before, #menu ul span.opener:before {
         -moz-transition: color 0.2s ease-in-out, -moz-transform 0.2s ease-in-out;
         -webkit-transition: color 0.2s ease-in-out, -webkit-transform 0.2s ease-in-out;
@@ -2356,14 +2358,15 @@ button,
     font-weight: 400;
     color: #e0e0e1;
     display: none;
-    margin: 0.5em 0 1.5em 0;
     padding-left: 1em;  
     text-transform: none;}
     #menu > ul > li > ul a, #menu > ul > li > ul span {
+      text-transform: none;
       font-size: 0.8em; }
-    #menu > ul > li > ul > li {
-      margin: 0.125em 0 0 0;
-      padding: 0.125em 0 0 0; }
+    #menu > ul > li > ul > li, #menu > ul > li > ul > span{
+      font-size: 13pt; 
+      margin: 0 0 0 0;
+      padding: 0 0 0 0; }
   #menu > ul > li:first-child {
     border-top: 0;
     margin-top: 0;
@@ -2375,5 +2378,6 @@ button,
     font-weight: 400;
     color: #ebebf599;   
     text-transform: none;
+    display: none;
     padding-left: 1em; 
-    line-height: 10px;}
+    line-height: 8px; }
