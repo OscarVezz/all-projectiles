@@ -115,7 +115,7 @@ a {
   -webkit-transition: color 0.2s ease-in-out, border-bottom-color 0.2s ease-in-out;
   -ms-transition: color 0.2s ease-in-out, border-bottom-color 0.2s ease-in-out;
   transition: color 0.2s ease-in-out, border-bottom-color 0.2s ease-in-out;
-  color: #7cccf2;
+  color: #7bb5e1;
   text-decoration: none; }
   a:visited {
     color: #c199ea;
@@ -126,8 +126,8 @@ a {
   a:hover {
     /* border-bottom: solid 1px; */
     text-decoration: underline;
-    border-bottom-color: #99dddf;
-    color: #99dddf; }
+    border-bottom-color: #9df;
+    color: #9df; }
     a:hover strong {
       color: inherit; }
   
@@ -145,7 +145,11 @@ em, i {
   font-style: italic; }
 
 p {
-  margin: 0 0 2em 0; }
+  margin: 0 0 1.25em 0; }
+  p.tab{
+    margin: 0 0 1.25em 1.5em; }
+  p.tab-alt{
+      margin: 1.25em 0 1.25em 1.5em; }
 
 h1, h2, h3, h4, h5, h6 {
   color: #e0e0e1;
@@ -219,6 +223,13 @@ code {
   font-weight: 500;
   margin: 0 0.25em;
   padding: 0.25em 0.65em; }
+  code.value {
+    border-radius: 0.375em;
+    color: #d68f8f;
+    background: #22252d;
+    border: none; 
+    margin: 0 0 0 0;
+    padding: 0.25em 0.35em 0.25em 0.35em;}
 
 pre {
   display: grid;
@@ -256,11 +267,23 @@ pre {
   /* $, =, +, -, *, ->*/
   color: #abc8ff; }
 .method { 
-  /*own tool methods*/
+  /*my own tool methods*/
   color: #9cdcfe; }
 .comment{
-  color: #ccced380;
-}
+  color: #ccced380; }
+
+.comment-alt{
+  font-weight: 600;
+  color: #929598; }
+.link{
+  color: #7bb5e1; }
+.value{
+  color: #d68f8f; }
+/* .value-alt{
+  color: #d68f8f;
+  background-color: #22252d;
+  border-radius: 7.5px; } */
+
 
 hr {
   border: 0;
@@ -268,6 +291,8 @@ hr {
   margin: 2em 0; }
   hr.major {
     margin: 3em 0; }
+  hr.strong {
+    border-bottom: solid 2px #f56a6a }
 
 .align-left {
   text-align: left; }
@@ -1513,6 +1538,7 @@ ul.pagination {
 
 /* Table */
 .table-wrapper {
+  padding-right: 3em;
   -webkit-overflow-scrolling: touch;
   overflow-x: auto; }
 
@@ -1538,6 +1564,7 @@ table {
   table tfoot {
     border-top: solid 4px #505356; }
   table.alt {
+    line-height: 1.1;
     border-collapse: collapse; }
     table.alt th{
       border: solid 4px #505356;}

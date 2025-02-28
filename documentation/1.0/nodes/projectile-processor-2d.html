@@ -35,138 +35,197 @@
 							</header>
 
 							<!-- Content -->
-								<section>
-									<header class="main">
-										<h1>Getting Started</h1>
-									</header>
-
-									<header class="semimajor" id="spawning-projectiles">
-										<h2><strong><i class="fa-solid fa-square-caret-right"></i></strong> How do I spawn a Projectile?</h2>
-									</header>
-									<br>
-
-									<div class="row gtr-75">
-										<div class="col-4 col-12-small">
-											<ol start="1" class="copycat">
-												<li><h4>Add a <strong>ProjectileCaller</strong> component to your desired node.</h4></li>
-											  </ol>
-										</div>
-
-										<div class="col-4 col-12-small">
-											<span class="image fit center"><img src="../../images/add_node.png" alt="Right click on your node -> Add child node…" /></span>
-										</div>
-
-										<div class="col-4 col-12-small">
-											<span class="image fit center"><img src="../../images/add_proj_call.png" alt="Search for ProjectileCaller -> Select ProjectileCaller2D -> Create" /></span>
-										</div>
-									</div>
-
-									<br>
-									<div class="row gtr-200">
-										<div class="col-4 col-12-small">
-											<ol start="2" class="copycat">
-												<li><h4>Add any <strong>ProjectileBlueprint</strong> in the Projectile Resources Array of the ProjectileCaller node.</h4></li>
-											  </ol>
-										</div>
-
-										<div class="col-4 col-12-small">
-											<span class="image fit center"><img src="../../images/add_proj_blueprint.png" alt="Select Projectile Resources array -> Add Element" /></span>
-										</div>
-
-										<div class="col-4 col-12-small">
-											<span class="image fit center"><img src="../../images/add_quick_load.png" alt="Select empty -> Quick Load -> Select any -> Open" /></span>
-										</div>
-									</div>
-
-									<br>
-									<div class="row gtr-200">
-										<div class="col-4 col-12-small">
-											<ol start="3" class="copycat">
-												<li><h4><strong>Call</strong> the ProjectileCaller from any of your scripts <strong>and request</strong> any of its Projectile Resources.  </h4></li>
-											  </ol>
-										</div>
-
-										<div class="col-8 col-12-small">
-											<pre><code><span class="keyword">extends</span> Node2D
-
-<span class="exported-property">@onready</span> <span class="keyword">var</span> projectile_caller <span class="operator">= $</span>ProjectileCaller2D
-									
-<span class="keyword">func</span> _process(_delta):
-	<span class="condicional">if</span> Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
-		<span class="keyword">var</span> destination = <span class="data">get_global_mouse_position</span>()
-		projectile_caller.<span class="method">request_projectile</span>(<span class="data">0</span>, position, destination)
-</code></pre>
-										</div>
-									</div>
-								</section>
-
-								<section>
-									<header class="semimajor" id="creating-projectile-blueprints">
-										<h2><strong><i class="fa-solid fa-square-caret-right"></i></strong> How do I create a Projectile Blueprint?</h2>
-									</header>
-									<br>
-
-									<div class="row gtr-75">
-										<div class="col-4 col-12-small">
-											<ol start="1" class="copycat">
-												<li><h4>Right click on any <strong>Godot FileSystem</strong> folder <i class="fa-solid fa-arrow-right-long"></i> Create New <i class="fa-solid fa-arrow-right-long"></i> Resource</h4></li>
-											  </ol>
-										</div>
-
-										<div class="col-8 col-12-small">
-											<span class="image fit" style="padding-left: 1em;"><img src="../../images/add_resource.png" alt="Right click on your Godot FileSystem -> Create New -> Resource" /></span>
-										</div>
-									</div>
-
-									<br>
-									<div class="row gtr-200">
-										<div class="col-4 col-12-small">
-											<ol start="2" class="copycat">
-												<li><h4>Search for <strong>ProjectileBlueprint</strong> <i class="fa-solid fa-arrow-right-long"></i> Create <i class="fa-solid fa-arrow-right-long"></i> Name it <i class="fa-solid fa-arrow-right-long"></i> Save</h4></li>
-											  </ol>
-										</div>
-
-										<div class="col-4 col-12-small">
-											<span class="image fit center"><img src="../../images/search_blueprint.png" alt="Right click on your Godot FileSystem -> Create New -> Resource" /></span>
-										</div>
-
-										<div class="col-4 col-12-small">
-											<span class="image fit center"><img src="../../images/save_blueprint.png" alt="Search for ProjectileBlueprint -> Select ProjectileBlueprint2D -> Create -> Name it -> Save" /></span>
-										</div>
-									</div>
-								</section>
-
-								<section>
-									<header class="semimajor" id="modifying-projectile-behavior">
-										<h2><strong><i class="fa-solid fa-square-caret-right"></i></strong> How do I modify the behavior of a projectile?</h2>
-									</header>
-									<br>
-
-									<ul class="copycat" style="list-style-type: square;">
-										<li><h4>You can change the behavior of your Projectiles <strong>when requesting its creation</strong> from the ProjectileCaller.</h4></li>
-										<li><h4>The <strong>request_projectile</strong> method will take your <strong>custom functions</strong> as parameters.</h4></li>
-									</ul>
-									
-									<pre><code><span class="keyword">extends</span> Node2D
-
-<span class="exported-property">@onready</span> <span class="keyword">var</span> projectile_caller <span class="operator">= $</span>ProjectileCaller2D
-						
-
-<span class="comment"># In this example the "custom_movement" function is passed as a Callable in the optional "move_method" parameter.</span>
-<span class="comment"># The ProjectileCaller "request_projectile" method can also change the collision, expiration or target of your projectiles.</span>
-<span class="keyword">func</span> _process(_delta):
-	<span class="condicional">if</span> Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
-		<span class="keyword">var</span> destination = <span class="data">get_global_mouse_position</span>()
-		projectile_caller.<span class="method">request_projectile</span>(<span class="data">0</span>, position, destination, <span class="data">null</span>, custom_movement)
+							<section>
+								<header class="main">
+									<h2>Article Name</h2>
+								</header>
 
 
-<span class="comment"># Each optional Callable argument follows a define pattern and must take a set number of parameters.</span>
-<span class="comment"># To learn more about these custom methods and how to use them go to the ProjectileCaller section.</span>
-<span class="keyword">func</span> custom_movement(proj: <span class="data">Projectile2D</span>, _delta: <span class="data">float</span>) <span class="operator">-></span> <span class="data">Vector2</span>:
-	<span class="conditional">return</span> <span class="data">Vector2</span>.UP
-</code></pre>
+								<!-- Inherits -->
+								<p>Inherits: <a href="#">hierarchy_link1</a> < <a href="#">hierarchy_link2</a> < <a href="#">hierarchy_link3</a></p>
+								<p>description short.</p>
+								<br>
 
-								</section>
+
+								<!-- Description -->
+								<header class="semimajor" id="description">
+									<h3>Description</h3>
+								</header>
+								<p>description long.</p>
+								<br>
+
+
+								<!-- Tutorials -->
+								<header class="semimajor" id="tutorials">
+									<h3>Tutorials</h3>
+								</header>
+								<ul>
+									<li><a href="#">tutorial_link1</a></li>
+									<li><a href="#">tutorial_link2</a></li>
+									<li><a href="#">tutorial_link3</a></li>
+								</ul>
+
+
+								<!-- Properties -->
+								<header class="semimajor" id="properties">
+									<h3>Properties</h3>
+								</header>
+								<div class="table-wrapper">
+									<table class="alt">
+										<colgroup>
+											<col style="width:22%">
+											<col style="width:48%">
+											<col style="width:30%">
+										</colgroup>  
+										<tbody>
+											<tr>
+												<td><a href="#">property_type_link1</a></td>
+												<td><a href="#">property_link1_to_document</a></td>
+												<td><code class="value">value1</code></td>
+											</tr>
+											<tr>
+												<td><a href="#">property_type_link2</a></td>
+												<td><a href="#">property_link2_to_document</a></td>
+												<td><code class="value">value2</code></td>
+											</tr>
+											<tr>
+												<td><a href="#">property_type_link3</a></td>
+												<td><a href="#">property_link3_to_document</a></td>
+												<td><code class="value">value3</code></td>
+											</tr>
+											<tr>
+												<td><a href="#">property_type_link4</a></td>
+												<td><a href="#">property_link4_to_document</a></td>
+												<td><code class="value">value4</code></td>
+											</tr>
+											<tr>
+												<td><a href="#">property_type_link5</a></td>
+												<td><a href="#">property_link5_to_document</a></td>
+												<td><code class="value">value5</code></td>
+											</tr>
+										</tbody>
+									</table>
+								</div>
+								<br>
+								<br>
+
+
+								<!-- Methods -->
+								<header class="semimajor" id="methods">
+									<h3>Methods</h3>
+								</header>
+								<div class="table-wrapper">
+									<table class="alt">
+										<colgroup>
+											<col style="width:22%">
+											<col style="width:48%">
+											<col style="width:30%">
+										</colgroup>  
+										<tbody>
+											<tr>
+												<td><a href="#">property_type_link1</a></td>
+												<td><a href="#">property_link1_to_document</a></td>
+												<td><code class="value">value1</code></td>
+											</tr>
+											<tr>
+												<td><a href="#">property_type_link2</a></td>
+												<td><a href="#">property_link2_to_document</a></td>
+												<td><code class="value">value2</code></td>
+											</tr>
+											<tr>
+												<td><a href="#">property_type_link3</a></td>
+												<td><a href="#">property_link3_to_document</a></td>
+												<td><code class="value">value3</code></td>
+											</tr>
+											<tr>
+												<td><a href="#">property_type_link4</a></td>
+												<td><a href="#">property_link4_to_document</a></td>
+												<td><code class="value">value4</code></td>
+											</tr>
+											<tr>
+												<td><a href="#">property_type_link5</a></td>
+												<td><a href="#">property_link5_to_document</a></td>
+												<td><code class="value">value5</code></td>
+											</tr>
+										</tbody>
+									</table>
+								</div>
+								<hr class="strong">
+								<br>
+
+
+								<!-- Signals -->
+								<header class="semimajor" id="signals">
+									<h3>Signals</h3>
+								</header>
+
+								<h4>signal_name_1<span class="comment-alt">(property_name_1: </span><a href="#" class="link">property_type_1</a><span class="comment-alt">, property_name_2: </span><a href="#" class="link">property_type_2</a><span class="comment-alt">)</span></h4>
+									<p class="tab">Signal description long</p>
+								<hr>
+
+								<h4>signal_name_2<span class="comment-alt">(property_name_1: </span><a href="#" class="link">property_type_1</a><span class="comment-alt">, property_name_2: </span><a href="#" class="link">property_type_2</a><span class="comment-alt">)</span></h4>
+									<p class="tab">Signal description long</p>
+								<hr class="strong">
+								<br>
+
+
+								<!-- Enumerations -->
+								<header class="semimajor" id="enumerations">
+									<h3>Enumerations</h3>
+								</header>
+
+								<h4><span class="comment-alt">enum </span>EnumName1 <span class="comment-alt">:</span></h4>
+								<ul style="list-style-type: none">
+									<li><h4><a href="#" class="link">EnumName1</a> ENUM_ELEMENT_NAME_1<span class="comment-alt"> = 0</span></h4></li>
+										<p class="tab-alt">Enum element description.</p>
+									<li><h4><a href="#" class="link">EnumName1</a> ENUM_ELEMENT_NAME_2<span class="comment-alt"> = 1</span></h4></li>
+										<p class="tab-alt">Enum element description.</p>
+									<li><h4><a href="#" class="link">EnumName1</a> ENUM_ELEMENT_NAME_3<span class="comment-alt"> = 2</span></h4></li>
+										<p class="tab-alt">Enum element description.</p>
+								</ul>
+								<hr>
+
+								<h4><span class="comment-alt">enum </span>EnumName2 <span class="comment-alt">:</span></h4>
+								<ul style="list-style-type: none">
+									<li><h4><a href="#" class="link">EnumName2</a> ENUM_ELEMENT_NAME_1<span class="comment-alt"> = 0</span></h4></li>
+										<p class="tab-alt">Enum element description.</p>
+									<li><h4><a href="#" class="link">EnumName2</a> ENUM_ELEMENT_NAME_2<span class="comment-alt"> = 1</span></h4></li>
+										<p class="tab-alt">Enum element description.</p>
+									<li><h4><a href="#" class="link">EnumName2</a> ENUM_ELEMENT_NAME_3<span class="comment-alt"> = 2</span></h4></li>
+										<p class="tab-alt">Enum element description.</p>
+								</ul>
+								<hr class="strong">
+								<br>
+
+
+								<!-- Property Descriptions -->
+								<header class="semimajor" id="property-descriptions">
+									<h3>Property Descriptions</h3>
+								</header>
+
+								<h4><a href="#" class="link">property_type_1</a> property_name_1<span class="comment-alt"> = </span><span class="value"> init_value</h4>
+									<p class="tab">Property description long</p>
+								<hr>
+
+								<h4><a href="#" class="link">property_type_2</a> property_name_2<span class="comment-alt"> = </span><span class="value"> init_value</h4>
+									<p class="tab">Property description long</p>
+								<hr class="strong">
+								<br>
+
+
+								<!-- Method Descriptions -->
+								<header class="semimajor" id="method-descriptions">
+									<h3>Method Descriptions</h3>
+								</header>
+								
+								<h4><a href="#" class="link">return_type_1</a> method_name_1<span class="comment-alt">(property_name_1: </span><a href="#" class="link">property_type_1</a><span class="comment-alt">, property_name_2: </span><a href="#" class="link">property_type_2</a><span class="comment-alt">)</span></h4>
+									<p class="tab">Method description long</p>
+								<hr>
+
+								<h4><a href="#" class="link">return_type_1</a> method_name_1<span class="comment-alt">(property_name_1: </span><a href="#" class="link">property_type_1</a><span class="comment-alt">, property_name_2: </span><a href="#" class="link">property_type_2</a><span class="comment-alt">)</span></h4>
+									<p class="tab">Method description long</p>
+								<hr>
+							</section>
 						</div>
 					</div>
 
