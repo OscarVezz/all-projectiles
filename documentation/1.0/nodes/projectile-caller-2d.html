@@ -6,7 +6,7 @@
 -->
 <html>
 	<head>
-		<title>Getting Started</title>
+		<title>ProjectileCaller2D</title>
 		<meta charset="utf-8" />
 		<meta name="description" content="A Projectile Engine for Godot"/>
 		<meta name="autor" content="Oscar Vezz"/>
@@ -36,14 +36,14 @@
 
 							<!-- Content -->
 							<section>
-								<header class="main">
-									<h2>Article Name</h2>
+								<header class="main" id="projectile-caller-2d">
+									<h2>ProjectileCaller2D</h2>
 								</header>
 
 
 								<!-- Inherits -->
-								<p>Inherits: <a href="#">hierarchy_link1</a> < <a href="#">hierarchy_link2</a> < <a href="#">hierarchy_link3</a></p>
-								<p>description short.</p>
+								<p><b>Inherits:</b> <a href="https://docs.godotengine.org/en/stable/classes/class_node2d.html#class-node2d">Node2D</a> < <a href="https://docs.godotengine.org/en/stable/classes/class_canvasitem.html#class-canvasitem">CanvasItem</a> < <a href="https://docs.godotengine.org/en/stable/classes/class_node.html#class-node">Node</a> < <a href="https://docs.godotengine.org/en/stable/classes/class_object.html#class-object">Object</a></p>
+								<p>An <strong>intermediary</strong> between your code and the <a href="../../1.0/nodes/projectile-processor-2d.html#projectile-processor-2d">AP engine</a>.</p>
 								<br>
 
 
@@ -51,19 +51,20 @@
 								<header class="semimajor" id="description">
 									<h3>Description</h3>
 								</header>
-								<p>description long.</p>
+									<p>Provides indirect access to the <a href="../../1.0/nodes/projectile-processor-2d.html#projectile-processor-2d">AP engine</a>. Holds and delegates the creation of projectiles.</p>
+									<p>This node also serves as a container for your <a href="../../1.0/resources/projectile-blueprint-2d.html#projectile-blueprint-2d">ProjectileBlueprints</a>.</p>
 								<br>
 
 
 								<!-- Tutorials -->
-								<header class="semimajor" id="tutorials">
+								<!-- <header class="semimajor" id="tutorials">
 									<h3>Tutorials</h3>
 								</header>
 								<ul>
 									<li><a href="#">tutorial_link1</a></li>
 									<li><a href="#">tutorial_link2</a></li>
 									<li><a href="#">tutorial_link3</a></li>
-								</ul>
+								</ul> -->
 
 
 								<!-- Properties -->
@@ -73,35 +74,20 @@
 								<div class="table-wrapper">
 									<table class="alt">
 										<colgroup>
-											<col style="width:22%">
-											<col style="width:48%">
+											<col style="width:30%">
+											<col style="width:40%">
 											<col style="width:30%">
 										</colgroup>  
 										<tbody>
 											<tr>
-												<td><a href="#">property_type_link1</a></td>
-												<td><a href="#">property_link1_to_document</a></td>
-												<td><code class="value">value1</code></td>
+												<td><a href="../../1.0/nodes/projectile-processor-2d.html#projectile-processor-2d">ProjectileProcessor2D</a></td>
+												<td><a href="#projectile-caller-2d-property-projectile-processor">projectile_processor</a></td>
+												<td></td>
 											</tr>
 											<tr>
-												<td><a href="#">property_type_link2</a></td>
-												<td><a href="#">property_link2_to_document</a></td>
-												<td><code class="value">value2</code></td>
-											</tr>
-											<tr>
-												<td><a href="#">property_type_link3</a></td>
-												<td><a href="#">property_link3_to_document</a></td>
-												<td><code class="value">value3</code></td>
-											</tr>
-											<tr>
-												<td><a href="#">property_type_link4</a></td>
-												<td><a href="#">property_link4_to_document</a></td>
-												<td><code class="value">value4</code></td>
-											</tr>
-											<tr>
-												<td><a href="#">property_type_link5</a></td>
-												<td><a href="#">property_link5_to_document</a></td>
-												<td><code class="value">value5</code></td>
+												<td><a href="https://docs.godotengine.org/en/stable/classes/class_array.html#class-array">Array</a>[<a href="../../1.0/resources/projectile-blueprint-2d.html#projectile-blueprint-2d">ProjectileBlueprint2D</a>]</td>
+												<td><a href="#projectile-caller-2d-property-projectile-resources">projectile_resources</a></td>
+												<td></td>
 											</tr>
 										</tbody>
 									</table>
@@ -117,35 +103,13 @@
 								<div class="table-wrapper">
 									<table class="alt">
 										<colgroup>
-											<col style="width:22%">
-											<col style="width:48%">
 											<col style="width:30%">
+											<col style="width:70%">
 										</colgroup>  
 										<tbody>
 											<tr>
-												<td><a href="#">property_type_link1</a></td>
-												<td><a href="#">property_link1_to_document</a></td>
-												<td><code class="value">value1</code></td>
-											</tr>
-											<tr>
-												<td><a href="#">property_type_link2</a></td>
-												<td><a href="#">property_link2_to_document</a></td>
-												<td><code class="value">value2</code></td>
-											</tr>
-											<tr>
-												<td><a href="#">property_type_link3</a></td>
-												<td><a href="#">property_link3_to_document</a></td>
-												<td><code class="value">value3</code></td>
-											</tr>
-											<tr>
-												<td><a href="#">property_type_link4</a></td>
-												<td><a href="#">property_link4_to_document</a></td>
-												<td><code class="value">value4</code></td>
-											</tr>
-											<tr>
-												<td><a href="#">property_type_link5</a></td>
-												<td><a href="#">property_link5_to_document</a></td>
-												<td><code class="value">value5</code></td>
+												<td><a href="https://docs.godotengine.org/en/stable/classes/class_bool.html#class-bool">bool</a></td>
+												<td><a href="#projectile-caller-2d-method-request-projectile">request_projectile</a></td>
 											</tr>
 										</tbody>
 									</table>
@@ -155,7 +119,7 @@
 
 
 								<!-- Signals -->
-								<header class="semimajor" id="signals">
+								<!-- <header class="semimajor" id="signals">
 									<h3>Signals</h3>
 								</header>
 
@@ -166,11 +130,11 @@
 								<h4>signal_name_2<span class="comment-alt">(property_name_1: </span><a href="#" class="link">property_type_1</a><span class="comment-alt">, property_name_2: </span><a href="#" class="link">property_type_2</a><span class="comment-alt">)</span></h4>
 									<p class="tab">Signal description long</p>
 								<hr class="strong">
-								<br>
+								<br> -->
 
 
 								<!-- Enumerations -->
-								<header class="semimajor" id="enumerations">
+								<!-- <header class="semimajor" id="enumerations">
 									<h3>Enumerations</h3>
 								</header>
 
@@ -195,7 +159,7 @@
 										<p class="tab-alt">Enum element description.</p>
 								</ul>
 								<hr class="strong">
-								<br>
+								<br> -->
 
 
 								<!-- Property Descriptions -->
@@ -203,12 +167,14 @@
 									<h3>Property Descriptions</h3>
 								</header>
 
-								<h4><a href="#" class="link">property_type_1</a> property_name_1<span class="comment-alt"> = </span><span class="value"> init_value</h4>
-									<p class="tab">Property description long</p>
+								<h4 id="projectile-caller-2d-property-projectile-processor"><a href="../../1.0/nodes/projectile-processor-2d.html#projectile-processor-2d">ProjectileProcessor2D</a> projectile_processor</h4>
+									<p class="tab">Direct access to the AP engine itself.</p>
+									<p class="tab"><strong>You should not use it</strong> for direct projectile creation. Use the request_projectile method instead.</p>
 								<hr>
 
-								<h4><a href="#" class="link">property_type_2</a> property_name_2<span class="comment-alt"> = </span><span class="value"> init_value</h4>
-									<p class="tab">Property description long</p>
+								<h4 id="projectile-caller-2d-property-projectile-resources"><a href="https://docs.godotengine.org/en/stable/classes/class_array.html#class-array">Array</a>[<a href="../../1.0/resources/projectile-blueprint-2d.html#projectile-blueprint-2d">ProjectileBlueprint2D</a>] projectile_resources</h4>
+									<p class="tab">The list of ProjectileBlueprint2D resources that can be directly created from the ProjectileCaller2D.</p>
+									<p class="tab">Each ProjectileCaller2D instance can only request the creation of its own stored projectiles.</p>
 								<hr class="strong">
 								<br>
 
@@ -218,11 +184,8 @@
 									<h3>Method Descriptions</h3>
 								</header>
 								
-								<h4><a href="#" class="link">return_type_1</a> method_name_1<span class="comment-alt">(property_name_1: </span><a href="#" class="link">property_type_1</a><span class="comment-alt">, property_name_2: </span><a href="#" class="link">property_type_2</a><span class="comment-alt">)</span></h4>
-									<p class="tab">Method description long</p>
-								<hr>
-
-								<h4><a href="#" class="link">return_type_1</a> method_name_1<span class="comment-alt">(property_name_1: </span><a href="#" class="link">property_type_1</a><span class="comment-alt">, property_name_2: </span><a href="#" class="link">property_type_2</a><span class="comment-alt">)</span></h4>
+								<h4 id="projectile-caller-2d-method-request-projectile"><a href="https://docs.godotengine.org/en/stable/classes/class_bool.html#class-bool" class="link">bool</a> request_projectile
+									<span class="comment-alt">(index: <a href="https://docs.godotengine.org/en/stable/classes/class_int.html#class-int" class="link">int</a>, _position: <a href="https://docs.godotengine.org/en/stable/classes/class_vector2.html#class-vector2" class="link">Vector2</a>, destination: <a href="https://docs.godotengine.org/en/stable/classes/class_vector2.html#class-vector2" class="link">Vector2</a>, target: <a href="https://docs.godotengine.org/en/stable/classes/class_node2d.html#class-node2d" class="link">Node2D</a> = null, move_method: <a href="https://docs.godotengine.org/en/stable/classes/class_callable.html#class-callable" class="link">Callable</a> = Callable(), start_method: <a href="https://docs.godotengine.org/en/stable/classes/class_callable.html#class-callable" class="link">Callable</a> = Callable(), collision_method: <a href="https://docs.godotengine.org/en/stable/classes/class_callable.html#class-callable" class="link">Callable</a> = Callable(), expired_method: <a href="https://docs.godotengine.org/en/stable/classes/class_callable.html#class-callable" class="link">Callable</a> = Callable())</span></h4>
 									<p class="tab">Method description long</p>
 								<hr>
 							</section>
@@ -282,11 +245,11 @@
 											<span class="opener active mini"><a href="../../1.0/nodes/projectile-caller-2d.html">ProjectileCaller2D</a></span>
 											<ul>
 												<li><a href="../../1.0/nodes/projectile-caller-2d.html#description">Description</a></li>
-												<li><a href="../../1.0/nodes/projectile-caller-2d.html#tutorials">Tutorials</a></li>
+												<!-- <li><a href="../../1.0/nodes/projectile-caller-2d.html#tutorials">Tutorials</a></li> -->
 												<li><a href="../../1.0/nodes/projectile-caller-2d.html#properties">Properties</a></li>
 												<li><a href="../../1.0/nodes/projectile-caller-2d.html#methods">Methods</a></li>
-												<li><a href="../../1.0/nodes/projectile-caller-2d.html#signals">Signals</a></li>
-												<li><a href="../../1.0/nodes/projectile-caller-2d.html#enumerations">Enumerations</a></li>
+												<!-- <li><a href="../../1.0/nodes/projectile-caller-2d.html#signals">Signals</a></li> -->
+												<!-- <li><a href="../../1.0/nodes/projectile-caller-2d.html#enumerations">Enumerations</a></li> -->
 												<li><a href="../../1.0/nodes/projectile-caller-2d.html#property-descriptions">Property Descriptions</a></li>
 												<li><a href="../../1.0/nodes/projectile-caller-2d.html#method-descriptions">Method Descriptions</a></li>
 											</ul>

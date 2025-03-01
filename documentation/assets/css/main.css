@@ -137,9 +137,11 @@ a.test {
     color: #e0e0e1; }
  
 
-strong, b {
+strong {
   color: #f56a6a;
   font-weight: 600; }
+b {
+  font-weight: bolder; }
 
 em, i {
   font-style: italic; }
