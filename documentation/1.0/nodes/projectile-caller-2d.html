@@ -168,13 +168,13 @@
 								</header>
 
 								<h4 id="projectile-caller-2d-property-projectile-processor"><a href="../../1.0/nodes/projectile-processor-2d.html#projectile-processor-2d">ProjectileProcessor2D</a> projectile_processor</h4>
-									<p class="tab">Direct access to the AP engine itself.</p>
-									<p class="tab"><strong>You should not use it</strong> for direct projectile creation. Use the request_projectile method instead.</p>
+									<p class="tab">Direct access to the <a href="../../1.0/nodes/projectile-processor-2d.html#projectile-processor-2d">AP engine</a> itself.</p>
+									<p class="tab"><strong>You should not use it</strong> for direct projectile creation. Use the <a href="#projectile-caller-2d-method-request-projectile">request_projectile</a> method instead.</p>
 								<hr>
 
 								<h4 id="projectile-caller-2d-property-projectile-resources"><a href="https://docs.godotengine.org/en/stable/classes/class_array.html#class-array">Array</a>[<a href="../../1.0/resources/projectile-blueprint-2d.html#projectile-blueprint-2d">ProjectileBlueprint2D</a>] projectile_resources</h4>
-									<p class="tab">The list of ProjectileBlueprint2D resources that can be directly created from the ProjectileCaller2D.</p>
-									<p class="tab">Each ProjectileCaller2D instance can only request the creation of its own stored projectiles.</p>
+									<p class="tab">The list of <a href="../../1.0/resources/projectile-blueprint-2d.html#projectile-blueprint-2d">ProjectileBlueprint2D</a> resources that can be directly created from the <b>ProjectileCaller2D</b>.</p>
+									<p class="tab">Each <b>ProjectileCaller2D</b> instance can only request the creation of its own stored projectiles.</p>
 								<hr class="strong">
 								<br>
 
@@ -186,7 +186,111 @@
 								
 								<h4 id="projectile-caller-2d-method-request-projectile"><a href="https://docs.godotengine.org/en/stable/classes/class_bool.html#class-bool" class="link">bool</a> request_projectile
 									<span class="comment-alt">(index: <a href="https://docs.godotengine.org/en/stable/classes/class_int.html#class-int" class="link">int</a>, _position: <a href="https://docs.godotengine.org/en/stable/classes/class_vector2.html#class-vector2" class="link">Vector2</a>, destination: <a href="https://docs.godotengine.org/en/stable/classes/class_vector2.html#class-vector2" class="link">Vector2</a>, target: <a href="https://docs.godotengine.org/en/stable/classes/class_node2d.html#class-node2d" class="link">Node2D</a> = null, move_method: <a href="https://docs.godotengine.org/en/stable/classes/class_callable.html#class-callable" class="link">Callable</a> = Callable(), start_method: <a href="https://docs.godotengine.org/en/stable/classes/class_callable.html#class-callable" class="link">Callable</a> = Callable(), collision_method: <a href="https://docs.godotengine.org/en/stable/classes/class_callable.html#class-callable" class="link">Callable</a> = Callable(), expired_method: <a href="https://docs.godotengine.org/en/stable/classes/class_callable.html#class-callable" class="link">Callable</a> = Callable())</span></h4>
-									<p class="tab">Method description long</p>
+									
+									<div class="tab">
+									<p>Returns <code class="value">true</code> if the creation request has been successful.</p>
+
+									<hr>
+
+									<p><strong>Takes the following arguments:</strong></p>
+									<p><code class="value">index</code>: Element of the <a href="#projectile-caller-2d-property-projectile-resources">projectile_resources</a> array that will be created by the <a href="../../1.0/nodes/projectile-processor-2d.html#projectile-processor-2d">AP engine</a>.</p>
+									<p><code class="value">position</code>: Start position of the projectile (In global coordinates).</p>
+									<p><code class="value">destination</code>: Position the projectile will move towards (In global coordinates).</p>
+									<p><code class="value">target</code>: Node2D the projectile will actively seek to (If selected in <a href="../../1.0/resources/projectile-blueprint-2d.html#projectile-blueprint-2d">ProjectileBlueprint2D</a>).</p>
+									<p><code class="value">move_method</code>: Callable that will be called every physics tick and will actively change the direction the projectile is heading to.</p> 
+									<p><code class="value">start_method</code>: Callable that will be called <strong>at projectile creation</strong>.</p>
+									<p><code class="value">collision_method</code>: Callable that will be called when the projectile collides with available bodies or areas.</p>
+									<p><code class="value">expired_method</code>: Callable that will be called once the projectile <strong>runs out of pierce or lifetime</strong>.</p>
+
+									<hr>
+
+									<p><strong>Each Callable</strong> argument <strong>follows a define pattern</strong> and must take a set number of parameters and return a specific value.</p>
+									
+									<ul>
+										<li>
+											<p>The <code class="value">move_method</code> callable <strong>must return</strong> a <code class="value">Vector2</code> and take the following two parameters:</p>
+											<p><code class="value">proj</code>: A representation of the projectile object to be changed.</p>
+											<p><code class="value">delta</code>: The time elapsed in seconds since the previous call to <b>move_method</b>.</p>
+											<pre><code><span class="keyword">extends</span> Node2D
+
+<span class="exported-property">@onready</span> <span class="keyword">var</span> projectile_caller <span class="operator">= $</span>ProjectileCaller2D
+						
+
+<span class="comment"># In this example the "custom_movement" function is passed as a Callable in the optional "move_method" parameter.</span>
+<span class="keyword">func</span> _process(_delta):
+	<span class="conditional">if</span> Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
+		<span class="keyword">var</span> destination <span class="operator">=</span> <span class="data">get_global_mouse_position</span>()
+		projectile_caller.<span class="method">request_projectile</span>(<span class="data">0</span>, position, destination, <span class="data">null</span>, custom_movement)
+
+
+<span class="comment"># This function will cause the projectile to always move in the UP direction.</span>
+<span class="keyword">func</span> custom_movement(proj: <span class="data">Projectile2D</span>, _delta: <span class="data">float</span>) <span class="operator">-></span> <span class="data">Vector2</span>:
+	<span class="conditional">return</span> <span class="data">Vector2</span>.UP
+</code></pre>
+										</li>
+									</ul>
+									<hr class="tab">
+
+									<ul>
+										<li>
+											<p>The <code class="value">start_method</code> callable returns a <code class="value">void</code> and takes the following parameter:</p>
+											<p><code class="value">proj</code>: A representation of the projectile object to be changed.</p>
+											<pre><code><span class="keyword">extends</span> Node2D
+
+<span class="exported-property">@onready</span> <span class="keyword">var</span> projectile_caller <span class="operator">= $</span>ProjectileCaller2D
+						
+
+<span class="comment"># In this example the "custom_start" function is passed as a Callable in the optional "start_method" parameter.</span>
+<span class="keyword">func</span> _process(_delta):
+	<span class="conditional">if</span> Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
+		<span class="keyword">var</span> destination <span class="operator">=</span> <span class="data">get_global_mouse_position</span>()
+		projectile_caller.<span class="method">request_projectile</span>(<span class="data">0</span>, position, destination, <span class="data">null</span>, Callable(), custom_start)
+
+
+<span class="comment"># This function will change the projectile "speed" property at projectile creation.</span>
+<span class="keyword">func</span> custom_start(proj: <span class="data">Projectile2D</span>) <span class="operator">-></span> <span class="data">null</span>:
+	proj.speed <span class="operator">=</span> <span class="data">500</span>
+</code></pre>
+										</li>
+									</ul>
+									<hr class="tab">
+
+									<ul>
+										<li>
+											<p>The <code class="value">collision_method</code> callable returns a <code class="value">void</code> and takes the following parameter:</p>
+											<p><code class="value">proj</code>: A representation of the projectile object to be changed.</p>
+											<p><code class="value">area_rid</code>: The <a href="https://docs.godotengine.org/en/stable/classes/class_rid.html#class-rid">RID</a> of the area/body that entered or exited the projectile.</p>
+											<p><code class="value">area</code>: The Node of the area/body that entered or exited the projectile.</p>
+											<p><code class="value">area_shape_index</code>: Index of the interacting shape from the collidiong area/body.</p>
+											<p><code class="value">local_shape_index</code>: Index of the interacting shape from the projectile area.</p>
+											<pre><code><span class="keyword">extends</span> Node2D
+
+<span class="comment"># The projectiles will immediately expire upon collision with objects in this layer.</span>
+<span class="exported-property">@export_flags_2d_physics</span> <span class="keyword">var</span> wall_layer: <span class="data">int</span>
+<span class="exported-property">@onready</span> <span class="keyword">var</span> projectile_caller <span class="operator">= $</span>ProjectileCaller2D
+						
+
+<span class="comment"># In this example the "custom_collision" function is passed as a Callable in the optional "collision_method" parameter.</span>
+<span class="keyword">func</span> _process(_delta):
+	<span class="conditional">if</span> Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
+		<span class="keyword">var</span> destination <span class="operator">=</span> <span class="data">get_global_mouse_position</span>()
+		projectile_caller.<span class="method">request_projectile</span>(<span class="data">0</span>, position, destination, <span class="data">null</span>, Callable(), Callable(), custom_collision)
+
+
+<span class="comment"># This function will change the way projectiles collide.</span>
+<span class="keyword">func</span> custom_collision(proj: <span class="data">Projectile2D</span>, area_rid: <span class="data">RID</span>, area: <span class="data">Node2D</span>, area_shape_index: <span class="data">int</span>, local_shape_index: <span class="data">int</span>) <span class="operator">-></span> <span class="data">null</span>:
+	<span class="conditional">if</span> <span class="keyword">not</span> proj.<span class="method">validate_collsion</span>(area_rid, area):
+		<span class="conditional">return</span>
+
+	<span class="conditional">if</span> wall_layer <span class="operator">&</span> area.collision_layer <span class="operator">!=</span> <span class="data">0</span>:
+		proj.is_expired <span class="operator">=</span> <span class="keyword">true</span>
+		<span class="conditional">return</span>
+
+	proj.<span class="method">on_pierced</span>(area_rid)
+</code></pre>
+										</li>
+									</ul>
+									</div>
 								<hr>
 							</section>
 						</div>

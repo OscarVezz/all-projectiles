@@ -155,8 +155,8 @@
 <span class="comment"># In this example the "custom_movement" function is passed as a Callable in the optional "move_method" parameter.</span>
 <span class="comment"># The ProjectileCaller "request_projectile" method can also change the collision, expiration or target of your projectiles.</span>
 <span class="keyword">func</span> _process(_delta):
-	<span class="condicional">if</span> Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
-		<span class="keyword">var</span> destination = <span class="data">get_global_mouse_position</span>()
+	<span class="conditional">if</span> Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
+		<span class="keyword">var</span> destination <span class="operator">=</span> <span class="data">get_global_mouse_position</span>()
 		projectile_caller.<span class="method">request_projectile</span>(<span class="data">0</span>, position, destination, <span class="data">null</span>, custom_movement)
 
 
