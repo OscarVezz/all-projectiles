@@ -128,13 +128,20 @@ a {
     text-decoration: underline;
     border-bottom-color: #9df;
     color: #9df; }
-    a:hover strong {
-      color: inherit; }
+    /* a:hover strong {
+      color: inherit; } */
   
 a.test {
   color: #e0e0e1; }
   a.test:visited:hover {
     color: #e0e0e1; }
+a:hover > strong{
+  text-decoration: underline;
+  color: #f56a6a; 
+  border-bottom-color: #f56a6a;}
+a:visited:hover > strong{
+  color: #f56a6a; 
+  border-bottom-color: #f56a6a;}
  
 
 strong {
@@ -223,6 +230,7 @@ code {
   border: solid 1px rgba(210, 215, 217, 0.75);
   color: #dedee0;
   font-family: "JetBrains Mono", SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", Courier, monospace;
+  font-variant-ligatures: none;
   font-size: 0.9em;
   font-weight: 500;
   margin: 0 0.25em;

@@ -196,11 +196,11 @@
 									<p><code class="value">index</code>: Element of the <a href="#projectile-caller-2d-property-projectile-resources">projectile_resources</a> array that will be created by the <a href="../../1.0/nodes/projectile-processor-2d.html#projectile-processor-2d">AP engine</a>.</p>
 									<p><code class="value">position</code>: Start position of the projectile (In global coordinates).</p>
 									<p><code class="value">destination</code>: Position the projectile will move towards (In global coordinates).</p>
-									<p><code class="value">target</code>: Node2D the projectile will actively seek to (If selected in <a href="../../1.0/resources/projectile-blueprint-2d.html#projectile-blueprint-2d">ProjectileBlueprint2D</a>).</p>
-									<p><code class="value">move_method</code>: Callable that will be called every physics tick and will actively change the direction the projectile is heading to.</p> 
-									<p><code class="value">start_method</code>: Callable that will be called <strong>at projectile creation</strong>.</p>
-									<p><code class="value">collision_method</code>: Callable that will be called when the projectile collides with available bodies or areas.</p>
-									<p><code class="value">expired_method</code>: Callable that will be called once the projectile <strong>runs out of pierce or lifetime</strong>.</p>
+									<p><code class="value">target</code>: <a href="https://docs.godotengine.org/en/stable/classes/class_node2d.html#class-node2d" class="link">Node2D</a> the projectile will actively seek to (If selected in <a href="../../1.0/resources/projectile-blueprint-2d.html#projectile-blueprint-2d">ProjectileBlueprint2D</a>).</p>
+									<p><code class="value">move_method</code>: <a href="https://docs.godotengine.org/en/stable/classes/class_callable.html#class-callable" class="link">Callable</a> that will be called every physics tick and will actively change the direction the projectile is heading to.</p> 
+									<p><code class="value">start_method</code>: <a href="https://docs.godotengine.org/en/stable/classes/class_callable.html#class-callable" class="link">Callable</a> that will be called <strong>at projectile creation</strong>.</p>
+									<p><code class="value">collision_method</code>: <a href="https://docs.godotengine.org/en/stable/classes/class_callable.html#class-callable" class="link">Callable</a> that will be called when the projectile collides with available bodies or areas.</p>
+									<p><code class="value">expired_method</code>: <a href="https://docs.godotengine.org/en/stable/classes/class_callable.html#class-callable" class="link">Callable</a> that will be called once the projectile <strong>runs out of pierce or lifetime</strong>.</p>
 
 									<hr>
 
@@ -233,7 +233,7 @@
 
 									<ul>
 										<li>
-											<p>The <code class="value">start_method</code> callable returns a <code class="value">void</code> and takes the following parameter:</p>
+											<p>The <code class="value">start_method</code> callable returns <code class="value">void</code> and takes the following parameter:</p>
 											<p><code class="value">proj</code>: A representation of the projectile object to be changed.</p>
 											<pre><code><span class="keyword">extends</span> Node2D
 
@@ -248,8 +248,8 @@
 
 
 <span class="comment"># This function will change the projectile "speed" property at projectile creation.</span>
-<span class="keyword">func</span> custom_start(proj: <span class="data">Projectile2D</span>) <span class="operator">-></span> <span class="data">null</span>:
-	proj.speed <span class="operator">=</span> <span class="data">500</span>
+<span class="keyword">func</span> custom_start(proj: <span class="data">Projectile2D</span>) <span class="operator">-></span> <span class="data">void</span>:
+	proj.speed <span class="operator">=</span> <span class="data">50</span>
 </code></pre>
 										</li>
 									</ul>
@@ -257,10 +257,10 @@
 
 									<ul>
 										<li>
-											<p>The <code class="value">collision_method</code> callable returns a <code class="value">void</code> and takes the following parameter:</p>
+											<p>The <code class="value">collision_method</code> callable returns <code class="value">void</code> and takes the following parameters:</p>
 											<p><code class="value">proj</code>: A representation of the projectile object to be changed.</p>
 											<p><code class="value">area_rid</code>: The <a href="https://docs.godotengine.org/en/stable/classes/class_rid.html#class-rid">RID</a> of the area/body that entered or exited the projectile.</p>
-											<p><code class="value">area</code>: The Node of the area/body that entered or exited the projectile.</p>
+											<p><code class="value">area</code>: The <a href="https://docs.godotengine.org/en/stable/classes/class_node.html#class-node">Node</a> of the area/body that entered or exited the projectile.</p>
 											<p><code class="value">area_shape_index</code>: Index of the interacting shape from the collidiong area/body.</p>
 											<p><code class="value">local_shape_index</code>: Index of the interacting shape from the projectile area.</p>
 											<pre><code><span class="keyword">extends</span> Node2D
@@ -278,15 +278,48 @@
 
 
 <span class="comment"># This function will change the way projectiles collide.</span>
-<span class="keyword">func</span> custom_collision(proj: <span class="data">Projectile2D</span>, area_rid: <span class="data">RID</span>, area: <span class="data">Node2D</span>, area_shape_index: <span class="data">int</span>, local_shape_index: <span class="data">int</span>) <span class="operator">-></span> <span class="data">null</span>:
-	<span class="conditional">if</span> <span class="keyword">not</span> proj.<span class="method">validate_collsion</span>(area_rid, area):
+<span class="keyword">func</span> custom_collision(proj: <span class="data">Projectile2D</span>, area_rid: <span class="data">RID</span>, area: <span class="data">Node2D</span>, area_shape_index: <span class="data">int</span>, local_shape_index: <span class="data">int</span>) <span class="operator">-></span> <span class="data">void</span>:
+	<span class="comment"># The "validate_collision" method makes sure that:
+	# -> The projectile is not expired.
+	# -> A lock projectile will only collide with its assigned target.
+	# -> The projectile is not colliding with areas/bodies it already collided.</span>
+	<span class="conditional">if</span> <span class="keyword">not</span> proj.<span class="method">validate_collision</span>(area_rid, area):
 		<span class="conditional">return</span>
-
+	
+	<span class="comment"># Custom code snippet for immediate expiration on collision with "wall_layer"</span>
 	<span class="conditional">if</span> wall_layer <span class="operator">&</span> area.collision_layer <span class="operator">!=</span> <span class="data">0</span>:
 		proj.is_expired <span class="operator">=</span> <span class="keyword">true</span>
 		<span class="conditional">return</span>
-
+	
+	<span class="comment"># The "on_pierced" method makes sure that:
+	# -> The projectile refreshes its rehit cooldown and angular speed.
+	# -> The projectile appends colliding areas/bodies to its excluded targets.
+	# -> The projectile instance reduces its remaining pierce.</span>
 	proj.<span class="method">on_pierced</span>(area_rid)
+</code></pre>
+										</li>
+									</ul>
+									<hr class="tab">
+
+									<ul>
+										<li>
+											<p>The <code class="value">expired_method</code> callable returns <code class="value">void</code> and takes the following parameter:</p>
+											<p><code class="value">proj</code>: A representation of the projectile object to be changed.</p>
+											<pre><code><span class="keyword">extends</span> Node2D
+
+<span class="exported-property">@onready</span> <span class="keyword">var</span> projectile_caller <span class="operator">= $</span>ProjectileCaller2D
+						
+
+<span class="comment"># In this example the "custom_expired" function is passed as a Callable in the optional "expired_method" parameter.</span>
+<span class="keyword">func</span> _process(_delta):
+	<span class="conditional">if</span> Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
+		<span class="keyword">var</span> destination <span class="operator">=</span> <span class="data">get_global_mouse_position</span>()
+		projectile_caller.<span class="method">request_projectile</span>(<span class="data">0</span>, position, destination, <span class="data">null</span>, Callable(), Callable(), Callable(), custom_expired)
+
+
+<span class="comment"># This function will print "expired" on the console once the projectile runs out of pierce or lifetime.</span>
+<span class="keyword">func</span> custom_expired(proj: <span class="data">Projectile2D</span>) <span class="operator">-></span> <span class="data">void</span>:
+	<span class="data">print</span>(<span class="string">"expired"</span>)
 </code></pre>
 										</li>
 									</ul>
