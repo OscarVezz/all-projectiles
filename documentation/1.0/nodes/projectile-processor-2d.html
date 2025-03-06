@@ -42,8 +42,8 @@
 
 
 								<!-- Inherits -->
-								<p>Inherits: <a href="#">hierarchy_link1</a> < <a href="#">hierarchy_link2</a> < <a href="#">hierarchy_link3</a></p>
-								<p>description short.</p>
+								<p><b>Inherits:</b> <a href="https://docs.godotengine.org/en/stable/classes/class_node2d.html#class-node2d">Node2D</a> < <a href="https://docs.godotengine.org/en/stable/classes/class_canvasitem.html#class-canvasitem">CanvasItem</a> < <a href="https://docs.godotengine.org/en/stable/classes/class_node.html#class-node">Node</a> < <a href="https://docs.godotengine.org/en/stable/classes/class_object.html#class-object">Object</a></p>
+								<p>Base class for the <strong>All Projectiles</strong> engine.</p>
 								<br>
 
 
@@ -51,19 +51,24 @@
 								<header class="semimajor" id="description">
 									<h3>Description</h3>
 								</header>
-								<p>description long.</p>
+								<div style="padding-right: 2em;">
+									<p><b>ProjectileProcessor2D</b> is in charge of managing all requested projectiles from all <a href="../../1.0/nodes/projectile-caller-2d.html#projectile-caller-2d">ProjectileCaller2D</a>. It handles projectile <strong>instancing</strong>, <strong>movement</strong>, <strong>drawing</strong>, and <strong>disposal</strong>.</p>
+									<p>A successful <a href="../../1.0/nodes/projectile-caller-2d.html#projectile-caller-2d-method-request-projectile">request_projectile</a> call from any <a href="../../1.0/nodes/projectile-caller-2d.html#projectile-caller-2d">ProjectileCaller2D</a> will create or repurpose a <a href="../../1.0/classes/projectile-2d.html#projectile-2d">Projectile2D</a> from the inactive id queue. The <b>ProjectileProcessor2D</b> will process all projectiles at runtime; lifetime updates every frame, and movement updates on physic frames.</p>
+									<p><b>Note:</b> <b>ProjectileProcessor2D</b> acts as a <strong>singleton</strong> i.e. it's created when needed and actively restricts the creation of more instances.</p>
+									<p><b>Note:</b> <b>ProjectileProcessor2D</b> is intentionally kept obtuse and unapproachable <strong>by design</strong>. Please avoid using it directly in any way that is not strictly necessary and use <a href="../../1.0/nodes/projectile-caller-2d.html#projectile-caller-2d">ProjectileCaller2D</a> instead.</p>
+								</div>
 								<br>
 
 
 								<!-- Tutorials -->
-								<header class="semimajor" id="tutorials">
+								<!-- <header class="semimajor" id="tutorials">
 									<h3>Tutorials</h3>
 								</header>
 								<ul>
 									<li><a href="#">tutorial_link1</a></li>
 									<li><a href="#">tutorial_link2</a></li>
 									<li><a href="#">tutorial_link3</a></li>
-								</ul>
+								</ul> -->
 
 
 								<!-- Properties -->
@@ -73,35 +78,20 @@
 								<div class="table-wrapper">
 									<table class="alt">
 										<colgroup>
-											<col style="width:22%">
-											<col style="width:48%">
+											<col style="width:27%">
+											<col style="width:43%">
 											<col style="width:30%">
 										</colgroup>  
 										<tbody>
 											<tr>
-												<td><a href="#">property_type_link1</a></td>
-												<td><a href="#">property_link1_to_document</a></td>
-												<td><code class="value">value1</code></td>
+												<td><a href="https://docs.godotengine.org/en/stable/classes/class_array.html#class-array">Array</a>[<a href="https://docs.godotengine.org/en/stable/classes/class_int.html#class-int">int</a>]</td>
+												<td><a href="#projectile-processor-2d-property-inactive-projectiles-queue">inactive_projectiles_queue</a></td>
+												<td><code class="value">[]</code></td>
 											</tr>
 											<tr>
-												<td><a href="#">property_type_link2</a></td>
-												<td><a href="#">property_link2_to_document</a></td>
-												<td><code class="value">value2</code></td>
-											</tr>
-											<tr>
-												<td><a href="#">property_type_link3</a></td>
-												<td><a href="#">property_link3_to_document</a></td>
-												<td><code class="value">value3</code></td>
-											</tr>
-											<tr>
-												<td><a href="#">property_type_link4</a></td>
-												<td><a href="#">property_link4_to_document</a></td>
-												<td><code class="value">value4</code></td>
-											</tr>
-											<tr>
-												<td><a href="#">property_type_link5</a></td>
-												<td><a href="#">property_link5_to_document</a></td>
-												<td><code class="value">value5</code></td>
+												<td><a href="https://docs.godotengine.org/en/stable/classes/class_array.html#class-array">Array</a>[<a href="../../1.0/classes/projectile-2d.html#projectile-2d">Projectile2D</a>]</td>
+												<td><a href="#projectile-processor-2d.property-projectiles">projectiles</a></td>
+												<td><code class="value">[]</code></td>
 											</tr>
 										</tbody>
 									</table>
@@ -117,35 +107,17 @@
 								<div class="table-wrapper">
 									<table class="alt">
 										<colgroup>
-											<col style="width:22%">
-											<col style="width:48%">
-											<col style="width:30%">
+											<col style="width:27%">
+											<col style="width:73%">
 										</colgroup>  
 										<tbody>
 											<tr>
-												<td><a href="#">property_type_link1</a></td>
-												<td><a href="#">property_link1_to_document</a></td>
-												<td><code class="value">value1</code></td>
+												<td>void</td>
+												<td><a href="#projectile-processor-2d-method-add-projectile">_add_projectile</a></td>
 											</tr>
 											<tr>
-												<td><a href="#">property_type_link2</a></td>
-												<td><a href="#">property_link2_to_document</a></td>
-												<td><code class="value">value2</code></td>
-											</tr>
-											<tr>
-												<td><a href="#">property_type_link3</a></td>
-												<td><a href="#">property_link3_to_document</a></td>
-												<td><code class="value">value3</code></td>
-											</tr>
-											<tr>
-												<td><a href="#">property_type_link4</a></td>
-												<td><a href="#">property_link4_to_document</a></td>
-												<td><code class="value">value4</code></td>
-											</tr>
-											<tr>
-												<td><a href="#">property_type_link5</a></td>
-												<td><a href="#">property_link5_to_document</a></td>
-												<td><code class="value">value5</code></td>
+												<td>void</td>
+												<td><a href="#projectile-processor-2d-method-add-projectiles-resource">add_projectiles_resource</a></td>
 											</tr>
 										</tbody>
 									</table>
@@ -159,18 +131,23 @@
 									<h3>Signals</h3>
 								</header>
 
-								<h4>signal_name_1<span class="comment-alt">(property_name_1: </span><a href="#" class="link">property_type_1</a><span class="comment-alt">, property_name_2: </span><a href="#" class="link">property_type_2</a><span class="comment-alt">)</span></h4>
-									<p class="tab">Signal description long</p>
+								<h4>projectile_array_expanded<span class="comment-alt">()</span></h4>
+									<p class="tab">Emitted when a new <a href="../../1.0/classes/projectile-2d.html#projectile-2d">Projectile2D</a> is added to the <a href="#projectile-processor-2d.property-projectiles">projectiles</a> array property.</p>
+									<p class="tab"><b>Note:</b> This signal is not emitted when a new projectile is created, only when the projectiles array expands its capacity.</p>
 								<hr>
 
-								<h4>signal_name_2<span class="comment-alt">(property_name_1: </span><a href="#" class="link">property_type_1</a><span class="comment-alt">, property_name_2: </span><a href="#" class="link">property_type_2</a><span class="comment-alt">)</span></h4>
-									<p class="tab">Signal description long</p>
+								<h4>projectile_inactive_queue_contracted<span class="comment-alt">()</span></h4>
+									<p class="tab">Emitted when an element id is removed from the <a href="#projectile-processor-2d-property-inactive-projectiles-queue">inactive_projectiles_queue</a> array property.</p>
+								<hr>
+
+								<h4>projectile_inactive_queue_expanded<span class="comment-alt">()</span></h4>
+									<p class="tab">Emitted when a new element id is added to the <a href="#projectile-processor-2d-property-inactive-projectiles-queue">inactive_projectiles_queue</a> array property.</p>
 								<hr class="strong">
 								<br>
 
 
 								<!-- Enumerations -->
-								<header class="semimajor" id="enumerations">
+								<!-- <header class="semimajor" id="enumerations">
 									<h3>Enumerations</h3>
 								</header>
 
@@ -195,7 +172,7 @@
 										<p class="tab-alt">Enum element description.</p>
 								</ul>
 								<hr class="strong">
-								<br>
+								<br> -->
 
 
 								<!-- Property Descriptions -->
@@ -203,12 +180,12 @@
 									<h3>Property Descriptions</h3>
 								</header>
 
-								<h4><a href="#" class="link">property_type_1</a> property_name_1<span class="comment-alt"> = </span><span class="value"> init_value</h4>
-									<p class="tab">Property description long</p>
+								<h4 id="projectile-processor-2d-property-inactive-projectiles-queue"><a href="https://docs.godotengine.org/en/stable/classes/class_array.html#class-array" class="link">Array</a>[<a href="https://docs.godotengine.org/en/stable/classes/class_int.html#class-int" class="link">int</a>] inactive_projectiles_queue<span class="comment-alt"> = </span><span class="value"> []</span></h4>
+									<p class="tab">A list of all the available indices from inactive <a href="../../1.0/classes/projectile-2d.html#projectile-2d" class="link">Projectile2D</a>'s in the <a href="#projectile-processor-2d.property-projectiles">projectiles</a> property.</p>
 								<hr>
 
-								<h4><a href="#" class="link">property_type_2</a> property_name_2<span class="comment-alt"> = </span><span class="value"> init_value</h4>
-									<p class="tab">Property description long</p>
+								<h4 id="projectile-processor-2d.property-projectiles"><a href="https://docs.godotengine.org/en/stable/classes/class_array.html#class-array" class="link">Array</a>[<a href="../../1.0/classes/projectile-2d.html#projectile-2d" class="link">Projectile2D</a>] projectiles<span class="comment-alt"> = </span><span class="value"> []</span></h4>
+									<p class="tab">A list of all active or inactive <a href="../../1.0/classes/projectile-2d.html#projectile-2d" class="link">Projectile2D</a>'s managed by the <b>ProjectileProcessor2D</b>.</p>
 								<hr class="strong">
 								<br>
 
@@ -217,13 +194,13 @@
 								<header class="semimajor" id="method-descriptions">
 									<h3>Method Descriptions</h3>
 								</header>
-								
-								<h4><a href="#" class="link">return_type_1</a> method_name_1<span class="comment-alt">(property_name_1: </span><a href="#" class="link">property_type_1</a><span class="comment-alt">, property_name_2: </span><a href="#" class="link">property_type_2</a><span class="comment-alt">)</span></h4>
-									<p class="tab">Method description long</p>
+
+								<h4 id="projectile-processor-2d-method-add-projectile"><span class="comment">void</span> _add_projectile<span class="comment-alt">(resource: <a href="../../1.0/resources/projectile-blueprint-2d.html#projectile-blueprint-2d" class="link">ProjectileBlueprint2D</a>, _position: <a href="https://docs.godotengine.org/en/stable/classes/class_vector2.html#class-vector2" class="link">Vector2</a>, direction: <a href="https://docs.godotengine.org/en/stable/classes/class_vector2.html#class-vector2" class="link">Vector2</a>, destination: <a href="https://docs.godotengine.org/en/stable/classes/class_vector2.html#class-vector2" class="link">Vector2</a>, target: <a href="https://docs.godotengine.org/en/stable/classes/class_node2d.html#class-node2d" class="link">Node2D</a> = null, move_method: <a href="https://docs.godotengine.org/en/stable/classes/class_callable.html#class-callable" class="link">Callable</a> = Callable(), start_method: <a href="https://docs.godotengine.org/en/stable/classes/class_callable.html#class-callable" class="link">Callable</a> = Callable(), collision_method: <a href="https://docs.godotengine.org/en/stable/classes/class_callable.html#class-callable" class="link">Callable</a> = Callable(), expired_method: <a href="https://docs.godotengine.org/en/stable/classes/class_callable.html#class-callable" class="link">Callable</a> = Callable())</span></h4>
+									<p class="tab">Creates a new projectile from the given indications.</p>
 								<hr>
 
-								<h4><a href="#" class="link">return_type_1</a> method_name_1<span class="comment-alt">(property_name_1: </span><a href="#" class="link">property_type_1</a><span class="comment-alt">, property_name_2: </span><a href="#" class="link">property_type_2</a><span class="comment-alt">)</span></h4>
-									<p class="tab">Method description long</p>
+								<h4 id="projectile-processor-2d-method-add-projectiles-resource"><span class="comment">void</span> add_projectiles_resource<span class="comment-alt">(resource: <a href="../../1.0/resources/projectile-blueprint-2d.html#projectile-blueprint-2d" class="link">ProjectileBlueprint2D</a>, _position: <a href="https://docs.godotengine.org/en/stable/classes/class_vector2.html#class-vector2" class="link">Vector2</a>, destination: <a href="https://docs.godotengine.org/en/stable/classes/class_vector2.html#class-vector2" class="link">Vector2</a>, target: <a href="https://docs.godotengine.org/en/stable/classes/class_node2d.html#class-node2d" class="link">Node2D</a> = null, move_method: <a href="https://docs.godotengine.org/en/stable/classes/class_callable.html#class-callable" class="link">Callable</a> = Callable(), start_method: <a href="https://docs.godotengine.org/en/stable/classes/class_callable.html#class-callable" class="link">Callable</a> = Callable(), collision_method: <a href="https://docs.godotengine.org/en/stable/classes/class_callable.html#class-callable" class="link">Callable</a> = Callable(), expired_method: <a href="https://docs.godotengine.org/en/stable/classes/class_callable.html#class-callable" class="link">Callable</a> = Callable())</span></h4>
+									<p class="tab">Creates a new projectile and all its instances from the given <a href="../../1.0/resources/projectile-blueprint-2d.html#projectile-blueprint-2d">ProjectileBlueprint2D</a> resource.</p>
 								<hr>
 							</section>
 						</div>
@@ -294,11 +271,11 @@
 											<span class="opener active mini"><a href="../../1.0/nodes/projectile-processor-2d.html">ProjectileProcessor2D</a></span>
 											<ul>
 												<li><a href="../../1.0/nodes/projectile-processor-2d.html#description">Description</a></li>
-												<li><a href="../../1.0/nodes/projectile-processor-2d.html#tutorials">Tutorials</a></li>
+												<!-- <li><a href="../../1.0/nodes/projectile-processor-2d.html#tutorials">Tutorials</a></li> -->
 												<li><a href="../../1.0/nodes/projectile-processor-2d.html#properties">Properties</a></li>
 												<li><a href="../../1.0/nodes/projectile-processor-2d.html#methods">Methods</a></li>
 												<li><a href="../../1.0/nodes/projectile-processor-2d.html#signals">Signals</a></li>
-												<li><a href="../../1.0/nodes/projectile-processor-2d.html#enumerations">Enumerations</a></li>
+												<!-- <li><a href="../../1.0/nodes/projectile-processor-2d.html#enumerations">Enumerations</a></li> -->
 												<li><a href="../../1.0/nodes/projectile-processor-2d.html#property-descriptions">Property Descriptions</a></li>
 												<li><a href="../../1.0/nodes/projectile-processor-2d.html#method-descriptions">Method Descriptions</a></li>
 											</ul>
