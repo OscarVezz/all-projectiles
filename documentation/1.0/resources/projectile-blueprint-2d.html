@@ -319,15 +319,15 @@
 								<h4 id="enum-projectile-blueprint-2d-projectile-spread"><span class="comment-alt">enum </span>ProjectileSpread<span class="comment-alt">:</span></h4>
 								<ul style="list-style-type: none">
 									<li><h4><a href="#enum-projectile-blueprint-2d-projectile-spread" class="link">ProjectileSpread</a> NONE<span class="comment-alt"> = 0</span></h4></li>
-										<p class="tab-alt">The projectile instances will not spread.</p>
+										<p class="tab-alt">Projectile instances will not spread.</p>
 									<li><h4><a href="#enum-projectile-blueprint-2d-projectile-spread" class="link">ProjectileSpread</a> LINEAR<span class="comment-alt"> = 1</span></h4></li>
-										<p class="tab-alt">The projectile instances will evenly spread in the “y” axis by the <a href="#projectile-blueprint-2d-property-vertical-spread">vertical_spread</a> size.</p>
+										<p class="tab-alt">Projectile instances will evenly spread in the “y” axis by the <a href="#projectile-blueprint-2d-property-vertical-spread">vertical_spread</a> size.</p>
 									<li><h4><a href="#enum-projectile-blueprint-2d-projectile-spread" class="link">ProjectileSpread</a> ANGULAR<span class="comment-alt"> = 2</span></h4></li>
-										<p class="tab-alt">The projectile instances will evenly spread by the <a href="#projectile-blueprint-2d-property-angular-spread">angular_spread</a> angle.</p>
+										<p class="tab-alt">Projectile instances will evenly spread by the <a href="#projectile-blueprint-2d-property-angular-spread">angular_spread</a> angle.</p>
 									<li><h4><a href="#enum-projectile-blueprint-2d-projectile-spread" class="link">ProjectileSpread</a> CIRCULAR<span class="comment-alt"> = 3</span></h4></li>
-										<p class="tab-alt">The projectile instances will evenly spread in a radial manner.</p>
+										<p class="tab-alt">Projectile instances will evenly spread in a radial manner.</p>
 									<li><h4><a href="#enum-projectile-blueprint-2d-projectile-spread" class="link">ProjectileSpread</a> EVENLY<span class="comment-alt"> = 4</span></h4></li>
-										<p class="tab-alt">The projectile instances will evenly distribute to its set targets.</p>
+										<p class="tab-alt">Projectile instances will evenly distribute to its set targets.</p>
 								</ul>
 								<hr>
 
@@ -335,7 +335,7 @@
 								<ul style="list-style-type: none">
 									<li><h4><a href="#enum-projectile-blueprint-2d-projectile-type" class="link">ProjectileType</a> AREA<span class="comment-alt"> = 0</span></h4></li>
 										<p class="tab-alt"><strong>The most basic type of projectile</strong>. <a href="../../1.0/classes/area-projectile-2d.html#area-projectile-2d">AreaProjectile2D</a> are created, processed and manipulated entirely through the <a href="https://docs.godotengine.org/en/stable/classes/class_physicsserver2d.html#class-physicsserver2d">PhysicServer2D</a> and are batch drawn by the <a href="../../1.0/nodes/projectile-processor-2d.html#projectile-processor-2d">ProjectileProcessor2D</a>.</p>
-										<p class="tab-alt"><a href="../../1.0/classes/area-projectile-2d.html#area-projectile-2d">AreaProjectile2D</a> are extremely performance efficient but are limited to be bound to a <a href="https://docs.godotengine.org/en/stable/classes/class_texture2d.html#class-texture2d">Texture2D</a> and cannot have individual components.</p>
+										<p class="tab-alt"><a href="../../1.0/classes/area-projectile-2d.html#area-projectile-2d">AreaProjectile2D</a> are extremely performance efficient but are restricted to a single <a href="https://docs.godotengine.org/en/stable/classes/class_texture2d.html#class-texture2d">Texture2D</a> and cannot have individual components.</p>
 									<li><h4><a href="#enum-projectile-blueprint-2d-projectile-type" class="link">ProjectileType</a> INSTANTIATED<span class="comment-alt"> = 2</span></h4></li>
 										<p class="tab-alt"><a href="../../1.0/classes/instanced-projectile-2d.html#instanced-projectile-2d">InstancedProjectile2D</a> are <strong>instanced copies of your given Scenes</strong>. These contain all their original components and scripts, but follow the rules of normal projectiles.</p>
 										<p class="tab-alt"><a href="../../1.0/classes/instanced-projectile-2d.html#instanced-projectile-2d">InstancedProjectile2D</a> are more performance intensive than <a href="../../1.0/classes/area-projectile-2d.html#area-projectile-2d">AreaProjectile2D</a> but not significantly, you would have to generate thousands to see a clear difference.</p>
@@ -354,7 +354,7 @@
 								<hr>
 
 								<h4 id="projectile-blueprint-2d-property-allow-rehit"><a href="https://docs.godotengine.org/en/stable/classes/class_bool.html#class-bool" class="link">bool</a> allow_rehit<span class="comment-alt"> = </span><span class="value"> false</span></h4>
-									<p class="tab">If true the projectile will be able to hit already hit targets.</p>
+									<p class="tab">If <code class="value">true</code> the projectile will be able to hit already hit targets.</p>
 								<hr>
 
 								<h4 id="projectile-blueprint-2d-property-angular-speed"><a href="https://docs.godotengine.org/en/stable/classes/class_float.html#class-float" class="link">float</a> angular_speed<span class="comment-alt"> = </span><span class="value"> 0</span></h4>
@@ -362,16 +362,16 @@
 								<hr>
 
 								<h4 id="projectile-blueprint-2d-property-angular-spread"><a href="https://docs.godotengine.org/en/stable/classes/class_float.html#class-float" class="link">float</a> angular_spread<span class="comment-alt"> = </span><span class="value"> 0</span></h4>
-									<p class="tab">The fixed amount of radial extension in which the angular spread projectiles will be evenly distributed (in degrees).</p>
+									<p class="tab">Fixed radial extension in which angular spread projectiles will evenly distribute (in degrees).</p>
 								<hr>
 
 								<h4 id="projectile-blueprint-2d-property-area-monitoreable"><a href="https://docs.godotengine.org/en/stable/classes/class_bool.html#class-bool" class="link">bool</a> area_monitoreable<span class="comment-alt"> = </span><span class="value"> true</span></h4>
 									<p class="tab"><b>AREA Projectiles ONLY</b></p>	
-									<p class="tab">If true the projectile can interact with other areas.</p>
+									<p class="tab">If <code class="value">true</code> the projectile can interact with other areas.</p>
 								<hr>
 
 								<h4 id="projectile-blueprint-2d-property-cast-radius"><a href="https://docs.godotengine.org/en/stable/classes/class_float.html#class-float" class="link">float</a> cast_radius<span class="comment-alt"> = </span><span class="value"> 200</span></h4>
-									<p class="tab">Radius of the sphere cast to search for secondary targets on seeking projectiles.</p>
+									<p class="tab">Radius of the sphere cast used to search for secondary targets on seeking projectiles.</p>
 								<hr>
 
 								<h4 id="projectile-blueprint-2d-property-collision-layer"><a href="https://docs.godotengine.org/en/stable/classes/class_int.html#class-int" class="link">int</a> collision_layer<span class="comment-alt"> = </span><span class="value"> 0</span></h4>
@@ -405,7 +405,7 @@
 								<hr>
 
 								<h4 id="projectile-blueprint-2d-property-linear-deviation"><a href="https://docs.godotengine.org/en/stable/classes/class_float.html#class-float" class="link">float</a> linear_deviation<span class="comment-alt"> = </span><span class="value"> 0</span></h4>
-									<p class="tab">The random amount of deviation the velocity vector of the projectile can differ once instantiated (in pixels).</p>
+									<p class="tab">Random amount of deviation the velocity vector of the projectile can differ once instantiated (in pixels).</p>
 								<hr>
 
 								<h4 id="projectile-blueprint-2d-property-linear-speed"><a href="https://docs.godotengine.org/en/stable/classes/class_float.html#class-float" class="link">float</a> linear_speed<span class="comment-alt"> = </span><span class="value"> 1000</span></h4>
@@ -413,11 +413,11 @@
 								<hr>
 
 								<h4 id="projectile-blueprint-2d-property-lock-to-target"><a href="https://docs.godotengine.org/en/stable/classes/class_bool.html#class-bool" class="link">bool</a> lock_to_target<span class="comment-alt"> = </span><span class="value"> false</span></h4>
-									<p class="tab">If true the projectile will ignore all potential collisions in the way to hit its assigned target.</p>
+									<p class="tab">If <code class="value">true</code> the projectile will ignore all potential collisions in the way to hit its assigned target.</p>
 								<hr>
 
 								<h4 id="projectile-blueprint-2d-property-look-at"><a href="https://docs.godotengine.org/en/stable/classes/class_bool.html#class-bool" class="link">bool</a> look_at<span class="comment-alt"> = </span><span class="value"> true</span></h4>
-									<p class="tab">If true the projectile will actively look at the direction it travels.</p>
+									<p class="tab">If <code class="value">true</code> the projectile will actively look at the direction it travels.</p>
 								<hr>
 
 								<h4 id="projectile-blueprint-2d-property-on-expired-projectile"><a href="../../1.0/resources/projectile-blueprint-2d.html#projectile-blueprint-2d" class="link">ProjectileBlueprint2D</a> on_expired_projectile</h4>
@@ -449,7 +449,7 @@
 								<hr>
 
 								<h4 id="projectile-blueprint-2d-property-randomize-positions"><a href="https://docs.godotengine.org/en/stable/classes/class_bool.html#class-bool" class="link">bool</a> randomize_positions<span class="comment-alt"> = </span><span class="value"> false</span></h4>
-									<p class="tab">If true the linear and angular projectiles positions will be randomly spread.</p>
+									<p class="tab">If <code class="value">true</code> the linear and angular projectiles positions will be randomly spread.</p>
 								<hr>
 
 								<h4 id="projectile-blueprint-2d-property-rehit-cooldown"><a href="https://docs.godotengine.org/en/stable/classes/class_float.html#class-float" class="link">float</a> rehit_cooldown<span class="comment-alt"> = </span><span class="value"> 0.1</span></h4>
@@ -461,7 +461,7 @@
 								<hr>
 
 								<h4 id="projectile-blueprint-2d-property-seeking"><a href="https://docs.godotengine.org/en/stable/classes/class_bool.html#class-bool" class="link">bool</a> seeking<span class="comment-alt"> = </span><span class="value"> false</span></h4>
-									<p class="tab">If true the projectile will actively follow its targets.</p>
+									<p class="tab">If <code class="value">true</code> the projectile will actively follow its targets.</p>
 								<hr>
 
 								<h4 id="projectile-blueprint-2d-property-size"><a href="https://docs.godotengine.org/en/stable/classes/class_float.html#class-float" class="link">float</a> size<span class="comment-alt"> = </span><span class="value"> 1.0</span></h4>
@@ -474,7 +474,7 @@
 								<hr>
 
 								<h4 id="projectile-blueprint-2d-property-vertical-spread"><a href="https://docs.godotengine.org/en/stable/classes/class_float.html#class-float" class="link">float</a> vertical_spread<span class="comment-alt"> = </span><span class="value"> 0</span></h4>
-									<p class="tab">The fixed amount of linear extension in which the linear and angular projectiles will be evenly distributed (in pixels).</p>
+									<p class="tab">Fixed amount of linear extension in which linear and angular projectiles will be evenly distributed (in pixels).</p>
 								<hr>
 								<br>
 
@@ -618,11 +618,11 @@
 											<span class="opener mini"><a href="../../1.0/classes/projectile-2d.html">Projectile2D</a></span>
 											<ul>
 												<li><a href="../../1.0/classes/projectile-2d.html#description">Description</a></li>
-												<li><a href="../../1.0/classes/projectile-2d.html#tutorials">Tutorials</a></li>
+												<!-- <li><a href="../../1.0/classes/projectile-2d.html#tutorials">Tutorials</a></li> -->
 												<li><a href="../../1.0/classes/projectile-2d.html#properties">Properties</a></li>
 												<li><a href="../../1.0/classes/projectile-2d.html#methods">Methods</a></li>
 												<li><a href="../../1.0/classes/projectile-2d.html#signals">Signals</a></li>
-												<li><a href="../../1.0/classes/projectile-2d.html#enumerations">Enumerations</a></li>
+												<!-- <li><a href="../../1.0/classes/projectile-2d.html#enumerations">Enumerations</a></li> -->
 												<li><a href="../../1.0/classes/projectile-2d.html#property-descriptions">Property Descriptions</a></li>
 												<li><a href="../../1.0/classes/projectile-2d.html#method-descriptions">Method Descriptions</a></li>
 											</ul>
