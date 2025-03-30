@@ -1,0 +1,659 @@
+<!DOCTYPE HTML>
+<!--
+	Editorial by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>Projectile2D</title>
+		<meta charset="utf-8" />
+		<meta name="description" content="A Projectile Engine for Godot"/>
+		<meta name="autor" content="Oscar Vezz"/>
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="../../assets/css/main.css" />
+	</head>
+	<body class="is-preload">
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Main -->
+					<div id="main">
+						<div class="inner">
+
+							<!-- Header -->
+							<header id="header">
+								<a href="../../index.html" class="logo"><strong>All Projectiles</strong> 1.0 Documentation</a>
+								<ul class="icons">
+									<li><a href="https://github.com/OscarVezz/all-projectiles" class="icon brands fa-github"><span class="label">Github</span></a></li>
+									<li><a href="https://www.patreon.com/OscarVezz" class="icon brands fa-patreon"><span class="label">Patreon</span></a></li>
+									<li><a href="https://oscarvezz.itch.io/" class="icon brands fa-itch-io"><span class="label">Itch.io</span></a></li>
+									<li><a href="https://x.com/Oscar_Vezz" class="icon brands fa-x-twitter"><span class="label">Twitter</span></a></li>
+									<li><a href="https://www.youtube.com/@oscarvezz5826" class="icon brands fa-youtube"><span class="label">YouTube</span></a></li>
+								</ul>
+							</header>
+
+							<!-- Content -->
+							<section>
+								<header class="main" id="projectile-2d">
+									<h2>Projectile2D</h2>
+								</header>
+
+
+								<!-- Inherits -->
+								<p>Inherited By: <a href="../../1.0/classes/area-projectile-2d.html#area-projectile-2d">AreaProjectile2D</a>, <a href="../../1.0/classes/instanced-projectile-2d.html#instanced-projectile-2d">InstancedProjectile2D</a></p>
+								<p>Base class for all 2D projectile objects.</p>
+								<br>
+
+
+								<!-- Description -->
+								<header class="semimajor" id="description">
+									<h3>Description</h3>
+								</header>
+								<p style="margin-bottom: 0;">The <b>Projectile2D</b> base class manages the <strong>internal projectile lifecycle</strong>, from initialization to expiration. It directs:</p>
+								<ul class="tab">
+									<li>Movement calculation (standard and custom).</li>
+									<li>Target acquisition and validation.</li>
+									<li>Collision processing with pierce management.</li>
+									<li>Lifetime countdown.</li>
+									<li>Cleanup, event propagation and projectile chaining.</li>
+								</ul>
+								<p><b>Note:</b> Projectile instances do not have an object base like Nodes and need the help of a <a href="../../1.0/nodes/projectile-processor-2d.html#projectile-processor-2d">ProjectileProcessor2D</a> to work properly.</p>
+								<br>
+
+
+								<!-- Tutorials -->
+								<!-- <header class="semimajor" id="tutorials">
+									<h3>Tutorials</h3>
+								</header>
+								<ul>
+									<li><a href="#">tutorial_link1</a></li>
+									<li><a href="#">tutorial_link2</a></li>
+									<li><a href="#">tutorial_link3</a></li>
+								</ul> -->
+
+
+								<!-- Properties -->
+								<header class="semimajor" id="properties">
+									<h3>Properties</h3>
+								</header>
+								<div class="table-wrapper">
+									<table class="alt">
+										<colgroup>
+											<col style="width:27%">
+											<col style="width:43%">
+											<col style="width:30%">
+										</colgroup> 
+										<tbody>
+											<tr>
+												<td><a href="https://docs.godotengine.org/en/stable/classes/class_float.html#class-float">float</a></td>
+												<td><a href="#projectile-2d-property-angular-speed">angular_speed</a></td>
+												<td><code class="value">0</code></td>
+											</tr>
+											<tr>
+												<td><a href="https://docs.godotengine.org/en/stable/classes/class_variant.html#variant">Variant</a></td>
+												<td><a href="#projectile-2d-property-arg1">arg1</a></td>
+												<td><code class="value">null</code></td>
+											</tr>
+											<tr>
+												<td><a href="https://docs.godotengine.org/en/stable/classes/class_variant.html#variant">Variant</a></td>
+												<td><a href="#projectile-2d-property-arg2">arg2</a></td>
+												<td><code class="value">null</code></td>
+											</tr>
+											<tr>
+												<td><a href="https://docs.godotengine.org/en/stable/classes/class_rid.html#rid">RID</a></td>
+												<td><a href="#projectile-2d-property-cast-shape">cast_shape</a></td>
+												<td><code class="value">PhysicsServer2D.circle_shape_create()</code></td>
+											</tr>
+											<tr>
+												<td><a href="https://docs.godotengine.org/en/stable/classes/class_physicsdirectspacestate2d.html#physicsdirectspacestate2d">PhysicsDirectSpaceState2D</a></td>
+												<td><a href="#projectile-2d-property-current-space">current_space</a></td>
+												<td></td>
+											</tr>
+											<tr>
+												<td><a href="https://docs.godotengine.org/en/stable/classes/class_callable.html#callable">Callable</a></td>
+												<td><a href="#projectile-2d-property-custom-collision-method">custom_collision_method</a></td>
+												<td></td>
+											</tr>
+											<tr>
+												<td><a href="https://docs.godotengine.org/en/stable/classes/class_callable.html#callable">Callable</a></td>
+												<td><a href="#projectile-2d-property-custom-expired-method">custom_expired_method</a></td>
+												<td></td>
+											</tr>
+											<tr>
+												<td><a href="https://docs.godotengine.org/en/stable/classes/class_callable.html#callable">Callable</a></td>
+												<td><a href="#projectile-2d-property-custom-move-method">custom_move_method</a></td>
+												<td></td>
+											</tr>
+											<tr>
+												<td><a href="https://docs.godotengine.org/en/stable/classes/class_vector2.html#class-vector2">Vector2</a></td>
+												<td><a href="#projectile-2d-property-destination">destination</a></td>
+												<td></td>
+											</tr>
+											<tr>
+												<td><a href="https://docs.godotengine.org/en/stable/classes/class_vector2.html#class-vector2">Vector2</a></td>
+												<td><a href="#projectile-2d-property-direction">direction</a></td>
+												<td></td>
+											</tr>
+											<tr>
+												<td><a href="https://docs.godotengine.org/en/stable/classes/class_array.html#class-array">Array</a>[<a href="https://docs.godotengine.org/en/stable/classes/class_rid.html#rid">RID</a>]</td>
+												<td><a href="#projectile-2d-property-excluded-targets">excluded_targets</a></td>
+												<td><code class="value">[]</code></td>
+											</tr>
+											<tr>
+												<td><a href="https://docs.godotengine.org/en/stable/classes/class_bool.html#bool">bool</a></td>
+												<td><a href="#projectile-2d-property-first-hit">first_hit</a></td>
+												<td><code class="value">true</code></td>
+											</tr>
+											<tr>
+												<td><a href="https://docs.godotengine.org/en/stable/classes/class_bool.html#bool">bool</a></td>
+												<td><a href="#projectile-2d-property-is-active">is_active</a></td>
+												<td><code class="value">true</code></td>
+											</tr>
+											<tr>
+												<td><a href="https://docs.godotengine.org/en/stable/classes/class_bool.html#bool">bool</a></td>
+												<td><a href="#projectile-2d-property-is-expired">is_expired</a></td>
+												<td><code class="value">false</code></td>
+											</tr>
+											<tr>
+												<td><a href="https://docs.godotengine.org/en/stable/classes/class_bool.html#bool">bool</a></td>
+												<td><a href="#projectile-2d-property-is-falling-flag">is_falling_flag</a></td>
+												<td><code class="value">false</code></td>
+											</tr>
+											<tr>
+												<td><a href="https://docs.godotengine.org/en/stable/classes/class_float.html#class-float">float</a></td>
+												<td><a href="#projectile-2d-property-lifetime">lifetime</a></td>
+												<td><code class="value">1.0</code></td>
+											</tr>
+											<tr>
+												<td><a href="https://docs.godotengine.org/en/stable/classes/class_int.html#class-int">int</a></td>
+												<td><a href="#projectile-2d-property-pierce">pierce</a></td>
+												<td><code class="value">1</code></td>
+											</tr>
+											<tr>
+												<td><a href="https://docs.godotengine.org/en/stable/classes/class_vector2.html#class-vector2">Vector2</a></td>
+												<td><a href="#projectile-2d-property-position">position</a></td>
+												<td></td>
+											</tr>
+											<tr>
+												<td><a href="https://docs.godotengine.org/en/stable/classes/class_physicsshapequeryparameters2d.html#physicsshapequeryparameters2d">PhysicsShapeQueryParameters2D</a></td>
+												<td><a href="#projectile-2d-property-query">query</a></td>
+												<td><code class="value">PhysicsShapeQueryParameters2D.new()</code></td>
+											</tr>
+											<tr>
+												<td><a href="https://docs.godotengine.org/en/stable/classes/class_float.html#class-float">float</a></td>
+												<td><a href="#projectile-2d-property-rehit-cooldown">rehit_cooldown</a></td>
+												<td><code class="value">-1.0</code></td>
+											</tr>
+											<tr>
+												<td><a href="../../1.0/resources/projectile-blueprint-2d.html#projectile-blueprint-2d">ProjectileBlueprint2D</a></td>
+												<td><a href="#projectile-2d-property-resource">resource</a></td>
+												<td></td>
+											</tr>
+											<tr>
+												<td><a href="https://docs.godotengine.org/en/stable/classes/class_float.html#class-float">float</a></td>
+												<td><a href="#projectile-2d-property-speed">speed</a></td>
+												<td><code class="value">1000</code></td>
+											</tr>
+											<tr>
+												<td><a href="https://docs.godotengine.org/en/stable/classes/class_node2d.html#node2d">Node2D</a></td>
+												<td><a href="#projectile-2d-property-target">target</a></td>
+												<td></td>
+											</tr>
+											<tr>
+												<td><a href="https://docs.godotengine.org/en/stable/classes/class_transform2d.html#transform2d">Transform2D</a></td>
+												<td><a href="#projectile-2d-property-transform">transform</a></td>
+												<td></td>
+											</tr>
+											<tr>
+												<td><a href="https://docs.godotengine.org/en/stable/classes/class_bool.html#class-bool">bool</a></td>
+												<td><a href="#projectile-2d-property-use-custom-collision-method">use_custom_collision_method</a></td>
+												<td><code class="value">false</code></td>
+											</tr>
+											<tr>
+												<td><a href="https://docs.godotengine.org/en/stable/classes/class_bool.html#class-bool">bool</a></td>
+												<td><a href="#projectile-2d-property-use-custom-expired-method">use_custom_expired_method</a></td>
+												<td><code class="value">false</code></td>
+											</tr>
+											<tr>
+												<td><a href="https://docs.godotengine.org/en/stable/classes/class_bool.html#class-bool">bool</a></td>
+												<td><a href="#projectile-2d-property-use-custom-move-method">use_custom_move_method</a></td>
+												<td><code class="value">false</code></td>
+											</tr>
+										</tbody>
+									</table>
+								</div>
+								<br>
+								<br>
+
+
+								<!-- Methods -->
+								<header class="semimajor" id="methods">
+									<h3>Methods</h3>
+								</header>
+								<div class="table-wrapper">
+									<table class="alt">
+										<colgroup>
+											<col style="width:27%">
+											<col style="width:73%">
+										</colgroup>
+										<tbody>
+											<tr>
+												<td>void</td>
+												<td><a href="#projectile-2d-method-disable">disable</a></td>
+											</tr>
+											<tr>
+												<td>void</td>
+												<td><a href="#projectile-2d-method-move">move</a></td>
+											</tr>
+											<tr>
+												<td>void</td>
+												<td><a href="#projectile-2d-method-on-expired">on_expired</a></td>
+											</tr>
+											<tr>
+												<td>void</td>
+												<td><a href="#projectile-2d-method-on-pierced">on_pierced</a></td>
+											</tr>
+											<tr>
+												<td><a href="https://docs.godotengine.org/en/stable/classes/class_float.html#class-float">float</a></td>
+												<td><a href="#projectile-2d-method-seek-target">seek_target</a></td>
+											</tr>
+											<tr>
+												<td>void</td>
+												<td><a href="#projectile-2d-method-try-retarget">try_retarget</a></td>
+											</tr>
+											<tr>
+												<td><a href="https://docs.godotengine.org/en/stable/classes/class_bool.html#class-bool">bool</a></td>
+												<td><a href="#projectile-2d-method-update-lifetime">update_lifetime</a></td>
+											</tr>
+											<tr>
+												<td><a href="https://docs.godotengine.org/en/stable/classes/class_bool.html#class-bool">bool</a></td>
+												<td><a href="#projectile-2d-method-validate-collision">validate_collision</a></td>
+											</tr>
+											<tr>
+												<td><a href="https://docs.godotengine.org/en/stable/classes/class_node.html#node">Node</a></td>
+												<td><a href="#projectile-2d-method-validate-target">validate_target</a></td>
+											</tr>
+										</tbody>
+									</table>
+								</div>
+								<hr class="strong">
+								<br>
+
+
+								<!-- Signals -->
+								<header class="semimajor" id="signals">
+									<h3>Signals</h3>
+								</header>
+
+								<h4>projectile_requested<span class="comment-alt">(_resource: </span><a href="../../1.0/resources/projectile-blueprint-2d.html#projectile-blueprint-2d" class="link">ProjectileBlueprint2D</a><span class="comment-alt">, _position: </span><a href="https://docs.godotengine.org/en/stable/classes/class_vector2.html#vector2" class="link">Vector2</a><span class="comment-alt">, _destination: </span><a href="https://docs.godotengine.org/en/stable/classes/class_vector2.html#vector2" class="link">Vector2</a><span class="comment-alt">, _target: </span><a href="https://docs.godotengine.org/en/stable/classes/class_node2d.html#node2d" class="link">Node2D</a><span class="comment-alt"></span>)</span></h4>
+									<p class="tab">Emitted when a projectile with secondary projectiles expires.</p>
+									<p class="tab">Requests the creation of its secondary projectiles to the <a href="../../1.0/nodes/projectile-processor-2d.html#projectile-processor-2d">ProjectileProcessor2D</a>.</p>
+								<hr class="strong">
+								<br>
+
+
+								<!-- Enumerations -->
+								<!-- <header class="semimajor" id="enumerations">
+									<h3>Enumerations</h3>
+								</header>
+
+								<h4><span class="comment-alt">enum </span>EnumName1 <span class="comment-alt">:</span></h4>
+								<ul style="list-style-type: none">
+									<li><h4><a href="#" class="link">EnumName1</a> ENUM_ELEMENT_NAME_1<span class="comment-alt"> = 0</span></h4></li>
+										<p class="tab-alt">Enum element description.</p>
+									<li><h4><a href="#" class="link">EnumName1</a> ENUM_ELEMENT_NAME_2<span class="comment-alt"> = 1</span></h4></li>
+										<p class="tab-alt">Enum element description.</p>
+									<li><h4><a href="#" class="link">EnumName1</a> ENUM_ELEMENT_NAME_3<span class="comment-alt"> = 2</span></h4></li>
+										<p class="tab-alt">Enum element description.</p>
+								</ul>
+								<hr>
+
+								<h4><span class="comment-alt">enum </span>EnumName2 <span class="comment-alt">:</span></h4>
+								<ul style="list-style-type: none">
+									<li><h4><a href="#" class="link">EnumName2</a> ENUM_ELEMENT_NAME_1<span class="comment-alt"> = 0</span></h4></li>
+										<p class="tab-alt">Enum element description.</p>
+									<li><h4><a href="#" class="link">EnumName2</a> ENUM_ELEMENT_NAME_2<span class="comment-alt"> = 1</span></h4></li>
+										<p class="tab-alt">Enum element description.</p>
+									<li><h4><a href="#" class="link">EnumName2</a> ENUM_ELEMENT_NAME_3<span class="comment-alt"> = 2</span></h4></li>
+										<p class="tab-alt">Enum element description.</p>
+								</ul>
+								<hr class="strong">
+								<br> -->
+
+
+								<!-- Property Descriptions -->
+								<header class="semimajor" id="property-descriptions">
+									<h3>Property Descriptions</h3>
+								</header>
+
+								<h4 id="projectile-2d-property-angular-speed"><a href="https://docs.godotengine.org/en/stable/classes/class_float.html#class-float" class="link">float</a> angular_speed<span class="comment-alt"> = </span><span class="value"> 0</span></h4>
+									<p class="tab">Current rotation speed (in deg/sec) for seeking projectiles.</p>
+								<hr>
+
+								<h4 id="projectile-2d-property-arg1"><a href="https://docs.godotengine.org/en/stable/classes/class_variant.html#variant" class="link">Variant</a> arg1<span class="comment-alt"> = </span><span class="value"> null</span></h4>
+									<p class="tab">Arbitrary variable for user-defined properties 1.</p>
+								<hr>
+
+								<h4 id="projectile-2d-property-arg2"><a href="https://docs.godotengine.org/en/stable/classes/class_variant.html#variant" class="link">Variant</a> arg2<span class="comment-alt"> = </span><span class="value"> null</span></h4>
+									<p class="tab">Arbitrary variable for user-defined properties 2.</p>
+								<hr>
+
+								<h4 id="projectile-2d-property-cast-shape"><a href="https://docs.godotengine.org/en/stable/classes/class_rid.html#rid" class="link">RID</a> cast_shape<span class="comment-alt"> = </span><span class="value"> PhysicsServer2D.circle_shape_create()</span></h4>
+									<p class="tab">RID used to search for new targets on seeking projectiles.</p>
+								<hr>
+
+								<h4 id="projectile-2d-property-current-space"><span class="comment">static</span> <a href="https://docs.godotengine.org/en/stable/classes/class_physicsdirectspacestate2d.html#physicsdirectspacestate2d" class="link">PhysicsDirectSpaceState2D</a> current_space</h4>
+									<p class="tab">Shared physics space state for collision queries.</p>
+								<hr>
+
+								<h4 id="projectile-2d-property-custom-collision-method"><a href="https://docs.godotengine.org/en/stable/classes/class_callable.html#callable" class="link">Callable</a> custom_collision_method</h4>
+									<p class="tab">Callable for the projectile custom collision method.</p>
+								<hr>
+
+								<h4 id="projectile-2d-property-custom-expired-method"><a href="https://docs.godotengine.org/en/stable/classes/class_callable.html#callable" class="link">Callable</a> custom_expired_method</h4>
+									<p class="tab">Callable for the projectile custom expired method.</p>
+								<hr>
+
+								<h4 id="projectile-2d-property-custom-move-method"><a href="https://docs.godotengine.org/en/stable/classes/class_callable.html#callable" class="link">Callable</a> custom_move_method</h4>
+									<p class="tab">Callable for the projectile custom move method.</p>
+								<hr>
+
+								<h4 id="projectile-2d-property-destination"><a href="https://docs.godotengine.org/en/stable/classes/class_vector2.html#class-vector2" class="link">Vector2</a> destination</h4>
+									<p class="tab">Fixed projectile destination.</p>
+								<hr>
+
+								<h4 id="projectile-2d-property-direction"><a href="https://docs.godotengine.org/en/stable/classes/class_vector2.html#class-vector2" class="link">Vector2</a> direction</h4>
+									<p class="tab">Current movement direction vector (normalized).</p>
+								<hr>
+
+								<h4 id="projectile-2d-property-excluded-targets"><a href="https://docs.godotengine.org/en/stable/classes/class_array.html#class-array">Array</a>[<a href="https://docs.godotengine.org/en/stable/classes/class_rid.html#rid">RID</a>] excluded_targets<span class="comment-alt"> = </span><span class="value"> []</span></h4>
+									<p class="tab">List of already hit RID's for piercing and rehit avoidance.</p>
+								<hr>
+
+								<h4 id="projectile-2d-property-first-hit"><a href="https://docs.godotengine.org/en/stable/classes/class_bool.html#bool" class="link">bool</a> first_hit<span class="comment-alt"> = </span><span class="value"> true</span></h4>
+									<p class="tab">Flag for first hit behavior tracking.</p>
+								<hr>
+
+								<h4 id="projectile-2d-property-is-active"><a href="https://docs.godotengine.org/en/stable/classes/class_bool.html#bool" class="link">bool</a> is_active<span class="comment-alt"> = </span><span class="value"> true</span></h4>
+									<p class="tab">Variable state for projectile update validation.</p>
+								<hr>
+
+								<h4 id="projectile-2d-property-is-expired"><a href="https://docs.godotengine.org/en/stable/classes/class_bool.html#bool" class="link">bool</a> is_expired<span class="comment-alt"> = </span><span class="value"> false</span></h4>
+									<p class="tab">Variable state for projectile lifetime & pierce validation.</p>
+								<hr>
+
+								<h4 id="projectile-2d-property-is-falling-flag"><a href="https://docs.godotengine.org/en/stable/classes/class_bool.html#bool" class="link">bool</a> is_falling_flag<span class="comment-alt"> = </span><span class="value"> false</span></h4>
+									<p class="tab">Current falling behavior.</p>
+								<hr>
+
+								<h4 id="projectile-2d-property-lifetime"><a href="https://docs.godotengine.org/en/stable/classes/class_float.html#class-float" class="link">float</a> lifetime<span class="comment-alt"> = </span><span class="value"> 1.0</span></h4>
+									<p class="tab">Remaining lifetime in seconds.</p>
+								<hr>
+
+								<h4 id="projectile-2d-property-pierce"><a href="https://docs.godotengine.org/en/stable/classes/class_int.html#class-int" class="link">int</a> pierce<span class="comment-alt"> = </span><span class="value"> 1</span></h4>
+									<p class="tab">Remaining pierces before expiration.</p>
+								<hr>
+
+								<h4 id="projectile-2d-property-position"><a href="https://docs.godotengine.org/en/stable/classes/class_vector2.html#class-vector2" class="link">Vector2</a> position</h4>
+									<p class="tab">Current world position.</p>
+								<hr>
+
+								<h4 id="projectile-2d-property-query"><a href="https://docs.godotengine.org/en/stable/classes/class_physicsshapequeryparameters2d.html#physicsshapequeryparameters2d" class="link">PhysicsShapeQueryParameters2D</a> query<span class="comment-alt"> = </span><span class="value"> PhysicsShapeQueryParameters2D.new()</span></h4>
+									<p class="tab">Parameters used to search for new targets on seeking shape casting.</p>
+								<hr>
+
+								<h4 id="projectile-2d-property-rehit-cooldown"><a href="https://docs.godotengine.org/en/stable/classes/class_float.html#class-float" class="link">float</a> rehit_cooldown<span class="comment-alt"> = </span><span class="value"> -1.0</span></h4>
+									<p class="tab">Timer tracking time since last hit.</p>
+								<hr>
+
+								<h4 id="projectile-2d-property-resource"><a href="../../1.0/resources/projectile-blueprint-2d.html#projectile-blueprint-2d" class="link">ProjectileBlueprint2D</a> resource</h4>
+									<p class="tab">Fixed projectile blueprint.</p>
+								<hr>
+
+								<h4 id="projectile-2d-property-speed"><a href="https://docs.godotengine.org/en/stable/classes/class_float.html#class-float" class="link">float</a> speed<span class="comment-alt"> = </span><span class="value"> 1000</span></h4>
+									<p class="tab">Current movement speed in pixels/second.</p>
+								<hr>
+
+								<h4 id="projectile-2d-property-target"><a href="https://docs.godotengine.org/en/stable/classes/class_node2d.html#node2d" class="link">Node2D</a> target</h4>
+									<p class="tab">Current homing target (null if no target).</p>
+								<hr>
+
+								<h4 id="projectile-2d-property-transform"><a href="https://docs.godotengine.org/en/stable/classes/class_transform2d.html#transform2d" class="link">Transform2D</a> transform</h4>
+									<ul class="tab comment">
+										<li>void set_transform_2D(value: <a href="https://docs.godotengine.org/en/stable/classes/class_transform2d.html#transform2d" class="link">Transform2D</a>)</li>
+										<li><a href="https://docs.godotengine.org/en/stable/classes/class_transform2d.html#transform2d" class="link">Transform2D</a> get_transform_2D()</li>
+									</ul>
+									<p class="tab">Current projectile transform.</p>
+								<hr>
+
+								<h4 id="projectile-2d-property-use-custom-collision-method"><a href="https://docs.godotengine.org/en/stable/classes/class_bool.html#class-bool" class="link">bool</a> use_custom_collision_method<span class="comment-alt"> = </span><span class="value"> false</span></h4>
+									<p class="tab">If <code class="value">true</code> the projectile uses a custom collision method.</p>
+								<hr>
+
+								<h4 id="projectile-2d-property-use-custom-expired-method"><a href="https://docs.godotengine.org/en/stable/classes/class_bool.html#class-bool" class="link">bool</a> use_custom_expired_method<span class="comment-alt"> = </span><span class="value"> false</span></h4>
+									<p class="tab">If <code class="value">true</code> the projectile uses a custom expired method.</p>
+								<hr>
+
+								<h4 id="projectile-2d-property-use-custom-move-method"><a href="https://docs.godotengine.org/en/stable/classes/class_bool.html#class-bool" class="link">bool</a> use_custom_move_method<span class="comment-alt"> = </span><span class="value"> false</span></h4>
+									<p class="tab">If <code class="value">true</code> the projectile uses a custom move method.</p>
+								<hr class="strong">
+								<br>
+
+
+								<!-- Method Descriptions -->
+								<header class="semimajor" id="method-descriptions">
+									<h3>Method Descriptions</h3>
+								</header>
+								
+								<h4 id="projectile-2d-method-disable"><span class="comment-alt">void</span> disable<span class="comment-alt">()</span></h4>
+									<p class="tab">Disables the projectile and cleans up physics resources.</p>
+								<hr>
+
+								<h4 id="projectile-2d-method-move"><span class="comment-alt">void</span> move<span class="comment-alt">(delta: </span><a href="https://docs.godotengine.org/en/stable/classes/class_float.html#class-float" class="link">float</a><span class="comment-alt">)</span></h4>
+									<p class="tab">Handles projectile movement and seeking rotation logic.</p>
+									<p class="tab">Uses <code class="value">delta</code> as the time elapsed since last frame.</p>
+								<hr>
+
+								<h4 id="projectile-2d-method-on-expired"><span class="comment-alt">void</span> on_expired<span class="comment-alt">()</span></h4>
+									<p class="tab">Manages final actions before projectile disposal.</p>
+									<p class="tab", style="margin-bottom: 0;">A projectile is considered <strong>expired</strong> when at least one of these conditions is met:</p>
+									<ul class="tab comment">
+										<li>The projectile runs out of <strong>lifetime.</strong></li>
+										<li>The projectile runs out of <strong>pierce.</strong></li>
+									</ul>
+								<hr>
+
+								<h4 id="projectile-2d-method-on-pierced"><span class="comment-alt">void</span> on_pierced<span class="comment-alt">(pierced_rid: </span><a href="https://docs.godotengine.org/en/stable/classes/class_rid.html#rid" class="link">RID</a><span class="comment-alt">)</span></h4>
+									<p class="tab">Handles pierce count management and target exclusion logic.</p>
+									<p class="tab">Appends <code class="value">pierced_RID</code> to the list of <a href="#projectile-2d-property-excluded-targets">excluded_targets</a>.</p>
+								<hr>
+
+								<h4 id="projectile-2d-method-seek-target"><a href="https://docs.godotengine.org/en/stable/classes/class_float.html#class-float" class="link">float</a> seek_target<span class="comment-alt">(_delta: </span><a href="https://docs.godotengine.org/en/stable/classes/class_float.html#class-float" class="link">float</a><span class="comment-alt">)</span></h4>
+									<p class="tab">Returns the applied and constraint seeking rotation angle. It also adjusts the <strong>projectile direction</strong> towards the current target.</p>
+								<hr>
+
+								<h4 id="projectile-2d-method-try-retarget"><span class="comment-alt">void</span> try_retarget<span class="comment-alt">()</span></h4>
+									<p class="tab">Attempts to find new targets using shape casting when the current target is lost.</p>
+								<hr>
+
+								<h4 id="projectile-2d-method-update-lifetime"><a href="https://docs.godotengine.org/en/stable/classes/class_bool.html#class-bool" class="link">bool</a> update_lifetime<span class="comment-alt">(delta: </span><a href="https://docs.godotengine.org/en/stable/classes/class_float.html#class-float" class="link">float</a><span class="comment-alt">)</span></h4>
+									<p class="tab">Returns <code class="value">true</code> if the projectile remains active, <code class="value">false</code> if expired</p>
+								<hr>
+
+								<h4 id="projectile-2d-method-validate-collision"><a href="https://docs.godotengine.org/en/stable/classes/class_bool.html#class-bool" class="link">bool</a> validate_collision<span class="comment-alt">(colliding_rid: </span><a href="https://docs.godotengine.org/en/stable/classes/class_rid.html#rid" class="link">RID</a><span class="comment-alt">, colliding_node: </span><a href="https://docs.godotengine.org/en/stable/classes/class_node.html#node" class="link">Node</a><span class="comment-alt">)</span></h4>
+									<p class="tab">Returns <code class="value">true</code> if the collision is valid.</p>
+									<p class="tab", style="margin-bottom: 0;">A collision is <strong>valid</strong> if:</p>
+									<ul class="tab comment">
+										<li>The projectile is not expired.</li>
+										<li>The projectile is not colliding with areas/bodies it already collided.</li>
+										<li>A <strong>lock target</strong> projectile is colliding with its assigned target.</li>
+									</ul>
+								<hr>
+
+								<h4 id="projectile-2d-method-validate-target"><a href="https://docs.godotengine.org/en/stable/classes/class_node.html#node" class="link">Node</a> validate_target<span class="comment-alt">(collider: </span><a href="https://docs.godotengine.org/en/stable/classes/class_node.html#node" class="link">Node</a><span class="comment-alt">)</span></h4>
+									<p class="tab">Returns the validated target node (may be a parent of the original collider).</p>
+									<p class="tab">Seeking projectiles target the <strong>global position</strong> of the Collision Objects they home in. If you want to seek a parent position, add your Body/Area nodes into the <a href="https://docs.godotengine.org/en/stable/tutorials/scripting/groups.html#groups">Group</a> <strong>"step"</strong></p>
+								<hr>
+							</section>
+						</div>
+					</div>
+
+				<!-- Sidebar -->
+				<div id="sidebar">
+					<div class="inner">
+
+						<!-- Search -->
+							<!-- <section id="search" class="alt">
+								<form method="post" action="#">
+									<input type="text" name="query" id="query" placeholder="Search" />
+								</form>
+							</section> -->
+
+						<!-- Menu -->
+							<nav id="menu">
+								<header class="major">
+									<h2> <span class="image mini_left mini">
+										<a href="../../index.html"><img src="../../images/icon.svg" alt="All Projectiles Logo" /></a></span> 
+										<a href="../../index.html" class="test"> All Projectiles </a>
+									</h2>
+									<!-- <p><span class="image left"><img src="images/icon.svg" alt="" /></span>All Projectiles -->
+								</header>
+								<ul>
+									<li>
+										<span class="opener max">Introduction</span>
+										<ul>
+											<span class="opener mini"><a href="../../1.0/introduction/whats-this.html">What is This?</a></span>
+											<ul>
+												<li><a href="../../1.0/introduction/whats-this.html#whats-this">What is All Projectiles?</a></li>
+												<li><a href="../../1.0/introduction/whats-this.html#addon-nodes">Addon Nodes</a></li>
+											</ul>
+
+											<span class="opener mini"><a href="../../1.0/introduction/installation.html">Installation</a></span>
+											<ul>
+												<li><a href="../../1.0/introduction/installation.html#asset-library">Asset Library</a></li>
+												<li><a href="../../1.0/introduction/installation.html#patreon">Patreon</a></li>
+												<li><a href="../../1.0/introduction/installation.html#github">GitHub</a></li>
+												<li><a href="../../1.0/introduction/installation.html#itchio">Itchio</a></li>
+											</ul>
+
+											<span class="opener mini"><a href="../../1.0/introduction/getting-started.html">Getting Started</a></span>
+											<ul>
+												<li><a href="../../1.0/introduction/getting-started.html#spawning-projectiles">Spawning Projectiles</a></li>
+												<li><a href="../../1.0/introduction/getting-started.html#creating-projectile-blueprints">Creating Projectile Blueprints</a></li>
+												<li><a href="../../1.0/introduction/getting-started.html#modifying-projectile-behavior">Modifying projectile behavior</a></li>
+											</ul>
+										</ul>
+									</li>
+
+									<li>
+										<span class="opener max">Nodes</span>
+										<ul>
+											<span class="opener mini"><a href="../../1.0/nodes/projectile-caller-2d.html">ProjectileCaller2D</a></span>
+											<ul>
+												<li><a href="../../1.0/nodes/projectile-caller-2d.html#description">Description</a></li>
+												<!-- <li><a href="../../1.0/nodes/projectile-caller-2d.html#tutorials">Tutorials</a></li> -->
+												<li><a href="../../1.0/nodes/projectile-caller-2d.html#properties">Properties</a></li>
+												<li><a href="../../1.0/nodes/projectile-caller-2d.html#methods">Methods</a></li>
+												<!-- <li><a href="../../1.0/nodes/projectile-caller-2d.html#signals">Signals</a></li> -->
+												<!-- <li><a href="../../1.0/nodes/projectile-caller-2d.html#enumerations">Enumerations</a></li> -->
+												<li><a href="../../1.0/nodes/projectile-caller-2d.html#property-descriptions">Property Descriptions</a></li>
+												<li><a href="../../1.0/nodes/projectile-caller-2d.html#method-descriptions">Method Descriptions</a></li>
+											</ul>
+
+											<span class="opener mini"><a href="../../1.0/nodes/projectile-processor-2d.html">ProjectileProcessor2D</a></span>
+											<ul>
+												<li><a href="../../1.0/nodes/projectile-processor-2d.html#description">Description</a></li>
+												<!-- <li><a href="../../1.0/nodes/projectile-processor-2d.html#tutorials">Tutorials</a></li> -->
+												<li><a href="../../1.0/nodes/projectile-processor-2d.html#properties">Properties</a></li>
+												<li><a href="../../1.0/nodes/projectile-processor-2d.html#methods">Methods</a></li>
+												<li><a href="../../1.0/nodes/projectile-processor-2d.html#signals">Signals</a></li>
+												<!-- <li><a href="../../1.0/nodes/projectile-processor-2d.html#enumerations">Enumerations</a></li> -->
+												<li><a href="../../1.0/nodes/projectile-processor-2d.html#property-descriptions">Property Descriptions</a></li>
+												<li><a href="../../1.0/nodes/projectile-processor-2d.html#method-descriptions">Method Descriptions</a></li>
+											</ul>
+										</ul>
+									</li>
+
+									<li>
+										<span class="opener max">Resources</span>
+										<ul>
+											<span class="opener mini"><a href="../../1.0/resources/projectile-blueprint-2d.html">ProjectileBlueprint2D</a></span>
+											<ul>
+												<li><a href="../../1.0/resources/projectile-blueprint-2d.html#description">Description</a></li>
+												<!-- <li><a href="../../1.0/resources/projectile-blueprint-2d.html#tutorials">Tutorials</a></li> -->
+												<li><a href="../../1.0/resources/projectile-blueprint-2d.html#properties">Properties</a></li>
+												<!-- <li><a href="../../1.0/resources/projectile-blueprint-2d.html#methods">Methods</a></li> -->
+												<!-- <li><a href="../../1.0/resources/projectile-blueprint-2d.html#signals">Signals</a></li> -->
+												<li><a href="../../1.0/resources/projectile-blueprint-2d.html#enumerations">Enumerations</a></li>
+												<li><a href="../../1.0/resources/projectile-blueprint-2d.html#property-descriptions">Property Descriptions</a></li>
+												<!-- <li><a href="../../1.0/resources/projectile-blueprint-2d.html#method-descriptions">Method Descriptions</a></li> -->
+											</ul>
+										</ul>
+									</li>
+
+									<li>
+										<span class="opener active max">Classes</span>
+										<ul>
+											<span class="opener mini"><a href="../../1.0/classes/area-projectile-2d.html">AreaProjectile2D</a></span>
+											<ul>
+												<li><a href="../../1.0/classes/area-projectile-2d.html#description">Description</a></li>
+												<!-- <li><a href="../../1.0/classes/area-projectile-2d.html#tutorials">Tutorials</a></li> -->
+												<li><a href="../../1.0/classes/area-projectile-2d.html#properties">Properties</a></li>
+												<li><a href="../../1.0/classes/area-projectile-2d.html#methods">Methods</a></li>
+												<!-- <li><a href="../../1.0/classes/area-projectile-2d.html#signals">Signals</a></li> -->
+												<!-- <li><a href="../../1.0/classes/area-projectile-2d.html#enumerations">Enumerations</a></li> -->
+												<li><a href="../../1.0/classes/area-projectile-2d.html#property-descriptions">Property Descriptions</a></li>
+												<li><a href="../../1.0/classes/area-projectile-2d.html#method-descriptions">Method Descriptions</a></li>
+											</ul>
+
+											<span class="opener mini"><a href="../../1.0/classes/instanced-projectile-2d.html">InstancedProjectile2D</a></span>
+											<ul>
+												<li><a href="../../1.0/classes/instanced-projectile-2d.html#description">Description</a></li>
+												<!-- <li><a href="../../1.0/classes/instanced-projectile-2d.html#tutorials">Tutorials</a></li> -->
+												<li><a href="../../1.0/classes/instanced-projectile-2d.html#properties">Properties</a></li>
+												<li><a href="../../1.0/classes/instanced-projectile-2d.html#methods">Methods</a></li>
+												<!-- <li><a href="../../1.0/classes/instanced-projectile-2d.html#signals">Signals</a></li> -->
+												<!-- <li><a href="../../1.0/classes/instanced-projectile-2d.html#enumerations">Enumerations</a></li> -->
+												<li><a href="../../1.0/classes/instanced-projectile-2d.html#property-descriptions">Property Descriptions</a></li>
+												<li><a href="../../1.0/classes/instanced-projectile-2d.html#method-descriptions">Method Descriptions</a></li>
+											</ul>
+
+											<span class="opener active mini"><a href="../../1.0/classes/projectile-2d.html">Projectile2D</a></span>
+											<ul>
+												<li><a href="../../1.0/classes/projectile-2d.html#description">Description</a></li>
+												<!-- <li><a href="../../1.0/classes/projectile-2d.html#tutorials">Tutorials</a></li> -->
+												<li><a href="../../1.0/classes/projectile-2d.html#properties">Properties</a></li>
+												<li><a href="../../1.0/classes/projectile-2d.html#methods">Methods</a></li>
+												<li><a href="../../1.0/classes/projectile-2d.html#signals">Signals</a></li>
+												<!-- <li><a href="../../1.0/classes/projectile-2d.html#enumerations">Enumerations</a></li> -->
+												<li><a href="../../1.0/classes/projectile-2d.html#property-descriptions">Property Descriptions</a></li>
+												<li><a href="../../1.0/classes/projectile-2d.html#method-descriptions">Method Descriptions</a></li>
+											</ul>
+										</ul>
+									</li>
+
+								</ul>
+							</nav>
+
+
+						<!-- Footer -->
+							<footer id="footer">
+								<p class="copyright">Copyright &copy; 2025. All rights reserved. Demo Images: <a href="https://unsplash.com">Unsplash</a>. Design: <a href="https://html5up.net">HTML5 UP</a>.</p>
+							</footer>
+
+					</div>
+				</div>
+
+			</div>
+
+		<!-- Scripts -->
+			<script src="../../assets/js/jquery.min.js"></script>
+			<script src="../../assets/js/browser.min.js"></script>
+			<script src="../../assets/js/breakpoints.min.js"></script>
+			<script src="../../assets/js/util.js"></script>
+			<script src="../../assets/js/main.js"></script>
+
+	</body>
+</html>

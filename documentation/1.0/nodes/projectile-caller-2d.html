@@ -1,0 +1,488 @@
+<!DOCTYPE HTML>
+<!--
+	Editorial by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>ProjectileCaller2D</title>
+		<meta charset="utf-8" />
+		<meta name="description" content="A Projectile Engine for Godot"/>
+		<meta name="autor" content="Oscar Vezz"/>
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="../../assets/css/main.css" />
+	</head>
+	<body class="is-preload">
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Main -->
+					<div id="main">
+						<div class="inner">
+
+							<!-- Header -->
+							<header id="header">
+								<a href="../../index.html" class="logo"><strong>All Projectiles</strong> 1.0 Documentation</a>
+								<ul class="icons">
+									<li><a href="https://github.com/OscarVezz/all-projectiles" class="icon brands fa-github"><span class="label">Github</span></a></li>
+									<li><a href="https://www.patreon.com/OscarVezz" class="icon brands fa-patreon"><span class="label">Patreon</span></a></li>
+									<li><a href="https://oscarvezz.itch.io/" class="icon brands fa-itch-io"><span class="label">Itch.io</span></a></li>
+									<li><a href="https://x.com/Oscar_Vezz" class="icon brands fa-x-twitter"><span class="label">Twitter</span></a></li>
+									<li><a href="https://www.youtube.com/@oscarvezz5826" class="icon brands fa-youtube"><span class="label">YouTube</span></a></li>
+								</ul>
+							</header>
+
+							<!-- Content -->
+							<section>
+								<header class="main" id="projectile-caller-2d">
+									<h2>ProjectileCaller2D</h2>
+								</header>
+
+
+								<!-- Inherits -->
+								<p><b>Inherits:</b> <a href="https://docs.godotengine.org/en/stable/classes/class_node2d.html#class-node2d">Node2D</a> < <a href="https://docs.godotengine.org/en/stable/classes/class_canvasitem.html#class-canvasitem">CanvasItem</a> < <a href="https://docs.godotengine.org/en/stable/classes/class_node.html#class-node">Node</a> < <a href="https://docs.godotengine.org/en/stable/classes/class_object.html#class-object">Object</a></p>
+								<p>An <strong>intermediary</strong> between your code and the <a href="../../1.0/nodes/projectile-processor-2d.html#projectile-processor-2d">AP engine</a>.</p>
+								<br>
+
+
+								<!-- Description -->
+								<header class="semimajor" id="description">
+									<h3>Description</h3>
+								</header>
+									<p>Provides indirect access to the <a href="../../1.0/nodes/projectile-processor-2d.html#projectile-processor-2d">AP engine</a>. Holds and delegates the creation of projectiles.</p>
+									<p>This node also serves as a container for your <a href="../../1.0/resources/projectile-blueprint-2d.html#projectile-blueprint-2d">ProjectileBlueprints</a>.</p>
+								<br>
+
+
+								<!-- Tutorials -->
+								<!-- <header class="semimajor" id="tutorials">
+									<h3>Tutorials</h3>
+								</header>
+								<ul>
+									<li><a href="#">tutorial_link1</a></li>
+									<li><a href="#">tutorial_link2</a></li>
+									<li><a href="#">tutorial_link3</a></li>
+								</ul> -->
+
+
+								<!-- Properties -->
+								<header class="semimajor" id="properties">
+									<h3>Properties</h3>
+								</header>
+								<div class="table-wrapper">
+									<table class="alt">
+										<colgroup>
+											<col style="width:27%">
+											<col style="width:43%">
+											<col style="width:30%">
+										</colgroup>  
+										<tbody>
+											<tr>
+												<td><a href="../../1.0/nodes/projectile-processor-2d.html#projectile-processor-2d">ProjectileProcessor2D</a></td>
+												<td><a href="#projectile-caller-2d-property-projectile-processor">projectile_processor</a></td>
+												<td></td>
+											</tr>
+											<tr>
+												<td><a href="https://docs.godotengine.org/en/stable/classes/class_array.html#class-array">Array</a>[<a href="../../1.0/resources/projectile-blueprint-2d.html#projectile-blueprint-2d">ProjectileBlueprint2D</a>]</td>
+												<td><a href="#projectile-caller-2d-property-projectile-resources">projectile_resources</a></td>
+												<td></td>
+											</tr>
+										</tbody>
+									</table>
+								</div>
+								<br>
+								<br>
+
+
+								<!-- Methods -->
+								<header class="semimajor" id="methods">
+									<h3>Methods</h3>
+								</header>
+								<div class="table-wrapper">
+									<table class="alt">
+										<colgroup>
+											<col style="width:27%">
+											<col style="width:73%">
+										</colgroup>  
+										<tbody>
+											<tr>
+												<td><a href="https://docs.godotengine.org/en/stable/classes/class_bool.html#class-bool">bool</a></td>
+												<td><a href="#projectile-caller-2d-method-request-projectile">request_projectile</a></td>
+											</tr>
+										</tbody>
+									</table>
+								</div>
+								<hr class="strong">
+								<br>
+
+
+								<!-- Signals -->
+								<!-- <header class="semimajor" id="signals">
+									<h3>Signals</h3>
+								</header>
+
+								<h4>signal_name_1<span class="comment-alt">(property_name_1: </span><a href="#" class="link">property_type_1</a><span class="comment-alt">, property_name_2: </span><a href="#" class="link">property_type_2</a><span class="comment-alt">)</span></h4>
+									<p class="tab">Signal description long</p>
+								<hr>
+
+								<h4>signal_name_2<span class="comment-alt">(property_name_1: </span><a href="#" class="link">property_type_1</a><span class="comment-alt">, property_name_2: </span><a href="#" class="link">property_type_2</a><span class="comment-alt">)</span></h4>
+									<p class="tab">Signal description long</p>
+								<hr class="strong">
+								<br> -->
+
+
+								<!-- Enumerations -->
+								<!-- <header class="semimajor" id="enumerations">
+									<h3>Enumerations</h3>
+								</header>
+
+								<h4><span class="comment-alt">enum </span>EnumName1 <span class="comment-alt">:</span></h4>
+								<ul style="list-style-type: none">
+									<li><h4><a href="#" class="link">EnumName1</a> ENUM_ELEMENT_NAME_1<span class="comment-alt"> = 0</span></h4></li>
+										<p class="tab-alt">Enum element description.</p>
+									<li><h4><a href="#" class="link">EnumName1</a> ENUM_ELEMENT_NAME_2<span class="comment-alt"> = 1</span></h4></li>
+										<p class="tab-alt">Enum element description.</p>
+									<li><h4><a href="#" class="link">EnumName1</a> ENUM_ELEMENT_NAME_3<span class="comment-alt"> = 2</span></h4></li>
+										<p class="tab-alt">Enum element description.</p>
+								</ul>
+								<hr>
+
+								<h4><span class="comment-alt">enum </span>EnumName2 <span class="comment-alt">:</span></h4>
+								<ul style="list-style-type: none">
+									<li><h4><a href="#" class="link">EnumName2</a> ENUM_ELEMENT_NAME_1<span class="comment-alt"> = 0</span></h4></li>
+										<p class="tab-alt">Enum element description.</p>
+									<li><h4><a href="#" class="link">EnumName2</a> ENUM_ELEMENT_NAME_2<span class="comment-alt"> = 1</span></h4></li>
+										<p class="tab-alt">Enum element description.</p>
+									<li><h4><a href="#" class="link">EnumName2</a> ENUM_ELEMENT_NAME_3<span class="comment-alt"> = 2</span></h4></li>
+										<p class="tab-alt">Enum element description.</p>
+								</ul>
+								<hr class="strong">
+								<br> -->
+
+
+								<!-- Property Descriptions -->
+								<header class="semimajor" id="property-descriptions">
+									<h3>Property Descriptions</h3>
+								</header>
+
+								<h4 id="projectile-caller-2d-property-projectile-processor"><a href="../../1.0/nodes/projectile-processor-2d.html#projectile-processor-2d" class="link">ProjectileProcessor2D</a> projectile_processor</h4>
+									<p class="tab">Direct access to the <a href="../../1.0/nodes/projectile-processor-2d.html#projectile-processor-2d">AP engine</a> itself.</p>
+									<p class="tab"><strong>You should not use it</strong> for direct projectile creation. Use the <a href="#projectile-caller-2d-method-request-projectile">request_projectile</a> method instead.</p>
+								<hr>
+
+								<h4 id="projectile-caller-2d-property-projectile-resources"><a href="https://docs.godotengine.org/en/stable/classes/class_array.html#class-array" class="link">Array</a>[<a href="../../1.0/resources/projectile-blueprint-2d.html#projectile-blueprint-2d" class="link">ProjectileBlueprint2D</a>] projectile_resources</h4>
+									<p class="tab">The list of <a href="../../1.0/resources/projectile-blueprint-2d.html#projectile-blueprint-2d">ProjectileBlueprint2D</a> resources that can be directly created from the <b>ProjectileCaller2D</b>.</p>
+									<p class="tab">Each <b>ProjectileCaller2D</b> instance can only request the creation of its own stored projectiles.</p>
+								<hr class="strong">
+								<br>
+
+
+								<!-- Method Descriptions -->
+								<header class="semimajor" id="method-descriptions">
+									<h3>Method Descriptions</h3>
+								</header>
+								
+								<h4 id="projectile-caller-2d-method-request-projectile"><a href="https://docs.godotengine.org/en/stable/classes/class_bool.html#class-bool" class="link">bool</a> request_projectile
+									<span class="comment-alt">(index: <a href="https://docs.godotengine.org/en/stable/classes/class_int.html#class-int" class="link">int</a>, _position: <a href="https://docs.godotengine.org/en/stable/classes/class_vector2.html#class-vector2" class="link">Vector2</a>, destination: <a href="https://docs.godotengine.org/en/stable/classes/class_vector2.html#class-vector2" class="link">Vector2</a>, target: <a href="https://docs.godotengine.org/en/stable/classes/class_node2d.html#class-node2d" class="link">Node2D</a> = null, move_method: <a href="https://docs.godotengine.org/en/stable/classes/class_callable.html#class-callable" class="link">Callable</a> = Callable(), start_method: <a href="https://docs.godotengine.org/en/stable/classes/class_callable.html#class-callable" class="link">Callable</a> = Callable(), collision_method: <a href="https://docs.godotengine.org/en/stable/classes/class_callable.html#class-callable" class="link">Callable</a> = Callable(), expired_method: <a href="https://docs.godotengine.org/en/stable/classes/class_callable.html#class-callable" class="link">Callable</a> = Callable())</span></h4>
+									
+									<div class="tab">
+									<p>Returns <code class="value">true</code> if the creation request has been successful.</p>
+
+									<hr>
+
+									<p><strong>Takes the following arguments:</strong></p>
+									<p><code class="value">index</code>: Element of the <a href="#projectile-caller-2d-property-projectile-resources">projectile_resources</a> array that will be created by the <a href="../../1.0/nodes/projectile-processor-2d.html#projectile-processor-2d">AP engine</a>.</p>
+									<p><code class="value">position</code>: Start position of the projectile (In global coordinates).</p>
+									<p><code class="value">destination</code>: Position the projectile will move towards (In global coordinates).</p>
+									<p><code class="value">target</code>: <a href="https://docs.godotengine.org/en/stable/classes/class_node2d.html#class-node2d" class="link">Node2D</a> the projectile will actively seek to (If selected in <a href="../../1.0/resources/projectile-blueprint-2d.html#projectile-blueprint-2d">ProjectileBlueprint2D</a>).</p>
+									<p><code class="value">move_method</code>: <a href="https://docs.godotengine.org/en/stable/classes/class_callable.html#class-callable" class="link">Callable</a> that will be called every physics tick and will actively change the direction the projectile is heading to.</p> 
+									<p><code class="value">start_method</code>: <a href="https://docs.godotengine.org/en/stable/classes/class_callable.html#class-callable" class="link">Callable</a> that will be called <strong>at projectile creation</strong>.</p>
+									<p><code class="value">collision_method</code>: <a href="https://docs.godotengine.org/en/stable/classes/class_callable.html#class-callable" class="link">Callable</a> that will be called when the projectile collides with available bodies or areas.</p>
+									<p><code class="value">expired_method</code>: <a href="https://docs.godotengine.org/en/stable/classes/class_callable.html#class-callable" class="link">Callable</a> that will be called once the projectile <strong>runs out of pierce or lifetime</strong>.</p>
+
+									<hr>
+
+									<p><strong>Each Callable</strong> argument <strong>follows a define pattern</strong> and must take a set number of parameters and return a specific value.</p>
+									
+									<ul>
+										<li>
+											<p>The <code class="value">move_method</code> callable <strong>must return</strong> a <code class="value">Vector2</code> and take the following two parameters:</p>
+											<p><code class="value">proj</code>: A representation of the projectile object to be changed.</p>
+											<p><code class="value">delta</code>: The time elapsed in seconds since the previous call to <b>move_method</b>.</p>
+											<pre><code><span class="keyword">extends</span> Node2D
+
+<span class="exported-property">@onready</span> <span class="keyword">var</span> projectile_caller <span class="operator">= $</span>ProjectileCaller2D
+						
+
+<span class="comment"># In this example the "custom_movement" function is passed as a Callable in the optional "move_method" parameter.</span>
+<span class="keyword">func</span> _process(_delta):
+	<span class="conditional">if</span> Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
+		<span class="keyword">var</span> destination <span class="operator">=</span> <span class="data">get_global_mouse_position</span>()
+		projectile_caller.<span class="method">request_projectile</span>(<span class="data">0</span>, position, destination, <span class="data">null</span>, custom_movement)
+
+
+<span class="comment"># This function will cause the projectile to always move in the UP direction.</span>
+<span class="keyword">func</span> custom_movement(proj: <span class="data">Projectile2D</span>, _delta: <span class="data">float</span>) <span class="operator">-></span> <span class="data">Vector2</span>:
+	<span class="conditional">return</span> <span class="data">Vector2</span>.UP
+</code></pre>
+										</li>
+									</ul>
+									<hr class="tab">
+
+									<ul>
+										<li>
+											<p>The <code class="value">start_method</code> callable returns <code class="value">void</code> and takes the following parameter:</p>
+											<p><code class="value">proj</code>: A representation of the projectile object to be changed.</p>
+											<pre><code><span class="keyword">extends</span> Node2D
+
+<span class="exported-property">@onready</span> <span class="keyword">var</span> projectile_caller <span class="operator">= $</span>ProjectileCaller2D
+						
+
+<span class="comment"># In this example the "custom_start" function is passed as a Callable in the optional "start_method" parameter.</span>
+<span class="keyword">func</span> _process(_delta):
+	<span class="conditional">if</span> Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
+		<span class="keyword">var</span> destination <span class="operator">=</span> <span class="data">get_global_mouse_position</span>()
+		projectile_caller.<span class="method">request_projectile</span>(<span class="data">0</span>, position, destination, <span class="data">null</span>, Callable(), custom_start)
+
+
+<span class="comment"># This function will change the projectile "speed" property at projectile creation.</span>
+<span class="keyword">func</span> custom_start(proj: <span class="data">Projectile2D</span>) <span class="operator">-></span> <span class="data">void</span>:
+	proj.speed <span class="operator">=</span> <span class="data">50</span>
+</code></pre>
+										</li>
+									</ul>
+									<hr class="tab">
+
+									<ul>
+										<li>
+											<p>The <code class="value">collision_method</code> callable returns <code class="value">void</code> and takes the following parameters:</p>
+											<p><code class="value">proj</code>: A representation of the projectile object to be changed.</p>
+											<p><code class="value">area_rid</code>: The <a href="https://docs.godotengine.org/en/stable/classes/class_rid.html#class-rid">RID</a> of the area/body that entered or exited the projectile.</p>
+											<p><code class="value">area</code>: The <a href="https://docs.godotengine.org/en/stable/classes/class_node.html#class-node">Node</a> of the area/body that entered or exited the projectile.</p>
+											<p><code class="value">area_shape_index</code>: Index of the interacting shape from the collidiong area/body.</p>
+											<p><code class="value">local_shape_index</code>: Index of the interacting shape from the projectile area.</p>
+											<pre><code><span class="keyword">extends</span> Node2D
+
+<span class="comment"># The projectiles will immediately expire upon collision with objects in this layer.</span>
+<span class="exported-property">@export_flags_2d_physics</span> <span class="keyword">var</span> wall_layer: <span class="data">int</span>
+<span class="exported-property">@onready</span> <span class="keyword">var</span> projectile_caller <span class="operator">= $</span>ProjectileCaller2D
+						
+
+<span class="comment"># In this example the "custom_collision" function is passed as a Callable in the optional "collision_method" parameter.</span>
+<span class="keyword">func</span> _process(_delta):
+	<span class="conditional">if</span> Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
+		<span class="keyword">var</span> destination <span class="operator">=</span> <span class="data">get_global_mouse_position</span>()
+		projectile_caller.<span class="method">request_projectile</span>(<span class="data">0</span>, position, destination, <span class="data">null</span>, Callable(), Callable(), custom_collision)
+
+
+<span class="comment"># This function will change the way projectiles collide.</span>
+<span class="keyword">func</span> custom_collision(proj: <span class="data">Projectile2D</span>, area_rid: <span class="data">RID</span>, area: <span class="data">Node2D</span>, area_shape_index: <span class="data">int</span>, local_shape_index: <span class="data">int</span>) <span class="operator">-></span> <span class="data">void</span>:
+	<span class="comment"># The "validate_collision" method makes sure that:
+	# -> The projectile is not expired.
+	# -> A lock projectile will only collide with its assigned target.
+	# -> The projectile is not colliding with areas/bodies it already collided.</span>
+	<span class="conditional">if</span> <span class="keyword">not</span> proj.<span class="method">validate_collision</span>(area_rid, area):
+		<span class="conditional">return</span>
+	
+	<span class="comment"># Custom code snippet for immediate expiration on collision with "wall_layer"</span>
+	<span class="conditional">if</span> wall_layer <span class="operator">&</span> area.collision_layer <span class="operator">!=</span> <span class="data">0</span>:
+		proj.is_expired <span class="operator">=</span> <span class="keyword">true</span>
+		<span class="conditional">return</span>
+	
+	<span class="comment"># The "on_pierced" method makes sure that:
+	# -> The projectile refreshes its rehit cooldown and angular speed.
+	# -> The projectile appends colliding areas/bodies to its excluded targets.
+	# -> The projectile instance reduces its remaining pierce.</span>
+	proj.<span class="method">on_pierced</span>(area_rid)
+</code></pre>
+										</li>
+									</ul>
+									<hr class="tab">
+
+									<ul>
+										<li>
+											<p>The <code class="value">expired_method</code> callable returns <code class="value">void</code> and takes the following parameter:</p>
+											<p><code class="value">proj</code>: A representation of the projectile object to be changed.</p>
+											<pre><code><span class="keyword">extends</span> Node2D
+
+<span class="exported-property">@onready</span> <span class="keyword">var</span> projectile_caller <span class="operator">= $</span>ProjectileCaller2D
+						
+
+<span class="comment"># In this example the "custom_expired" function is passed as a Callable in the optional "expired_method" parameter.</span>
+<span class="keyword">func</span> _process(_delta):
+	<span class="conditional">if</span> Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
+		<span class="keyword">var</span> destination <span class="operator">=</span> <span class="data">get_global_mouse_position</span>()
+		projectile_caller.<span class="method">request_projectile</span>(<span class="data">0</span>, position, destination, <span class="data">null</span>, Callable(), Callable(), Callable(), custom_expired)
+
+
+<span class="comment"># This function will print "expired" on the console once the projectile runs out of pierce or lifetime.</span>
+<span class="keyword">func</span> custom_expired(proj: <span class="data">Projectile2D</span>) <span class="operator">-></span> <span class="data">void</span>:
+	<span class="data">print</span>(<span class="string">"expired"</span>)
+</code></pre>
+										</li>
+									</ul>
+									</div>
+								<hr>
+							</section>
+						</div>
+					</div>
+
+				<!-- Sidebar -->
+				<div id="sidebar">
+					<div class="inner">
+
+						<!-- Search -->
+							<!-- <section id="search" class="alt">
+								<form method="post" action="#">
+									<input type="text" name="query" id="query" placeholder="Search" />
+								</form>
+							</section> -->
+
+						<!-- Menu -->
+							<nav id="menu">
+								<header class="major">
+									<h2> <span class="image mini_left mini">
+										<a href="../../index.html"><img src="../../images/icon.svg" alt="All Projectiles Logo" /></a></span> 
+										<a href="../../index.html" class="test"> All Projectiles </a>
+									</h2>
+									<!-- <p><span class="image left"><img src="images/icon.svg" alt="" /></span>All Projectiles -->
+								</header>
+								<ul>
+									<li>
+										<span class="opener max">Introduction</span>
+										<ul>
+											<span class="opener mini"><a href="../../1.0/introduction/whats-this.html">What is This?</a></span>
+											<ul>
+												<li><a href="../../1.0/introduction/whats-this.html#whats-this">What is All Projectiles?</a></li>
+												<li><a href="../../1.0/introduction/whats-this.html#addon-nodes">Addon Nodes</a></li>
+											</ul>
+
+											<span class="opener mini"><a href="../../1.0/introduction/installation.html">Installation</a></span>
+											<ul>
+												<li><a href="../../1.0/introduction/installation.html#asset-library">Asset Library</a></li>
+												<li><a href="../../1.0/introduction/installation.html#patreon">Patreon</a></li>
+												<li><a href="../../1.0/introduction/installation.html#github">GitHub</a></li>
+												<li><a href="../../1.0/introduction/installation.html#itchio">Itchio</a></li>
+											</ul>
+
+											<span class="opener mini"><a href="../../1.0/introduction/getting-started.html">Getting Started</a></span>
+											<ul>
+												<li><a href="../../1.0/introduction/getting-started.html#spawning-projectiles">Spawning Projectiles</a></li>
+												<li><a href="../../1.0/introduction/getting-started.html#creating-projectile-blueprints">Creating Projectile Blueprints</a></li>
+												<li><a href="../../1.0/introduction/getting-started.html#modifying-projectile-behavior">Modifying projectile behavior</a></li>
+											</ul>
+										</ul>
+									</li>
+
+									<li>
+										<span class="opener active max">Nodes</span>
+										<ul>
+											<span class="opener active mini"><a href="../../1.0/nodes/projectile-caller-2d.html">ProjectileCaller2D</a></span>
+											<ul>
+												<li><a href="../../1.0/nodes/projectile-caller-2d.html#description">Description</a></li>
+												<!-- <li><a href="../../1.0/nodes/projectile-caller-2d.html#tutorials">Tutorials</a></li> -->
+												<li><a href="../../1.0/nodes/projectile-caller-2d.html#properties">Properties</a></li>
+												<li><a href="../../1.0/nodes/projectile-caller-2d.html#methods">Methods</a></li>
+												<!-- <li><a href="../../1.0/nodes/projectile-caller-2d.html#signals">Signals</a></li> -->
+												<!-- <li><a href="../../1.0/nodes/projectile-caller-2d.html#enumerations">Enumerations</a></li> -->
+												<li><a href="../../1.0/nodes/projectile-caller-2d.html#property-descriptions">Property Descriptions</a></li>
+												<li><a href="../../1.0/nodes/projectile-caller-2d.html#method-descriptions">Method Descriptions</a></li>
+											</ul>
+
+											<span class="opener mini"><a href="../../1.0/nodes/projectile-processor-2d.html">ProjectileProcessor2D</a></span>
+											<ul>
+												<li><a href="../../1.0/nodes/projectile-processor-2d.html#description">Description</a></li>
+												<!-- <li><a href="../../1.0/nodes/projectile-processor-2d.html#tutorials">Tutorials</a></li> -->
+												<li><a href="../../1.0/nodes/projectile-processor-2d.html#properties">Properties</a></li>
+												<li><a href="../../1.0/nodes/projectile-processor-2d.html#methods">Methods</a></li>
+												<li><a href="../../1.0/nodes/projectile-processor-2d.html#signals">Signals</a></li>
+												<!-- <li><a href="../../1.0/nodes/projectile-processor-2d.html#enumerations">Enumerations</a></li> -->
+												<li><a href="../../1.0/nodes/projectile-processor-2d.html#property-descriptions">Property Descriptions</a></li>
+												<li><a href="../../1.0/nodes/projectile-processor-2d.html#method-descriptions">Method Descriptions</a></li>
+											</ul>
+										</ul>
+									</li>
+
+									<li>
+										<span class="opener max">Resources</span>
+										<ul>
+											<span class="opener mini"><a href="../../1.0/resources/projectile-blueprint-2d.html">ProjectileBlueprint2D</a></span>
+											<ul>
+												<li><a href="../../1.0/resources/projectile-blueprint-2d.html#description">Description</a></li>
+												<!-- <li><a href="../../1.0/resources/projectile-blueprint-2d.html#tutorials">Tutorials</a></li> -->
+												<li><a href="../../1.0/resources/projectile-blueprint-2d.html#properties">Properties</a></li>
+												<!-- <li><a href="../../1.0/resources/projectile-blueprint-2d.html#methods">Methods</a></li> -->
+												<!-- <li><a href="../../1.0/resources/projectile-blueprint-2d.html#signals">Signals</a></li> -->
+												<li><a href="../../1.0/resources/projectile-blueprint-2d.html#enumerations">Enumerations</a></li>
+												<li><a href="../../1.0/resources/projectile-blueprint-2d.html#property-descriptions">Property Descriptions</a></li>
+												<!-- <li><a href="../../1.0/resources/projectile-blueprint-2d.html#method-descriptions">Method Descriptions</a></li> -->
+											</ul>
+										</ul>
+									</li>
+
+									<li>
+										<span class="opener max">Classes</span>
+										<ul>
+											<span class="opener mini"><a href="../../1.0/classes/area-projectile-2d.html">AreaProjectile2D</a></span>
+											<ul>
+												<li><a href="../../1.0/classes/area-projectile-2d.html#description">Description</a></li>
+												<!-- <li><a href="../../1.0/classes/area-projectile-2d.html#tutorials">Tutorials</a></li> -->
+												<li><a href="../../1.0/classes/area-projectile-2d.html#properties">Properties</a></li>
+												<li><a href="../../1.0/classes/area-projectile-2d.html#methods">Methods</a></li>
+												<!-- <li><a href="../../1.0/classes/area-projectile-2d.html#signals">Signals</a></li> -->
+												<!-- <li><a href="../../1.0/classes/area-projectile-2d.html#enumerations">Enumerations</a></li> -->
+												<li><a href="../../1.0/classes/area-projectile-2d.html#property-descriptions">Property Descriptions</a></li>
+												<li><a href="../../1.0/classes/area-projectile-2d.html#method-descriptions">Method Descriptions</a></li>
+											</ul>
+
+											<span class="opener mini"><a href="../../1.0/classes/instanced-projectile-2d.html">InstancedProjectile2D</a></span>
+											<ul>
+												<li><a href="../../1.0/classes/instanced-projectile-2d.html#description">Description</a></li>
+												<!-- <li><a href="../../1.0/classes/instanced-projectile-2d.html#tutorials">Tutorials</a></li> -->
+												<li><a href="../../1.0/classes/instanced-projectile-2d.html#properties">Properties</a></li>
+												<li><a href="../../1.0/classes/instanced-projectile-2d.html#methods">Methods</a></li>
+												<!-- <li><a href="../../1.0/classes/instanced-projectile-2d.html#signals">Signals</a></li> -->
+												<!-- <li><a href="../../1.0/classes/instanced-projectile-2d.html#enumerations">Enumerations</a></li> -->
+												<li><a href="../../1.0/classes/instanced-projectile-2d.html#property-descriptions">Property Descriptions</a></li>
+												<li><a href="../../1.0/classes/instanced-projectile-2d.html#method-descriptions">Method Descriptions</a></li>
+											</ul>
+
+											<span class="opener mini"><a href="../../1.0/classes/projectile-2d.html">Projectile2D</a></span>
+											<ul>
+												<li><a href="../../1.0/classes/projectile-2d.html#description">Description</a></li>
+												<!-- <li><a href="../../1.0/classes/projectile-2d.html#tutorials">Tutorials</a></li> -->
+												<li><a href="../../1.0/classes/projectile-2d.html#properties">Properties</a></li>
+												<li><a href="../../1.0/classes/projectile-2d.html#methods">Methods</a></li>
+												<li><a href="../../1.0/classes/projectile-2d.html#signals">Signals</a></li>
+												<!-- <li><a href="../../1.0/classes/projectile-2d.html#enumerations">Enumerations</a></li> -->
+												<li><a href="../../1.0/classes/projectile-2d.html#property-descriptions">Property Descriptions</a></li>
+												<li><a href="../../1.0/classes/projectile-2d.html#method-descriptions">Method Descriptions</a></li>
+											</ul>
+										</ul>
+									</li>
+
+								</ul>
+							</nav>
+
+
+						<!-- Footer -->
+							<footer id="footer">
+								<p class="copyright">Copyright &copy; 2025. All rights reserved. Demo Images: <a href="https://unsplash.com">Unsplash</a>. Design: <a href="https://html5up.net">HTML5 UP</a>.</p>
+							</footer>
+
+					</div>
+				</div>
+
+			</div>
+
+		<!-- Scripts -->
+			<script src="../../assets/js/jquery.min.js"></script>
+			<script src="../../assets/js/browser.min.js"></script>
+			<script src="../../assets/js/breakpoints.min.js"></script>
+			<script src="../../assets/js/util.js"></script>
+			<script src="../../assets/js/main.js"></script>
+
+	</body>
+</html>

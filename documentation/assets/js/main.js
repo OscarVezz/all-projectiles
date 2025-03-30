@@ -224,7 +224,7 @@
 
 						// Calculate heights.
 							wh = $window.height();
-							sh = $sidebar_inner.outerHeight() + 30;
+							sh = $sidebar_inner.outerHeight();
 
 						// Trigger scroll.
 							$window.trigger('scroll.sidebar-lock');
@@ -246,11 +246,16 @@
 				$this.on('click', function(event) {
 
 					// Prevent default.
-						event.preventDefault();
+						// event.preventDefault();
 
 					// Toggle.
-						$menu_openers.not($this).removeClass('active');
+					if ($this.hasClass('mini')) {
+						$menu_openers.not($this).filter('.mini').removeClass('active');
 						$this.toggleClass('active');
+					} else {
+						$menu_openers.not($this).filter('.max').removeClass('active');
+						$this.toggleClass('active');
+					}
 
 					// Trigger resize (sidebar lock).
 						$window.triggerHandler('resize.sidebar-lock');

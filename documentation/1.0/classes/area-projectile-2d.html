@@ -1,0 +1,404 @@
+<!DOCTYPE HTML>
+<!--
+	Editorial by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>AreaProjectile2D</title>
+		<meta charset="utf-8" />
+		<meta name="description" content="A Projectile Engine for Godot"/>
+		<meta name="autor" content="Oscar Vezz"/>
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="../../assets/css/main.css" />
+	</head>
+	<body class="is-preload">
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Main -->
+					<div id="main">
+						<div class="inner">
+
+							<!-- Header -->
+							<header id="header">
+								<a href="../../index.html" class="logo"><strong>All Projectiles</strong> 1.0 Documentation</a>
+								<ul class="icons">
+									<li><a href="https://github.com/OscarVezz/all-projectiles" class="icon brands fa-github"><span class="label">Github</span></a></li>
+									<li><a href="https://www.patreon.com/OscarVezz" class="icon brands fa-patreon"><span class="label">Patreon</span></a></li>
+									<li><a href="https://oscarvezz.itch.io/" class="icon brands fa-itch-io"><span class="label">Itch.io</span></a></li>
+									<li><a href="https://x.com/Oscar_Vezz" class="icon brands fa-x-twitter"><span class="label">Twitter</span></a></li>
+									<li><a href="https://www.youtube.com/@oscarvezz5826" class="icon brands fa-youtube"><span class="label">YouTube</span></a></li>
+								</ul>
+							</header>
+
+							<!-- Content -->
+								<section>
+									<header class="main" id="area-projectile-2d">
+										<h2>AreaProjectile2D</h2>
+									</header>
+
+
+									<!-- Inherits -->
+									<p>Inherits: <a href="../../1.0/classes/projectile-2d.html#projectile-2d">Projectile2D</a></p>
+									<p>Specialized <a href="../../1.0/classes/projectile-2d.html#projectile-2d">Projectile2D</a> implementation using <a href="https://docs.godotengine.org/en/stable/classes/class_physicsserver2d.html#physicsserver2d">PhysicsServer2D</a> areas for collision detection.</p>
+									<br>
+
+
+									<!-- Description -->
+									<header class="semimajor" id="description">
+										<h3>Description</h3>
+									</header>
+									<p><strong>The most basic type of projectile</strong>. <b>AreaProjectile2D</b> are created, processed and manipulated entirely through the <a href="https://docs.godotengine.org/en/stable/classes/class_physicsserver2d.html#class-physicsserver2d">PhysicServer2D</a> and are batch drawn by the <a href="../../1.0/nodes/projectile-processor-2d.html#projectile-processor-2d">ProjectileProcessor2D</a>.</p>
+									<p><b>AreaProjectile2D</b> are extremely performance efficient but are restricted to a single <a href="https://docs.godotengine.org/en/stable/classes/class_texture2d.html#class-texture2d">Texture2D</a> and cannot have individual components.</p>
+									<br>
+
+
+									<!-- Tutorials -->
+									<!-- <header class="semimajor" id="tutorials">
+										<h3>Tutorials</h3>
+									</header>
+									<ul>
+										<li><a href="#">tutorial_link1</a></li>
+										<li><a href="#">tutorial_link2</a></li>
+										<li><a href="#">tutorial_link3</a></li>
+									</ul> -->
+
+
+									<!-- Properties -->
+									<header class="semimajor" id="properties">
+										<h3>Properties</h3>
+									</header>
+									<div class="table-wrapper">
+										<table class="alt">
+											<colgroup>
+												<col style="width:27%">
+												<col style="width:36%">
+												<col style="width:37%">
+											</colgroup>
+											<tbody>
+												<tr>
+													<td><a href="https://docs.godotengine.org/en/stable/classes/class_rid.html#rid">RID</a></td>
+													<td><a href="#area-projectile-2d-property-area">area</a></td>
+													<td><code class="value">PhysicsServer2D.area_create()</code></td>
+												</tr>
+												<tr>
+													<td><a href="https://docs.godotengine.org/en/stable/classes/class_int.html#class-int">int</a></td>
+													<td><a href="#area-projectile-2d-property-collision-layer">collision_layer</a></td>
+													<td><code class="value">0</code></td>
+												</tr>
+												<tr>
+													<td><a href="https://docs.godotengine.org/en/stable/classes/class_int.html#class-int">int</a></td>
+													<td><a href="#area-projectile-2d-property-collision-mask">collision_mask</a></td>
+													<td><code class="value">0</code></td>
+												</tr>
+												<tr>
+													<td><a href="https://docs.godotengine.org/en/stable/classes/class_texture2d.html#texture2d">Texture2D</a></td>
+													<td><a href="#area-projectile-2d-property-graphics">graphics</a></td>
+													<td></td>
+												</tr>
+												<tr>
+													<td><a href="https://docs.godotengine.org/en/stable/classes/class_int.html#class-int">int</a></td>
+													<td><a href="#area-projectile-2d-property-radius">radius</a></td>
+													<td><code class="value">50</code></td>
+												</tr>
+												<tr>
+													<td><a href="https://docs.godotengine.org/en/stable/classes/class_rid.html#rid">RID</a></td>
+													<td><a href="#area-projectile-2d-property-shape">shape</a></td>
+													<td><code class="value">PhysicsServer2D.circle_shape_create()</code></td>
+												</tr>
+												<tr>
+													<td><a href="https://docs.godotengine.org/en/stable/classes/class_vector2.html#class-vector2">Vector2</a></td>
+													<td><a href="#area-projectile-2d-property-texture-size">texture_size</a></td>
+													<td></td>
+												</tr>
+											</tbody>
+										</table>
+									</div>
+									<br>
+									<br>
+
+
+									<!-- Methods -->
+									<header class="semimajor" id="methods">
+										<h3>Methods</h3>
+									</header>
+									<div class="table-wrapper">
+										<table class="alt">
+											<colgroup>
+												<col style="width:27%">
+												<col style="width:73%">
+											</colgroup>
+											<tbody>
+												<tr>
+													<td>void</td>
+													<td><a href="#area-projectile-2d-method-area-monitor-callback">area_monitor_callback</a></td>
+												</tr>
+												<tr>
+													<td>void</td>
+													<td><a href="#area-projectile-2d-method-body-monitor-callback">body_monitor_callback</a></td>
+												</tr>
+											</tbody>
+										</table>
+									</div>
+									<hr class="strong">
+									<br>
+
+
+									<!-- Signals -->
+									<!-- <header class="semimajor" id="signals">
+										<h3>Signals</h3>
+									</header>
+
+									<h4>signal_name_1<span class="comment-alt">(property_name_1: </span><a href="#" class="link">property_type_1</a><span class="comment-alt">, property_name_2: </span><a href="#" class="link">property_type_2</a><span class="comment-alt">)</span></h4>
+										<p class="tab">Signal description long</p>
+									<hr>
+
+									<h4>signal_name_2<span class="comment-alt">(property_name_1: </span><a href="#" class="link">property_type_1</a><span class="comment-alt">, property_name_2: </span><a href="#" class="link">property_type_2</a><span class="comment-alt">)</span></h4>
+										<p class="tab">Signal description long</p>
+									<hr class="strong">
+									<br> -->
+
+
+									<!-- Enumerations -->
+									<!-- <header class="semimajor" id="enumerations">
+										<h3>Enumerations</h3>
+									</header>
+
+									<h4><span class="comment-alt">enum </span>EnumName1 <span class="comment-alt">:</span></h4>
+									<ul style="list-style-type: none">
+										<li><h4><a href="#" class="link">EnumName1</a> ENUM_ELEMENT_NAME_1<span class="comment-alt"> = 0</span></h4></li>
+											<p class="tab-alt">Enum element description.</p>
+										<li><h4><a href="#" class="link">EnumName1</a> ENUM_ELEMENT_NAME_2<span class="comment-alt"> = 1</span></h4></li>
+											<p class="tab-alt">Enum element description.</p>
+										<li><h4><a href="#" class="link">EnumName1</a> ENUM_ELEMENT_NAME_3<span class="comment-alt"> = 2</span></h4></li>
+											<p class="tab-alt">Enum element description.</p>
+									</ul>
+									<hr>
+
+									<h4><span class="comment-alt">enum </span>EnumName2 <span class="comment-alt">:</span></h4>
+									<ul style="list-style-type: none">
+										<li><h4><a href="#" class="link">EnumName2</a> ENUM_ELEMENT_NAME_1<span class="comment-alt"> = 0</span></h4></li>
+											<p class="tab-alt">Enum element description.</p>
+										<li><h4><a href="#" class="link">EnumName2</a> ENUM_ELEMENT_NAME_2<span class="comment-alt"> = 1</span></h4></li>
+											<p class="tab-alt">Enum element description.</p>
+										<li><h4><a href="#" class="link">EnumName2</a> ENUM_ELEMENT_NAME_3<span class="comment-alt"> = 2</span></h4></li>
+											<p class="tab-alt">Enum element description.</p>
+									</ul>
+									<hr class="strong">
+									<br> -->
+
+
+									<!-- Property Descriptions -->
+									<header class="semimajor" id="property-descriptions">
+										<h3>Property Descriptions</h3>
+									</header>
+
+									<h4 id="area-projectile-2d-property-area"><a href="https://docs.godotengine.org/en/stable/classes/class_rid.html#rid" class="link">RID</a> area<span class="comment-alt"> = </span><span class="value">PhysicsServer2D.area_create()</span></h4>
+									<p class="tab">PhysicsServer2D area RID for collision detection.</p>
+									<hr>
+
+									<h4 id="area-projectile-2d-property-collision-layer"><a href="https://docs.godotengine.org/en/stable/classes/class_int.html#class-int" class="link">int</a> collision_layer<span class="comment-alt"> = </span><span class="value">0</span></h4>
+									<p class="tab">Physics layers of the projectile itself.</p>
+									<hr>
+
+									<h4 id="area-projectile-2d-property-collision-mask"><a href="https://docs.godotengine.org/en/stable/classes/class_int.html#class-int" class="link">int</a> collision_mask<span class="comment-alt"> = </span><span class="value">0</span></h4>
+									<p class="tab">Physics layers that can interact with this projectile.</p>
+									<hr>
+
+									<h4 id="area-projectile-2d-property-graphics"><a href="https://docs.godotengine.org/en/stable/classes/class_texture2d.html#texture2d" class="link">Texture2D</a> graphics</h4>
+									<p class="tab">Visual texture for the projectile.</p>
+									<hr>
+
+									<h4 id="area-projectile-2d-property-radius"><a href="https://docs.godotengine.org/en/stable/classes/class_int.html#class-int" class="link">int</a> radius<span class="comment-alt"> = </span><span class="value">50</span></h4>
+									<p class="tab">Size of the projectile Collision in pixels.</p>
+									<hr>
+
+									<h4 id="area-projectile-2d-property-shape"><a href="https://docs.godotengine.org/en/stable/classes/class_rid.html#rid" class="link">RID</a> shape<span class="comment-alt"> = </span><span class="value">PhysicsServer2D.circle_shape_create()</span></h4>
+									<p class="tab">Collision shape RID for physics queries.</p>
+									<hr>
+
+									<h4 id="area-projectile-2d-property-texture-size"><a href="https://docs.godotengine.org/en/stable/classes/class_vector2.html#class-vector2" class="link">Vector2</a> texture_size</h4>
+									<p class="tab">Half-size of assigned texture for visual centering.</p>
+									<hr class="strong">
+									<br>
+
+
+									<!-- Method Descriptions -->
+									<header class="semimajor" id="method-descriptions">
+										<h3>Method Descriptions</h3>
+									</header>
+									
+									<h4 id="area-projectile-2d-method-area-monitor-callback"><span class="comment-alt">void</span> area_monitor_callback<span class="comment-alt">(status: <a href="https://docs.godotengine.org/en/stable/classes/class_int.html#class-int" class="link">int</a>, area_rid: <a href="https://docs.godotengine.org/en/stable/classes/class_rid.html#rid" class="link">RID</a>, instance_id: <a href="https://docs.godotengine.org/en/stable/classes/class_int.html#class-int" class="link">int</a>, area_shape_index: <a href="https://docs.godotengine.org/en/stable/classes/class_int.html#class-int" class="link">int</a>, self_shape_index: <a href="https://docs.godotengine.org/en/stable/classes/class_int.html#class-int" class="link">int</a>)</span></h4>
+									<p class="tab">Handles <strong>area-to-area</strong> collision events. Requires <a href="../../1.0/resources/projectile-blueprint-2d.html#projectile-blueprint-2d-property-area-monitoreable">monitoring</a> to be set to true.</p>
+									<p class="tab"><code class="value">self_shape_index</code> and <code class="value">area_shape_index</code> contain indices of the interacting shapes from this projectile area and the other area, respectively. <code class="value">area_rid</code> contains the <a href="https://docs.godotengine.org/en/stable/classes/class_rid.html#rid" class="link">RID</a> of the other area. These values can be used with the <a href="https://docs.godotengine.org/en/stable/classes/class_physicsserver2d.html#physicsserver2d">PhysicsServer2D</a>.</p>
+									<hr>
+
+									<h4 id="area-projectile-2d-method-body-monitor-callback"><span class="comment-alt">void</span> body_monitor_callback<span class="comment-alt">(status: <a href="https://docs.godotengine.org/en/stable/classes/class_int.html#class-int" class="link">int</a>, body_rid: <a href="https://docs.godotengine.org/en/stable/classes/class_rid.html#rid" class="link">RID</a>, instance_id: <a href="https://docs.godotengine.org/en/stable/classes/class_int.html#class-int" class="link">int</a>, body_shape_index: <a href="https://docs.godotengine.org/en/stable/classes/class_int.html#class-int" class="link">int</a>, self_shape_index: <a href="https://docs.godotengine.org/en/stable/classes/class_int.html#class-int" class="link">int</a>)</span></h4>
+									<p class="tab">Handles <strong>area-to-body</strong> collision events.</p>
+									<p class="tab"><code class="value">self_shape_index</code> and <code class="value">body_shape_index</code> contain indices of the interacting shapes from this projectile area and the other body, respectively. <code class="value">body_rid</code> contains the <a href="https://docs.godotengine.org/en/stable/classes/class_rid.html#rid" class="link">RID</a> of the other body. These values can be used with the <a href="https://docs.godotengine.org/en/stable/classes/class_physicsserver2d.html#physicsserver2d">PhysicsServer2D</a>.</p>
+									<hr>
+								</section>
+
+						</div>
+					</div>
+
+				<!-- Sidebar -->
+				<div id="sidebar">
+					<div class="inner">
+
+						<!-- Search -->
+							<!-- <section id="search" class="alt">
+								<form method="post" action="#">
+									<input type="text" name="query" id="query" placeholder="Search" />
+								</form>
+							</section> -->
+
+						<!-- Menu -->
+							<nav id="menu">
+								<header class="major">
+									<h2> <span class="image mini_left mini">
+										<a href="../../index.html"><img src="../../images/icon.svg" alt="All Projectiles Logo" /></a></span> 
+										<a href="../../index.html" class="test"> All Projectiles </a>
+									</h2>
+									<!-- <p><span class="image left"><img src="images/icon.svg" alt="" /></span>All Projectiles -->
+								</header>
+								<ul>
+									<li>
+										<span class="opener max">Introduction</span>
+										<ul>
+											<span class="opener mini"><a href="../../1.0/introduction/whats-this.html">What is This?</a></span>
+											<ul>
+												<li><a href="../../1.0/introduction/whats-this.html#whats-this">What is All Projectiles?</a></li>
+												<li><a href="../../1.0/introduction/whats-this.html#addon-nodes">Addon Nodes</a></li>
+											</ul>
+
+											<span class="opener mini"><a href="../../1.0/introduction/installation.html">Installation</a></span>
+											<ul>
+												<li><a href="../../1.0/introduction/installation.html#asset-library">Asset Library</a></li>
+												<li><a href="../../1.0/introduction/installation.html#patreon">Patreon</a></li>
+												<li><a href="../../1.0/introduction/installation.html#github">GitHub</a></li>
+												<li><a href="../../1.0/introduction/installation.html#itchio">Itchio</a></li>
+											</ul>
+
+											<span class="opener mini"><a href="../../1.0/introduction/getting-started.html">Getting Started</a></span>
+											<ul>
+												<li><a href="../../1.0/introduction/getting-started.html#spawning-projectiles">Spawning Projectiles</a></li>
+												<li><a href="../../1.0/introduction/getting-started.html#creating-projectile-blueprints">Creating Projectile Blueprints</a></li>
+												<li><a href="../../1.0/introduction/getting-started.html#modifying-projectile-behavior">Modifying projectile behavior</a></li>
+											</ul>
+										</ul>
+									</li>
+
+									<li>
+										<span class="opener max">Nodes</span>
+										<ul>
+											<span class="opener mini"><a href="../../1.0/nodes/projectile-caller-2d.html">ProjectileCaller2D</a></span>
+											<ul>
+												<li><a href="../../1.0/nodes/projectile-caller-2d.html#description">Description</a></li>
+												<!-- <li><a href="../../1.0/nodes/projectile-caller-2d.html#tutorials">Tutorials</a></li> -->
+												<li><a href="../../1.0/nodes/projectile-caller-2d.html#properties">Properties</a></li>
+												<li><a href="../../1.0/nodes/projectile-caller-2d.html#methods">Methods</a></li>
+												<!-- <li><a href="../../1.0/nodes/projectile-caller-2d.html#signals">Signals</a></li> -->
+												<!-- <li><a href="../../1.0/nodes/projectile-caller-2d.html#enumerations">Enumerations</a></li> -->
+												<li><a href="../../1.0/nodes/projectile-caller-2d.html#property-descriptions">Property Descriptions</a></li>
+												<li><a href="../../1.0/nodes/projectile-caller-2d.html#method-descriptions">Method Descriptions</a></li>
+											</ul>
+
+											<span class="opener mini"><a href="../../1.0/nodes/projectile-processor-2d.html">ProjectileProcessor2D</a></span>
+											<ul>
+												<li><a href="../../1.0/nodes/projectile-processor-2d.html#description">Description</a></li>
+												<!-- <li><a href="../../1.0/nodes/projectile-processor-2d.html#tutorials">Tutorials</a></li> -->
+												<li><a href="../../1.0/nodes/projectile-processor-2d.html#properties">Properties</a></li>
+												<li><a href="../../1.0/nodes/projectile-processor-2d.html#methods">Methods</a></li>
+												<li><a href="../../1.0/nodes/projectile-processor-2d.html#signals">Signals</a></li>
+												<!-- <li><a href="../../1.0/nodes/projectile-processor-2d.html#enumerations">Enumerations</a></li> -->
+												<li><a href="../../1.0/nodes/projectile-processor-2d.html#property-descriptions">Property Descriptions</a></li>
+												<li><a href="../../1.0/nodes/projectile-processor-2d.html#method-descriptions">Method Descriptions</a></li>
+											</ul>
+										</ul>
+									</li>
+
+									<li>
+										<span class="opener max">Resources</span>
+										<ul>
+											<span class="opener mini"><a href="../../1.0/resources/projectile-blueprint-2d.html">ProjectileBlueprint2D</a></span>
+											<ul>
+												<li><a href="../../1.0/resources/projectile-blueprint-2d.html#description">Description</a></li>
+												<!-- <li><a href="../../1.0/resources/projectile-blueprint-2d.html#tutorials">Tutorials</a></li> -->
+												<li><a href="../../1.0/resources/projectile-blueprint-2d.html#properties">Properties</a></li>
+												<!-- <li><a href="../../1.0/resources/projectile-blueprint-2d.html#methods">Methods</a></li> -->
+												<!-- <li><a href="../../1.0/resources/projectile-blueprint-2d.html#signals">Signals</a></li> -->
+												<li><a href="../../1.0/resources/projectile-blueprint-2d.html#enumerations">Enumerations</a></li>
+												<li><a href="../../1.0/resources/projectile-blueprint-2d.html#property-descriptions">Property Descriptions</a></li>
+												<!-- <li><a href="../../1.0/resources/projectile-blueprint-2d.html#method-descriptions">Method Descriptions</a></li> -->
+											</ul>
+										</ul>
+									</li>
+
+									<li>
+										<span class="opener active max">Classes</span>
+										<ul>
+											<span class="opener active mini"><a href="../../1.0/classes/area-projectile-2d.html">AreaProjectile2D</a></span>
+											<ul>
+												<li><a href="../../1.0/classes/area-projectile-2d.html#description">Description</a></li>
+												<!-- <li><a href="../../1.0/classes/area-projectile-2d.html#tutorials">Tutorials</a></li> -->
+												<li><a href="../../1.0/classes/area-projectile-2d.html#properties">Properties</a></li>
+												<li><a href="../../1.0/classes/area-projectile-2d.html#methods">Methods</a></li>
+												<!-- <li><a href="../../1.0/classes/area-projectile-2d.html#signals">Signals</a></li> -->
+												<!-- <li><a href="../../1.0/classes/area-projectile-2d.html#enumerations">Enumerations</a></li> -->
+												<li><a href="../../1.0/classes/area-projectile-2d.html#property-descriptions">Property Descriptions</a></li>
+												<li><a href="../../1.0/classes/area-projectile-2d.html#method-descriptions">Method Descriptions</a></li>
+											</ul>
+
+											<span class="opener mini"><a href="../../1.0/classes/instanced-projectile-2d.html">InstancedProjectile2D</a></span>
+											<ul>
+												<li><a href="../../1.0/classes/instanced-projectile-2d.html#description">Description</a></li>
+												<!-- <li><a href="../../1.0/classes/instanced-projectile-2d.html#tutorials">Tutorials</a></li> -->
+												<li><a href="../../1.0/classes/instanced-projectile-2d.html#properties">Properties</a></li>
+												<li><a href="../../1.0/classes/instanced-projectile-2d.html#methods">Methods</a></li>
+												<!-- <li><a href="../../1.0/classes/instanced-projectile-2d.html#signals">Signals</a></li> -->
+												<!-- <li><a href="../../1.0/classes/instanced-projectile-2d.html#enumerations">Enumerations</a></li> -->
+												<li><a href="../../1.0/classes/instanced-projectile-2d.html#property-descriptions">Property Descriptions</a></li>
+												<li><a href="../../1.0/classes/instanced-projectile-2d.html#method-descriptions">Method Descriptions</a></li>
+											</ul>
+
+											<span class="opener mini"><a href="../../1.0/classes/projectile-2d.html">Projectile2D</a></span>
+											<ul>
+												<li><a href="../../1.0/classes/projectile-2d.html#description">Description</a></li>
+												<!-- <li><a href="../../1.0/classes/projectile-2d.html#tutorials">Tutorials</a></li> -->
+												<li><a href="../../1.0/classes/projectile-2d.html#properties">Properties</a></li>
+												<li><a href="../../1.0/classes/projectile-2d.html#methods">Methods</a></li>
+												<li><a href="../../1.0/classes/projectile-2d.html#signals">Signals</a></li>
+												<!-- <li><a href="../../1.0/classes/projectile-2d.html#enumerations">Enumerations</a></li> -->
+												<li><a href="../../1.0/classes/projectile-2d.html#property-descriptions">Property Descriptions</a></li>
+												<li><a href="../../1.0/classes/projectile-2d.html#method-descriptions">Method Descriptions</a></li>
+											</ul>
+										</ul>
+									</li>
+
+								</ul>
+							</nav>
+
+
+						<!-- Footer -->
+							<footer id="footer">
+								<p class="copyright">Copyright &copy; 2025. All rights reserved. Demo Images: <a href="https://unsplash.com">Unsplash</a>. Design: <a href="https://html5up.net">HTML5 UP</a>.</p>
+							</footer>
+
+					</div>
+				</div>
+
+			</div>
+
+		<!-- Scripts -->
+			<script src="../../assets/js/jquery.min.js"></script>
+			<script src="../../assets/js/browser.min.js"></script>
+			<script src="../../assets/js/breakpoints.min.js"></script>
+			<script src="../../assets/js/util.js"></script>
+			<script src="../../assets/js/main.js"></script>
+
+	</body>
+</html>
