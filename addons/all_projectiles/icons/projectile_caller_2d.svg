@@ -1,0 +1,17 @@
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 20010904//EN" "http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd">
+<!-- Created using Krita: https://krita.org -->
+<svg xmlns="http://www.w3.org/2000/svg" 
+    xmlns:xlink="http://www.w3.org/1999/xlink"
+    xmlns:krita="http://krita.org/namespaces/svg/krita"
+    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+    width="240pt"
+    height="240pt"
+    viewBox="0 0 240 240">
+<defs/>
+<g id="group0" transform="translate(0.00109591772216276, -2.12882080647634)" fill="none">
+  <path id="shape0" transform="translate(-5.76795555762288e-17, 120.568820821973)" fill="#8da5f3" fill-rule="evenodd" stroke-opacity="0" stroke="#000000" stroke-width="0" stroke-linecap="square" stroke-linejoin="bevel" d="M56.1589 0C78.1549 12.416 88.6549 43.296 89.6389 55.32C90.8869 55.704 93.7269 56.864 98.1589 58.8C115.771 85.028 124.871 103.008 125.459 112.74C123.865 117.29 112.264 122.927 104.399 121.56C97.0145 120.276 85.3009 99.224 66.9589 67.71C54.1049 76.528 44.6382 86.6194 33.1489 85.23C23.7422 84.0925 16.6359 71.019 10.7959 61.494C5.5559 51.609 -2.2804 44.0981 0.628904 33.315C3.5382 22.5319 32.2189 10.1 56.1589 0Z" sodipodi:nodetypes="ccccscscsc"/>
+  <path id="shape1" transform="matrix(0.999918761471063 0.0127463900056269 -0.0127463900056269 0.999918761471063 72.2818540554019 4.44089209850063e-16)" fill="#8da5f3" fill-rule="evenodd" stroke-opacity="0" stroke="#000000" stroke-width="0" stroke-linecap="square" stroke-linejoin="bevel" d="M0 111.669C23.9971 98.1261 67.4581 44.632 68.1621 0C103.143 25.9227 149.818 87.8901 165.618 151.971C114.206 137.001 59.6651 155.439 34.56 165.909C29.172 134.437 10.272 117.077 0 111.669Z" sodipodi:nodetypes="ccccc"/>
+  <path id="shape2" transform="translate(188.680900321247, 24.1128768989581)" fill="#8da5f3" fill-rule="evenodd" stroke-opacity="0" stroke="#000000" stroke-width="0" stroke-linecap="square" stroke-linejoin="bevel" d="M0 0C10.2337 7.43464 20.8676 21.161 31.4482 37.2163C40.7906 53.3928 48.4783 74.8242 51.033 84.191C50.913 62.5769 53.6165 48.1522 43.5387 29.5921C34.3229 12.6195 11.3751 2.83805 0 0Z" sodipodi:nodetypes="cccsc"/>
+ </g>
+</svg>

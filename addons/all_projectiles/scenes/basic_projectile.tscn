@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://boxsnvld2ptex"]
+
+[ext_resource type="Texture2D" uid="uid://bahr7m3dk2pq3" path="res://addons/all_projectiles/icons/Circle.png" id="1_8aws1"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_grgi5"]
+radius = 18.0
+
+[node name="BasicProjectile" type="Node2D"]
+
+[node name="Graphics" type="Sprite2D" parent="."]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_8aws1")
+
+[node name="Collision" type="Area2D" parent="."]
+collision_layer = 16
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Collision"]
+shape = SubResource("CircleShape2D_grgi5")
