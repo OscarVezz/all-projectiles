@@ -227,12 +227,12 @@ blockquote {
 code {
   background: rgba(230, 235, 237, 0.25);
   border-radius: 0.375em;
-  border: solid 4px #353c4c;
+  border: solid 1px rgba(210, 215, 217, 0.75);
   color: #dedee0;
   font-family: "JetBrains Mono", SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", Courier, monospace;
   font-variant-ligatures: none;
   font-size: 0.9em;
-  font-weight: 500; }
+  font-weight: 400; }
   /* margin: 0 0.25em;
   padding: 0.25em 0.65em; } */
   code.value {
@@ -254,8 +254,8 @@ pre {
   -o-tab-size:      4; /* Opera 11.5 & 12.1 only */
   tab-size:         4; /* Chrome 21+, Safari 6.1+, Opera 15+ */}
   pre code {
-    /* border-width: 5px;
-    border-color: #353c4c; */
+    border-width: 4px;
+    border-color: #353c4c;
     scrollbar-color: #be5460 #1c1e21;
     background-color: #202531;
     display: block;

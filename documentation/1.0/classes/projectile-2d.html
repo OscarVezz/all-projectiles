@@ -52,36 +52,7 @@
 								<header class="semimajor" id="description">
 									<h3>Description</h3>
 								</header>
-								<pre><code class="language-gdscript">extends Node2D
-
-@onready var projectile_caller = $ProjectileCaller2D
-
-@export_range(1, 100, 1, "or_greater")
-var ranged_var: int = 50
-
-var color = Color(0.2, 1.0, 0.7) 
-
-var a: Array[int]
-var b: Array[Node]
-var c: Array[MyClass]
-var d: Array[MyEnum]
-var e: Array[Variant]
-
-# In this example the "custom_movement" function is passed as a Callable in the optional "move_method" parameter.
-func _process(_delta):
-	if (event.position - $Sprite2D.position).length() < click_radius:
-		event.position = true
-		evil()
-		a = evil()
-		# Start dragging if the click is on the sprite.
-	if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
-		var destination = get_global_mouse_position()
-		projectile_caller.request_projectile(0, position, destination, null, custom_movement)
-
-
-# This function will cause the projectile to always move in the UP direction.
-func custom_movement(proj: Projectile2D, _delta: float) -> Vector2:
-	return Vector2.UP</code></pre>
+								
 								<p style="margin-bottom: 0;">The <b>Projectile2D</b> base class manages the <strong>internal projectile lifecycle</strong>, from initialization to expiration. It directs:</p>
 								<ul class="tab">
 									<li>Movement calculation (standard and custom).</li>

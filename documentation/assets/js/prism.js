@@ -2288,12 +2288,13 @@ Prism.languages.gdscript = {
 		// as Node
 		// const FOO: int = 9, var bar: bool = true
 		// func add(reference: Item, amount: int) -> Item:
-		pattern: /(^(?:class)[ \t]+|^export\([ \t]*|\bas[ \t]+|(?:\b(?:const|var)[ \t]|[,(])[ \t]*\w+[ \t]*:[ \t]*|->[ \t]*)[a-zA-Z_]\w*/m,
+		// ^(?:class)[ \t]+|
+		pattern: /(^export\([ \t]*|\bas[ \t]+|(?:\b(?:const|var)[ \t]|[,(])[ \t]*\w+[ \t]*:[ \t]*|->[ \t]*)[a-zA-Z_]\w*/m,
 		lookbehind: true
 	},
-	'property': /\b(?:Color|Vector2|Vector3|print|Variant|int)/,
-	'keyword': /\b(?:and|as|assert|break|breakpoint|class|class_name|const|continue|enum|export|extends|func|in|is|master|mastersync|not|null|onready|or|preload|puppet|puppetsync|remote|remotesync|self|setget|signal|static|tool|var|yield)\b/,
-	'builtin': /\b(?:elif|else|for|if|match|pass|return|while)/,
+	'property': /\b(?:Array|bool|Callable|Color|Dictionary|int|float|print|preload|randf|range|RID|String|StringName|Variant|Vector2|Vector3|Transform2D|Transform3D|weakref)\b/,
+	'keyword': /\b(?:and|as|assert|await|breakpoint|class|class_name|const|enum|export|extends|func|in|is|master|mastersync|not|null|onready|or|preload|puppet|puppetsync|remote|remotesync|self|setget|signal|static|super|tool|var|yield)\b/,
+	'builtin': /\b(?:break|continue|elif|else|for|if|match|pass|return|while|when)\b/,
 	'function': {
 		// pattern: /(^[ \t]*)\b[a-z_]\w*(?=[ \t]*\()/im,
 		pattern: /(?<!(^func[ \t]*))\b[a-z_]\w*(?=[ \t]*\()/mi,
@@ -2311,7 +2312,7 @@ Prism.languages.gdscript = {
 	],
 	'constant': /\b[A-Z][A-Z_\d]*\b/,
 	'boolean': /\b(?:false|true)\b/,
-	'operator': /->|:=|&&|\|\||<<|>>|[-+*/%$&|!<>=]=?|[~^]/,
+	'operator': /->|\.\.\.|:=|&&|\|\||<<|>>|[-+*/%$&|!<>=]=?|[~^]/,
 	'punctuation': /[.:,;()[\]{}]/
 };
 
