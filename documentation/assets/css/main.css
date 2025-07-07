@@ -232,9 +232,9 @@ code {
   font-family: "JetBrains Mono", SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", Courier, monospace;
   font-variant-ligatures: none;
   font-size: 0.9em;
-  font-weight: 500;
-  margin: 0 0.25em;
-  padding: 0.25em 0.65em; }
+  font-weight: 400; }
+  /* margin: 0 0.25em;
+  padding: 0.25em 0.65em; } */
   code.value {
     border-radius: 0.375em;
     color: #d68f8f;

@@ -1,0 +1,36 @@
+[gd_resource type="Resource" script_class="ProjectileBlueprint2D" load_steps=3 format=3 uid="uid://c7btcsakv13mw"]
+
+[ext_resource type="PackedScene" uid="uid://ctrtgxx6xmvy" path="res://addons/all_projectiles/scenes/root_instance_example.tscn" id="1_cy54l"]
+[ext_resource type="Script" uid="uid://dhkmxwdl7x2fl" path="res://addons/all_projectiles/scripts/resources/projectile_blueprint_2d.gd" id="2_gvlgf"]
+
+[resource]
+script = ExtResource("2_gvlgf")
+proj_type = 2
+size = 1.0
+lifetime = 3.0
+linear_speed = 1000.0
+radius = 50
+collision_layer = 0
+collision_mask = 0
+on_hit_call = "damage"
+area_monitoreable = true
+collision_path = "."
+instance = ExtResource("1_cy54l")
+damage = 1
+pierce = 1
+look_at = true
+seeking = false
+seeking_mask = 2
+angular_speed = 720.0
+after_hit_angular_speed = 720.0
+cast_radius = 300.0
+lock_to_target = false
+allow_rehit = false
+rehit_cooldown = 0.1
+instances = 1
+proj_directionality = 2
+proj_spread = 0
+angular_spread = 0.0
+vertical_spread = 0.0
+randomize_positions = false
+linear_deviation = 0.0
