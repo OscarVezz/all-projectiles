@@ -305,6 +305,9 @@ hr {
     margin: 3em 0; }
   hr.strong {
     border-bottom: solid 2px #f56a6a }
+  hr.mini {
+    margin: 0.5em 0;
+  }
 
 .align-left {
   text-align: left; }
