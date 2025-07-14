@@ -24,7 +24,7 @@
 
 							<!-- Header -->
 							<header id="header">
-								<a href="../../index.html" class="logo"><strong>All Projectiles</strong> 1.0 Documentation</a>
+								<a href="../../index.html" class="logo"><strong>All Projectiles</strong> 1.4 Documentation</a>
 								<ul class="icons">
 									<li><a href="https://github.com/OscarVezz/all-projectiles" class="icon brands fa-github"><span class="label">Github</span></a></li>
 									<li><a href="https://www.patreon.com/OscarVezz" class="icon brands fa-patreon"><span class="label">Patreon</span></a></li>
@@ -43,7 +43,7 @@
 
 								<!-- Inherits -->
 								<p>Inherits: <a href="../../1.0/classes/projectile-2d.html#projectile-2d">Projectile2D</a></p>
-								<p>Specialized <a href="../../1.0/classes/projectile-2d.html#projectile-2d">Projectile2D</a> implementation instanced <a href="https://docs.godotengine.org/en/stable/classes/class_packedscene.html#packedscene">PackedScene</a>s as projectiles.</p>
+								<p>Specialized <a href="../../1.0/classes/projectile-2d.html#projectile-2d">Projectile2D</a> implementation instancing <a href="https://docs.godotengine.org/en/stable/classes/class_packedscene.html#packedscene">PackedScene</a>s as projectiles.</p>
 								<br>
 
 
@@ -85,6 +85,11 @@
 												<td></td>
 											</tr>
 											<tr>
+												<td><a href="https://docs.godotengine.org/en/stable/classes/class_nodepath.html#nodepath">NodePath</a></td>
+												<td><a href="#instanced-projectile-2d-property-collision-path">collision_path</a></td>
+												<td></td>
+											</tr>
+											<tr>
 												<td><a href="https://docs.godotengine.org/en/stable/classes/class_node.html#node">Node</a></td>
 												<td><a href="#instanced-projectile-2d-property-current-scene">current_scene</a></td>
 												<td></td>
@@ -92,6 +97,11 @@
 											<tr>
 												<td><a href="https://docs.godotengine.org/en/stable/classes/class_node2d.html#node2d">Node2D</a></td>
 												<td><a href="#instanced-projectile-2d-property-instance">instance</a></td>
+												<td></td>
+											</tr>
+											<tr>
+												<td><a href="https://docs.godotengine.org/en/stable/classes/class_packedscene.html#packedscene">PackedScene</a></td>
+												<td><a href="#instanced-projectile-2d-property-scene">scene</a></td>
 												<td></td>
 											</tr>
 										</tbody>
@@ -178,15 +188,24 @@
 								</header>
 
 								<h4 id="instanced-projectile-2d-property-area"><a href="https://docs.godotengine.org/en/stable/classes/class_area2d.html#area2d" class="link">Area2D</a> area</h4>
-									<p class="tab">Mandatory projectile scene area collision component.</p>
+									<p class="tab">Mandatory <b>InstancedProjectile2D scene</b> area collision component.</p>
+								<hr>
+
+								<h4 id="instanced-projectile-2d-property-collision-path"><a href="https://docs.godotengine.org/en/stable/classes/class_nodepath.html#nodepath" class="link">NodePath</a> collision_path</h4>
+									<p class="tab">Path to the mandatory <b>Area2D</b> element or child component in the <b>InstancedProjectile2D</b> instance <b>scene</b>.</p>
 								<hr>
 
 								<h4 id="instanced-projectile-2d-property-current-scene"><span class="comment">static</span> <a href="https://docs.godotengine.org/en/stable/classes/class_node.html#node" class="link">Node</a> current_scene</h4>
-									<p class="tab">Shared root node of the currently loaded main scene used for projectile instancing.</p>
+									<p class="tab">Shared <strong>root node</strong> of the currently loaded <strong>main scene</strong> used for projectile instancing.</p>
 								<hr>
 
 								<h4 id="instanced-projectile-2d-property-instance"><a href="https://docs.godotengine.org/en/stable/classes/class_node2d.html#node2d" class="link">Node2D</a> instance</h4>
-									<p class="tab">In-world projectile scene.</p>
+									<p class="tab">In-world projectile <b>scene</b> instance.</p>
+								<hr>
+
+								<h4 id="instanced-projectile-2d-property-scene"><a href="https://docs.godotengine.org/en/stable/classes/class_packedscene.html#packedscene" class="link">PackedScene</a> scene</h4>
+									<p class="tab">Scene file to be initialized as a projectile.</p>
+									<p class="tab">Your scene must have an <a href="https://docs.godotengine.org/en/stable/classes/class_area2d.html#area2d">Area2D</a> child <b>Node</b> to be valid.</p>
 								<hr class="strong">
 								<br>
 

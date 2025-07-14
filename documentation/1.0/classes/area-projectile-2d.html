@@ -24,7 +24,7 @@
 
 							<!-- Header -->
 							<header id="header">
-								<a href="../../index.html" class="logo"><strong>All Projectiles</strong> 1.0 Documentation</a>
+								<a href="../../index.html" class="logo"><strong>All Projectiles</strong> 1.4 Documentation</a>
 								<ul class="icons">
 									<li><a href="https://github.com/OscarVezz/all-projectiles" class="icon brands fa-github"><span class="label">Github</span></a></li>
 									<li><a href="https://www.patreon.com/OscarVezz" class="icon brands fa-patreon"><span class="label">Patreon</span></a></li>
@@ -43,7 +43,7 @@
 
 									<!-- Inherits -->
 									<p>Inherits: <a href="../../1.0/classes/projectile-2d.html#projectile-2d">Projectile2D</a></p>
-									<p>Specialized <a href="../../1.0/classes/projectile-2d.html#projectile-2d">Projectile2D</a> implementation using <a href="https://docs.godotengine.org/en/stable/classes/class_physicsserver2d.html#physicsserver2d">PhysicsServer2D</a> areas for collision detection.</p>
+									<p>Specialized <a href="../../1.0/classes/projectile-2d.html#projectile-2d">Projectile2D</a> implementation using batch-draw and <a href="https://docs.godotengine.org/en/stable/classes/class_physicsserver2d.html#physicsserver2d">PhysicsServer2D</a> areas for collision detection.</p>
 									<br>
 
 
@@ -75,24 +75,19 @@
 										<table class="alt">
 											<colgroup>
 												<col style="width:27%">
-												<col style="width:36%">
-												<col style="width:37%">
+												<col style="width:43%">
+												<col style="width:30%">
 											</colgroup>
 											<tbody>
 												<tr>
 													<td><a href="https://docs.godotengine.org/en/stable/classes/class_rid.html#rid">RID</a></td>
 													<td><a href="#area-projectile-2d-property-area">area</a></td>
-													<td><code class="value">PhysicsServer2D.area_create()</code></td>
+													<td></td>
 												</tr>
 												<tr>
-													<td><a href="https://docs.godotengine.org/en/stable/classes/class_int.html#class-int">int</a></td>
-													<td><a href="#area-projectile-2d-property-collision-layer">collision_layer</a></td>
-													<td><code class="value">0</code></td>
-												</tr>
-												<tr>
-													<td><a href="https://docs.godotengine.org/en/stable/classes/class_int.html#class-int">int</a></td>
-													<td><a href="#area-projectile-2d-property-collision-mask">collision_mask</a></td>
-													<td><code class="value">0</code></td>
+													<td><a href="https://docs.godotengine.org/en/stable/classes/class_bool.html#class-bool">bool</a></td>
+													<td><a href="#area-projectile-2d-property-can-be-drawn">can_be_drawn</a></td>
+													<td><code class="value">false</code></td>
 												</tr>
 												<tr>
 													<td><a href="https://docs.godotengine.org/en/stable/classes/class_texture2d.html#texture2d">Texture2D</a></td>
@@ -102,12 +97,12 @@
 												<tr>
 													<td><a href="https://docs.godotengine.org/en/stable/classes/class_int.html#class-int">int</a></td>
 													<td><a href="#area-projectile-2d-property-radius">radius</a></td>
-													<td><code class="value">50</code></td>
+													<td><code class="value">0</code></td>
 												</tr>
 												<tr>
 													<td><a href="https://docs.godotengine.org/en/stable/classes/class_rid.html#rid">RID</a></td>
 													<td><a href="#area-projectile-2d-property-shape">shape</a></td>
-													<td><code class="value">PhysicsServer2D.circle_shape_create()</code></td>
+													<td></td>
 												</tr>
 												<tr>
 													<td><a href="https://docs.godotengine.org/en/stable/classes/class_vector2.html#class-vector2">Vector2</a></td>
@@ -196,32 +191,29 @@
 										<h3>Property Descriptions</h3>
 									</header>
 
-									<h4 id="area-projectile-2d-property-area"><a href="https://docs.godotengine.org/en/stable/classes/class_rid.html#rid" class="link">RID</a> area<span class="comment-alt"> = </span><span class="value">PhysicsServer2D.area_create()</span></h4>
+									<h4 id="area-projectile-2d-property-area"><a href="https://docs.godotengine.org/en/stable/classes/class_rid.html#rid" class="link">RID</a> area</h4>
 									<p class="tab">PhysicsServer2D area RID for collision detection.</p>
 									<hr>
 
-									<h4 id="area-projectile-2d-property-collision-layer"><a href="https://docs.godotengine.org/en/stable/classes/class_int.html#class-int" class="link">int</a> collision_layer<span class="comment-alt"> = </span><span class="value">0</span></h4>
-									<p class="tab">Physics layers of the projectile itself.</p>
-									<hr>
-
-									<h4 id="area-projectile-2d-property-collision-mask"><a href="https://docs.godotengine.org/en/stable/classes/class_int.html#class-int" class="link">int</a> collision_mask<span class="comment-alt"> = </span><span class="value">0</span></h4>
-									<p class="tab">Physics layers that can interact with this projectile.</p>
+									<h4 id="area-projectile-2d-property-can-be-drawn"><a href="https://docs.godotengine.org/en/stable/classes/class_bool.html#class-bool" class="link">bool</a> can_be_drawn<span class="comment-alt"> = </span><span class="value">false</span></h4>
+									<p class="tab">If <code class="value">true</code> the projectile instance will be batch drawn.</p>
 									<hr>
 
 									<h4 id="area-projectile-2d-property-graphics"><a href="https://docs.godotengine.org/en/stable/classes/class_texture2d.html#texture2d" class="link">Texture2D</a> graphics</h4>
-									<p class="tab">Visual texture for the projectile.</p>
+									<p class="tab">Visual texture of the projectile.</p>
 									<hr>
 
-									<h4 id="area-projectile-2d-property-radius"><a href="https://docs.godotengine.org/en/stable/classes/class_int.html#class-int" class="link">int</a> radius<span class="comment-alt"> = </span><span class="value">50</span></h4>
-									<p class="tab">Size of the projectile Collision in pixels.</p>
+									<h4 id="area-projectile-2d-property-radius"><a href="https://docs.godotengine.org/en/stable/classes/class_int.html#class-int" class="link">int</a> radius<span class="comment-alt"> = </span><span class="value">0</span></h4>
+									<p class="tab">Size of the projectile <b>circle collision</b> in pixels.</p>
+									<p class="tab">The <strong>collision radius</strong> of the projectile is affected by the <a href="../../1.0/classes/projectile-2d.html#projectile-2d-property-size">size</a> of the projectile itself.</p>
 									<hr>
 
-									<h4 id="area-projectile-2d-property-shape"><a href="https://docs.godotengine.org/en/stable/classes/class_rid.html#rid" class="link">RID</a> shape<span class="comment-alt"> = </span><span class="value">PhysicsServer2D.circle_shape_create()</span></h4>
+									<h4 id="area-projectile-2d-property-shape"><a href="https://docs.godotengine.org/en/stable/classes/class_rid.html#rid" class="link">RID</a> shape</h4>
 									<p class="tab">Collision shape RID for physics queries.</p>
 									<hr>
 
 									<h4 id="area-projectile-2d-property-texture-size"><a href="https://docs.godotengine.org/en/stable/classes/class_vector2.html#class-vector2" class="link">Vector2</a> texture_size</h4>
-									<p class="tab">Half-size of assigned texture for visual centering.</p>
+									<p class="tab">Half-size of the assigned texture for visual centering.</p>
 									<hr class="strong">
 									<br>
 
