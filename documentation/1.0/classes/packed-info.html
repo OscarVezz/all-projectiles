@@ -42,8 +42,8 @@
 
 
 									<!-- Inherits -->
-									<p>Inherits: <a href="#">hierarchy_link1</a> < <a href="#">hierarchy_link2</a> < <a href="#">hierarchy_link3</a></p>
-									<p>description short.</p>
+									<p>Inherits: <a href="https://docs.godotengine.org/en/4.4/classes/class_refcounted.html#class-refcounted">RefCounted</a></p>
+									<p>Projectile creation data container.</p>
 									<br>
 
 
@@ -51,19 +51,20 @@
 									<header class="semimajor" id="description">
 										<h3>Description</h3>
 									</header>
-									<p>description long.</p>
+									<p><b>PackedInfo</b> is a data container class that holds <strong>initialization parameters</strong> for projectiles. It acts as a configuration package that can be passed to projectile creation methods to set up their initial state.</p>
+          							<p><b>Note: PackedInfo</b> is used extensively by the <a href="../../1.0/nodes/projectile-processor-2d.html">ProjectileProcessor2D</a> for projectile initialization.</p>
 									<br>
 
 
 									<!-- Tutorials -->
-									<header class="semimajor" id="tutorials">
+									<!-- <header class="semimajor" id="tutorials">
 										<h3>Tutorials</h3>
 									</header>
 									<ul>
 										<li><a href="#">tutorial_link1</a></li>
 										<li><a href="#">tutorial_link2</a></li>
 										<li><a href="#">tutorial_link3</a></li>
-									</ul>
+									</ul> -->
 
 
 									<!-- Properties -->
@@ -73,35 +74,70 @@
 									<div class="table-wrapper">
 										<table class="alt">
 											<colgroup>
-												<col style="width:22%">
-												<col style="width:48%">
+												<col style="width:27%">
+												<col style="width:43%">
 												<col style="width:30%">
 											</colgroup>  
 											<tbody>
 												<tr>
-													<td><a href="#">property_type_link1</a></td>
-													<td><a href="#">property_link1_to_document</a></td>
-													<td><code class="value">value1</code></td>
+													<td><a href="https://docs.godotengine.org/en/stable/classes/class_callable.html#callable">Callable</a></td>
+													<td><a href="#packed-info-property-collision-method">collision_method</a></td>
+													<td><code class="value">Callable()</code></td>
 												</tr>
 												<tr>
-													<td><a href="#">property_type_link2</a></td>
-													<td><a href="#">property_link2_to_document</a></td>
-													<td><code class="value">value2</code></td>
+													<td><a href="https://docs.godotengine.org/en/stable/classes/class_vector2.html#class-vector2">Vector2</a></td>
+													<td><a href="#packed-info-property-destination">destination</a></td>
+													<td><code class="value">Vector2.ZERO</code></td>
 												</tr>
 												<tr>
-													<td><a href="#">property_type_link3</a></td>
-													<td><a href="#">property_link3_to_document</a></td>
-													<td><code class="value">value3</code></td>
+													<td><a href="https://docs.godotengine.org/en/stable/classes/class_vector2.html#class-vector2">Vector2</a></td>
+													<td><a href="#packed-info-property-direction">direction</a></td>
+													<td><code class="value">Vector2.ZERO</code></td>
 												</tr>
 												<tr>
-													<td><a href="#">property_type_link4</a></td>
-													<td><a href="#">property_link4_to_document</a></td>
-													<td><code class="value">value4</code></td>
+													<td><a href="https://docs.godotengine.org/en/stable/classes/class_callable.html#callable">Callable</a></td>
+													<td><a href="#packed-info-property-expired-method">expired_method</a></td>
+													<td><code class="value">Callable()</code></td>
 												</tr>
 												<tr>
-													<td><a href="#">property_type_link5</a></td>
-													<td><a href="#">property_link5_to_document</a></td>
-													<td><code class="value">value5</code></td>
+													<td><a href="https://docs.godotengine.org/en/stable/classes/class_float.html#class-float">float</a></td>
+													<td><a href="#packed-info-property-headstart">headstart</a></td>
+													<td><code class="value">0</code></td>
+												</tr>
+												<tr>
+													<td><a href="https://docs.godotengine.org/en/stable/classes/class_int.html#class-int">int</a></td>
+													<td><a href="#packed-info-property-instance-id">instance_id</a></td>
+													<td><code class="value">1</code></td>
+												</tr>
+												<tr>
+													<td><a href="https://docs.godotengine.org/en/stable/classes/class_callable.html#callable">Callable</a></td>
+													<td><a href="#packed-info-property-move-method">move_method</a></td>
+													<td><code class="value">Callable()</code></td>
+												</tr>
+												<tr>
+													<td><a href="https://docs.godotengine.org/en/stable/classes/class_bool.html#class-bool">bool</a></td>
+													<td><a href="#packed-info-property-override-wait-time">override_wait_time</a></td>
+													<td><code class="value">false</code></td>
+												</tr>
+												<tr>
+													<td><a href="https://docs.godotengine.org/en/stable/classes/class_vector2.html#class-vector2">Vector2</a></td>
+													<td><a href="#packed-info-property-position">position</a></td>
+													<td><code class="value">Vector2.ZERO</code></td>
+												</tr>
+												<tr>
+													<td><a href="https://docs.godotengine.org/en/stable/classes/class_callable.html#callable">Callable</a></td>
+													<td><a href="#packed-info-property-start-method">start_method</a></td>
+													<td><code class="value">Callable()</code></td>
+												</tr>
+												<tr>
+													<td><a href="https://docs.godotengine.org/en/stable/classes/class_node2d.html#node2d">Node2D</a></td>
+													<td><a href="#packed-info-property-target">target</a></td>
+													<td><code class="value">null</code></td>
+												</tr>
+												<tr>
+													<td><a href="https://docs.godotengine.org/en/stable/classes/class_rid.html#rid">RID</a></td>
+													<td><a href="#packed-info-property-world-2d">world_2d</a></td>
+													<td><code class="value">RID()</code></td>
 												</tr>
 											</tbody>
 										</table>
@@ -117,35 +153,17 @@
 									<div class="table-wrapper">
 										<table class="alt">
 											<colgroup>
-												<col style="width:22%">
-												<col style="width:48%">
-												<col style="width:30%">
+												<col style="width:27%">
+												<col style="width:73%">
 											</colgroup>  
 											<tbody>
 												<tr>
-													<td><a href="#">property_type_link1</a></td>
-													<td><a href="#">property_link1_to_document</a></td>
-													<td><code class="value">value1</code></td>
+													<td>void</td>
+													<td><a href="#packed-info-method-reassign-all">reassign_all</a></td>
 												</tr>
 												<tr>
-													<td><a href="#">property_type_link2</a></td>
-													<td><a href="#">property_link2_to_document</a></td>
-													<td><code class="value">value2</code></td>
-												</tr>
-												<tr>
-													<td><a href="#">property_type_link3</a></td>
-													<td><a href="#">property_link3_to_document</a></td>
-													<td><code class="value">value3</code></td>
-												</tr>
-												<tr>
-													<td><a href="#">property_type_link4</a></td>
-													<td><a href="#">property_link4_to_document</a></td>
-													<td><code class="value">value4</code></td>
-												</tr>
-												<tr>
-													<td><a href="#">property_type_link5</a></td>
-													<td><a href="#">property_link5_to_document</a></td>
-													<td><code class="value">value5</code></td>
+													<td>void</td>
+													<td><a href="#packed-info-method-reassign-simple">reassign_simple</a></td>
 												</tr>
 											</tbody>
 										</table>
@@ -155,7 +173,7 @@
 
 
 									<!-- Signals -->
-									<header class="semimajor" id="signals">
+									<!-- <header class="semimajor" id="signals">
 										<h3>Signals</h3>
 									</header>
 
@@ -166,11 +184,11 @@
 									<h4>signal_name_2<span class="comment-alt">(property_name_1: </span><a href="#" class="link">property_type_1</a><span class="comment-alt">, property_name_2: </span><a href="#" class="link">property_type_2</a><span class="comment-alt">)</span></h4>
 										<p class="tab">Signal description long</p>
 									<hr class="strong">
-									<br>
+									<br> -->
 
 
 									<!-- Enumerations -->
-									<header class="semimajor" id="enumerations">
+									<!-- <header class="semimajor" id="enumerations">
 										<h3>Enumerations</h3>
 									</header>
 
@@ -195,7 +213,7 @@
 											<p class="tab-alt">Enum element description.</p>
 									</ul>
 									<hr class="strong">
-									<br>
+									<br> -->
 
 
 									<!-- Property Descriptions -->
@@ -203,12 +221,56 @@
 										<h3>Property Descriptions</h3>
 									</header>
 
-									<h4><a href="#" class="link">property_type_1</a> property_name_1<span class="comment-alt"> = </span><span class="value"> init_value</h4>
-										<p class="tab">Property description long</p>
+									<h4 id="packed-info-property-collision-method"><a href="https://docs.godotengine.org/en/stable/classes/class_callable.html#callable" class="link">Callable</a> collision_method<span class="comment-alt"> = </span><span class="value"> Callable()</span></h4>
+										<p class="tab">Projectile custom collision handling callback.</p>
 									<hr>
 
-									<h4><a href="#" class="link">property_type_2</a> property_name_2<span class="comment-alt"> = </span><span class="value"> init_value</h4>
-										<p class="tab">Property description long</p>
+									<h4 id="packed-info-property-destination"><a href="https://docs.godotengine.org/en/stable/classes/class_vector2.html#class-vector2" class="link">Vector2</a> destination<span class="comment-alt"> = </span><span class="value"> Vector2.ZERO</span></h4>
+										<p class="tab">Original destination the projectile is being headed.</p>
+										<p class="tab">Used for <b>non-seeking</b> projectiles with <b>fixed destinations</b>.</p>
+									<hr>
+
+									<h4 id="packed-info-property-direction"><a href="https://docs.godotengine.org/en/stable/classes/class_vector2.html#class-vector2" class="link">Vector2</a> direction<span class="comment-alt"> = </span><span class="value"> Vector2.ZERO</span></h4>
+										<p class="tab">Initial projectile movement direction.</p>
+									<hr>
+
+									<h4 id="packed-info-property-expired-method"><a href="https://docs.godotengine.org/en/stable/classes/class_callable.html#callable" class="link">Callable</a> expired_method<span class="comment-alt"> = </span><span class="value"> Callable()</span></h4>
+										<p class="tab">Projectile custom expiration callback.</p>
+									<hr>
+
+									<h4 id="packed-info-property-headstart"><a href="https://docs.godotengine.org/en/stable/classes/class_float.html#class-float" class="link">float</a> headstart<span class="comment-alt"> = </span><span class="value"> 0</span></h4>
+										<p class="tab">Projectile initial movement advantage.</p>
+										<p class="tab">Simulates projectiles that have been already moving before creation.</p>
+									<hr>
+
+									<h4 id="packed-info-property-instance-id"><a href="https://docs.godotengine.org/en/stable/classes/class_int.html#class-int" class="link">int</a> instance_id<span class="comment-alt"> = </span><span class="value"> 1</span></h4>
+										<p class="tab">Individual <strong>instance identifier</strong> for projectiles with <b>multiple instances</b>.</p>
+									<hr>
+
+									<h4 id="packed-info-property-move-method"><a href="https://docs.godotengine.org/en/stable/classes/class_callable.html#callable" class="link">Callable</a> move_method<span class="comment-alt"> = </span><span class="value"> Callable()</span></h4>
+										<p class="tab">Projectile custom movement callback.</p>
+									<hr>
+
+									<h4 id="packed-info-property-override-wait-time"><a href="https://docs.godotengine.org/en/stable/classes/class_bool.html#class-bool" class="link">bool</a> override_wait_time<span class="comment-alt"> = </span><span class="value"> false</span></h4>
+										<p class="tab">Flag to bypass built-in wait time behavior.</p>
+										<p class="tab">Used for complex attack patterns with custom timing.</p>
+									<hr>
+
+									<h4 id="packed-info-property-position"><a href="https://docs.godotengine.org/en/stable/classes/class_vector2.html#class-vector2" class="link">Vector2</a> position<span class="comment-alt"> = </span><span class="value"> Vector2.ZERO</span></h4>
+										<p class="tab">Projectile start position.</p>
+									<hr>
+
+									<h4 id="packed-info-property-start-method"><a href="https://docs.godotengine.org/en/stable/classes/class_callable.html#callable" class="link">Callable</a> start_method<span class="comment-alt"> = </span><span class="value"> Callable()</span></h4>
+										<p class="tab">Projectile custom initialization callback.</p>
+									<hr>
+
+									<h4 id="packed-info-property-target"><a href="https://docs.godotengine.org/en/stable/classes/class_node2d.html#node2d" class="link">Node2D</a> target<span class="comment-alt"> = </span><span class="value"> null</span></h4>
+										<p class="tab">The <b>target node</b> that projectiles should home-in.</p>
+										<p class="tab">Required for <b>seeking projectiles</b> with target-tracking behavior.</p>
+									<hr>
+
+									<h4 id="packed-info-property-world-2d"><a href="https://docs.godotengine.org/en/stable/classes/class_rid.html#rid" class="link">RID</a> world_2d<span class="comment-alt"> = </span><span class="value"> RID()</span></h4>
+										<p class="tab">The <b>physics server</b> world RID for <b>non-instanced</b> projectiles.</p>
 									<hr class="strong">
 									<br>
 
@@ -218,12 +280,14 @@
 										<h3>Method Descriptions</h3>
 									</header>
 									
-									<h4><a href="#" class="link">return_type_1</a> method_name_1<span class="comment-alt">(property_name_1: </span><a href="#" class="link">property_type_1</a><span class="comment-alt">, property_name_2: </span><a href="#" class="link">property_type_2</a><span class="comment-alt">)</span></h4>
-										<p class="tab">Method description long</p>
+									<h4 id="packed-info-method-reassign-all"><span class="comment-alt">void</span> reassign_all<span class="comment-alt">(_position: </span><a href="https://docs.godotengine.org/en/stable/classes/class_vector2.html#vector2" class="link">Vector2</a><span class="comment-alt">, _direction: </span><a href="https://docs.godotengine.org/en/stable/classes/class_vector2.html#vector2" class="link">Vector2</a><span class="comment-alt">, _destination: </span><a href="https://docs.godotengine.org/en/stable/classes/class_vector2.html#vector2" class="link">Vector2</a><span class="comment-alt">, _target: </span><a href="https://docs.godotengine.org/en/stable/classes/class_node2d.html#node2d" class="link">Node2D</a><span class="comment-alt">, _instance_id: </span><a href="https://docs.godotengine.org/en/stable/classes/class_int.html#class-int" class="link">int</a><span class="comment-alt">, _world_2d: </span><a href="https://docs.godotengine.org/en/stable/classes/class_rid.html#rid" class="link">RID</a><span class="comment-alt">, _move_method: </span><a href="https://docs.godotengine.org/en/stable/classes/class_callable.html#callable" class="link">Callable</a><span class="comment-alt">, _start_method: </span><a href="https://docs.godotengine.org/en/stable/classes/class_callable.html#callable" class="link">Callable</a><span class="comment-alt">, _collision_method: </span><a href="https://docs.godotengine.org/en/stable/classes/class_callable.html#callable" class="link">Callable</a><span class="comment-alt">, _expired_method: </span><a href="https://docs.godotengine.org/en/stable/classes/class_callable.html#callable" class="link">Callable</a><span class="comment-alt">, _override_wait_time: </span><a href="https://docs.godotengine.org/en/stable/classes/class_bool.html#class-bool" class="link">bool</a><span class="comment-alt"> = false, _headstart: </span><a href="https://docs.godotengine.org/en/stable/classes/class_float.html#class-float" class="link">float</a><span class="comment-alt"> = 0)</span></h4>
+										<p class="tab">Completely reconfigures all properties of the <b>PackedInfo</b> object.</p>
+										<p class="tab">Used for <b>complex projectile setups</b> requiring full parameter control.</p>
 									<hr>
 
-									<h4><a href="#" class="link">return_type_1</a> method_name_1<span class="comment-alt">(property_name_1: </span><a href="#" class="link">property_type_1</a><span class="comment-alt">, property_name_2: </span><a href="#" class="link">property_type_2</a><span class="comment-alt">)</span></h4>
-										<p class="tab">Method description long</p>
+									<h4 id="packed-info-method-reassign-simple"><span class="comment-alt">void</span> reassign_simple<span class="comment-alt">(_position: </span><a href="https://docs.godotengine.org/en/stable/classes/class_vector2.html#vector2" class="link">Vector2</a><span class="comment-alt">, _destination: </span><a href="https://docs.godotengine.org/en/stable/classes/class_vector2.html#vector2" class="link">Vector2</a><span class="comment-alt">, _target: </span><a href="https://docs.godotengine.org/en/stable/classes/class_node2d.html#node2d" class="link">Node2D</a><span class="comment-alt">, _move_method: </span><a href="https://docs.godotengine.org/en/stable/classes/class_callable.html#callable" class="link">Callable</a><span class="comment-alt">, _start_method: </span><a href="https://docs.godotengine.org/en/stable/classes/class_callable.html#callable" class="link">Callable</a><span class="comment-alt">, _collision_method: </span><a href="https://docs.godotengine.org/en/stable/classes/class_callable.html#callable" class="link">Callable</a><span class="comment-alt">, _expired_method: </span><a href="https://docs.godotengine.org/en/stable/classes/class_callable.html#callable" class="link">Callable</a><span class="comment-alt">)</span></h4>
+										<p class="tab">Reconfigures essential properties for standard projectile setups.</p>
+										<p class="tab">Simplified version for common use cases that don't require advanced parameters.</p>
 									<hr>
 								</section>
 
