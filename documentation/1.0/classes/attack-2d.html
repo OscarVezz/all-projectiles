@@ -12,6 +12,7 @@
 		<meta name="autor" content="Oscar Vezz"/>
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="../../assets/css/main.css" />
+		<link rel="stylesheet" href="../../assets/css/prism.css" />
 	</head>
 	<body class="is-preload">
 
@@ -42,8 +43,8 @@
 
 
 									<!-- Inherits -->
-									<p>Inherits: <a href="#">hierarchy_link1</a> < <a href="#">hierarchy_link2</a> < <a href="#">hierarchy_link3</a></p>
-									<p>description short.</p>
+									<p>Inherits: <a href="https://docs.godotengine.org/en/4.4/classes/class_refcounted.html#class-refcounted">RefCounted</a></p>
+									<p>A basic interface for <b>timed/consecutive</b> <a href="../../1.0/classes/projectile-2d.html#projectile-2d">Projectile2D</a> spawning.</p>
 									<br>
 
 
@@ -51,19 +52,50 @@
 									<header class="semimajor" id="description">
 										<h3>Description</h3>
 									</header>
-									<p>description long.</p>
+									<p>The <b>Attack2D</b> class is an <strong>intermediary state machine</strong> that helps you to manage the <b>complete lifecycle</b> of your projectile-based attacks; from <b>charging</b>, to <b>windup</b>, to <b>recovery</b>. It handles attack phases, projectile spawning, timed transitions, and even custom callbacks.</p>
+									<p style="margin-bottom: 0;">As a whole, it is composed of <strong>four phases</strong>:</p>
+									<ul class="tab">
+										<li>Charge.</li>
+										<li>Anticipation.</li>
+										<li>Main.</li>
+										<li>Recovery.</li>
+									</ul>
+									<p><b>Note:</b> Any <b>attack phase</b> with <strong>duration</strong> of <b>0 seconds</b> or below <a href="#attack-2d-property-margin">margin</a> <strong>will be skipped</strong>.</p>
+									<p><b>Note:</b> Unlike projectiles, assigning <strong>custom methods</strong> to your attacks will <strong>overwrite</strong> its <b>“normal” methods</b>. <i>If you want to keep</i> its default functionanily you will have to <strong>invoke</strong> these <b>“normal functions”</b> inside your <b>custom methods</b>, like this:</p>
+									<pre><code class="language-gdscript">extends Node2D
+
+@onready var projectile_manager: ProjectileManager2D = $ProjectileManager2D
+
+
+func _ready() -> void:
+	projectile_manager.get_attack(0).set_on_recovery_enter(custom_recovery_enter).set_on_recovery_exit(custom_recovery_exit).set_on_recovery_update(custom_recovery_update)
+
+	
+func custom_recovery_enter(attack: Attack2D) -> void:
+	attack.recovery_enter()	# Calling the default behavior for recovery phase start
+	print("Hi from recovery start")
+
+
+func custom_recovery_exit(attack: Attack2D) -> void:
+	attack.recovery_exit()	# Calling the default behavior for recovery phase end
+	print("Goodbye from recovery end")
+
+
+func custom_recovery_update(attack: Attack2D, delta: float) -> void:
+	attack.recovery_update(delta)	# Calling the default behavior for recovery phase update
+	print("Greetings from recovery update")</code></pre>
 									<br>
 
 
 									<!-- Tutorials -->
-									<header class="semimajor" id="tutorials">
+									<!-- <header class="semimajor" id="tutorials">
 										<h3>Tutorials</h3>
 									</header>
 									<ul>
 										<li><a href="#">tutorial_link1</a></li>
 										<li><a href="#">tutorial_link2</a></li>
 										<li><a href="#">tutorial_link3</a></li>
-									</ul>
+									</ul> -->
 
 
 									<!-- Properties -->
@@ -73,35 +105,245 @@
 									<div class="table-wrapper">
 										<table class="alt">
 											<colgroup>
-												<col style="width:22%">
-												<col style="width:48%">
+												<col style="width:30%">
+												<col style="width:40%">
 												<col style="width:30%">
 											</colgroup>  
 											<tbody>
 												<tr>
-													<td><a href="#">property_type_link1</a></td>
-													<td><a href="#">property_link1_to_document</a></td>
-													<td><code class="value">value1</code></td>
+													<td><a href="https://docs.godotengine.org/en/stable/classes/class_float.html#class-float">float</a></td>
+													<td><a href="#attack-2d-property-accumulated-charge">accumulated_charge</a></td>
+													<td><code class="value">0</code></td>
 												</tr>
 												<tr>
-													<td><a href="#">property_type_link2</a></td>
-													<td><a href="#">property_link2_to_document</a></td>
-													<td><code class="value">value2</code></td>
+													<td><a href="https://docs.godotengine.org/en/stable/classes/class_float.html#class-float">float</a></td>
+													<td><a href="#attack-2d-property-attack-anticipate-time">attack_anticipate_time</a></td>
+													<td><code class="value">0</code></td>
 												</tr>
 												<tr>
-													<td><a href="#">property_type_link3</a></td>
-													<td><a href="#">property_link3_to_document</a></td>
-													<td><code class="value">value3</code></td>
+													<td><a href="https://docs.godotengine.org/en/stable/classes/class_float.html#class-float">float</a></td>
+													<td><a href="#attack-2d-property-attack-charge-time">attack_charge_time</a></td>
+													<td><code class="value">0</code></td>
 												</tr>
 												<tr>
-													<td><a href="#">property_type_link4</a></td>
-													<td><a href="#">property_link4_to_document</a></td>
-													<td><code class="value">value4</code></td>
+													<td><a href="https://docs.godotengine.org/en/stable/classes/class_float.html#class-float">float</a></td>
+													<td><a href="#attack-2d-property-attack-duration-time">attack_duration_time</a></td>
+													<td><code class="value">0</code></td>
 												</tr>
 												<tr>
-													<td><a href="#">property_type_link5</a></td>
-													<td><a href="#">property_link5_to_document</a></td>
-													<td><code class="value">value5</code></td>
+													<td><a href="https://docs.godotengine.org/en/stable/classes/class_dictionary.html#dictionary">Dictionary</a>[<a href="https://docs.godotengine.org/en/stable/classes/class_stringname.html#stringname">StringName</a>, <a href="../../1.0/classes/attack-2d-modifier.html#attack-2d-modifier">Attack2DModifier</a>]</td>
+													<td><a href="#attack-2d-property-attack-modifiers">attack_modifiers</a></td>
+													<td><code class="value">{}</code></td>
+												</tr>
+												<tr>
+													<td><a href="https://docs.godotengine.org/en/stable/classes/class_vector2.html#class-vector2">Vector2</a></td>
+													<td><a href="#attack-2d-property-attack-offset">attack_offset</a></td>
+													<td><code class="value">Vector2.ZERO</code></td>
+												</tr>
+												<tr>
+													<td><a href="https://docs.godotengine.org/en/stable/classes/class_float.html#class-float">float</a></td>
+													<td><a href="#attack-2d-property-attack-recovery-time">attack_recovery_time</a></td>
+													<td><code class="value">0</code></td>
+												</tr>
+												<tr>
+													<td><a href="../../1.0/nodes/projectile-manager-2d.html#projectile-manager-2d">ProjectileManager2D</a></td>
+													<td><a href="#attack-2d-property-caller">caller</a></td>
+													<td></td>
+												</tr>
+												<tr>
+													<td><a href="https://docs.godotengine.org/en/stable/classes/class_bool.html#class-bool">bool</a></td>
+													<td><a href="#attack-2d-property-can-reload">can_reload</a></td>
+													<td><code class="value">true</code></td>
+												</tr>
+												<tr>
+													<td><a href="#enum-attack-2d-attack-charge-trigger">AttackChargeTrigger</a></td>
+													<td><a href="#attack-2d-property-charge-trigger">charge_trigger</a></td>
+													<td><code class="value">0</code></td>
+												</tr>
+												<tr>
+													<td><a href="#enum-attack-2d-attack-charge-type">AttackChargeType</a></td>
+													<td><a href="#attack-2d-property-charge-type">charge_type</a></td>
+													<td><code class="value">0</code></td>
+												</tr>
+												<tr>
+													<td><a href="#enum-attack-2d-on-interrupted-execution-continuation">OnInterruptedExecutionContinuation</a></td>
+													<td><a href="#attack-2d-property-continuation-type">continuation_type</a></td>
+													<td><code class="value">0</code></td>
+												</tr>
+												<tr>
+													<td><a href="https://docs.godotengine.org/en/stable/classes/class_float.html#class-float">float</a></td>
+													<td><a href="#attack-2d-property-current-state-lifetime">current_state_lifetime</a></td>
+													<td><code class="value">-1</code></td>
+												</tr>
+												<tr>
+													<td><a href="#enum-attack-2d-attack-state">AttackState</a></td>
+													<td><a href="#attack-2d-property-current-state">current_state</a></td>
+													<td><code class="value">0</code></td>
+												</tr>
+												<tr>
+													<td><a href="#enum-attack-2d-execution-type">ExecutionType</a></td>
+													<td><a href="#attack-2d-property-execution-type">execution_type</a></td>
+													<td><code class="value">0</code></td>
+												</tr>
+												<tr>
+													<td><a href="https://docs.godotengine.org/en/stable/classes/class_dictionary.html#dictionary">Dictionary</a>[<a href="https://docs.godotengine.org/en/stable/classes/class_stringname.html#stringname">StringName</a>, <a href="https://docs.godotengine.org/en/stable/classes/class_variant.html#variant">Variant</a>]</td>
+													<td><a href="#attack-2d-property-global-properties">global_properties</a></td>
+													<td><code class="value">{}</code></td>
+												</tr>
+												<tr>
+													<td><a href="https://docs.godotengine.org/en/stable/classes/class_dictionary.html#dictionary">Dictionary</a>[<a href="https://docs.godotengine.org/en/stable/classes/class_stringname.html#stringname">StringName</a>, <a href="https://docs.godotengine.org/en/stable/classes/class_variant.html#variant">Variant</a>]</td>
+													<td><a href="#attack-2d-property-individual-properties">individual_properties</a></td>
+													<td><code class="value">{}</code></td>
+												</tr>
+												<tr>
+													<td><a href="https://docs.godotengine.org/en/stable/classes/class_bool.html#class-bool">bool</a></td>
+													<td><a href="#attack-2d-property-instance-attack-modifiers">instance_attack_modifiers</a></td>
+													<td><code class="value">false</code></td>
+												</tr>
+												<tr>
+													<td><a href="https://docs.godotengine.org/en/stable/classes/class_int.html#class-int">int</a></td>
+													<td><a href="#attack-2d-property-instances">instances</a></td>
+													<td><code class="value">0</code></td>
+												</tr>
+												<tr>
+													<td><a href="https://docs.godotengine.org/en/stable/classes/class_bool.html#class-bool">bool</a></td>
+													<td><a href="#attack-2d-property-is-active">is_active</a></td>
+													<td><code class="value">false</code></td>
+												</tr>
+												<tr>
+													<td><a href="https://docs.godotengine.org/en/stable/classes/class_bool.html#class-bool">bool</a></td>
+													<td><a href="#attack-2d-property-is-linked">is_linked</a></td>
+													<td><code class="value">false</code></td>
+												</tr>
+												<tr>
+													<td><a href="https://docs.godotengine.org/en/stable/classes/class_bool.html#class-bool">bool</a></td>
+													<td><a href="#attack-2d-property-is-under-uninterrupted-request">is_under_uninterrupted_request</a></td>
+													<td><code class="value">false</code></td>
+												</tr>
+												<tr>
+													<td><a href="https://docs.godotengine.org/en/stable/classes/class_float.html#class-float">float</a></td>
+													<td><a href="#attack-2d-property-margin">margin</a></td>
+													<td><code class="value">0</code></td>
+												</tr>
+												<tr>
+													<td><a href="https://docs.godotengine.org/en/stable/classes/class_callable.html#callable">Callable</a></td>
+													<td><a href="#attack-2d-property-on-anticipate-enter">on_anticipate_enter</a></td>
+													<td></td>
+												</tr>
+												<tr>
+													<td><a href="https://docs.godotengine.org/en/stable/classes/class_callable.html#callable">Callable</a></td>
+													<td><a href="#attack-2d-property-on-anticipate-exit">on_anticipate_exit</a></td>
+													<td></td>
+												</tr>
+												<tr>
+													<td><a href="https://docs.godotengine.org/en/stable/classes/class_callable.html#callable">Callable</a></td>
+													<td><a href="#attack-2d-property-on-anticipate-update">on_anticipate_update</a></td>
+													<td></td>
+												</tr>
+												<tr>
+													<td><a href="https://docs.godotengine.org/en/stable/classes/class_callable.html#callable">Callable</a></td>
+													<td><a href="#attack-2d-property-on-charge-enter">on_charge_enter</a></td>
+													<td></td>
+												</tr>
+												<tr>
+													<td><a href="https://docs.godotengine.org/en/stable/classes/class_callable.html#callable">Callable</a></td>
+													<td><a href="#attack-2d-property-on-charge-exit">on_charge_exit</a></td>
+													<td></td>
+												</tr>
+												<tr>
+													<td><a href="https://docs.godotengine.org/en/stable/classes/class_callable.html#callable">Callable</a></td>
+													<td><a href="#attack-2d-property-on-charge-update">on_charge_update</a></td>
+													<td></td>
+												</tr>
+												<tr>
+													<td><a href="https://docs.godotengine.org/en/stable/classes/class_callable.html#callable">Callable</a></td>
+													<td><a href="#attack-2d-property-on-completed">on_completed</a></td>
+													<td></td>
+												</tr>
+												<tr>
+													<td><a href="https://docs.godotengine.org/en/stable/classes/class_callable.html#callable">Callable</a></td>
+													<td><a href="#attack-2d-property-on-main-enter">on_main_enter</a></td>
+													<td></td>
+												</tr>
+												<tr>
+													<td><a href="https://docs.godotengine.org/en/stable/classes/class_callable.html#callable">Callable</a></td>
+													<td><a href="#attack-2d-property-on-main-exit">on_main_exit</a></td>
+													<td></td>
+												</tr>
+												<tr>
+													<td><a href="https://docs.godotengine.org/en/stable/classes/class_callable.html#callable">Callable</a></td>
+													<td><a href="#attack-2d-property-on-main-update">on_main_update</a></td>
+													<td></td>
+												</tr>
+												<tr>
+													<td><a href="https://docs.godotengine.org/en/stable/classes/class_callable.html#callable">Callable</a></td>
+													<td><a href="#attack-2d-property-on-recovery-enter">on_recovery_enter</a></td>
+													<td></td>
+												</tr>
+												<tr>
+													<td><a href="https://docs.godotengine.org/en/stable/classes/class_callable.html#callable">Callable</a></td>
+													<td><a href="#attack-2d-property-on-recovery-exit">on_recovery_exit</a></td>
+													<td></td>
+												</tr>
+												<tr>
+													<td><a href="https://docs.godotengine.org/en/stable/classes/class_callable.html#callable">Callable</a></td>
+													<td><a href="#attack-2d-property-on-recovery-update">on_recovery_update</a></td>
+													<td></td>
+												</tr>
+												<tr>
+													<td><a href="https://docs.godotengine.org/en/stable/classes/class_callable.html#callable">Callable</a></td>
+													<td><a href="#attack-2d-property-on-start">on_start</a></td>
+													<td></td>
+												</tr>
+												<tr>
+													<td><a href="https://docs.godotengine.org/en/stable/classes/class_bool.html#class-bool">bool</a></td>
+													<td><a href="#attack-2d-property-override-attack-duration">override_attack_duration</a></td>
+													<td><code class="value">false</code></td>
+												</tr>
+												<tr>
+													<td><a href="https://docs.godotengine.org/en/stable/classes/class_bool.html#class-bool">bool</a></td>
+													<td><a href="#attack-2d-property-override-destination">override_destination</a></td>
+													<td><code class="value">false</code></td>
+												</tr>
+												<tr>
+													<td><a href="https://docs.godotengine.org/en/stable/classes/class_bool.html#class-bool">bool</a></td>
+													<td><a href="#attack-2d-property-override-position">override_position</a></td>
+													<td><code class="value">false</code></td>
+												</tr>
+												<tr>
+													<td><a href="../../1.0/classes/packed-info.html#packed-info">PackedInfo</a></td>
+													<td><a href="#attack-2d-property-pi">pi</a></td>
+													<td></td>
+												</tr>
+												<tr>
+													<td><a href="../../1.0/classes/projectile-2d.html#projectile-2d">Projectile2D</a></td>
+													<td><a href="#attack-2d-property-projectile">projectile</a></td>
+													<td></td>
+												</tr>
+												<tr>
+													<td><a href="https://docs.godotengine.org/en/stable/classes/class_int.html#class-int">int</a></td>
+													<td><a href="#attack-2d-property-remaining-shots">remaining_shots</a></td>
+													<td><code class="value">0</code></td>
+												</tr>
+												<tr>
+													<td><a href="https://docs.godotengine.org/en/stable/classes/class_bool.html#class-bool">bool</a></td>
+													<td><a href="#attack-2d-property-requested-interaction">requested_interaction</a></td>
+													<td><code class="value">false</code></td>
+												</tr>
+												<tr>
+													<td><a href="../../1.0/resources/attack-blueprint-2d.html#attack-blueprint-2d">AttackBlueprint2D</a></td>
+													<td><a href="#attack-2d-property-resource">resource</a></td>
+													<td></td>
+												</tr>
+												<tr>
+													<td><a href="#enum-attack-2d-instances-spawn-type">InstancesSpawnType</a></td>
+													<td><a href="#attack-2d-property-spawn-type">spawn_type</a></td>
+													<td><code class="value">0</code></td>
+												</tr>
+												<tr>
+													<td><a href="https://docs.godotengine.org/en/stable/classes/class_float.html#class-float">float</a></td>
+													<td><a href="#attack-2d-property-sub-frame-excess">sub_frame_excess</a></td>
+													<td><code class="value">0</code></td>
 												</tr>
 											</tbody>
 										</table>
@@ -117,36 +359,202 @@
 									<div class="table-wrapper">
 										<table class="alt">
 											<colgroup>
-												<col style="width:22%">
-												<col style="width:48%">
-												<col style="width:30%">
+												<col style="width:27%">
+												<col style="width:73%">
 											</colgroup>  
 											<tbody>
-												<tr>
-													<td><a href="#">property_type_link1</a></td>
-													<td><a href="#">property_link1_to_document</a></td>
-													<td><code class="value">value1</code></td>
-												</tr>
-												<tr>
-													<td><a href="#">property_type_link2</a></td>
-													<td><a href="#">property_link2_to_document</a></td>
-													<td><code class="value">value2</code></td>
-												</tr>
-												<tr>
-													<td><a href="#">property_type_link3</a></td>
-													<td><a href="#">property_link3_to_document</a></td>
-													<td><code class="value">value3</code></td>
-												</tr>
-												<tr>
-													<td><a href="#">property_type_link4</a></td>
-													<td><a href="#">property_link4_to_document</a></td>
-													<td><code class="value">value4</code></td>
-												</tr>
-												<tr>
-													<td><a href="#">property_type_link5</a></td>
-													<td><a href="#">property_link5_to_document</a></td>
-													<td><code class="value">value5</code></td>
-												</tr>
+											<tr>
+												<td>void</td>
+												<td><a href="#attack-2d-method-init">_init</a></td>
+											</tr>
+											<tr>
+												<td><a href="../../1.0/classes/attack-2d.html#attack-2d">Attack2D</a></td>
+												<td><a href="#attack-2d-method-add-global-property">add_global_property</a></td>
+											</tr>
+											<tr>
+												<td><a href="../../1.0/classes/attack-2d.html#attack-2d">Attack2D</a></td>
+												<td><a href="#attack-2d-method-add-individual-property">add_individual_property</a></td>
+											</tr>
+											<tr>
+												<td><a href="https://docs.godotengine.org/en/stable/classes/class_bool.html#class-bool">bool</a></td>
+												<td><a href="#attack-2d-method-add-modifier">add_modifier</a></td>
+											</tr>
+											<tr>
+												<td>void</td>
+												<td><a href="#attack-2d-method-anticipate-enter">anticipate_enter</a></td>
+											</tr>
+											<tr>
+												<td>void</td>
+												<td><a href="#attack-2d-method-anticipate-exit">anticipate_exit</a></td>
+											</tr>
+											<tr>
+												<td>void</td>
+												<td><a href="#attack-2d-method-anticipate-update">anticipate_update</a></td>
+											</tr>
+											<tr>
+												<td>void</td>
+												<td><a href="#attack-2d-method-assign">assign</a></td>
+											</tr>
+											<tr>
+												<td><a href="https://docs.godotengine.org/en/stable/classes/class_bool.html#class-bool">bool</a></td>
+												<td><a href="#attack-2d-method-change-state">change_state</a></td>
+											</tr>
+											<tr>
+												<td>void</td>
+												<td><a href="#attack-2d-method-charge-enter">charge_enter</a></td>
+											</tr>
+											<tr>
+												<td>void</td>
+												<td><a href="#attack-2d-method-charge-exit">charge_exit</a></td>
+											</tr>
+											<tr>
+												<td>void</td>
+												<td><a href="#attack-2d-method-charge-update">charge_update</a></td>
+											</tr>
+											<tr>
+												<td><a href="../../1.0/classes/attack-2d.html#attack-2d">Attack2D</a></td>
+												<td><a href="#attack-2d-method-clone">clone</a></td>
+											</tr>
+											<tr>
+												<td>void</td>
+												<td><a href="#attack-2d-method-copy">copy</a></td>
+											</tr>
+											<tr>
+												<td>void</td>
+												<td><a href="#attack-2d-method-direct-request">direct_request</a></td>
+											</tr>
+											<tr>
+												<td>void</td>
+												<td><a href="#attack-2d-method-disable">disable</a></td>
+											</tr>
+											<tr>
+												<td><a href="https://docs.godotengine.org/en/stable/classes/class_float.html#class-float">float</a></td>
+												<td><a href="#attack-2d-method-get-current-state-duration">get_current_state_duration</a></td>
+											</tr>
+											<tr>
+												<td><a href="https://docs.godotengine.org/en/stable/classes/class_bool.html#class-bool">bool</a></td>
+												<td><a href="#attack-2d-method-is-charge-completed">is_charge_completed</a></td>
+											</tr>
+											<tr>
+												<td>void</td>
+												<td><a href="#attack-2d-method-link-to-processor">link_to_processor</a></td>
+											</tr>
+											<tr>
+												<td>void</td>
+												<td><a href="#attack-2d-method-main-enter">main_enter</a></td>
+											</tr>
+											<tr>
+												<td>void</td>
+												<td><a href="#attack-2d-method-main-exit">main_exit</a></td>
+											</tr>
+											<tr>
+												<td>void</td>
+												<td><a href="#attack-2d-method-main-update">main_update</a></td>
+											</tr>
+											<tr>
+												<td>void</td>
+												<td><a href="#attack-2d-method-recovery-enter">recovery_enter</a></td>
+											</tr>
+											<tr>
+												<td>void</td>
+												<td><a href="#attack-2d-method-recovery-exit">recovery_exit</a></td>
+											</tr>
+											<tr>
+												<td>void</td>
+												<td><a href="#attack-2d-method-recovery-update">recovery_update</a></td>
+											</tr>
+											<tr>
+												<td>void</td>
+												<td><a href="#attack-2d-method-reload">reload</a></td>
+											</tr>
+											<tr>
+												<td><a href="https://docs.godotengine.org/en/stable/classes/class_bool.html#class-bool">bool</a></td>
+												<td><a href="#attack-2d-method-remove-modifier">remove_modifier</a></td>
+											</tr>
+											<tr>
+												<td>void</td>
+												<td><a href="#attack-2d-method-request-projectile">request_projectile</a></td>
+											</tr>
+											<tr>
+												<td>void</td>
+												<td><a href="#attack-2d-method-reset">reset</a></td>
+											</tr>
+											<tr>
+												<td><a href="../../1.0/classes/attack-2d.html#attack-2d">Attack2D</a></td>
+												<td><a href="#attack-2d-method-set-on-anticipate-enter">set_on_anticipate_enter</a></td>
+											</tr>
+											<tr>
+												<td><a href="../../1.0/classes/attack-2d.html#attack-2d">Attack2D</a></td>
+												<td><a href="#attack-2d-method-set-on-anticipate-exit">set_on_anticipate_exit</a></td>
+											</tr>
+											<tr>
+												<td><a href="../../1.0/classes/attack-2d.html#attack-2d">Attack2D</a></td>
+												<td><a href="#attack-2d-method-set-on-anticipate-update">set_on_anticipate_update</a></td>
+											</tr>
+											<tr>
+												<td><a href="../../1.0/classes/attack-2d.html#attack-2d">Attack2D</a></td>
+												<td><a href="#attack-2d-method-set-on-charge-enter">set_on_charge_enter</a></td>
+											</tr>
+											<tr>
+												<td><a href="../../1.0/classes/attack-2d.html#attack-2d">Attack2D</a></td>
+												<td><a href="#attack-2d-method-set-on-charge-exit">set_on_charge_exit</a></td>
+											</tr>
+											<tr>
+												<td><a href="../../1.0/classes/attack-2d.html#attack-2d">Attack2D</a></td>
+												<td><a href="#attack-2d-method-set-on-charge-update">set_on_charge_update</a></td>
+											</tr>
+											<tr>
+												<td><a href="../../1.0/classes/attack-2d.html#attack-2d">Attack2D</a></td>
+												<td><a href="#attack-2d-method-set-on-completed">set_on_completed</a></td>
+											</tr>
+											<tr>
+												<td><a href="../../1.0/classes/attack-2d.html#attack-2d">Attack2D</a></td>
+												<td><a href="#attack-2d-method-set-on-main-enter">set_on_main_enter</a></td>
+											</tr>
+											<tr>
+												<td><a href="../../1.0/classes/attack-2d.html#attack-2d">Attack2D</a></td>
+												<td><a href="#attack-2d-method-set-on-main-exit">set_on_main_exit</a></td>
+											</tr>
+											<tr>
+												<td><a href="../../1.0/classes/attack-2d.html#attack-2d">Attack2D</a></td>
+												<td><a href="#attack-2d-method-set-on-main-update">set_on_main_update</a></td>
+											</tr>
+											<tr>
+												<td><a href="../../1.0/classes/attack-2d.html#attack-2d">Attack2D</a></td>
+												<td><a href="#attack-2d-method-set-on-recovery-enter">set_on_recovery_enter</a></td>
+											</tr>
+											<tr>
+												<td><a href="../../1.0/classes/attack-2d.html#attack-2d">Attack2D</a></td>
+												<td><a href="#attack-2d-method-set-on-recovery-exit">set_on_recovery_exit</a></td>
+											</tr>
+											<tr>
+												<td><a href="../../1.0/classes/attack-2d.html#attack-2d">Attack2D</a></td>
+												<td><a href="#attack-2d-method-set-on-recovery-update">set_on_recovery_update</a></td>
+											</tr>
+											<tr>
+												<td><a href="../../1.0/classes/attack-2d.html#attack-2d">Attack2D</a></td>
+												<td><a href="#attack-2d-method-set-on-start">set_on_start</a></td>
+											</tr>
+											<tr>
+												<td><a href="../../1.0/classes/attack-2d.html#attack-2d">Attack2D</a></td>
+												<td><a href="#attack-2d-method-set-property">set_property</a></td>
+											</tr>
+											<tr>
+												<td>void</td>
+												<td><a href="#attack-2d-method-start">start</a></td>
+											</tr>
+											<tr>
+												<td><a href="https://docs.godotengine.org/en/stable/classes/class_bool.html#class-bool">bool</a></td>
+												<td><a href="#attack-2d-method-update-lifetime">update_lifetime</a></td>
+											</tr>
+											<tr>
+												<td><a href="https://docs.godotengine.org/en/stable/classes/class_bool.html#class-bool">bool</a></td>
+												<td><a href="#attack-2d-method-update">update</a></td>
+											</tr>
+											<tr>
+												<td><a href="https://docs.godotengine.org/en/stable/classes/class_bool.html#class-bool">bool</a></td>
+												<td><a href="#attack-2d-method-validate-attack">validate_attack</a></td>
+											</tr>
 											</tbody>
 										</table>
 									</div>
@@ -159,12 +567,19 @@
 										<h3>Signals</h3>
 									</header>
 
-									<h4>signal_name_1<span class="comment-alt">(property_name_1: </span><a href="#" class="link">property_type_1</a><span class="comment-alt">, property_name_2: </span><a href="#" class="link">property_type_2</a><span class="comment-alt">)</span></h4>
-										<p class="tab">Signal description long</p>
+									<h4 id="signal-attack-2d-direct-projectile-request">direct_projectile_request<span class="comment-alt">(_projectile: </span><a href="../../1.0/classes/projectile-2d.html#projectile-2d" class="link">Projectile2D</a><span class="comment-alt">, _pi: </span><a href="../../1.0/classes/packed-info.html#packed-info" class="link">PackedInfo</a><span class="comment-alt"></span>)</span></h4>
+									<p class="tab">Emitted on <a href="#attack-2d-property-spawn-type">ONE_BY_ONE</a> requests.</p>
+									<p class="tab">The most straightway call with the <a href="../../1.0/nodes/projectile-processor-2d.html#projectile-processor-2d">ProjectileProcessor2D</a>. Directly requests the creation of <strong>one</strong> new projectiles, intentionally skipping projectiles with multiple instances.</p>
 									<hr>
 
-									<h4>signal_name_2<span class="comment-alt">(property_name_1: </span><a href="#" class="link">property_type_1</a><span class="comment-alt">, property_name_2: </span><a href="#" class="link">property_type_2</a><span class="comment-alt">)</span></h4>
-										<p class="tab">Signal description long</p>
+									<h4 id="signal-attack-2d-modifier-requested">modifier_requested<span class="comment-alt">(_attack_modifier: </span><a href="../../1.0/classes/attack-2d-modifier.html#attack-2d-modifier" class="link">Attack2DModifier</a><span class="comment-alt"></span>)</span></h4>
+									<p class="tab">Emitted an <b>Attack2D</b> request the application of an <b>Attack2DModifier</b>.</p>
+									<p class="tab">Directly requests modifier addition to the <a href="../../1.0/nodes/projectile-processor-2d.html#projectile-processor-2d">ProjectileProcessor2D</a>.</p>
+									<hr>
+
+									<h4 id="signal-attack-2d-projectile-requested">projectile_requested<span class="comment-alt">(_projectile: </span><a href="../../1.0/classes/projectile-2d.html#projectile-2d" class="link">Projectile2D</a><span class="comment-alt">, _position: </span><a href="https://docs.godotengine.org/en/stable/classes/class_vector2.html#vector2" class="link">Vector2</a><span class="comment-alt">, _destination: </span><a href="https://docs.godotengine.org/en/stable/classes/class_vector2.html#vector2" class="link">Vector2</a><span class="comment-alt">, _target: </span><a href="https://docs.godotengine.org/en/stable/classes/class_node2d.html#node2d" class="link">Node2D</a><span class="comment-alt">, move_method: </span><a href="https://docs.godotengine.org/en/stable/classes/class_callable.html#callable" class="link">Callable</a><span class="comment-alt">, start_method: </span><a href="https://docs.godotengine.org/en/stable/classes/class_callable.html#callable" class="link">Callable</a><span class="comment-alt">, collision_method: </span><a href="https://docs.godotengine.org/en/stable/classes/class_callable.html#callable" class="link">Callable</a><span class="comment-alt">, expired_method: </span><a href="https://docs.godotengine.org/en/stable/classes/class_callable.html#callable" class="link">Callable</a><span class="comment-alt">)</span></h4>
+									<p class="tab">Emitted when an <b>Attack2D</b> request the creation of any new <b>Projectile2D</b>s.</p>
+									<p class="tab">Directly requests the creation of new projectiles to the <a href="../../1.0/nodes/projectile-processor-2d.html#projectile-processor-2d">ProjectileProcessor2D</a>.</p>
 									<hr class="strong">
 									<br>
 
@@ -174,26 +589,68 @@
 										<h3>Enumerations</h3>
 									</header>
 
-									<h4><span class="comment-alt">enum </span>EnumName1 <span class="comment-alt">:</span></h4>
+									<h4 id="enum-attack-2d-attack-charge-trigger"><span class="comment-alt">enum </span>AttackChargeTrigger <span class="comment-alt">:</span></h4>
 									<ul style="list-style-type: none">
-										<li><h4><a href="#" class="link">EnumName1</a> ENUM_ELEMENT_NAME_1<span class="comment-alt"> = 0</span></h4></li>
-											<p class="tab-alt">Enum element description.</p>
-										<li><h4><a href="#" class="link">EnumName1</a> ENUM_ELEMENT_NAME_2<span class="comment-alt"> = 1</span></h4></li>
-											<p class="tab-alt">Enum element description.</p>
-										<li><h4><a href="#" class="link">EnumName1</a> ENUM_ELEMENT_NAME_3<span class="comment-alt"> = 2</span></h4></li>
-											<p class="tab-alt">Enum element description.</p>
+										<li><h4><a href="#enum-attack-2d-attack-charge-trigger" class="link">AttackChargeTrigger</a> ON_READY<span class="comment-alt"> = 0</span></h4></li>
+											<p class="tab-alt">Attack begins immediately after charging.</p>
+										<li><h4><a href="#enum-attack-2d-attack-charge-trigger" class="link">AttackChargeTrigger</a> ON_RELEASE<span class="comment-alt"> = 1</span></h4></li>
+											<p class="tab-alt">Charged attacks begin only when there is no longer any <a href="#attack-2d-property-requested-interaction">requested_interaction</a>.</p>
 									</ul>
 									<hr>
 
-									<h4><span class="comment-alt">enum </span>EnumName2 <span class="comment-alt">:</span></h4>
+									<h4 id="enum-attack-2d-attack-charge-type"><span class="comment-alt">enum </span>AttackChargeType <span class="comment-alt">:</span></h4>
 									<ul style="list-style-type: none">
-										<li><h4><a href="#" class="link">EnumName2</a> ENUM_ELEMENT_NAME_1<span class="comment-alt"> = 0</span></h4></li>
-											<p class="tab-alt">Enum element description.</p>
-										<li><h4><a href="#" class="link">EnumName2</a> ENUM_ELEMENT_NAME_2<span class="comment-alt"> = 1</span></h4></li>
-											<p class="tab-alt">Enum element description.</p>
-										<li><h4><a href="#" class="link">EnumName2</a> ENUM_ELEMENT_NAME_3<span class="comment-alt"> = 2</span></h4></li>
-											<p class="tab-alt">Enum element description.</p>
+										<li><h4><a href="#enum-attack-2d-attack-charge-type" class="link">AttackChargeType</a> CONTINUOUS<span class="comment-alt"> = 0</span></h4></li>
+											<p class="tab-alt">Charge resets if not completed continuously.</p>
+										<li><h4><a href="#enum-attack-2d-attack-charge-type" class="link">AttackChargeType</a> DISCRETE<span class="comment-alt"> = 1</span></h4></li>
+											<p class="tab-alt">Charge accumulates across multiple attempts.</p>
+										<li><h4><a href="#enum-attack-2d-attack-charge-type" class="link">AttackChargeType</a> MANDATORY<span class="comment-alt"> = 2</span></h4></li>
+											<p class="tab-alt">Once the charging phase starts, it cannot be stopped.</p>
 									</ul>
+									<hr>
+
+									<h4 id="enum-attack-2d-attack-state"><span class="comment-alt">enum </span>AttackState <span class="comment-alt">:</span></h4>
+									<ul style="list-style-type: none">
+										<li><h4><a href="#enum-attack-2d-attack-state" class="link">AttackState</a> ATTACK_CHARGE<span class="comment-alt"> = 0</span></h4></li>
+											<p class="tab-alt">Preparation phase before the attack even begins.</p>
+										<li><h4><a href="#enum-attack-2d-attack-state" class="link">AttackState</a> ATTACK_ANTICIPATE<span class="comment-alt"> = 1</span></h4></li>
+											<p class="tab-alt">Wind-up phase before the main attack.</p>
+										<li><h4><a href="#enum-attack-2d-attack-state" class="link">AttackState</a> ATTACK_MAIN<span class="comment-alt"> = 2</span></h4></li>
+											<p class="tab-alt">Active phase where projectiles are spawned.</p>
+										<li><h4><a href="#enum-attack-2d-attack-state" class="link">AttackState</a> ATTACK_RECOVERY<span class="comment-alt"> = 3</span></h4></li>
+											<p class="tab-alt">Cooldown phase after the attack completes.</p>
+									</ul>
+									<hr>
+
+									<h4 id="enum-attack-2d-execution-type"><span class="comment-alt">enum </span>ExecutionType <span class="comment-alt">:</span></h4>
+									<ul style="list-style-type: none">
+										<li><h4><a href="#enum-attack-2d-execution-type" class="link">ExecutionType</a> MANDATORY<span class="comment-alt"> = 0</span></h4></li>
+											<p class="tab-alt">Once an attack starts, it cannot be stopped.</p>
+										<li><h4><a href="#enum-attack-2d-execution-type" class="link">ExecutionType</a> AS_REQUESTED<span class="comment-alt"> = 1</span></h4></li>
+											<p class="tab-alt">Multi-instance attacks can be interrupted between shots.</p>
+									</ul>
+									<hr>
+
+									<h4 id="enum-attack-2d-instances-spawn-type"><span class="comment-alt">enum </span>InstancesSpawnType <span class="comment-alt">:</span></h4>
+									<ul style="list-style-type: none">
+										<li><h4><a href="#enum-attack-2d-instances-spawn-type" class="link">InstancesSpawnType</a> ALL_AT_ONCE<span class="comment-alt"> = 0</span></h4></li>
+											<p class="tab-alt">All projectile instances spawn simultaneously.</p>
+										<li><h4><a href="#enum-attack-2d-instances-spawn-type" class="link">InstancesSpawnType</a> ONE_BY_ONE<span class="comment-alt"> = 1</span></h4></li>
+											<p class="tab-alt">Projectile instances spawn sequentially with delays.</p>
+									</ul>
+									<hr>
+
+									<h4 id="enum-attack-2d-on-interrupted-execution-continuation"><span class="comment-alt">enum </span>OnInterruptedExecutionContinuation <span class="comment-alt">:</span></h4>
+									<ul style="list-style-type: none">
+										<li><h4><a href="#enum-attack-2d-on-interrupted-execution-continuation" class="link">OnInterruptedExecutionContinuation</a> REFRESH_SHOTS_AND_START_FROM_ZERO<span class="comment-alt"> = 0</span></h4></li>
+											<p class="tab-alt">Reset attack to initial state when resumed.</p>
+										<li><h4><a href="#enum-attack-2d-on-interrupted-execution-continuation" class="link">OnInterruptedExecutionContinuation</a> CONTINUE_FROM_REMAINING_SHOTS<span class="comment-alt"> = 1</span></h4></li>
+											<p class="tab-alt">Continue with remaining shots when resumed.</p>
+										<li><h4><a href="#enum-attack-2d-on-interrupted-execution-continuation" class="link">OnInterruptedExecutionContinuation</a> CONTINUE_BUT_NOT_REFRESH<span class="comment-alt"> = 2</span></h4></li>
+											<p class="tab-alt">Continue but prevent reloading when resumed.</p>
+									</ul>
+
+									
 									<hr class="strong">
 									<br>
 
@@ -203,12 +660,205 @@
 										<h3>Property Descriptions</h3>
 									</header>
 
-									<h4><a href="#" class="link">property_type_1</a> property_name_1<span class="comment-alt"> = </span><span class="value"> init_value</h4>
-										<p class="tab">Property description long</p>
+									<h4 id="attack-2d-property-accumulated-charge"><a href="https://docs.godotengine.org/en/stable/classes/class_float.html#class-float" class="link">float</a> accumulated_charge<span class="comment-alt"> = </span><span class="value"> 0</span></h4>
+										<p class="tab">Collective time accumulation for <a href="#attack-2d-property-charge-type">DISCRETE</a> charged attacks.</p>
 									<hr>
 
-									<h4><a href="#" class="link">property_type_2</a> property_name_2<span class="comment-alt"> = </span><span class="value"> init_value</h4>
-										<p class="tab">Property description long</p>
+									<h4 id="attack-2d-property-attack-anticipate-time"><a href="https://docs.godotengine.org/en/stable/classes/class_float.html#class-float" class="link">float</a> attack_anticipate_time<span class="comment-alt"> = </span><span class="value"> 0</span></h4>
+										<p class="tab">Duration of the anticipation phase in seconds.</p>
+									<hr>
+
+									<h4 id="attack-2d-property-attack-charge-time"><a href="https://docs.godotengine.org/en/stable/classes/class_float.html#class-float" class="link">float</a> attack_charge_time<span class="comment-alt"> = </span><span class="value"> 0</span></h4>
+										<p class="tab">Duration of the charge phase in seconds.</p>
+									<hr>
+
+									<h4 id="attack-2d-property-attack-duration-time"><a href="https://docs.godotengine.org/en/stable/classes/class_float.html#class-float" class="link">float</a> attack_duration_time<span class="comment-alt"> = </span><span class="value"> 0</span></h4>
+										<p class="tab">Duration of the main attack phase in seconds.</p>
+									<hr>
+
+									<h4 id="attack-2d-property-attack-modifiers"><a href="https://docs.godotengine.org/en/stable/classes/class_dictionary.html#dictionary" class="link">Dictionary</a>[<a href="https://docs.godotengine.org/en/stable/classes/class_stringname.html#stringname" class="link">StringName</a>, <a href="../../1.0/classes/attack-2d-modifier.html#attack-2d-modifier" class="link">Attack2DModifier</a>] attack_modifiers<span class="comment-alt"> = </span><span class="value"> {}</span></h4>
+										<p class="tab">Dictionary of all <a href="../../1.0/classes/attack-2d-modifier.html#attack-2d-modifier">modifiers</a> affecting this attack.</p>
+									<hr>
+
+									<h4 id="attack-2d-property-attack-offset"><a href="https://docs.godotengine.org/en/stable/classes/class_vector2.html#class-vector2" class="link">Vector2</a> attack_offset<span class="comment-alt"> = </span><span class="value"> Vector2.ZERO</span></h4>
+										<p class="tab">Added distance to projectile position on creation.</p>
+									<hr>
+
+									<h4 id="attack-2d-property-attack-recovery-time"><a href="https://docs.godotengine.org/en/stable/classes/class_float.html#class-float" class="link">float</a> attack_recovery_time<span class="comment-alt"> = </span><span class="value"> 0</span></h4>
+										<p class="tab">Duration of the recovery phase in seconds.</p>
+									<hr>
+
+									<h4 id="attack-2d-property-caller"><a href="../../1.0/nodes/projectile-manager-2d.html#projectile-manager-2d" class="link">ProjectileManager2D</a> caller</h4>
+										<p class="tab">Entity that initiated the attack.</p>
+										<p class="tab">Used for flexible position and direction references.</p>
+									<hr>
+
+									<h4 id="attack-2d-property-can-reload"><a href="https://docs.godotengine.org/en/stable/classes/class_bool.html#class-bool" class="link">bool</a> can_reload<span class="comment-alt"> = </span><span class="value"> true</span></h4>
+										<p class="tab">If <code class="value">true</code> the attack can reload its remaining shoots.</p>
+									<hr>
+
+									<h4 id="attack-2d-property-charge-trigger"><a href="#enum-attack-2d-attack-charge-trigger" class="link">AttackChargeTrigger</a> charge_trigger<span class="comment-alt"> = </span><span class="value"> 0</span></h4>
+										<p class="tab">Charge completion condition.</p>
+									<hr>
+
+									<h4 id="attack-2d-property-charge-type"><a href="#enum-attack-2d-attack-charge-type" class="link">AttackChargeType</a> charge_type<span class="comment-alt"> = </span><span class="value"> 0</span></h4>
+										<p class="tab">Charge accumulation tracking method.</p>
+									<hr>
+
+									<h4 id="attack-2d-property-continuation-type"><a href="#enum-attack-2d-on-interrupted-execution-continuation" class="link">OnInterruptedExecutionContinuation</a> continuation_type<span class="comment-alt"> = </span><span class="value"> 0</span></h4>
+										<p class="tab"><a href="#attack-2d-property-spawn-type">ONE_BY_ONE</a> attacks behavior when resuming interrupted attacks.</p>
+									<hr>
+
+									<h4 id="attack-2d-property-current-state-lifetime"><a href="https://docs.godotengine.org/en/stable/classes/class_float.html#class-float" class="link">float</a> current_state_lifetime<span class="comment-alt"> = </span><span class="value"> -1</span></h4>
+										<p class="tab">Remaining lifetime of the current <b>attack phase</b> in seconds.</p>
+									<hr>
+
+									<h4 id="attack-2d-property-current-state"><a href="#enum-attack-2d-attack-state" class="link">AttackState</a> current_state<span class="comment-alt"> = </span><span class="value"> 0</span></h4>
+										<p class="tab">Current <b>phase</b> of the <b>attack lifecycle</b>.</p>
+										<p class="tab">Determines which callbacks and methods are executed.</p>
+									<hr>
+
+									<h4 id="attack-2d-property-execution-type"><a href="#enum-attack-2d-execution-type" class="link">ExecutionType</a> execution_type<span class="comment-alt"> = </span><span class="value"> 0</span></h4>
+										<p class="tab"><a href="#attack-2d-property-spawn-type">ONE_BY_ONE</a> attacks continuation condition.</p>
+									<hr>
+
+									<h4 id="attack-2d-property-global-properties"><a href="https://docs.godotengine.org/en/stable/classes/class_dictionary.html#dictionary" class="link">Dictionary</a>[<a href="https://docs.godotengine.org/en/stable/classes/class_stringname.html#stringname" class="link">StringName</a>, <a href="https://docs.godotengine.org/en/stable/classes/class_variant.html#variant" class="link">Variant</a>] global_properties<span class="comment-alt"> = </span><span class="value"> {}</span></h4>
+										<p class="tab">This dictionary is <strong>shared</strong> between all attacks created by its <strong>original blueprint</strong>.</p>
+										<p class="tab">If you change its values, you will change them in all their attacks.</p>
+									<hr>
+
+									<h4 id="attack-2d-property-individual-properties"><a href="https://docs.godotengine.org/en/stable/classes/class_dictionary.html#dictionary" class="link">Dictionary</a>[<a href="https://docs.godotengine.org/en/stable/classes/class_stringname.html#stringname" class="link">StringName</a>, <a href="https://docs.godotengine.org/en/stable/classes/class_variant.html#variant" class="link">Variant</a>] individual_properties<span class="comment-alt"> = </span><span class="value"> {}</span></h4>
+										<p class="tab">This dictionary is <strong>independent</strong> in all attacks created by its original blueprint.</p>
+										<p class="tab">Modifying it will only affect this attack instance.</p>
+									<hr>
+
+									<h4 id="attack-2d-property-instance-attack-modifiers"><a href="https://docs.godotengine.org/en/stable/classes/class_bool.html#class-bool" class="link">bool</a> instance_attack_modifiers<span class="comment-alt"> = </span><span class="value"> false</span></h4>
+										<p class="tab">If <code class="value">true</code> the <a href="#attack-2d-property-attack-modifiers">attack_modifiers</a> dictionary will be independent in all attack copies made by your <a href="../../1.0/nodes/projectile-manager-2d.html#projectile-manager-2d">ProjectileManager2D</a>s instead of being shared among all of them.</p>
+										<p class="tab">This may seem like the optimal behavior but it is recommended to set it to <code class="value">false</code>.</p>
+									<hr>
+
+									<h4 id="attack-2d-property-instances"><a href="https://docs.godotengine.org/en/stable/classes/class_int.html#class-int" class="link">int</a> instances<span class="comment-alt"> = </span><span class="value"> 0</span></h4>
+										<p class="tab">Fixed Projectile instances on request.</p>
+									<hr>
+
+									<h4 id="attack-2d-property-is-active"><a href="https://docs.godotengine.org/en/stable/classes/class_bool.html#class-bool" class="link">bool</a> is_active<span class="comment-alt"> = </span><span class="value"> false</span></h4>
+										<p class="tab">Variable state for weapon update validation.</p>
+									<hr>
+
+									<h4 id="attack-2d-property-is-linked"><a href="https://docs.godotengine.org/en/stable/classes/class_bool.html#class-bool" class="link">bool</a> is_linked<span class="comment-alt"> = </span><span class="value"> false</span></h4>
+										<p class="tab">If <code class="value">true</code> the attack itself is connected with the <a href="../../1.0/nodes/projectile-processor-2d.html#projectile-processor-2d">ProjectileProcessor2D</a> and can request projectiles and modify attacks.</p>
+									<hr>
+
+									<h4 id="attack-2d-property-is-under-uninterrupted-request"><a href="https://docs.godotengine.org/en/stable/classes/class_bool.html#class-bool" class="link">bool</a> is_under_uninterrupted_request<span class="comment-alt"> = </span><span class="value"> false</span></h4>
+										<p class="tab">If <code class="value">true</code> the original caller has <b>requested</b> new projectiles on every frame <b>without a break</b>.</p>
+									<hr>
+
+									<h4 id="attack-2d-property-margin"><a href="https://docs.godotengine.org/en/stable/classes/class_float.html#class-float" class="link">float</a> margin<span class="comment-alt"> = </span><span class="value"> 0</span></h4>
+										<p class="tab">Minimum duration for attack phases.</p>
+										<p class="tab">Attack phases below this duration <strong>will be skipped</strong>.</p>
+									<hr>
+
+									<h4 id="attack-2d-property-on-anticipate-enter"><a href="https://docs.godotengine.org/en/stable/classes/class_callable.html#callable" class="link">Callable</a> on_anticipate_enter</h4>
+										<p class="tab">Attack custom anticipate phase enter callback.</p>
+									<hr>
+
+									<h4 id="attack-2d-property-on-anticipate-exit"><a href="https://docs.godotengine.org/en/stable/classes/class_callable.html#callable" class="link">Callable</a> on_anticipate_exit</h4>
+										<p class="tab">Attack custom anticipate phase exit callback.</p>
+									<hr>
+
+									<h4 id="attack-2d-property-on-anticipate-update"><a href="https://docs.godotengine.org/en/stable/classes/class_callable.html#callable" class="link">Callable</a> on_anticipate_update</h4>
+										<p class="tab">Attack custom anticipate phase update callback.</p>
+									<hr>
+
+									<h4 id="attack-2d-property-on-charge-enter"><a href="https://docs.godotengine.org/en/stable/classes/class_callable.html#callable" class="link">Callable</a> on_charge_enter</h4>
+										<p class="tab">Attack custom charge phase enter callback.</p>
+									<hr>
+
+									<h4 id="attack-2d-property-on-charge-exit"><a href="https://docs.godotengine.org/en/stable/classes/class_callable.html#callable" class="link">Callable</a> on_charge_exit</h4>
+										<p class="tab">Attack custom charge phase exit callback.</p>
+									<hr>
+
+									<h4 id="attack-2d-property-on-charge-update"><a href="https://docs.godotengine.org/en/stable/classes/class_callable.html#callable" class="link">Callable</a> on_charge_update</h4>
+										<p class="tab">Attack custom charge phase update callback.</p>
+									<hr>
+
+									<h4 id="attack-2d-property-on-completed"><a href="https://docs.godotengine.org/en/stable/classes/class_callable.html#callable" class="link">Callable</a> on_completed</h4>
+										<p class="tab">Attack custom completion callback.</p>
+									<hr>
+
+									<h4 id="attack-2d-property-on-main-enter"><a href="https://docs.godotengine.org/en/stable/classes/class_callable.html#callable" class="link">Callable</a> on_main_enter</h4>
+										<p class="tab">Attack custom main phase enter callback.</p>
+									<hr>
+
+									<h4 id="attack-2d-property-on-main-exit"><a href="https://docs.godotengine.org/en/stable/classes/class_callable.html#callable" class="link">Callable</a> on_main_exit</h4>
+										<p class="tab">Attack custom main phase exit callback.</p>
+									<hr>
+
+									<h4 id="attack-2d-property-on-main-update"><a href="https://docs.godotengine.org/en/stable/classes/class_callable.html#callable" class="link">Callable</a> on_main_update</h4>
+										<p class="tab">Attack custom main phase update callback.</p>
+									<hr>
+
+									<h4 id="attack-2d-property-on-recovery-enter"><a href="https://docs.godotengine.org/en/stable/classes/class_callable.html#callable" class="link">Callable</a> on_recovery_enter</h4>
+										<p class="tab">Attack custom recovery phase enter callback.</p>
+									<hr>
+
+									<h4 id="attack-2d-property-on-recovery-exit"><a href="https://docs.godotengine.org/en/stable/classes/class_callable.html#callable" class="link">Callable</a> on_recovery_exit</h4>
+										<p class="tab">Attack custom recovery phase exit callback.</p>
+									<hr>
+
+									<h4 id="attack-2d-property-on-recovery-update"><a href="https://docs.godotengine.org/en/stable/classes/class_callable.html#callable" class="link">Callable</a> on_recovery_update</h4>
+										<p class="tab">Attack custom recovery phase update callback.</p>
+									<hr>
+
+									<h4 id="attack-2d-property-on-start"><a href="https://docs.godotengine.org/en/stable/classes/class_callable.html#callable" class="link">Callable</a> on_start</h4>
+										<p class="tab">Attack custom start callback.</p>
+									<hr>
+
+									<h4 id="attack-2d-property-override-attack-duration"><a href="https://docs.godotengine.org/en/stable/classes/class_bool.html#class-bool" class="link">bool</a> override_attack_duration<span class="comment-alt"> = </span><span class="value"> false</span></h4>
+										<p class="tab">If <code class="value">true</code> <strong>overrides</strong> the <a href="#attack-2d-property-attack-duration-time">attack_duration_time</a> property with its <b>assign projectile</b> <a href="../../1.0/classes/projectile-2d.html#projectile-2d-property-spawn-interval">spawn_interval</a> value.</p>
+									<hr>
+
+									<h4 id="attack-2d-property-override-destination"><a href="https://docs.godotengine.org/en/stable/classes/class_bool.html#class-bool" class="link">bool</a> override_destination<span class="comment-alt"> = </span><span class="value"> false</span></h4>
+										<p class="tab">If <code class="value">true</code> the weapon will constantly update its projectile <b>direction</b> even if its execution request was unsuccessful.</p>
+									<hr>
+
+									<h4 id="attack-2d-property-override-position"><a href="https://docs.godotengine.org/en/stable/classes/class_bool.html#class-bool" class="link">bool</a> override_position<span class="comment-alt"> = </span><span class="value"> false</span></h4>
+										<p class="tab">If <code class="value">true</code> the weapon ignores the given spawn positions and uses its own <a href="../../1.0/nodes/projectile-manager-2d.html#projectile-manager-2d">ProjectileManager</a> node <b>global position</b> instead.</p>
+									<hr>
+
+									<h4 id="attack-2d-property-pi"><a href="../../1.0/classes/packed-info.html#packed-info" class="link">PackedInfo</a> pi</h4>
+										<p class="tab">Projectile spawn parameters.</p>
+									<hr>
+
+									<h4 id="attack-2d-property-projectile"><a href="../../1.0/classes/projectile-2d.html#projectile-2d" class="link">Projectile2D</a> projectile</h4>
+										<p class="tab">Reference to the requested projectile.</p>
+										<p class="tab">Defines what gets spawned during the attack.</p>
+									<hr>
+
+									<h4 id="attack-2d-property-remaining-shots"><a href="https://docs.godotengine.org/en/stable/classes/class_int.html#class-int" class="link">int</a> remaining_shots<span class="comment-alt"> = </span><span class="value"> 0</span></h4>
+										<p class="tab">Current attack repetitions until expiration.</p>
+										<p class="tab">Only available on <a href="#attack-2d-property-spawn-type">ONE_BY_ONE</a> executions.</p>
+									<hr>
+
+									<h4 id="attack-2d-property-requested-interaction"><a href="https://docs.godotengine.org/en/stable/classes/class_bool.html#class-bool" class="link">bool</a> requested_interaction<span class="comment-alt"> = </span><span class="value"> false</span></h4>
+										<p class="tab">If <code class="value">true</code> the original caller has <b>requested</b> the creation of more projectiles on this frame.</p>
+									<hr>
+
+									<h4 id="attack-2d-property-resource"><a href="../../1.0/resources/attack-blueprint-2d.html#attack-blueprint-2d" class="link">AttackBlueprint2D</a> resource</h4>
+										<p class="tab">Fixed attack blueprint.</p>
+									<hr>
+
+									<h4 id="attack-2d-property-spawn-type"><a href="#enum-attack-2d-instances-spawn-type" class="link">InstancesSpawnType</a> spawn_type<span class="comment-alt"> = </span><span class="value"> 0</span></h4>
+										<p class="tab" style="margin-bottom: 0.6em;">Determines the spawning method of projectiles with multiple <a href="../../1.0/classes/projectile-2d.html#projectile-2d-property-instances">instances</a> and with timed <a href="../../1.0/classes/projectile-2d.html#projectile-2d-property-spawn-interval">spawn intervals</a>:</p>
+										<ul class="tab">
+											<li class="tab" style="margin-bottom: 0;"><b>ALL_AT_ONCE:</b> All projectile instances spawn simultaneously.</li>
+											<li class="tab" style="margin-bottom: 0;"><b>ONE_BY_ONE:</b> Projectile instances spawn sequentially with delays.</li>
+										</ul>
+									<hr>
+
+									<h4 id="attack-2d-property-sub-frame-excess"><a href="https://docs.godotengine.org/en/stable/classes/class_float.html#class-float" class="link">float</a> sub_frame_excess<span class="comment-alt"> = </span><span class="value"> 0</span></h4>
+										<p class="tab">Remnant for attacks with lifetimes below framerate.</p>
+										<p class="tab">Only available on <a href="#attack-2d-property-spawn-type">ONE_BY_ONE</a> executions.</p>
 									<hr class="strong">
 									<br>
 
@@ -217,13 +867,249 @@
 									<header class="semimajor" id="method-descriptions">
 										<h3>Method Descriptions</h3>
 									</header>
-									
-									<h4><a href="#" class="link">return_type_1</a> method_name_1<span class="comment-alt">(property_name_1: </span><a href="#" class="link">property_type_1</a><span class="comment-alt">, property_name_2: </span><a href="#" class="link">property_type_2</a><span class="comment-alt">)</span></h4>
-										<p class="tab">Method description long</p>
+
+									<h4 id="attack-2d-method-init"><span class="comment-alt">void</span> _init<span class="comment-alt">(_resource: <a href="../../1.0/resources/attack-blueprint-2d.html#attack-blueprint-2d" class="link">AttackBlueprint2D</a><span class="comment-alt"> = null, proj_caller: </span><a href="https://docs.godotengine.org/en/stable/classes/class_node2d.html#node2d" class="link">Node2D</a><span class="comment-alt"> = null)</span></h4>
+										<p class="tab">Initializes a new attack instance from the values of the given <a href="../../1.0/resources/attack-blueprint-2d.html#attack-blueprint-2d">AttackBlueprint2D</a> <code class="value">_resource</code> parameter.</p>
 									<hr>
 
-									<h4><a href="#" class="link">return_type_1</a> method_name_1<span class="comment-alt">(property_name_1: </span><a href="#" class="link">property_type_1</a><span class="comment-alt">, property_name_2: </span><a href="#" class="link">property_type_2</a><span class="comment-alt">)</span></h4>
-										<p class="tab">Method description long</p>
+									<h4 id="attack-2d-method-add-global-property"><a href="../../1.0/classes/attack-2d.html#attack-2d" class="link">Attack2D</a> add_global_property<span class="comment-alt">(property: </span><a href="https://docs.godotengine.org/en/stable/classes/class_stringname.html#stringname" class="link">StringName</a><span class="comment-alt">, value: </span><a href="https://docs.godotengine.org/en/stable/classes/class_variant.html#variant" class="link">Variant</a><span class="comment-alt">)</span></h4>
+										<p class="tab">Returns <b>itself</b> for method chaining.</p>
+										<p class="tab">Adds a new element at the <a href="#attack-2d-property-global-properties">global_properties</a> dictionary, with the given <code class="value">value</code> at the given key <code class="value">property</code>.</p>
+
+										<pre style="margin: 0 0 1.25em 1.5em;"><code class="language-gdscript" >var attack_1: Attack2D = projectile_manager.get_attack(0)
+var attack_2: Attack2D = projectile_manager.get_attack(0).clone()
+
+attack_1.add_global_property("RECOIL", 11.5)
+print(attack_1.global_properties["RECOIL"]) # Prints (11.5)
+print(attack_2.global_properties["RECOIL"]) # Also prints (11.5)</code></pre>
+										<hr>
+									<hr>
+
+									<h4 id="attack-2d-method-add-individual-property"><a href="../../1.0/classes/attack-2d.html#attack-2d" class="link">Attack2D</a> add_individual_property<span class="comment-alt">(property: </span><a href="https://docs.godotengine.org/en/stable/classes/class_stringname.html#stringname" class="link">StringName</a><span class="comment-alt">, value: </span><a href="https://docs.godotengine.org/en/stable/classes/class_variant.html#variant" class="link">Variant</a><span class="comment-alt">)</span></h4>
+										<p class="tab">Returns <b>itself</b> for method chaining.</p>
+										<p class="tab">Adds a new element at the <a href="#attack-2d-property-individual-properties">individual_properties</a> dictionary, with the given <code class="value">value</code> at the given key <code class="value">property</code>.</p>
+
+										<pre style="margin: 0 0 1.25em 1.5em;"><code class="language-gdscript" >var attack_1: Attack2D = projectile_manager.get_attack(0)
+var attack_2: Attack2D = projectile_manager.get_attack(0).clone()
+
+attack_1.add_individual_property("DURABILITY", 100)
+print(attack_1.individual_properties.get("DURABILITY", -1)) # Prints (100)
+print(attack_2.individual_properties.get("DURABILITY", -1)) # Prints (-1.0) because "DURABILITY" does not exist here</code></pre>
+										<hr>
+									<hr>
+									
+									<h4 id="attack-2d-method-add-modifier"><a href="https://docs.godotengine.org/en/stable/classes/class_bool.html#class-bool" class="link">bool</a> add_modifier<span class="comment-alt">(modifier: </span><a href="../../1.0/resources/attack-modifier-2d.html#attack-modifier-2d" class="link">Attack2DModifier</a><span class="comment-alt">)</span></h4>
+										<p class="tab">Returns <code class="value">true</code> if <code class="value">modifier</code> was successfully added.</p>
+										<p class="tab">If valid, <code class="value">modifier</code> gets added to <a href="#attack-2d-property-attack-modifiers">attack_modifiers</a> and emits the <a href="#signal-attack-2d-modifier-requested">modifier_requested</a> signal.</p>
+
+										<pre style="margin: 0 0 1.25em 1.5em;"><code class="language-gdscript" >var attack: Attack2D = projectile_manager.get_attack(0)
+print(attack.add_modifier(Attack2DModifier.new("ATTACK_BUFF", 1.0))) # Prints (true)</code></pre>
+										<hr>
+									<hr>
+
+									<h4 id="attack-2d-method-anticipate-enter"><span class="comment-alt">void</span> anticipate_enter<span class="comment-alt">()</span></h4>
+										<p class="tab">Default behavior for anticipate phase start.</p>
+									<hr>
+
+									<h4 id="attack-2d-method-anticipate-exit"><span class="comment-alt">void</span> anticipate_exit<span class="comment-alt">()</span></h4>
+										<p class="tab">Default behavior for anticipate phase end.</p>
+									<hr>
+
+									<h4 id="attack-2d-method-anticipate-update"><span class="comment-alt">void</span> anticipate_update<span class="comment-alt">(_delta: </span><a href="https://docs.godotengine.org/en/stable/classes/class_float.html#class-float" class="link">float</a><span class="comment-alt">)</span></h4>
+										<p class="tab">Default behavior for anticipate phase update.</p>
+									<hr>
+
+									<h4 id="attack-2d-method-assign"><span class="comment-alt">void</span> assign<span class="comment-alt">(_projectile: </span><a href="../../1.0/classes/projectile-2d.html#projectile-2d" class="link">Projectile2D</a><span class="comment-alt">, _caller: </span><a href="../../1.0/nodes/projectile-manager-2d.html#projectile-manager-2d" class="link">ProjectileManager2D</a><span class="comment-alt">, _pi: </span><a href="../../1.0/classes/packed-info.html#packed-info" class="link">PackedInfo</a><span class="comment-alt"> = pi)</span></h4>
+										<p class="tab">Set up an attack essential parameters.</p>
+									<hr>
+
+									<h4 id="attack-2d-method-change-state"><a href="https://docs.godotengine.org/en/stable/classes/class_bool.html#class-bool" class="link">bool</a> change_state<span class="comment-alt">(state: </span><a href="#enum-attack-2d-attack-state" class="link">AttackState</a><span class="comment-alt">)</span></h4>
+										<p class="tab">Transitions to new <code class="value">state</code> <b>attack phase</b>.</p>
+										<p class="tab">Also calls its appropriate <strong>enter callbacks</strong>.</p>
+									<hr>
+
+									<h4 id="attack-2d-method-charge-enter"><span class="comment-alt">void</span> charge_enter<span class="comment-alt">()</span></h4>
+										<p class="tab">Default behavior for charge phase start.</p>
+									<hr>
+
+									<h4 id="attack-2d-method-charge-exit"><span class="comment-alt">void</span> charge_exit<span class="comment-alt">()</span></h4>
+										<p class="tab">Default behavior for charge phase end.</p>
+									<hr>
+
+									<h4 id="attack-2d-method-charge-update"><span class="comment-alt">void</span> charge_update<span class="comment-alt">(_delta: </span><a href="https://docs.godotengine.org/en/stable/classes/class_float.html#class-float" class="link">float</a><span class="comment-alt">)</span></h4>
+										<p class="tab">Default behavior for charge phase update.</p>
+									<hr>
+
+									<h4 id="attack-2d-method-clone"><a href="../../1.0/classes/attack-2d.html#attack-2d" class="link">Attack2D</a> clone<span class="comment-alt">()</span></h4>
+										<p class="tab">Returns an <strong>identical</strong> copy of the attack.</p>
+									<hr>
+
+									<h4 id="attack-2d-method-copy"><span class="comment-alt">void</span> copy<span class="comment-alt">(base: </span><a href="../../1.0/classes/attack-2d.html#attack-2d" class="link">Attack2D</a><span class="comment-alt">)</span></h4>
+										<p class="tab">Copies all properties from the <code class="value">base</code> attack.</p>
+									<hr>
+
+									<h4 id="attack-2d-method-direct-request"><span class="comment-alt">void</span> direct_request<span class="comment-alt">(_projectile: </span><a href="../../1.0/classes/projectile-2d.html#projectile-2d" class="link">Projectile2D</a><span class="comment-alt"> = projectile, _pi: </span><a href="../../1.0/classes/packed-info.html#packed-info" class="link">PackedInfo</a><span class="comment-alt"> = pi)</span></h4>
+										<p class="tab">Requests the creation of new projectiles through the <a href="#signal-attack-2d-direct-projectile-request">direct_projectile_request</a> signal.</p>
+									<hr>
+
+									<h4 id="attack-2d-method-disable"><span class="comment-alt">void</span> disable<span class="comment-alt">()</span></h4>
+										<p class="tab">Interrupts/completes the attack sequence.</p>
+										<p class="tab">Calls <a href="#attack-2d-property-on-completed">on_completed</a> callback.</p>
+									<hr>
+
+									<h4 id="attack-2d-method-get-current-state-duration"><a href="https://docs.godotengine.org/en/stable/classes/class_float.html#class-float" class="link">float</a> get_current_state_duration<span class="comment-alt">()</span></h4>
+										<p class="tab">Returns duration of the <b>current attack phase</b>, whatever it may be.</p>
+									<hr>
+
+									<h4 id="attack-2d-method-is-charge-completed"><a href="https://docs.godotengine.org/en/stable/classes/class_bool.html#class-bool" class="link">bool</a> is_charge_completed<span class="comment-alt">()</span></h4>
+										<p class="tab">Returns <code class="value">true</code> if the charge phase is completed.</p>
+										<p class="tab">Depends on <a href="#attack-2d-property-charge-trigger">charge_trigger</a> setting.</p>
+									<hr>
+
+									<h4 id="attack-2d-method-link-to-processor"><span class="comment-alt">void</span> link_to_processor<span class="comment-alt">(processor_instance: </span><a href="../../1.0/nodes/projectile-processor-2d.html#projectile-processor-2d" class="link">ProjectileProcessor2D</a><span class="comment-alt">)</span></h4>
+										<p class="tab">Connects all attack signals to the given <a href="../../1.0/nodes/projectile-processor-2d.html#projectile-processor-2d" class="link">ProjectileProcessor2D</a> instance.</p>
+									<hr>
+
+									<h4 id="attack-2d-method-main-enter"><span class="comment-alt">void</span> main_enter<span class="comment-alt">()</span></h4>
+										<p class="tab">Default behavior for main phase start.</p>
+										<p class="tab">Sets up projectile spawning on <a href="#attack-2d-property-spawn-type">ALL_AT_ONCE</a> executions.</p>
+									<hr>
+
+									<h4 id="attack-2d-method-main-exit"><span class="comment-alt">void</span> main_exit<span class="comment-alt">()</span></h4>
+										<p class="tab">Default behavior for main phase end.</p>
+									<hr>
+
+									<h4 id="attack-2d-method-main-update"><span class="comment-alt">void</span> main_update<span class="comment-alt">(_delta: </span><a href="https://docs.godotengine.org/en/stable/classes/class_float.html#class-float" class="link">float</a><span class="comment-alt">)</span></h4>
+										<p class="tab">Default behavior for main phase update.</p>
+										<p class="tab">Handles projectile spawning on <a href="#attack-2d-property-spawn-type">ONE_BY_ONE</a> executions.</p>
+									<hr>
+
+									<h4 id="attack-2d-method-recovery-enter"><span class="comment-alt">void</span> recovery_enter<span class="comment-alt">()</span></h4>
+										<p class="tab">Default behavior for recovery phase start.</p>
+									<hr>
+
+									<h4 id="attack-2d-method-recovery-exit"><span class="comment-alt">void</span> recovery_exit<span class="comment-alt">()</span></h4>
+										<p class="tab">Default behavior for recovery phase end.</p>
+										<p class="tab">Completes the attack.</p>
+									<hr>
+
+									<h4 id="attack-2d-method-recovery-update"><span class="comment-alt">void</span> recovery_update<span class="comment-alt">(_delta: </span><a href="https://docs.godotengine.org/en/stable/classes/class_float.html#class-float" class="link">float</a><span class="comment-alt">)</span></h4>
+										<p class="tab">Default behavior for recovery phase update.</p>
+									<hr>
+
+									<h4 id="attack-2d-method-reload"><span class="comment-alt">void</span> reload<span class="comment-alt">()</span></h4>
+										<p class="tab">Resets <a href="#attack-2d-property-remaining-shots">remaining_shots</a> on <a href="#attack-2d-property-spawn-type">ONE_BY_ONE</a> executions.</p>
+									<hr>
+
+									<h4 id="attack-2d-method-remove-modifier"><a href="https://docs.godotengine.org/en/stable/classes/class_bool.html#class-bool" class="link">bool</a> remove_modifier<span class="comment-alt">(modifier_name: </span><a href="https://docs.godotengine.org/en/stable/classes/class_stringname.html#stringname" class="link">StringName</a><span class="comment-alt">)</span></h4>
+										<p class="tab">Returns <code class="value">true</code> if the modifier with key <code class="value">modifier_name</code> was successfully removed.</p>
+										<p class="tab">Removes a modifier by name from <a href="#attack-2d-property-attack-modifiers">attack_modifiers</a> and calls its <a href="../../1.0/classes/attack-2d-modifier.html#attack-2d-modifier-method-exit">exit()</a> method.</p>
+									<hr>
+
+									<h4 id="attack-2d-method-request-projectile"><span class="comment-alt">void</span> request_projectile<span class="comment-alt">(_projectile: </span><a href="../../1.0/classes/projectile-2d.html#projectile-2d" class="link">Projectile2D</a><span class="comment-alt"> = projectile)</span></h4>
+										<p class="tab">Requests the creation of new projectiles through the <a href="#signal-attack-2d-projectile-requested">projectile_requested</a> signal.</p>
+									<hr>
+
+									<h4 id="attack-2d-method-reset"><span class="comment-alt">void</span> reset<span class="comment-alt">()</span></h4>
+										<p class="tab">Resets the attack to its initial state using its <a href="#attack-2d-property-resource">blueprint</a>.</p>
+										<p class="tab">Clears all runtime modifications and custom properties.</p>
+									<hr>
+
+									<h4 id="attack-2d-method-set-on-anticipate-enter"><a href="../../1.0/classes/attack-2d.html#attack-2d" class="link">Attack2D</a> set_on_anticipate_enter<span class="comment-alt">(method: </span><a href="https://docs.godotengine.org/en/stable/classes/class_callable.html#callable" class="link">Callable</a><span class="comment-alt">)</span></h4>
+										<p class="tab">Returns <b>itself</b> for method chaining.</p>
+										<p class="tab">Sets <a href="#attack-2d-property-on-anticipate-enter">on_anticipate_enter</a> callback.</p>
+									<hr>
+
+									<h4 id="attack-2d-method-set-on-anticipate-exit"><a href="../../1.0/classes/attack-2d.html#attack-2d" class="link">Attack2D</a> set_on_anticipate_exit<span class="comment-alt">(method: </span><a href="https://docs.godotengine.org/en/stable/classes/class_callable.html#callable" class="link">Callable</a><span class="comment-alt">)</span></h4>
+										<p class="tab">Returns <b>itself</b> for method chaining.</p>
+										<p class="tab">Sets <a href="#attack-2d-property-on-anticipate-exit">on_anticipate_exit</a> callback.</p>
+									<hr>
+
+									<h4 id="attack-2d-method-set-on-anticipate-update"><a href="../../1.0/classes/attack-2d.html#attack-2d" class="link">Attack2D</a> set_on_anticipate_update<span class="comment-alt">(method: </span><a href="https://docs.godotengine.org/en/stable/classes/class_callable.html#callable" class="link">Callable</a><span class="comment-alt">)</span></h4>
+										<p class="tab">Returns <b>itself</b> for method chaining.</p>
+										<p class="tab">Sets <a href="#attack-2d-property-on-anticipate-update">on_anticipate_update</a> callback.</p>
+									<hr>
+
+									<h4 id="attack-2d-method-set-on-charge-enter"><a href="../../1.0/classes/attack-2d.html#attack-2d" class="link">Attack2D</a> set_on_charge_enter<span class="comment-alt">(method: </span><a href="https://docs.godotengine.org/en/stable/classes/class_callable.html#callable" class="link">Callable</a><span class="comment-alt">)</span></h4>
+										<p class="tab">Returns <b>itself</b> for method chaining.</p>
+										<p class="tab">Sets <a href="#attack-2d-property-on-charge-enter">on_charge_enter</a> callback.</p>
+									<hr>
+
+									<h4 id="attack-2d-method-set-on-charge-exit"><a href="../../1.0/classes/attack-2d.html#attack-2d" class="link">Attack2D</a> set_on_charge_exit<span class="comment-alt">(method: </span><a href="https://docs.godotengine.org/en/stable/classes/class_callable.html#callable" class="link">Callable</a><span class="comment-alt">)</span></h4>
+										<p class="tab">Returns <b>itself</b> for method chaining.</p>
+										<p class="tab">Sets <a href="#attack-2d-property-on-charge-exit">on_charge_exit</a> callback.</p>
+									<hr>
+
+									<h4 id="attack-2d-method-set-on-charge-update"><a href="../../1.0/classes/attack-2d.html#attack-2d" class="link">Attack2D</a> set_on_charge_update<span class="comment-alt">(method: </span><a href="https://docs.godotengine.org/en/stable/classes/class_callable.html#callable" class="link">Callable</a><span class="comment-alt">)</span></h4>
+										<p class="tab">Returns <b>itself</b> for method chaining.</p>
+										<p class="tab">Sets <a href="#attack-2d-property-on-charge-update">on_charge_update</a> callback.</p>
+									<hr>
+
+									<h4 id="attack-2d-method-set-on-completed"><a href="../../1.0/classes/attack-2d.html#attack-2d" class="link">Attack2D</a> set_on_completed<span class="comment-alt">(method: </span><a href="https://docs.godotengine.org/en/stable/classes/class_callable.html#callable" class="link">Callable</a><span class="comment-alt">)</span></h4>
+										<p class="tab">Returns <b>itself</b> for method chaining.</p>
+										<p class="tab">Sets <a href="#attack-2d-property-on-completed">on_completed</a> callback.</p>
+									<hr>
+
+									<h4 id="attack-2d-method-set-on-main-enter"><a href="../../1.0/classes/attack-2d.html#attack-2d" class="link">Attack2D</a> set_on_main_enter<span class="comment-alt">(method: </span><a href="https://docs.godotengine.org/en/stable/classes/class_callable.html#callable" class="link">Callable</a><span class="comment-alt">)</span></h4>
+										<p class="tab">Returns <b>itself</b> for method chaining.</p>
+										<p class="tab">Sets <a href="#attack-2d-property-on-main-enter">on_main_enter</a> callback.</p>
+									<hr>
+
+									<h4 id="attack-2d-method-set-on-main-exit"><a href="../../1.0/classes/attack-2d.html#attack-2d" class="link">Attack2D</a> set_on_main_exit<span class="comment-alt">(method: </span><a href="https://docs.godotengine.org/en/stable/classes/class_callable.html#callable" class="link">Callable</a><span class="comment-alt">)</span></h4>
+										<p class="tab">Returns <b>itself</b> for method chaining.</p>
+										<p class="tab">Sets <a href="#attack-2d-property-on-main-exit">on_main_exit</a> callback.</p>
+									<hr>
+
+									<h4 id="attack-2d-method-set-on-main-update"><a href="../../1.0/classes/attack-2d.html#attack-2d" class="link">Attack2D</a> set_on_main_update<span class="comment-alt">(method: </span><a href="https://docs.godotengine.org/en/stable/classes/class_callable.html#callable" class="link">Callable</a><span class="comment-alt">)</span></h4>
+										<p class="tab">Returns <b>itself</b> for method chaining.</p>
+										<p class="tab">Sets <a href="#attack-2d-property-on-main-update">on_main_update</a> callback.</p>
+									<hr>
+
+									<h4 id="attack-2d-method-set-on-recovery-enter"><a href="../../1.0/classes/attack-2d.html#attack-2d" class="link">Attack2D</a> set_on_recovery_enter<span class="comment-alt">(method: </span><a href="https://docs.godotengine.org/en/stable/classes/class_callable.html#callable" class="link">Callable</a><span class="comment-alt">)</span></h4>
+										<p class="tab">Returns <b>itself</b> for method chaining.</p>
+										<p class="tab">Sets <a href="#attack-2d-property-on-recovery-enter">on_recovery_enter</a> callback.</p>
+									<hr>
+
+									<h4 id="attack-2d-method-set-on-recovery-exit"><a href="../../1.0/classes/attack-2d.html#attack-2d" class="link">Attack2D</a> set_on_recovery_exit<span class="comment-alt">(method: </span><a href="https://docs.godotengine.org/en/stable/classes/class_callable.html#callable" class="link">Callable</a><span class="comment-alt">)</span></h4>
+										<p class="tab">Returns <b>itself</b> for method chaining.</p>
+										<p class="tab">Sets <a href="#attack-2d-property-on-recovery-exit">on_recovery_exit</a> callback.</p>
+									<hr>
+
+									<h4 id="attack-2d-method-set-on-recovery-update"><a href="../../1.0/classes/attack-2d.html#attack-2d" class="link">Attack2D</a> set_on_recovery_update<span class="comment-alt">(method: </span><a href="https://docs.godotengine.org/en/stable/classes/class_callable.html#callable" class="link">Callable</a><span class="comment-alt">)</span></h4>
+										<p class="tab">Returns <b>itself</b> for method chaining.</p>
+										<p class="tab">Sets <a href="#attack-2d-property-on-recovery-update">on_recovery_update</a> callback.</p>
+									<hr>
+
+									<h4 id="attack-2d-method-set-on-start"><a href="../../1.0/classes/attack-2d.html#attack-2d" class="link">Attack2D</a> set_on_start<span class="comment-alt">(method: </span><a href="https://docs.godotengine.org/en/stable/classes/class_callable.html#callable" class="link">Callable</a><span class="comment-alt">)</span></h4>
+										<p class="tab">Returns <b>itself</b> for method chaining.</p>
+										<p class="tab">Sets <a href="#attack-2d-property-on-start">on_start</a> callback.</p>
+									<hr>
+
+									<h4 id="attack-2d-method-set-property"><a href="../../1.0/classes/attack-2d.html#attack-2d" class="link">Attack2D</a> set_property<span class="comment-alt">(property: </span><a href="https://docs.godotengine.org/en/stable/classes/class_stringname.html#stringname" class="link">StringName</a><span class="comment-alt">, value: </span><a href="https://docs.godotengine.org/en/stable/classes/class_variant.html#variant" class="link">Variant</a><span class="comment-alt">)</span></h4>
+										<p class="tab">Returns <b>itself</b> for method chaining.</p>
+										<p class="tab">Assigns <code class="value">value</code> to the given attack <code class="value">property</code>. If the attack property does not exist or the given <code class="value">value</code>'s type doesn't match, nothing happens.</p>
+
+										<pre style="margin: 0 0 1.25em 1.5em;"><code class="language-gdscript" >var attack: Attack2D = projectile_manager.get_attack(0)
+attack.set_property("attack_duration_time", 2.5)
+print(attack.attack_duration_time) # Prints (2.5)</code></pre>
+									<hr>
+
+									<h4 id="attack-2d-method-start"><span class="comment-alt">void</span> start<span class="comment-alt">()</span></h4>
+										<p class="tab">Validates and initiates the <b>attack phases</b> sequence.</p>
+									<hr>
+
+									<h4 id="attack-2d-method-update-lifetime"><a href="https://docs.godotengine.org/en/stable/classes/class_bool.html#class-bool" class="link">bool</a> update_lifetime<span class="comment-alt">(_delta: </span><a href="https://docs.godotengine.org/en/stable/classes/class_float.html#class-float" class="link">float</a><span class="comment-alt">, local_margin: </span><a href="https://docs.godotengine.org/en/stable/classes/class_float.html#class-float" class="link">float</a><span class="comment-alt"> = 0)</span></h4>
+										<p class="tab">Updates the current <b>attack phase</b> lifetime.</p>
+										<p class="tab">Returns <code class="value">true</code> as long as the current phase remains active.</p>
+									<hr>
+
+									<h4 id="attack-2d-method-update"><a href="https://docs.godotengine.org/en/stable/classes/class_bool.html#class-bool" class="link">bool</a> update<span class="comment-alt">(_delta: </span><a href="https://docs.godotengine.org/en/stable/classes/class_float.html#class-float" class="link">float</a><span class="comment-alt">)</span></h4>
+										<p class="tab">Returns <code class="value">true</code> if the projectile remains active.</p>
+									<hr>
+
+									<h4 id="attack-2d-method-validate-attack"><a href="https://docs.godotengine.org/en/stable/classes/class_bool.html#class-bool" class="link">bool</a> validate_attack<span class="comment-alt">()</span></h4>
+										<p class="tab">Returns <code class="value">true</code> if the attack can be executed.</p>
+										<p class="tab">A <strong>valid attack</strong> requires direct processor connection and a valid projectile.</p>
 									<hr>
 								</section>
 
@@ -384,6 +1270,7 @@
 			<script src="../../assets/js/breakpoints.min.js"></script>
 			<script src="../../assets/js/util.js"></script>
 			<script src="../../assets/js/main.js"></script>
+			<script src="../../assets/js/prism.js"></script>
 
 	</body>
 </html>

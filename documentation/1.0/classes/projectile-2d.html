@@ -571,15 +571,15 @@
 								<header class="semimajor" id="signals">
 									<h3>Signals</h3>
 								</header>
-								
-								<h4 id="signal-projectile-2d-projectile-requested">projectile_requested<span class="comment-alt">(_projectile: </span><a href="../../1.0/classes/projectile-2d.html#projectile-2d" class="link">Projectile2D</a><span class="comment-alt">, _position: </span><a href="https://docs.godotengine.org/en/stable/classes/class_vector2.html#class-vector2" class="link">Vector2</a><span class="comment-alt">, _destination: </span><a href="https://docs.godotengine.org/en/stable/classes/class_vector2.html#class-vector2" class="link">Vector2</a><span class="comment-alt">, _target: </span><a href="https://docs.godotengine.org/en/stable/classes/class_node2d.html#node2d" class="link">Node2D</a><span class="comment-alt"> = null, move_method: </span><a href="https://docs.godotengine.org/en/stable/classes/class_callable.html#callable" class="link">Callable</a><span class="comment-alt"> = Callable(), start_method: </span><a href="https://docs.godotengine.org/en/stable/classes/class_callable.html#callable" class="link">Callable</a><span class="comment-alt"> = Callable(), collision_method: </span><a href="https://docs.godotengine.org/en/stable/classes/class_callable.html#callable" class="link">Callable</a><span class="comment-alt"> = Callable(), expired_method: </span><a href="https://docs.godotengine.org/en/stable/classes/class_callable.html#callable" class="link">Callable</a><span class="comment-alt"> = Callable())</span></h4>
-								<p class="tab">Emitted when a <b>Projectile2D</b> with <a href="#projectile-2d-property-on-expired-projectile-id">secondary projectiles</a> expires.</p>
-								<p class="tab">Directly requests the creation of new projectiles to the <a href="../../1.0/nodes/projectile-processor-2d.html#projectile-processor-2d">ProjectileProcessor2D</a>.</p>
-								<hr>
 
 								<h4 id="signal-projectile-2d-modifier-requested">modifier_requested<span class="comment-alt">(_projectile_modifier: </span><a href="../../1.0/classes/projectile-2d-modifier.html#projectile-2d-modifier" class="link">Projectile2DModifier</a><span class="comment-alt"></span>)</span></h4>
 								<p class="tab">Emitted when a <b>Projectile2D</b> request the application of a <b>Projectile2DModifier</b>.</p>
 								<p class="tab">Directly requests modifier addition to the <a href="../../1.0/nodes/projectile-processor-2d.html#projectile-processor-2d">ProjectileProcessor2D</a>.</p>
+								<hr>
+								
+								<h4 id="signal-projectile-2d-projectile-requested">projectile_requested<span class="comment-alt">(_projectile: </span><a href="../../1.0/classes/projectile-2d.html#projectile-2d" class="link">Projectile2D</a><span class="comment-alt">, _position: </span><a href="https://docs.godotengine.org/en/stable/classes/class_vector2.html#class-vector2" class="link">Vector2</a><span class="comment-alt">, _destination: </span><a href="https://docs.godotengine.org/en/stable/classes/class_vector2.html#class-vector2" class="link">Vector2</a><span class="comment-alt">, _target: </span><a href="https://docs.godotengine.org/en/stable/classes/class_node2d.html#node2d" class="link">Node2D</a><span class="comment-alt"> = null, move_method: </span><a href="https://docs.godotengine.org/en/stable/classes/class_callable.html#callable" class="link">Callable</a><span class="comment-alt"> = Callable(), start_method: </span><a href="https://docs.godotengine.org/en/stable/classes/class_callable.html#callable" class="link">Callable</a><span class="comment-alt"> = Callable(), collision_method: </span><a href="https://docs.godotengine.org/en/stable/classes/class_callable.html#callable" class="link">Callable</a><span class="comment-alt"> = Callable(), expired_method: </span><a href="https://docs.godotengine.org/en/stable/classes/class_callable.html#callable" class="link">Callable</a><span class="comment-alt"> = Callable())</span></h4>
+								<p class="tab">Emitted when a <b>Projectile2D</b> with <a href="#projectile-2d-property-on-expired-projectile-id">secondary projectiles</a> expires.</p>
+								<p class="tab">Directly requests the creation of new projectiles to the <a href="../../1.0/nodes/projectile-processor-2d.html#projectile-processor-2d">ProjectileProcessor2D</a>.</p>
 								<hr class="strong">
 								<br>
 
@@ -696,7 +696,7 @@
 									<p class="tab">Current movement direction vector (normalized).</p>
 								<hr>
 
-								<h4 id="projectile-2d-property-excluded-targets"><a href="https://docs.godotengine.org/en/stable/classes/class_array.html#class-array">Array</a>[<a href="https://docs.godotengine.org/en/stable/classes/class_rid.html#rid">RID</a>] excluded_targets<span class="comment-alt"> = </span><span class="value"> []</span></h4>
+								<h4 id="projectile-2d-property-excluded-targets"><a href="https://docs.godotengine.org/en/stable/classes/class_array.html#class-array" class="link">Array</a>[<a href="https://docs.godotengine.org/en/stable/classes/class_rid.html#rid" class="link">RID</a>] excluded_targets<span class="comment-alt"> = </span><span class="value"> []</span></h4>
 									<p class="tab">List of already hit RID's for piercing and rehit avoidance.</p>
 								<hr>
 
@@ -704,7 +704,7 @@
 									<p class="tab">Flag for first hit behavior tracking.</p>
 								<hr>
 
-								<h4 id="projectile-2d-property-global-properties"><a href="https://docs.godotengine.org/en/stable/classes/class_dictionary.html#dictionary">Dictionary</a>[<a href="https://docs.godotengine.org/en/stable/classes/class_stringname.html#stringname">StringName</a>, <a href="https://docs.godotengine.org/en/stable/classes/class_variant.html#variant">Variant</a>] global_properties<span class="comment-alt"> = </span><span class="value"> {}</span></h4>
+								<h4 id="projectile-2d-property-global-properties"><a href="https://docs.godotengine.org/en/stable/classes/class_dictionary.html#dictionary" class="link">Dictionary</a>[<a href="https://docs.godotengine.org/en/stable/classes/class_stringname.html#stringname" class="link">StringName</a>, <a href="https://docs.godotengine.org/en/stable/classes/class_variant.html#variant" class="link">Variant</a>] global_properties<span class="comment-alt"> = </span><span class="value"> {}</span></h4>
 									<p class="tab">This dictionary is <strong>shared</strong> between all projectiles created by its <strong>original blueprint</strong>.</p>
 									<p class="tab">If you change its values, you will change them in all their projectiles.</p>
 								<hr>
@@ -718,13 +718,13 @@
 									<p class="tab">Creation identifier for projectiles with multiple instances (0 otherwise).</p>
 								<hr>
 
-								<h4 id="projectile-2d-property-individual-properties"><a href="https://docs.godotengine.org/en/stable/classes/class_dictionary.html#dictionary">Dictionary</a>[<a href="https://docs.godotengine.org/en/stable/classes/class_stringname.html#stringname">StringName</a>, <a href="https://docs.godotengine.org/en/stable/classes/class_variant.html#variant">Variant</a>] individual_properties<span class="comment-alt"> = </span><span class="value"> {}</span></h4>
+								<h4 id="projectile-2d-property-individual-properties"><a href="https://docs.godotengine.org/en/stable/classes/class_dictionary.html#dictionary" class="link">Dictionary</a>[<a href="https://docs.godotengine.org/en/stable/classes/class_stringname.html#stringname" class="link">StringName</a>, <a href="https://docs.godotengine.org/en/stable/classes/class_variant.html#variant" class="link">Variant</a>] individual_properties<span class="comment-alt"> = </span><span class="value"> {}</span></h4>
 									<p class="tab">This dictionary is <strong>independent</strong> in all projectiles created by its original blueprint.</p>
 									<p class="tab">Modifying it will only affect this projectile instance.</p>
 								<hr>
 
 								<h4 id="projectile-2d-property-instance-projectile-modifiers"><a href="https://docs.godotengine.org/en/stable/classes/class_bool.html#class-bool" class="link">bool</a> instance_projectile_modifiers<span class="comment-alt"> = </span><span class="value"> false</span></h4>
-									<p class="tab">If <code class="value">true</code> the <a href="#projectile-2d-property-projectile-modifiers">projectile_modifiers</a> dictionary will be independent in all projectile instances requested by your <a href="../../1.0/nodes/projectile-caller-2d.html#projectile-caller-2d">ProjectileCaller2D</a>s.</p>
+									<p class="tab">If <code class="value">true</code> the <a href="#projectile-2d-property-projectile-modifiers">projectile_modifiers</a> dictionary will be independent in all projectile copies made by your <a href="../../1.0/nodes/projectile-caller-2d.html#projectile-caller-2d">ProjectileCaller2D</a>s instead of being shared among all of them.</p>
 									<p class="tab">This may seem like the optimal behavior but it is recommended to set it to <code class="value">false</code>.</p>
 								<hr>
 
@@ -768,7 +768,7 @@
 									<p class="tab">Projectile custom body collision callback.</p>
 								<hr>
 
-								<h4 id="projectile-2d-property-on-expired-projectile-id"><a href="https://docs.godotengine.org/en/stable/classes/class_stringname.html#stringname">StringName</a> on_expired_projectile_id</h4>
+								<h4 id="projectile-2d-property-on-expired-projectile-id"><a href="https://docs.godotengine.org/en/stable/classes/class_stringname.html#stringname" class="link">StringName</a> on_expired_projectile_id</h4>
 									<p class="tab">Name of the <b>Secondary</b> projectile on the <a href="../../1.0/nodes/projectile-database.html#projectile-database">Global Database</a> to be instantiated once the main projectile runs out of pierce or lifetime.</p>
 								<hr>
 
@@ -804,7 +804,7 @@
 									<p class="tab">Type of spread the projectile instances will have once instantiated.</p>
 								<hr>
 
-								<h4 id="projectile-2d-property-projectile-modifiers"><a href="https://docs.godotengine.org/en/stable/classes/class_dictionary.html#dictionary">Dictionary</a>[<a href="https://docs.godotengine.org/en/stable/classes/class_stringname.html#stringname">StringName, <a href="../../1.0/classes/projectile-2d-modifier.html#projectile-2d-modifier">Projectile2DModifier</a>] projectile_modifiers<span class="comment-alt"> = </span><span class="value"> {}</span></h4>
+								<h4 id="projectile-2d-property-projectile-modifiers"><a href="https://docs.godotengine.org/en/stable/classes/class_dictionary.html#dictionary" class="link">Dictionary</a>[<a href="https://docs.godotengine.org/en/stable/classes/class_stringname.html#stringname" class="link">StringName, <a href="../../1.0/classes/projectile-2d-modifier.html#projectile-2d-modifier" class="link">Projectile2DModifier</a>] projectile_modifiers<span class="comment-alt"> = </span><span class="value"> {}</span></h4>
 									<p class="tab">Dictionary of all <a href="../../1.0/classes/projectile-2d-modifier.html#projectile-2d-modifier">modifiers</a> affecting this projectile.</p>
 								<hr>
 
@@ -892,61 +892,79 @@
 								</header>
 
 								<h4 id="projectile-2d-method-init"><span class="comment-alt">void</span> _init<span class="comment-alt">(_resource: <a href="../../1.0/resources/projectile-blueprint-2d.html#projectile-blueprint-2d" class="link">ProjectileBlueprint2D</a><span class="comment-alt"> = null, _pi: </span><a href="../../1.0/classes/packed-info.html#packed-info" class="link">PackedInfo</a><span class="comment-alt"> = null)</span></h4>
-								<p class="tab">Initializes a new projectile instance from the values of the given <a href="../../1.0/resources/projectile-blueprint-2d.html#projectile-blueprint-2d">ProjectileBlueprint2D</a> and <a href="../../1.0/classes/packed-info.html#packed-info">PackedInfo</a> parameters.</p>
+									<p class="tab">Initializes a new projectile instance from the values of the given <a href="../../1.0/resources/projectile-blueprint-2d.html#projectile-blueprint-2d">ProjectileBlueprint2D</a> and <a href="../../1.0/classes/packed-info.html#packed-info">PackedInfo</a> parameters.</p>
 								<hr>
 
 								<h4 id="projectile-2d-method-activate-waiting-projectile"><span class="comment-alt">void</span> activate_waiting_projectile<span class="comment-alt">()</span></h4>
-								<p class="tab">Re-enables drawing, collision and movement of waiting projectiles.</p>
-								<p class="tab">Waiting projectiles are <strong>automatically</strong> activated once their <a href="#projectile-2d-property-wait-time">wait_time</a> property is less than zero.</p>
+									<p class="tab">Re-enables drawing, collision and movement of waiting projectiles.</p>
+									<p class="tab">Waiting projectiles are <strong>automatically</strong> activated once their <a href="#projectile-2d-property-wait-time">wait_time</a> property is less than zero.</p>
 								<hr>
 
 								<h4 id="projectile-2d-method-add-global-property"><a href="../../1.0/classes/projectile-2d.html#projectile-2d" class="link">Projectile2D</a> add_global_property<span class="comment-alt">(property: </span><a href="https://docs.godotengine.org/en/stable/classes/class_stringname.html#stringname" class="link">StringName</a><span class="comment-alt">, value: </span><a href="https://docs.godotengine.org/en/stable/classes/class_variant.html#variant" class="link">Variant</a><span class="comment-alt">)</span></h4>
-								<p class="tab">Returns <b>itself</b> for method chaining.</p>
-								<p class="tab">Adds a new element at the <a href="#projectile-2d-property-global-properties">global_properties</a> dictionary, with the given <code class="value">value</code> at the given key <code class="value">property</code>.</p>
-								<hr>
+									<p class="tab">Returns <b>itself</b> for method chaining.</p>
+									<p class="tab">Adds a new element at the <a href="#projectile-2d-property-global-properties">global_properties</a> dictionary, with the given <code class="value">value</code> at the given key <code class="value">property</code>.</p>
+
+									<pre style="margin: 0 0 1.25em 1.5em;"><code class="language-gdscript" >var proj_1: Projectile2D = projectile_manager.get_projectile(0)
+var proj_2: Projectile2D = projectile_manager.get_projectile(0).clone()
+
+proj_1.add_global_property("KNOCKBACK", 100.0)
+print(proj_1.global_properties["KNOCKBACK"]) # Prints (100.0)
+print(proj_2.global_properties["KNOCKBACK"]) # Also prints (100.0)</code></pre>
+									<hr>
 
 								<h4 id="projectile-2d-method-add-individual-property"><a href="../../1.0/classes/projectile-2d.html#projectile-2d" class="link">Projectile2D</a> add_individual_property<span class="comment-alt">(property: </span><a href="https://docs.godotengine.org/en/stable/classes/class_stringname.html#stringname" class="link">StringName</a><span class="comment-alt">, value: </span><a href="https://docs.godotengine.org/en/stable/classes/class_variant.html#variant" class="link">Variant</a><span class="comment-alt">)</span></h4>
-								<p class="tab">Returns <b>itself</b> for method chaining.</p>
-								<p class="tab">Adds a new element at the <a href="#projectile-2d-property-individual-properties">individual_properties</a> dictionary, with the given <code class="value">value</code> at the given key <code class="value">property</code>.</p>
-								<hr>
+									<p class="tab">Returns <b>itself</b> for method chaining.</p>
+									<p class="tab">Adds a new element at the <a href="#projectile-2d-property-individual-properties">individual_properties</a> dictionary, with the given <code class="value">value</code> at the given key <code class="value">property</code>.</p>
+									
+									<pre style="margin: 0 0 1.25em 1.5em;"><code class="language-gdscript" >var proj_1: Projectile2D = projectile_manager.get_projectile(0)
+var proj_2: Projectile2D = projectile_manager.get_projectile(0).clone()
+
+proj_1.add_individual_property("ACCELERATION", 100.0)
+print(proj_1.individual_properties.get("ACCELERATION", -1)) # Prints (100.0)
+print(proj_2.individual_properties.get("ACCELERATION", -1)) # Prints (-1.0) because "ACCELERATION" does not exist here</code></pre>
+									<hr>
 
 								<h4 id="projectile-2d-method-add-modifier"><a href="https://docs.godotengine.org/en/stable/classes/class_bool.html#class-bool" class="link">bool</a> add_modifier<span class="comment-alt">(modifier: </span><a href="../../1.0/classes/projectile-2d-modifier.html#projectile-2d-modifier" class="link">Projectile2DModifier</a><span class="comment-alt">)</span></h4>
-								<p class="tab">Returns <code class="value">true</code> if <code class="value">modifier</code> was successfully added.</p>
-								<p class="tab">If valid, <code class="value">modifier</code> gets added to <a href="#projectile-2d-property-projectile-modifiers">projectile_modifiers</a> and emits the <a href="#signal-projectile-2d-modifier-requested">modifier_requested</a> signal.</p>
+									<p class="tab">Returns <code class="value">true</code> if <code class="value">modifier</code> was successfully added.</p>
+									<p class="tab">If valid, <code class="value">modifier</code> gets added to <a href="#projectile-2d-property-projectile-modifiers">projectile_modifiers</a> and emits the <a href="#signal-projectile-2d-modifier-requested">modifier_requested</a> signal.</p>
+
+									<pre style="margin: 0 0 1.25em 1.5em;"><code class="language-gdscript" >var proj: Projectile2D = projectile_manager.get_projectile(0)
+print(proj.add_modifier(Projectile2DModifier.new("PROJECTILE_BUFF", 1.0))) # Prints (true)</code></pre>
+									<hr>
 								<hr>
 
 								<h4 id="projectile-2d-method-assign"><span class="comment-alt">void</span> assign<span class="comment-alt">(_pi: </span><a href="../../1.0/classes/packed-info.html#packed-info" class="link">PackedInfo</a><span class="comment-alt">)</span></h4>
-								<p class="tab">Starts a projectile with the parameters from the given <b>PackedInfo</b> structure.</p>
+									<p class="tab">Starts a projectile with the parameters from the given <b>PackedInfo</b> structure.</p>
 								<hr>
 
 								<h4 id="projectile-2d-method-clone"><a href="../../1.0/classes/projectile-2d.html#projectile-2d" class="link">Projectile2D</a> clone<span class="comment-alt">(_pi: </span><a href="../../1.0/classes/packed-info.html#packed-info" class="link">PackedInfo</a><span class="comment-alt"> = null)</span></h4>
-								<p class="tab">Returns an <strong>identical</strong> copy of the projectile.</p>
-								<p class="tab">Optionally initializes it with new <b>PackedInfo</b> parameters.</p>
+									<p class="tab">Returns an <strong>identical</strong> copy of the projectile.</p>
+									<p class="tab">Optionally initializes it with new <b>PackedInfo</b> parameters.</p>
 								<hr>
 
 								<h4 id="projectile-2d-method-copy"><span class="comment-alt">void</span> copy<span class="comment-alt">(base: </span><a href="../../1.0/classes/projectile-2d.html#projectile-2d" class="link">Projectile2D</a><span class="comment-alt">, _pi: </span><a href="../../1.0/classes/packed-info.html#packed-info" class="link">PackedInfo</a><span class="comment-alt"> = null)</span></h4>
-								<p class="tab">Copies all properties from the <code class="value">base</code> projectile.</p>
-								<p class="tab">Optionally assigns new <b>PackedInfo</b> parameters to it.</p>
+									<p class="tab">Copies all properties from the <code class="value">base</code> projectile.</p>
+									<p class="tab">Optionally assigns new <b>PackedInfo</b> parameters to it.</p>
 								<hr>
 
 								<h4 id="projectile-2d-method-determine-initial-direction"><span class="comment-alt">void</span> determine_initial_direction<span class="comment-alt">()</span></h4>
-								<p class="tab">Sets the initial projectile <a href="#projectile-2d-property-direction">direction</a> based on its configuration.</p>
+									<p class="tab">Sets the initial projectile <a href="#projectile-2d-property-direction">direction</a> based on its configuration.</p>
 								<hr>
 
 								<h4 id="projectile-2d-method-determine-initial-position"><span class="comment-alt">void</span> determine_initial_position<span class="comment-alt">()</span></h4>
-								<p class="tab">Sets the initial projectile <a href="#projectile-2d-property-position">position</a> based on its configuration.</p>
+									<p class="tab">Sets the initial projectile <a href="#projectile-2d-property-position">position</a> based on its configuration.</p>
 								<hr>
 
 								<h4 id="projectile-2d-method-disable-collisions"><span class="comment-alt">void</span> disable_collisions<span class="comment-alt">()</span></h4>
-								<p class="tab">Cease projectile collisions.</p>
+									<p class="tab">Cease projectile collisions.</p>
 								<hr>
 
 								<h4 id="projectile-2d-method-disable-graphics"><span class="comment-alt">void</span> disable_graphics<span class="comment-alt">()</span></h4>
-								<p class="tab">Stops projectile drawing.</p>
+									<p class="tab">Stops projectile drawing.</p>
 								<hr>
 
 								<h4 id="projectile-2d-method-disable-movement"><span class="comment-alt">void</span> disable_movement<span class="comment-alt">()</span></h4>
-								<p class="tab">Makes the projectile unable to move.</p>
+									<p class="tab">Makes the projectile unable to move.</p>
 								<hr>
 
 								<h4 id="projectile-2d-method-disable"><span class="comment-alt">void</span> disable<span class="comment-alt">()</span></h4>
@@ -954,19 +972,19 @@
 								<hr>
 
 								<h4 id="projectile-2d-method-draw-on-canvas"><span class="comment-alt">void</span> draw_on_canvas<span class="comment-alt">(_canvas: </span><a href="https://docs.godotengine.org/en/stable/classes/class_canvasitem.html#canvasitem" class="link">CanvasItem</a>)</span></h4>
-								<p class="tab">Used for batch drawing.</p>
+									<p class="tab">Used for batch drawing.</p>
 								<hr>
 
 								<h4 id="projectile-2d-method-enable-collisions"><span class="comment-alt">void</span> enable_collisions<span class="comment-alt">()</span></h4>
-								<p class="tab">Allows projectile collisions.</p>
+									<p class="tab">Allows projectile collisions.</p>
 								<hr>
 
 								<h4 id="projectile-2d-method-enable-graphics"><span class="comment-alt">void</span> enable_graphics<span class="comment-alt">()</span></h4>
-								<p class="tab">Starts projectile drawing.</p>
+									<p class="tab">Starts projectile drawing.</p>
 								<hr>
 
 								<h4 id="projectile-2d-method-enable-movement"><span class="comment-alt">void</span> enable_movement<span class="comment-alt">()</span></h4>
-								<p class="tab">Makes the projectile able to move.</p>
+									<p class="tab">Makes the projectile able to move.</p>
 								<hr>
 
 								<h4 id="projectile-2d-method-expire"><span class="comment-alt">void</span> expire<span class="comment-alt">()</span></h4>
@@ -979,7 +997,7 @@
 								<hr>
 
 								<h4 id="projectile-2d-method-link-to-processor"><span class="comment-alt">void</span> link_to_processor<span class="comment-alt">(processor_instance: </span><a href="../../1.0/nodes/projectile-processor-2d.html#projectile-processor-2d" class="link">ProjectileProcessor2D</a><span class="comment-alt">)</span></h4>
-								<p class="tab">Connects both projectile signals to the given <a href="../../1.0/nodes/projectile-processor-2d.html#projectile-processor-2d" class="link">ProjectileProcessor2D</a> instance.</p>
+									<p class="tab">Connects both projectile signals to the given <a href="../../1.0/nodes/projectile-processor-2d.html#projectile-processor-2d" class="link">ProjectileProcessor2D</a> instance.</p>
 								<hr>
 
 								<h4 id="projectile-2d-method-move"><span class="comment-alt">void</span> move<span class="comment-alt">(delta: </span><a href="https://docs.godotengine.org/en/stable/classes/class_float.html#class-float" class="link">float</a><span class="comment-alt">)</span></h4>
@@ -993,18 +1011,18 @@
 								<hr>
 
 								<h4 id="projectile-2d-method-remove-modifier"><a href="https://docs.godotengine.org/en/stable/classes/class_bool.html#class-bool" class="link">bool</a> remove_modifier<span class="comment-alt">(modifier_name: </span><a href="https://docs.godotengine.org/en/stable/classes/class_stringname.html#stringname" class="link">StringName</a><span class="comment-alt">)</span></h4>
-								<p class="tab">Returns <code class="value">true</code> if the modifier with key <code class="value">modifier_name</code> was successfully removed.</p>
-								<p class="tab">Removes a modifier by name from <a href="#projectile-2d-property-projectile-modifiers">projectile_modifiers</a> and calls its <a href="../../1.0/classes/projectile-2d-modifier.html#projectile-2d-modifier-method-exit">exit()</a> method.</p>
+									<p class="tab">Returns <code class="value">true</code> if the modifier with key <code class="value">modifier_name</code> was successfully removed.</p>
+									<p class="tab">Removes a modifier by name from <a href="#projectile-2d-property-projectile-modifiers">projectile_modifiers</a> and calls its <a href="../../1.0/classes/projectile-2d-modifier.html#projectile-2d-modifier-method-exit">exit()</a> method.</p>
 								<hr>
 
 								<h4 id="projectile-2d-method-request-projectile"><span class="comment-alt">void</span> request_projectile<span class="comment-alt">(_projectile: </span><a href="../../1.0/classes/projectile-2d.html#projectile-2d" class="link">Projectile2D</a><span class="comment-alt">, _position: </span><a href="https://docs.godotengine.org/en/stable/classes/class_vector2.html#vector2" class="link">Vector2</a><span class="comment-alt">, _destination: </span><a href="https://docs.godotengine.org/en/stable/classes/class_vector2.html#vector2" class="link">Vector2</a><span class="comment-alt">, _target: </span><a href="https://docs.godotengine.org/en/stable/classes/class_node2d.html#node2d" class="link">Node2D</a><span class="comment-alt"> = null, _move_method: </span><a href="https://docs.godotengine.org/en/stable/classes/class_callable.html#callable" class="link">Callable</a><span class="comment-alt"> = Callable(), _start_method: </span><a href="https://docs.godotengine.org/en/stable/classes/class_callable.html#callable" class="link">Callable</a><span class="comment-alt"> = Callable(), _collision_method: </span><a href="https://docs.godotengine.org/en/stable/classes/class_callable.html#callable" class="link">Callable</a><span class="comment-alt"> = Callable(), _expired_method: </span><a href="https://docs.godotengine.org/en/stable/classes/class_callable.html#callable" class="link">Callable</a><span class="comment-alt"> = Callable())</span></h4>
-								<p class="tab">Requests the creation of new projectiles through the <a href="#signal-projectile-2d-projectile-requested">projectile_requested</a> signal.</p>
-								<p class="tab">Allows custom callbacks to modify projectile behavior.</p>
+									<p class="tab">Requests the creation of new projectiles through the <a href="#signal-projectile-2d-projectile-requested">projectile_requested</a> signal.</p>
+									<p class="tab">Allows custom callbacks to modify projectile behavior.</p>
 								<hr>
 
 								<h4 id="projectile-2d-method-reset"><span class="comment-alt">void</span> reset<span class="comment-alt">()</span></h4>
-								<p class="tab">Resets the projectile to its initial state using its <a href="#projectile-2d-property-resource">blueprint</a>.</p>
-								<p class="tab">Clears all runtime modifications and custom properties.</p>
+									<p class="tab">Resets the projectile to its initial state using its <a href="#projectile-2d-property-resource">blueprint</a>.</p>
+									<p class="tab">Clears all runtime modifications and custom properties.</p>
 								<hr>
 
 								<h4 id="projectile-2d-method-seek-target"><a href="https://docs.godotengine.org/en/stable/classes/class_float.html#class-float" class="link">float</a> seek_target<span class="comment-alt">(_delta: </span><a href="https://docs.godotengine.org/en/stable/classes/class_float.html#class-float" class="link">float</a><span class="comment-alt">)</span></h4>
@@ -1012,40 +1030,40 @@
 								<hr>
 
 								<h4 id="projectile-2d-method-set-on-area-collision"><a href="../../1.0/classes/projectile-2d.html#projectile-2d" class="link">Projectile2D</a> set_on_area_collision<span class="comment-alt">(method: </span><a href="https://docs.godotengine.org/en/stable/classes/class_callable.html#callable" class="link">Callable</a><span class="comment-alt">)</span></h4>
-								<p class="tab">Returns <b>itself</b> for method chaining.</p>
-								<p class="tab">Sets the custom area collision callback.</p>
+									<p class="tab">Returns <b>itself</b> for method chaining.</p>
+									<p class="tab">Sets <a href="#projectile-2d-property-on-area-collision">on_area_collision</a> callback.</p>
 								<hr>
 
 								<h4 id="projectile-2d-method-set-on-body-collision"><a href="../../1.0/classes/projectile-2d.html#projectile-2d" class="link">Projectile2D</a> set_on_body_collision<span class="comment-alt">(method: </span><a href="https://docs.godotengine.org/en/stable/classes/class_callable.html#callable" class="link">Callable</a><span class="comment-alt">)</span></h4>
-								<p class="tab">Returns <b>itself</b> for method chaining.</p>
-								<p class="tab">Sets the custom body collision callback.</p>
+									<p class="tab">Returns <b>itself</b> for method chaining.</p>
+									<p class="tab">Sets <a href="#projectile-2d-property-on-body-collision">on_body_collision</a> callback.</p>
 								<hr>
 
 								<h4 id="projectile-2d-method-set-on-collision"><a href="../../1.0/classes/projectile-2d.html#projectile-2d" class="link">Projectile2D</a> set_on_collision<span class="comment-alt">(method: </span><a href="https://docs.godotengine.org/en/stable/classes/class_callable.html#callable" class="link">Callable</a><span class="comment-alt">)</span></h4>
-								<p class="tab">Returns <b>itself</b> for method chaining.</p>
-								<p class="tab">Sets the same callback for both area and body collisions.</p>
+									<p class="tab">Returns <b>itself</b> for method chaining.</p>
+									<p class="tab">Sets the same callback for both <a href="#projectile-2d-property-on-area-collision">on_area_collision</a> and <a href="#projectile-2d-property-on-body-collision">on_body_collision</a> callbacks.</p>
 								<hr>
 
 								<h4 id="projectile-2d-method-set-on-expired"><a href="../../1.0/classes/projectile-2d.html#projectile-2d" class="link">Projectile2D</a> set_on_expired<span class="comment-alt">(method: </span><a href="https://docs.godotengine.org/en/stable/classes/class_callable.html#callable" class="link">Callable</a><span class="comment-alt">)</span></h4>
-								<p class="tab">Returns <b>itself</b> for method chaining.</p>
-								<p class="tab">Sets the custom expiration callback.</p>
+									<p class="tab">Returns <b>itself</b> for method chaining.</p>
+									<p class="tab">Sets <a href="#projectile-2d-property-on-expired">on_expired</a> callback.</p>
 								<hr>
 
 								<h4 id="projectile-2d-method-set-on-move"><a href="../../1.0/classes/projectile-2d.html#projectile-2d" class="link">Projectile2D</a> set_on_move<span class="comment-alt">(method: </span><a href="https://docs.godotengine.org/en/stable/classes/class_callable.html#callable" class="link">Callable</a><span class="comment-alt">)</span></h4>
-								<p class="tab">Returns <b>itself</b> for method chaining.</p>
-								<p class="tab">Sets the custom movement callback.</p>
+									<p class="tab">Returns <b>itself</b> for method chaining.</p>
+									<p class="tab">Sets <a href="#projectile-2d-property-on-move">on_move</a> callback.</p>
 								<hr>
 
 								<h4 id="projectile-2d-method-set-on-start"><a href="../../1.0/classes/projectile-2d.html#projectile-2d" class="link">Projectile2D</a> set_on_start<span class="comment-alt">(method: </span><a href="https://docs.godotengine.org/en/stable/classes/class_callable.html#callable" class="link">Callable</a><span class="comment-alt">)</span></h4>
-								<p class="tab">Returns <b>itself</b> for method chaining.</p>
-								<p class="tab">Sets the custom start callback.</p>
+									<p class="tab">Returns <b>itself</b> for method chaining.</p>
+									<p class="tab">Sets <a href="#projectile-2d-property-on-start">on_start</a> callback.</p>
 								<hr>
 
 								<h4 id="projectile-2d-method-set-property"><a href="../../1.0/classes/projectile-2d.html#projectile-2d" class="link">Projectile2D</a> set_property<span class="comment-alt">(property: </span><a href="https://docs.godotengine.org/en/stable/classes/class_stringname.html#stringname" class="link">StringName</a><span class="comment-alt">, value: </span><a href="https://docs.godotengine.org/en/stable/classes/class_variant.html#variant" class="link">Variant</a><span class="comment-alt">)</span></h4>
-								<p class="tab">Returns <b>itself</b> for method chaining.</p>
-								<p class="tab">Assigns <code class="value">value</code> to the given projectile <code class="value">property</code>. If the projectile property does not exist or the given <code class="value">value</code>'s type doesn't match, nothing happens.</p>
+									<p class="tab">Returns <b>itself</b> for method chaining.</p>
+									<p class="tab">Assigns <code class="value">value</code> to the given projectile <code class="value">property</code>. If the projectile property does not exist or the given <code class="value">value</code>'s type doesn't match, nothing happens.</p>
 
-								<pre><code class="language-gdscript">var proj: Projectile2D = projectile_manager.get_projectile(0)
+									<pre style="margin: 0 0 1.25em 1.5em;"><code class="language-gdscript" >var proj: Projectile2D = projectile_manager.get_projectile(0)
 proj.set_property("speed", 1000)
 print(proj.speed) # Prints (1000.0)</code></pre>
 								<hr>
