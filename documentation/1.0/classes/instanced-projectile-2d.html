@@ -42,7 +42,7 @@
 
 
 								<!-- Inherits -->
-								<p>Inherits: <a href="../../1.0/classes/projectile-2d.html#projectile-2d">Projectile2D</a></p>
+								<p>Inherits: <a href="../../1.0/classes/projectile-2d.html#projectile-2d">Projectile2D</a> < <a href="https://docs.godotengine.org/en/stable/classes/class_refcounted.html#class-refcounted">RefCounted</a> < <a href="https://docs.godotengine.org/en/stable/classes/class_object.html#class-object">Object</a></p>
 								<p>Specialized <a href="../../1.0/classes/projectile-2d.html#projectile-2d">Projectile2D</a> implementation instancing <a href="https://docs.godotengine.org/en/stable/classes/class_packedscene.html#packedscene">PackedScene</a>s as projectiles.</p>
 								<br>
 
@@ -216,13 +216,13 @@
 								</header>
 								
 								<h4 id="area-projectile-2d-method-area-monitor-callback"><span class="comment-alt">void</span> area_monitor_callback<span class="comment-alt">(area_rid: <a href="https://docs.godotengine.org/en/stable/classes/class_rid.html#rid" class="link">RID</a>, collider: <a href="https://docs.godotengine.org/en/stable/classes/class_node2d.html#node2d" class="link">Node2D</a>, area_shape_index: <a href="https://docs.godotengine.org/en/stable/classes/class_int.html#class-int" class="link">int</a>, self_shape_index: <a href="https://docs.godotengine.org/en/stable/classes/class_int.html#class-int" class="link">int</a>)</span></h4>
-								<p class="tab">Handles <strong>area-to-area</strong> collision events. Requires <a href="../../1.0/resources/projectile-blueprint-2d.html#projectile-blueprint-2d-property-area-monitoreable">monitoring</a> to be set to true.</p>
-								<p class="tab"><code class="value">self_shape_index</code> and <code class="value">area_shape_index</code> contain indices of the interacting shapes from this projectile area and the other area, respectively. <code class="value">collider</code> is the <a href="https://docs.godotengine.org/en/stable/classes/class_node.html#node" class="link">Node</a> of the other area. These values can be used with the <a href="https://docs.godotengine.org/en/stable/classes/class_physicsserver2d.html#physicsserver2d">PhysicsServer2D</a>.</p>
+									<p class="tab">Handles <strong>area-to-area</strong> collision events. Requires <a href="../../1.0/resources/projectile-blueprint-2d.html#projectile-blueprint-2d-property-area-monitoreable">monitoring</a> to be set to true.</p>
+									<p class="tab"><code class="value">self_shape_index</code> and <code class="value">area_shape_index</code> contain indices of the interacting shapes from this projectile area and the other area, respectively. <code class="value">collider</code> is the <a href="https://docs.godotengine.org/en/stable/classes/class_node.html#node" class="link">Node</a> of the other area. These values can be used with the <a href="https://docs.godotengine.org/en/stable/classes/class_physicsserver2d.html#physicsserver2d">PhysicsServer2D</a>.</p>
 								<hr>
 
 								<h4 id="area-projectile-2d-method-body-monitor-callback"><span class="comment-alt">void</span> body_monitor_callback<span class="comment-alt">(body_rid: <a href="https://docs.godotengine.org/en/stable/classes/class_rid.html#rid" class="link">RID</a>, collider: <a href="https://docs.godotengine.org/en/stable/classes/class_node2d.html#node2d" class="link">Node2D</a>, body_shape_index: <a href="https://docs.godotengine.org/en/stable/classes/class_int.html#class-int" class="link">int</a>, self_shape_index: <a href="https://docs.godotengine.org/en/stable/classes/class_int.html#class-int" class="link">int</a>)</span></h4>
-								<p class="tab">Handles <strong>area-to-body</strong> collision events.</p>
-								<p class="tab"><code class="value">self_shape_index</code> and <code class="value">body_shape_index</code> contain indices of the interacting shapes from this projectile area and the other body, respectively. <code class="value">collider</code> is the <a href="https://docs.godotengine.org/en/stable/classes/class_node.html#node" class="link">Node</a> of the other body. These values can be used with the <a href="https://docs.godotengine.org/en/stable/classes/class_physicsserver2d.html#physicsserver2d">PhysicsServer2D</a>.</p>
+									<p class="tab">Handles <strong>area-to-body</strong> collision events.</p>
+									<p class="tab"><code class="value">self_shape_index</code> and <code class="value">body_shape_index</code> contain indices of the interacting shapes from this projectile area and the other body, respectively. <code class="value">collider</code> is the <a href="https://docs.godotengine.org/en/stable/classes/class_node.html#node" class="link">Node</a> of the other body. These values can be used with the <a href="https://docs.godotengine.org/en/stable/classes/class_physicsserver2d.html#physicsserver2d">PhysicsServer2D</a>.</p>
 								<hr>
 							</section>
 						</div>

@@ -42,7 +42,7 @@
 
 
 									<!-- Inherits -->
-									<p>Inherits: <a href="../../1.0/classes/projectile-2d.html#projectile-2d">Projectile2D</a></p>
+									<p>Inherits: <a href="../../1.0/classes/projectile-2d.html#projectile-2d">Projectile2D</a> < <a href="https://docs.godotengine.org/en/stable/classes/class_refcounted.html#class-refcounted">RefCounted</a> < <a href="https://docs.godotengine.org/en/stable/classes/class_object.html#class-object">Object</a></p>
 									<p>Specialized <a href="../../1.0/classes/projectile-2d.html#projectile-2d">Projectile2D</a> implementation using batch-draw and <a href="https://docs.godotengine.org/en/stable/classes/class_physicsserver2d.html#physicsserver2d">PhysicsServer2D</a> areas for collision detection.</p>
 									<br>
 
@@ -192,28 +192,28 @@
 									</header>
 
 									<h4 id="area-projectile-2d-property-area"><a href="https://docs.godotengine.org/en/stable/classes/class_rid.html#rid" class="link">RID</a> area</h4>
-									<p class="tab">PhysicsServer2D area RID for collision detection.</p>
+										<p class="tab">PhysicsServer2D area RID for collision detection.</p>
 									<hr>
 
 									<h4 id="area-projectile-2d-property-can-be-drawn"><a href="https://docs.godotengine.org/en/stable/classes/class_bool.html#class-bool" class="link">bool</a> can_be_drawn<span class="comment-alt"> = </span><span class="value">false</span></h4>
-									<p class="tab">If <code class="value">true</code> the projectile instance will be batch drawn.</p>
+										<p class="tab">If <code class="value">true</code> the projectile instance will be batch drawn.</p>
 									<hr>
 
 									<h4 id="area-projectile-2d-property-graphics"><a href="https://docs.godotengine.org/en/stable/classes/class_texture2d.html#texture2d" class="link">Texture2D</a> graphics</h4>
-									<p class="tab">Visual texture of the projectile.</p>
+										<p class="tab">Visual texture of the projectile.</p>
 									<hr>
 
 									<h4 id="area-projectile-2d-property-radius"><a href="https://docs.godotengine.org/en/stable/classes/class_int.html#class-int" class="link">int</a> radius<span class="comment-alt"> = </span><span class="value">0</span></h4>
-									<p class="tab">Size of the projectile <b>circle collision</b> in pixels.</p>
-									<p class="tab">The <strong>collision radius</strong> of the projectile is affected by the <a href="../../1.0/classes/projectile-2d.html#projectile-2d-property-size">size</a> of the projectile itself.</p>
+										<p class="tab">Size of the projectile <b>circle collision</b> in pixels.</p>
+										<p class="tab">The <strong>collision radius</strong> of the projectile is affected by the <a href="../../1.0/classes/projectile-2d.html#projectile-2d-property-size">size</a> of the projectile itself.</p>
 									<hr>
 
 									<h4 id="area-projectile-2d-property-shape"><a href="https://docs.godotengine.org/en/stable/classes/class_rid.html#rid" class="link">RID</a> shape</h4>
-									<p class="tab">Collision shape RID for physics queries.</p>
+										<p class="tab">Collision shape RID for physics queries.</p>
 									<hr>
 
 									<h4 id="area-projectile-2d-property-texture-size"><a href="https://docs.godotengine.org/en/stable/classes/class_vector2.html#class-vector2" class="link">Vector2</a> texture_size</h4>
-									<p class="tab">Half-size of the assigned texture for visual centering.</p>
+										<p class="tab">Half-size of the assigned texture for visual centering.</p>
 									<hr class="strong">
 									<br>
 
@@ -224,13 +224,13 @@
 									</header>
 									
 									<h4 id="area-projectile-2d-method-area-monitor-callback"><span class="comment-alt">void</span> area_monitor_callback<span class="comment-alt">(status: <a href="https://docs.godotengine.org/en/stable/classes/class_int.html#class-int" class="link">int</a>, area_rid: <a href="https://docs.godotengine.org/en/stable/classes/class_rid.html#rid" class="link">RID</a>, instance_id: <a href="https://docs.godotengine.org/en/stable/classes/class_int.html#class-int" class="link">int</a>, area_shape_index: <a href="https://docs.godotengine.org/en/stable/classes/class_int.html#class-int" class="link">int</a>, self_shape_index: <a href="https://docs.godotengine.org/en/stable/classes/class_int.html#class-int" class="link">int</a>)</span></h4>
-									<p class="tab">Handles <strong>area-to-area</strong> collision events. Requires <a href="../../1.0/resources/projectile-blueprint-2d.html#projectile-blueprint-2d-property-area-monitoreable">monitoring</a> to be set to true.</p>
-									<p class="tab"><code class="value">self_shape_index</code> and <code class="value">area_shape_index</code> contain indices of the interacting shapes from this projectile area and the other area, respectively. <code class="value">area_rid</code> contains the <a href="https://docs.godotengine.org/en/stable/classes/class_rid.html#rid" class="link">RID</a> of the other area. These values can be used with the <a href="https://docs.godotengine.org/en/stable/classes/class_physicsserver2d.html#physicsserver2d">PhysicsServer2D</a>.</p>
+										<p class="tab">Handles <strong>area-to-area</strong> collision events. Requires <a href="../../1.0/resources/projectile-blueprint-2d.html#projectile-blueprint-2d-property-area-monitoreable">monitoring</a> to be set to true.</p>
+										<p class="tab"><code class="value">self_shape_index</code> and <code class="value">area_shape_index</code> contain indices of the interacting shapes from this projectile area and the other area, respectively. <code class="value">area_rid</code> contains the <a href="https://docs.godotengine.org/en/stable/classes/class_rid.html#rid" class="link">RID</a> of the other area. These values can be used with the <a href="https://docs.godotengine.org/en/stable/classes/class_physicsserver2d.html#physicsserver2d">PhysicsServer2D</a>.</p>
 									<hr>
 
 									<h4 id="area-projectile-2d-method-body-monitor-callback"><span class="comment-alt">void</span> body_monitor_callback<span class="comment-alt">(status: <a href="https://docs.godotengine.org/en/stable/classes/class_int.html#class-int" class="link">int</a>, body_rid: <a href="https://docs.godotengine.org/en/stable/classes/class_rid.html#rid" class="link">RID</a>, instance_id: <a href="https://docs.godotengine.org/en/stable/classes/class_int.html#class-int" class="link">int</a>, body_shape_index: <a href="https://docs.godotengine.org/en/stable/classes/class_int.html#class-int" class="link">int</a>, self_shape_index: <a href="https://docs.godotengine.org/en/stable/classes/class_int.html#class-int" class="link">int</a>)</span></h4>
-									<p class="tab">Handles <strong>area-to-body</strong> collision events.</p>
-									<p class="tab"><code class="value">self_shape_index</code> and <code class="value">body_shape_index</code> contain indices of the interacting shapes from this projectile area and the other body, respectively. <code class="value">body_rid</code> contains the <a href="https://docs.godotengine.org/en/stable/classes/class_rid.html#rid" class="link">RID</a> of the other body. These values can be used with the <a href="https://docs.godotengine.org/en/stable/classes/class_physicsserver2d.html#physicsserver2d">PhysicsServer2D</a>.</p>
+										<p class="tab">Handles <strong>area-to-body</strong> collision events.</p>
+										<p class="tab"><code class="value">self_shape_index</code> and <code class="value">body_shape_index</code> contain indices of the interacting shapes from this projectile area and the other body, respectively. <code class="value">body_rid</code> contains the <a href="https://docs.godotengine.org/en/stable/classes/class_rid.html#rid" class="link">RID</a> of the other body. These values can be used with the <a href="https://docs.godotengine.org/en/stable/classes/class_physicsserver2d.html#physicsserver2d">PhysicsServer2D</a>.</p>
 									<hr>
 								</section>
 

@@ -43,7 +43,7 @@
 
 
 								<!-- Inherits -->
-								<p>Inherits: <a href="https://docs.godotengine.org/en/stable/classes/class_refcounted.html#refcounted">RefCounted</a></p>
+								<p>Inherits: <a href="https://docs.godotengine.org/en/stable/classes/class_refcounted.html#class-refcounted">RefCounted</a> < <a href="https://docs.godotengine.org/en/stable/classes/class_object.html#class-object">Object</a></p>
 								<p>Inherited By: <a href="../../1.0/classes/area-projectile-2d.html#area-projectile-2d">AreaProjectile2D</a>, <a href="../../1.0/classes/instanced-projectile-2d.html#instanced-projectile-2d">InstancedProjectile2D</a></p>
 								<p>Base class for all 2D projectile objects.</p>
 								<br>
@@ -645,7 +645,7 @@
 								<hr>
 
 								<h4 id="projectile-2d-property-angular-spread"><a href="https://docs.godotengine.org/en/stable/classes/class_float.html#class-float" class="link">float</a> angular_spread<span class="comment-alt"> = </span><span class="value"> 0</span></h4>
-									<p class="tab">Fixed amount of radial extension in which <a href="#enum-projectile-2d-projectile-spread">angular spread</a> projectiles will be evenly distributed (in degrees).</p>
+									<p class="tab">Fixed radial extension in which <a href="#enum-projectile-2d-projectile-spread">angular spread</a> projectiles will be evenly distributed (in degrees).</p>
 								<hr>
 
 								<h4 id="projectile-2d-property-area-monitoreable"><a href="https://docs.godotengine.org/en/stable/classes/class_bool.html#class-bool" class="link">bool</a> area_monitoreable<span class="comment-alt"> = </span><span class="value"> false</span></h4>
@@ -669,11 +669,11 @@
 								<hr>
 
 								<h4 id="projectile-2d-property-collision-layer"><a href="https://docs.godotengine.org/en/stable/classes/class_int.html#class-int" class="link">int</a> collision_layer<span class="comment-alt"> = </span><span class="value"> 0</span></h4>
-									<p class="tab">Collision layer of the projectile itself.</p>
+									<p class="tab">Physics layers of the projectile itself.</p>
 								<hr>
 
 								<h4 id="projectile-2d-property-collision-mask"><a href="https://docs.godotengine.org/en/stable/classes/class_int.html#class-int" class="link">int</a> collision_mask<span class="comment-alt"> = </span><span class="value"> 0</span></h4>
-									<p class="tab">Collision layers that can interact with the projectile.</p>
+									<p class="tab">Physics layers that can interact with the projectile.</p>
 								<hr>
 
 								<h4 id="projectile-2d-property-current-space"><span class="comment">static</span> <a href="https://docs.godotengine.org/en/stable/classes/class_physicsdirectspacestate2d.html#physicsdirectspacestate2d" class="link">PhysicsDirectSpaceState2D</a> current_space</h4>
@@ -745,7 +745,7 @@
 								<hr>
 
 								<h4 id="projectile-2d-property-lifetime"><a href="https://docs.godotengine.org/en/stable/classes/class_float.html#class-float" class="link">float</a> lifetime<span class="comment-alt"> = </span><span class="value"> 0</span></h4>
-									<p class="tab">Remaining lifetime in seconds.</p>
+									<p class="tab">Remaining duration in seconds.</p>
 								<hr>
 
 								<h4 id="projectile-2d-property-linear-deviation"><a href="https://docs.godotengine.org/en/stable/classes/class_float.html#class-float" class="link">float</a> linear_deviation<span class="comment-alt"> = </span><span class="value"> 0</span></h4>
@@ -757,7 +757,7 @@
 								<hr>
 
 								<h4 id="projectile-2d-property-look-at"><a href="https://docs.godotengine.org/en/stable/classes/class_bool.html#class-bool" class="link">bool</a> look_at<span class="comment-alt"> = </span><span class="value"> false</span></h4>
-									<p class="tab">If <code class="value">true</code> the projectile will look at the direction it travels.</p>
+									<p class="tab">If <code class="value">true</code> the projectile will actively look at the direction it travels.</p>
 								<hr>
 
 								<h4 id="projectile-2d-property-on-area-collision"><a href="https://docs.godotengine.org/en/stable/classes/class_callable.html#callable" class="link">Callable</a> on_area_collision</h4>
