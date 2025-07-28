@@ -52,8 +52,8 @@
 									<header class="semimajor" id="description">
 										<h3>Description</h3>
 									</header>
-									<p>The <b>Attack2D</b> class is an <strong>intermediary state machine</strong> that helps you to manage the <b>complete lifecycle</b> of your projectile-based attacks; from <b>charging</b>, to <b>windup</b>, to <b>recovery</b>. It handles attack phases, projectile spawning, timed transitions, and even custom callbacks.</p>
-									<p style="margin-bottom: 0;">As a whole, it is composed of <strong>four phases</strong>:</p>
+									<p>The <b>Attack2D</b> class is an <strong>intermediary state machine</strong> designed to assist you in the common task of spawning projectiles. It helps you manage the <b>complete lifecycle</b> of your projectile-based attacks; from <b>charging</b>, to <b>windup</b>, to <b>recovery</b>. In short, use it to delegate the <strong>fire rate</strong> of your weapons as well as the <strong>delay and offset</strong> of your attacks.</p>
+									<p style="margin-bottom: 0;">As a whole, the <b>Attack2D</b> state machine is composed of <strong>four phases</strong>:</p>
 									<ul class="tab">
 										<li>Charge.</li>
 										<li>Anticipation.</li>
@@ -819,11 +819,11 @@ func custom_recovery_update(attack: Attack2D, delta: float) -> void:
 									<hr>
 
 									<h4 id="attack-2d-property-override-destination"><a href="https://docs.godotengine.org/en/stable/classes/class_bool.html#class-bool" class="link">bool</a> override_destination<span class="comment-alt"> = </span><span class="value"> false</span></h4>
-										<p class="tab">If <code class="value">true</code> the weapon will constantly update its projectile <b>direction</b> even if its execution request was unsuccessful.</p>
+										<p class="tab">If <code class="value">true</code> the attack will constantly update its projectile <b>direction</b> even if its execution request was unsuccessful.</p>
 									<hr>
 
 									<h4 id="attack-2d-property-override-position"><a href="https://docs.godotengine.org/en/stable/classes/class_bool.html#class-bool" class="link">bool</a> override_position<span class="comment-alt"> = </span><span class="value"> false</span></h4>
-										<p class="tab">If <code class="value">true</code> the weapon ignores the given spawn positions and uses its own <a href="../../1.0/nodes/projectile-manager-2d.html#projectile-manager-2d">ProjectileManager</a> node <b>global position</b> instead.</p>
+										<p class="tab">If <code class="value">true</code> the attack ignores the given spawn positions and uses its own <a href="../../1.0/nodes/projectile-manager-2d.html#projectile-manager-2d">ProjectileManager2D</a> node <b>global position</b> instead.</p>
 									<hr>
 
 									<h4 id="attack-2d-property-pi"><a href="../../1.0/classes/packed-info.html#packed-info" class="link">PackedInfo</a> pi</h4>
