@@ -901,9 +901,10 @@ print(attack_2.individual_properties.get("DURABILITY", -1)) # Prints (-1.0) beca
 									<h4 id="attack-2d-method-add-modifier"><a href="https://docs.godotengine.org/en/stable/classes/class_bool.html#class-bool" class="link">bool</a> add_modifier<span class="comment-alt">(modifier: </span><a href="../../1.0/resources/attack-modifier-2d.html#attack-modifier-2d" class="link">Attack2DModifier</a><span class="comment-alt">)</span></h4>
 										<p class="tab">Returns <code class="value">true</code> if <code class="value">modifier</code> was successfully added.</p>
 										<p class="tab">If valid, <code class="value">modifier</code> gets added to <a href="#attack-2d-property-attack-modifiers">attack_modifiers</a> and emits the <a href="#signal-attack-2d-modifier-requested">modifier_requested</a> signal.</p>
+										<p class="tab">It is strongly recommended to use your <b>ProjectileManager2D</b> <a href="../../1.0/nodes/projectile-manager-2d.html#projectile-manager-2d-method-add-attack-modifier">add_attack_modifier</a> method instead.</p>
 
 										<pre style="margin: 0 0 1.25em 1.5em;"><code class="language-gdscript" >var attack: Attack2D = projectile_manager.get_attack(0)
-print(attack.add_modifier(Attack2DModifier.new("ATTACK_BUFF", 1.0))) # Prints (true)</code></pre>
+attack.add_modifier(Attack2DModifier.new("ATTACK_BUFF", 1.0))</code></pre>
 										<hr>
 									<hr>
 
@@ -1004,6 +1005,10 @@ print(attack.add_modifier(Attack2DModifier.new("ATTACK_BUFF", 1.0))) # Prints (t
 									<h4 id="attack-2d-method-remove-modifier"><a href="https://docs.godotengine.org/en/stable/classes/class_bool.html#class-bool" class="link">bool</a> remove_modifier<span class="comment-alt">(modifier_name: </span><a href="https://docs.godotengine.org/en/stable/classes/class_stringname.html#stringname" class="link">StringName</a><span class="comment-alt">)</span></h4>
 										<p class="tab">Returns <code class="value">true</code> if the modifier with key <code class="value">modifier_name</code> was successfully removed.</p>
 										<p class="tab">Removes a modifier by name from <a href="#attack-2d-property-attack-modifiers">attack_modifiers</a> and calls its <a href="../../1.0/classes/attack-2d-modifier.html#attack-2d-modifier-method-exit">exit()</a> method.</p>
+										<p class="tab">It is strongly recommended to use your <b>ProjectileManager2D</b> <a href="../../1.0/nodes/projectile-manager-2d.html#projectile-manager-2d-method-remove-attack-modifier">remove_attack_modifier</a> method instead.</p>
+
+									<pre style="margin: 0 0 1.25em 1.5em;"><code class="language-gdscript" >var attack: Attack2D = projectile_manager.get_attack(0)
+attack.remove_modifier("ATTACK_BUFF")</code></pre>
 									<hr>
 
 									<h4 id="attack-2d-method-request-projectile"><span class="comment-alt">void</span> request_projectile<span class="comment-alt">(_projectile: </span><a href="../../1.0/classes/projectile-2d.html#projectile-2d" class="link">Projectile2D</a><span class="comment-alt"> = projectile)</span></h4>

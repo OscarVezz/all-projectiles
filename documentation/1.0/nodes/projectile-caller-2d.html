@@ -12,6 +12,7 @@
 		<meta name="autor" content="Oscar Vezz"/>
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="../../assets/css/main.css" />
+		<link rel="stylesheet" href="../../assets/css/prism.css" />
 	</head>
 	<body class="is-preload">
 
@@ -43,6 +44,7 @@
 
 								<!-- Inherits -->
 								<p><b>Inherits:</b> <a href="https://docs.godotengine.org/en/stable/classes/class_node2d.html#class-node2d">Node2D</a> < <a href="https://docs.godotengine.org/en/stable/classes/class_canvasitem.html#class-canvasitem">CanvasItem</a> < <a href="https://docs.godotengine.org/en/stable/classes/class_node.html#class-node">Node</a> < <a href="https://docs.godotengine.org/en/stable/classes/class_object.html#class-object">Object</a></p>
+								<p>Inherited By: <a href="../../1.0/nodes/projectile-manager-2d.html#projectile-manager-2d">ProjectileManager2D</a></p>
 								<p>An <strong>intermediary</strong> between your code and the <a href="../../1.0/nodes/projectile-processor-2d.html#projectile-processor-2d">AP engine</a>.</p>
 								<br>
 
@@ -52,7 +54,8 @@
 									<h3>Description</h3>
 								</header>
 									<p>Provides indirect access to the <a href="../../1.0/nodes/projectile-processor-2d.html#projectile-processor-2d">AP engine</a>. Holds and delegates the creation of projectiles.</p>
-									<p>This node also serves as a container for your <a href="../../1.0/resources/projectile-blueprint-2d.html#projectile-blueprint-2d">ProjectileBlueprints</a>.</p>
+									<p>This node is <strong>essential</strong> in any entity that needs to spawn projectiles, such as players, enemies, or environmental hazards.</p>
+									<p>It also serves as a container for your <a href="../../1.0/resources/projectile-blueprint-2d.html#projectile-blueprint-2d">ProjectileBlueprints</a>.</p>
 								<br>
 
 
@@ -80,6 +83,16 @@
 										</colgroup>  
 										<tbody>
 											<tr>
+												<td><a href="https://docs.godotengine.org/en/stable/classes/class_bool.html#class-bool">bool</a></td>
+												<td><a href="#projectile-caller-2d-property-auto-add-projectiles-to-database">auto_add_projectiles_to_database</a></td>
+												<td><code class="value">true</code></td>
+											</tr>
+											<tr>
+												<td><a href="https://docs.godotengine.org/en/stable/classes/class_bool.html#class-bool">bool</a></td>
+												<td><a href="#projectile-caller-2d-property-get-projectile-copies-from-database">get_projectile_copies_from_database</a></td>
+												<td><code class="value">true</code></td>
+											</tr>
+											<tr>
 												<td><a href="../../1.0/nodes/projectile-processor-2d.html#projectile-processor-2d">ProjectileProcessor2D</a></td>
 												<td><a href="#projectile-caller-2d-property-projectile-processor">projectile_processor</a></td>
 												<td></td>
@@ -87,6 +100,11 @@
 											<tr>
 												<td><a href="https://docs.godotengine.org/en/stable/classes/class_array.html#class-array">Array</a>[<a href="../../1.0/resources/projectile-blueprint-2d.html#projectile-blueprint-2d">ProjectileBlueprint2D</a>]</td>
 												<td><a href="#projectile-caller-2d-property-projectile-resources">projectile_resources</a></td>
+												<td></td>
+											</tr>
+											<tr>
+												<td><a href="https://docs.godotengine.org/en/stable/classes/class_array.html#class-array">Array</a>[<a href="../../1.0/classes/projectile-2d.html#projectile-2d">Projectile2D</a>]</td>
+												<td><a href="#projectile-caller-2d-property-projectiles">projectiles</a></td>
 												<td></td>
 											</tr>
 										</tbody>
@@ -105,11 +123,75 @@
 										<colgroup>
 											<col style="width:27%">
 											<col style="width:73%">
-										</colgroup>  
+										</colgroup>
 										<tbody>
 											<tr>
 												<td><a href="https://docs.godotengine.org/en/stable/classes/class_bool.html#class-bool">bool</a></td>
+												<td><a href="#projectile-caller-2d-method-add-projectile-from-database">add_projectile_from_database</a></td>
+											</tr>
+											<tr>
+												<td><a href="https://docs.godotengine.org/en/stable/classes/class_bool.html#class-bool">bool</a></td>
+												<td><a href="#projectile-caller-2d-method-add-projectile-modifier">add_projectile_modifier</a></td>
+											</tr>
+											<tr>
+												<td>void</td>
+												<td><a href="#projectile-caller-2d-method-append-projectiles-from-database">append_projectiles_from_database</a></td>
+											</tr>
+											<tr>
+												<td><a href="../../1.0/classes/projectile-2d.html#projectile-2d">Projectile2D</a></td>
+												<td><a href="#projectile-caller-2d-method-get-projectile">get_projectile</a></td>
+											</tr>
+											<tr>
+												<td><a href="../../1.0/resources/projectile-blueprint-2d.html#projectile-blueprint-2d">ProjectileBlueprint2D</a></td>
+												<td><a href="#projectile-caller-2d-method-get-projectile-blueprint">get_projectile_blueprint</a></td>
+											</tr>
+											<tr>
+												<td>void</td>
+												<td><a href="#projectile-caller-2d-method-reassign-projectiles-from-database">reassign_projectiles_from_database</a></td>
+											</tr>
+											<tr>
+												<td><a href="https://docs.godotengine.org/en/stable/classes/class_bool.html#class-bool">bool</a></td>
+												<td><a href="#projectile-caller-2d-method-remove-modifier-stacks-from-projectile">remove_modifier_stacks_from_projectile</a></td>
+											</tr>
+											<tr>
+												<td><a href="https://docs.godotengine.org/en/stable/classes/class_bool.html#class-bool">bool</a></td>
+												<td><a href="#projectile-caller-2d-method-remove-projectile-modifier">remove_projectile_modifier</a></td>
+											</tr>
+											<tr>
+												<td><a href="https://docs.godotengine.org/en/stable/classes/class_bool.html#class-bool">bool</a></td>
 												<td><a href="#projectile-caller-2d-method-request-projectile">request_projectile</a></td>
+											</tr>
+											<tr>
+												<td><a href="https://docs.godotengine.org/en/stable/classes/class_bool.html#class-bool">bool</a></td>
+												<td><a href="#projectile-caller-2d-method-request-projectile-from-database">request_projectile_from_database</a></td>
+											</tr>
+											<tr>
+												<td>void</td>
+												<td><a href="#projectile-caller-2d-method-set-projectile">set_projectile</a></td>
+											</tr>
+											<tr>
+												<td><a href="https://docs.godotengine.org/en/stable/classes/class_bool.html#class-bool">bool</a></td>
+												<td><a href="#projectile-caller-2d-method-set-projectile-from-database">set_projectile_from_database</a></td>
+											</tr>
+											<tr>
+												<td><a href="https://docs.godotengine.org/en/stable/classes/class_bool.html#class-bool">bool</a></td>
+												<td><a href="#projectile-caller-2d-method-validate-proj">validate_proj</a></td>
+											</tr>
+											<tr>
+												<td><a href="https://docs.godotengine.org/en/stable/classes/class_bool.html#class-bool">bool</a></td>
+												<td><a href="#projectile-caller-2d-method-validate-proj-processor">validate_proj_processor</a></td>
+											</tr>
+											<tr>
+												<td><a href="https://docs.godotengine.org/en/stable/classes/class_bool.html#class-bool">bool</a></td>
+												<td><a href="#projectile-caller-2d-method-validate-proj-resource">validate_proj_resource</a></td>
+											</tr>
+											<tr>
+												<td><a href="https://docs.godotengine.org/en/stable/classes/class_bool.html#class-bool">bool</a></td>
+												<td><a href="#projectile-caller-2d-method-validate-request">validate_request</a></td>
+											</tr>
+											<tr>
+												<td><a href="https://docs.godotengine.org/en/stable/classes/class_bool.html#class-bool">bool</a></td>
+												<td><a href="#projectile-caller-2d-method-verify-projectile-from-database">verify_projectile_from_database</a></td>
 											</tr>
 										</tbody>
 									</table>
@@ -167,14 +249,28 @@
 									<h3>Property Descriptions</h3>
 								</header>
 
+								<h4 id="projectile-caller-2d-property-auto-add-projectiles-to-database"><a href="https://docs.godotengine.org/en/stable/classes/class_bool.html#class-bool" class="link">bool</a> auto_add_projectiles_to_database<span class="comment-alt"> = </span><span class="value">true</span></h4>
+									<p class="tab">If <code class="value">true</code> the <b>ProjectileCaller2D</b> Node will automatically add its unregistered projectiles to the <a href="../../1.0/nodes/projectile-database.html#projectile-database">Global Database</a>; using its blueprint <a href="../../1.0/resources/projectile-blueprint-2d.html#projectile-blueprint-2d-property-name">name</a> as <code class="value">key</code>.</p>
+								<hr>
+
+								<h4 id="projectile-caller-2d-property-get-projectile-copies-from-database"><a href="https://docs.godotengine.org/en/stable/classes/class_bool.html#class-bool" class="link">bool</a> get_projectile_copies_from_database<span class="comment-alt"> = </span><span class="value">true</span></h4>
+									<p class="tab">If <code class="value">true</code> the <b>ProjectileCaller2D</b> Node will only get <strong>copies</strong> when <b>requesting projectiles</b> from the <a href="../../1.0/nodes/projectile-database.html#projectile-database">Global Database</a> instead of <b>direct references</b>.</p>
+									<p class="tab">Consequently, any changes you make on them <strong>will not</strong> be reflected on the projectiles allocated on the <b>Global Database</b> itself.</p>
+								<hr>
+
 								<h4 id="projectile-caller-2d-property-projectile-processor"><a href="../../1.0/nodes/projectile-processor-2d.html#projectile-processor-2d" class="link">ProjectileProcessor2D</a> projectile_processor</h4>
 									<p class="tab">Direct access to the <a href="../../1.0/nodes/projectile-processor-2d.html#projectile-processor-2d">AP engine</a> itself.</p>
 									<p class="tab"><strong>You should not use it</strong> for direct projectile creation. Use the <a href="#projectile-caller-2d-method-request-projectile">request_projectile</a> method instead.</p>
 								<hr>
 
 								<h4 id="projectile-caller-2d-property-projectile-resources"><a href="https://docs.godotengine.org/en/stable/classes/class_array.html#class-array" class="link">Array</a>[<a href="../../1.0/resources/projectile-blueprint-2d.html#projectile-blueprint-2d" class="link">ProjectileBlueprint2D</a>] projectile_resources</h4>
-									<p class="tab">The list of <a href="../../1.0/resources/projectile-blueprint-2d.html#projectile-blueprint-2d">ProjectileBlueprint2D</a> resources that can be directly created from the <b>ProjectileCaller2D</b>.</p>
-									<p class="tab">Each <b>ProjectileCaller2D</b> instance can only request the creation of its own stored projectiles.</p>
+									<p class="tab">List of all <a href="../../1.0/resources/projectile-blueprint-2d.html#projectile-blueprint-2d">ProjectileBlueprint2D</a> resources allocated on the <b>ProjectileCaller2D</b>.</p>
+									<p class="tab">Each element in the array is used to create its corresponding <a href="../../1.0/classes/projectile-2d.html#projectile-2d">Projectile2D</a> object in the <a href="#projectile-caller-2d-property-projectiles">projectiles</a> array by the same index.</p>
+								<hr>
+								
+								<h4 id="projectile-caller-2d-property-projectiles"><a href="https://docs.godotengine.org/en/stable/classes/class_array.html#class-array" class="link">Array</a>[<a href="../../1.0/classes/projectile-2d.html#projectile-2d" class="link">Projectile2D</a>] projectiles</h4>
+									<p class="tab">List of all <a href="../../1.0/classes/projectile-2d.html#projectile-2d">Projectile2D</a> objects that can be directly created by the <b>ProjectileCaller2D</b>.</p>	
+									<p class="tab">Each <b>ProjectileCaller2D</b> instance can only modify its own stored projectiles.</p>
 								<hr class="strong">
 								<br>
 
@@ -183,6 +279,87 @@
 								<header class="semimajor" id="method-descriptions">
 									<h3>Method Descriptions</h3>
 								</header>
+
+								<h4 id="projectile-caller-2d-method-add-projectile-from-database"><a href="https://docs.godotengine.org/en/stable/classes/class_bool.html#class-bool" class="link">bool</a> add_projectile_from_database<span class="comment-alt">(id: <a href="https://docs.godotengine.org/en/stable/classes/class_stringname.html#stringname" class="link">StringName</a>, include_blueprints: <a href="https://docs.godotengine.org/en/stable/classes/class_bool.html#class-bool" class="link">bool</a> = false)</span></h4>
+									<p class="tab">Returns <code class="value">true</code> on success.</p>
+									<p class="tab">Adds the projectile with key <code class="value">id</code> from the <a href="../../1.0/nodes/projectile-database.html#projectile-database">Global Database</a> to the end of its local <a href="#projectile-caller-2d-property-projectiles">projectiles</a> array.</p>
+									<p class="tab">If <code class="value">include_blueprints</code> is <code class="value">true</code>, it also adds its <a href="../../1.0/resources/projectile-blueprint-2d.html#projectile-blueprint-2d">ProjectileBlueprint2D</a> counterpart to its <a href="#projectile-caller-2d-property-projectile-resources">projectile_resources</a> array.</p>
+									<pre style="margin: 0 0 1.25em 1.5em;"><code class="language-gdscript">extends Node2D
+
+@onready var projectile_caller: ProjectileCaller2D = $ProjectileCaller2D
+
+func _ready() -> void:
+	projectile_caller.add_projectile_from_database("MEGA_LASER")</code></pre>
+								<hr>
+
+								<h4 id="projectile-caller-2d-method-add-projectile-modifier"><a href="https://docs.godotengine.org/en/stable/classes/class_bool.html#class-bool" class="link">bool</a> add_projectile_modifier<span class="comment-alt">(index: <a href="https://docs.godotengine.org/en/stable/classes/class_int.html#class-int" class="link">int</a>, modifier: <a href="../../1.0/classes/projectile-2d-modifier.html#projectile-2d-modifier" class="link">Projectile2DModifier</a>)</span></h4>
+									<p class="tab">Returns <code class="value">true</code> on success.</p>
+									<p class="tab">Adds a modifier to the projectile at the specified <code class="value">index</code> of its local <a href="#projectile-caller-2d-property-projectiles">projectiles</a> array.</p>
+									<pre style="margin: 0 0 1.25em 1.5em;"><code class="language-gdscript">projectile_caller.add_projectile_modifier(0, Projectile2DModifier.new("PROJ_BUFF", 1.0))
+projectile_caller.add_projectile_modifier(0, APDatabase.get_projectile_2d_modifier("SEEKING_BUFF"))</code></pre>
+								<hr>
+
+								<h4 id="projectile-caller-2d-method-append-projectiles-from-database"><span class="comment-alt">void</span> append_projectiles_from_database<span class="comment-alt">(names: <a href="https://docs.godotengine.org/en/stable/classes/class_array.html#class-array" class="link">Array</a>, include_blueprints: <a href="https://docs.godotengine.org/en/stable/classes/class_bool.html#class-bool" class="link">bool</a> = false)</span></h4>
+									<p class="tab">Adds projectiles from the <a href="../../1.0/nodes/projectile-database.html#projectile-database">Global Database</a> to the end of its local <a href="#projectile-caller-2d-property-projectiles">projectiles</a> array.</p>
+									<p class="tab">If <code class="value">include_blueprints</code> is <code class="value">true</code>, it also adds its <a href="../../1.0/resources/projectile-blueprint-2d.html#projectile-blueprint-2d">ProjectileBlueprint2D</a> counterparts to its <a href="#projectile-caller-2d-property-projectile-resources">projectile_resources</a> array.</p>
+									<pre style="margin: 0 0 1.25em 1.5em;"><code class="language-gdscript">extends Node2D
+
+@onready var projectile_caller: ProjectileCaller2D = $ProjectileCaller2D
+
+enum Spells{
+	MAGIC_BOLT,
+	SOUL_SEEKER,
+	FIREBALL,
+	ERUPTION,
+	MEGA_LASER
+}
+
+func _ready() -> void:
+	projectile_caller.append_projectiles_from_database(Spells.keys())</code></pre>
+								<hr>
+
+								<h4 id="projectile-caller-2d-method-get-projectile"><a href="../../1.0/classes/projectile-2d.html#projectile-2d" class="link">Projectile2D</a> get_projectile<span class="comment-alt">(index: <a href="https://docs.godotengine.org/en/stable/classes/class_int.html#class-int" class="link">int</a>)</span></h4>
+									<p class="tab">Returns the projectile at the specified <code class="value">index</code> of its local <a href="#projectile-caller-2d-property-projectiles">projectiles</a> array.</p>
+									<p class="tab">Use it to change the <strong>properties and behaviors</strong> of your projectiles.</p>
+									<pre style="margin: 0 0 1.25em 1.5em;"><code class="language-gdscript">projectile_caller.get_projectile(0)</code></pre>
+								<hr>
+
+								<h4 id="projectile-caller-2d-method-get-projectile-blueprint"><a href="../../1.0/resources/projectile-blueprint-2d.html#projectile-blueprint-2d" class="link">ProjectileBlueprint2D</a> get_projectile_blueprint<span class="comment-alt">(index: <a href="https://docs.godotengine.org/en/stable/classes/class_int.html#class-int" class="link">int</a>)</span></h4>
+									<p class="tab">Returns the blueprint at the specified <code class="value">index</code> of its local <a href="#projectile-caller-2d-property-projectile-resources">projectile_resources</a> array.</p>
+									<pre style="margin: 0 0 1.25em 1.5em;"><code class="language-gdscript">projectile_caller.get_projectile_blueprint(0)</code></pre>
+								<hr>
+
+								<h4 id="projectile-caller-2d-method-reassign-projectiles-from-database"><span class="comment-alt">void</span> reassign_projectiles_from_database<span class="comment-alt">(names: <a href="https://docs.godotengine.org/en/stable/classes/class_array.html#class-array" class="link">Array</a>, include_blueprints: <a href="https://docs.godotengine.org/en/stable/classes/class_bool.html#class-bool" class="link">bool</a> = false)</span></h4>
+									<p class="tab">Replaces its entire <a href="#projectile-caller-2d-property-projectiles">projectiles</a> array with projectiles from the <a href="../../1.0/nodes/projectile-database.html#projectile-database">Global Database</a>.</p>
+									<p class="tab">If <code class="value">include_blueprints</code> is <code class="value">true</code>, it also replaces its <a href="../../1.0/resources/projectile-blueprint-2d.html#projectile-blueprint-2d">ProjectileBlueprint2D</a> counterparts at the <a href="#projectile-caller-2d-property-projectile-resources">projectile_resources</a> array.</p>
+									<pre style="margin: 0 0 1.25em 1.5em;"><code class="language-gdscript">extends Node2D
+
+@onready var projectile_caller: ProjectileCaller2D = $ProjectileCaller2D
+
+enum Spells{
+	MAGIC_BOLT,
+	SOUL_SEEKER,
+	FIREBALL,
+	ERUPTION,
+	MEGA_LASER
+}
+
+func _ready() -> void:
+	projectile_caller.reassign_projectiles_from_database(Spells.keys())</code></pre>
+								<hr>
+
+								<h4 id="projectile-caller-2d-method-remove-modifier-stacks-from-projectile"><a href="https://docs.godotengine.org/en/stable/classes/class_bool.html#class-bool" class="link">bool</a> remove_modifier_stacks_from_projectile<span class="comment-alt">(index: <a href="https://docs.godotengine.org/en/stable/classes/class_int.html#class-int" class="link">int</a>, id: <a href="https://docs.godotengine.org/en/stable/classes/class_stringname.html#stringname" class="link">StringName</a>, stacks: <a href="https://docs.godotengine.org/en/stable/classes/class_int.html#class-int" class="link">int</a> = -1)</span></h4>
+									<p class="tab">Returns <code class="value">true</code> on success.</p>
+									<p class="tab">Removes a specific number of modifier stacks from the projectile at the specified <code class="value">index</code> of its local <a href="#projectile-caller-2d-property-projectiles">projectiles</a> array.</p>
+									<p class="tab">If <code class="value">stacks < 0</code>, removes all stacks.</p>
+									<pre style="margin: 0 0 1.25em 1.5em;"><code class="language-gdscript">projectile_caller.remove_modifier_stacks_from_projectile(0, "PROJ_BUFF", 2)</code></pre>
+								<hr>
+
+								<h4 id="projectile-caller-2d-method-remove-projectile-modifier"><a href="https://docs.godotengine.org/en/stable/classes/class_bool.html#class-bool" class="link">bool</a> remove_projectile_modifier<span class="comment-alt">(index: <a href="https://docs.godotengine.org/en/stable/classes/class_int.html#class-int" class="link">int</a>, id: <a href="https://docs.godotengine.org/en/stable/classes/class_stringname.html#stringname" class="link">StringName</a>)</span></h4>
+									<p class="tab">Returns <code class="value">true</code> on success.</p>
+									<p class="tab">Removes a modifier from the projectile at the specified <code class="value">index</code> of its local <a href="#projectile-caller-2d-property-projectiles">projectiles</a> array by <code class="value">id</code>.</p>
+									<pre style="margin: 0 0 1.25em 1.5em;"><code class="language-gdscript">projectile_caller.remove_projectile_modifier(0, "PROJ_BUFF")</code></pre>
+								<hr>
 								
 								<h4 id="projectile-caller-2d-method-request-projectile"><a href="https://docs.godotengine.org/en/stable/classes/class_bool.html#class-bool" class="link">bool</a> request_projectile
 									<span class="comment-alt">(index: <a href="https://docs.godotengine.org/en/stable/classes/class_int.html#class-int" class="link">int</a>, _position: <a href="https://docs.godotengine.org/en/stable/classes/class_vector2.html#class-vector2" class="link">Vector2</a>, destination: <a href="https://docs.godotengine.org/en/stable/classes/class_vector2.html#class-vector2" class="link">Vector2</a>, target: <a href="https://docs.godotengine.org/en/stable/classes/class_node2d.html#class-node2d" class="link">Node2D</a> = null, move_method: <a href="https://docs.godotengine.org/en/stable/classes/class_callable.html#class-callable" class="link">Callable</a> = Callable(), start_method: <a href="https://docs.godotengine.org/en/stable/classes/class_callable.html#class-callable" class="link">Callable</a> = Callable(), collision_method: <a href="https://docs.godotengine.org/en/stable/classes/class_callable.html#class-callable" class="link">Callable</a> = Callable(), expired_method: <a href="https://docs.godotengine.org/en/stable/classes/class_callable.html#class-callable" class="link">Callable</a> = Callable())</span></h4>
@@ -193,14 +370,14 @@
 									<hr>
 
 									<p><strong>Takes the following arguments:</strong></p>
-									<p><code class="value">index</code>: Element of the <a href="#projectile-caller-2d-property-projectile-resources">projectile_resources</a> array that will be created by the <a href="../../1.0/nodes/projectile-processor-2d.html#projectile-processor-2d">AP engine</a>.</p>
+									<p><code class="value">index</code>: Element of the <a href="#projectile-caller-2d-property-projectiles">projectiles</a> array that will be used by the <a href="../../1.0/nodes/projectile-processor-2d.html#projectile-processor-2d">AP engine</a>.</p>
 									<p><code class="value">position</code>: Start position of the projectile (In global coordinates).</p>
 									<p><code class="value">destination</code>: Position the projectile will move towards (In global coordinates).</p>
-									<p><code class="value">target</code>: <a href="https://docs.godotengine.org/en/stable/classes/class_node2d.html#class-node2d" class="link">Node2D</a> the projectile will actively seek to (If selected in <a href="../../1.0/resources/projectile-blueprint-2d.html#projectile-blueprint-2d">ProjectileBlueprint2D</a>).</p>
-									<p><code class="value">move_method</code>: <a href="https://docs.godotengine.org/en/stable/classes/class_callable.html#class-callable" class="link">Callable</a> that will be called every physics tick and will actively change the direction the projectile is heading to.</p> 
-									<p><code class="value">start_method</code>: <a href="https://docs.godotengine.org/en/stable/classes/class_callable.html#class-callable" class="link">Callable</a> that will be called <strong>at projectile creation</strong>.</p>
-									<p><code class="value">collision_method</code>: <a href="https://docs.godotengine.org/en/stable/classes/class_callable.html#class-callable" class="link">Callable</a> that will be called when the projectile collides with available bodies or areas.</p>
-									<p><code class="value">expired_method</code>: <a href="https://docs.godotengine.org/en/stable/classes/class_callable.html#class-callable" class="link">Callable</a> that will be called once the projectile <strong>runs out of pierce or lifetime</strong>.</p>
+									<p><code class="value">target</code>: Optional <a href="https://docs.godotengine.org/en/stable/classes/class_node2d.html#class-node2d" class="link">Node2D</a> the projectile will actively <a href="../../1.0/classes/projectile-2d.html#projectile-2d-property-seeking">seek</a> to (If selected in <a href="../../1.0/resources/projectile-blueprint-2d.html#projectile-blueprint-2d">ProjectileBlueprint2D</a>).</p>
+									<p><code class="value">move_method</code>: Optional <a href="https://docs.godotengine.org/en/stable/classes/class_callable.html#class-callable" class="link">Callable</a> to overwrite the set <a href="../../1.0/classes/projectile-2d.html#projectile-2d-property-on-move">on_move</a> projectile property.</p> 
+									<p><code class="value">start_method</code>: Optional <a href="https://docs.godotengine.org/en/stable/classes/class_callable.html#class-callable" class="link">Callable</a> to overwrite the set <a href="../../1.0/classes/projectile-2d.html#projectile-2d-property-on-start">on_start</a> projectile property.</p>
+									<p><code class="value">collision_method</code>: Optional <a href="https://docs.godotengine.org/en/stable/classes/class_callable.html#class-callable" class="link">Callable</a> to overwrite both <a href="../../1.0/classes/projectile-2d.html#projectile-2d-property-on-area-collision">on_area_collision</a> and <a href="../../1.0/classes/projectile-2d.html#projectile-2d-property-on-body-collision">on_body_collision</a> projectile properties.</p>
+									<p><code class="value">expired_method</code>: Optional <a href="https://docs.godotengine.org/en/stable/classes/class_callable.html#class-callable" class="link">Callable</a> to overwrite the set <a href="../../1.0/classes/projectile-2d.html#projectile-2d-property-on-expired">on_expired</a> projectile property.</p>
 
 									<hr>
 
@@ -259,8 +436,8 @@
 										<li>
 											<p>The <code class="value">collision_method</code> callable returns <code class="value">void</code> and takes the following parameters:</p>
 											<p><code class="value">proj</code>: A representation of the projectile object to be changed.</p>
-											<p><code class="value">area_rid</code>: The <a href="https://docs.godotengine.org/en/stable/classes/class_rid.html#class-rid">RID</a> of the area/body that entered or exited the projectile.</p>
-											<p><code class="value">area</code>: The <a href="https://docs.godotengine.org/en/stable/classes/class_node.html#class-node">Node</a> of the area/body that entered or exited the projectile.</p>
+											<p><code class="value">area_rid</code>: The <a href="https://docs.godotengine.org/en/stable/classes/class_rid.html#class-rid">RID</a> of the area/body that entered the projectile.</p>
+											<p><code class="value">area</code>: The <a href="https://docs.godotengine.org/en/stable/classes/class_node.html#class-node">Node</a> of the area/body that entered the projectile.</p>
 											<p><code class="value">area_shape_index</code>: Index of the interacting shape from the collidiong area/body.</p>
 											<p><code class="value">local_shape_index</code>: Index of the interacting shape from the projectile area.</p>
 											<pre><code><span class="keyword">extends</span> Node2D
@@ -324,6 +501,58 @@
 										</li>
 									</ul>
 									</div>
+								<hr>
+
+								<h4 id="projectile-caller-2d-method-request-projectile-from-database"><a href="https://docs.godotengine.org/en/stable/classes/class_bool.html#class-bool" class="link">bool</a> request_projectile_from_database<span class="comment-alt">(id: <a href="https://docs.godotengine.org/en/stable/classes/class_stringname.html#stringname" class="link">StringName</a>, _position: <a href="https://docs.godotengine.org/en/stable/classes/class_vector2.html#class-vector2" class="link">Vector2</a>, destination: <a href="https://docs.godotengine.org/en/stable/classes/class_vector2.html#class-vector2" class="link">Vector2</a>, target: <a href="https://docs.godotengine.org/en/stable/classes/class_node2d.html#class-node2d" class="link">Node2D</a> = null, move_method: <a href="https://docs.godotengine.org/en/stable/classes/class_callable.html#class-callable" class="link">Callable</a> = Callable(), start_method: <a href="https://docs.godotengine.org/en/stable/classes/class_callable.html#class-callable" class="link">Callable</a> = Callable(), collision_method: <a href="https://docs.godotengine.org/en/stable/classes/class_callable.html#class-callable" class="link">Callable</a> = Callable(), expired_method: <a href="https://docs.godotengine.org/en/stable/classes/class_callable.html#class-callable" class="link">Callable</a> = Callable())</span></h4>
+									<p class="tab">Returns <code class="value">true</code> if the creation request has been successful.</p>
+									<p class="tab">Requests the creation of the projectile with key <code class="value">id</code> from the <a href="../../1.0/nodes/projectile-database.html#projectile-database">Global Database</a>.</p>
+									<p class="tab">Parameters and requirements match those of <a href="../../1.0/nodes/projectile-caller-2d.html#projectile-caller-2d-method-request-projectile">request_projectile</a>, but uses a database ID instead of a local index.</p>
+								<hr>
+
+								<h4 id="projectile-caller-2d-method-set-projectile"><span class="comment-alt">void</span> set_projectile<span class="comment-alt">(index: <a href="https://docs.godotengine.org/en/stable/classes/class_int.html#class-int" class="link">int</a>, projectile: <a href="../../1.0/classes/projectile-2d.html#projectile-2d" class="link">Projectile2D</a>, auto_assign_blueprint: <a href="https://docs.godotengine.org/en/stable/classes/class_bool.html#class-bool" class="link">bool</a> = true)</span></h4>
+									<p class="tab">Sets the given <code class="value">projectile</code> at the specified <code class="value">index</code> of its local <a href="#projectile-caller-2d-property-projectiles">projectiles</a> array.</p>
+									<p class="tab">If <code class="value">auto_assign_blueprint</code> is <code class="value">true</code> it sets its blueprint to the same one its method <code class="value">index</code> is replacing.</p>
+									<pre style="margin: 0 0 1.25em 1.5em;"><code class="language-gdscript">func _ready() -> void:
+	# These two statements are the same
+	projectile_manager.set_projectile(0, MyProjectile.new())
+	projectile_manager.set_projectile(0, MyProjectile.new(projectile_manager.get_projectile_blueprint(0)))
+    
+	# Set it to "false" so it does not auto assing
+	projectile_manager.set_projectile(0, MyProjectile.new(projectile_manager.get_projectile_blueprint(1)), false)</code></pre>
+								<hr>
+
+								<h4 id="projectile-caller-2d-method-set-projectile-from-database"><a href="https://docs.godotengine.org/en/stable/classes/class_bool.html#class-bool" class="link">bool</a> set_projectile_from_database<span class="comment-alt">(index: <a href="https://docs.godotengine.org/en/stable/classes/class_int.html#class-int" class="link">int</a>, id: <a href="https://docs.godotengine.org/en/stable/classes/class_stringname.html#stringname" class="link">StringName</a>, include_blueprints: <a href="https://docs.godotengine.org/en/stable/classes/class_bool.html#class-bool" class="link">bool</a> = false)</span></h4>
+									<p class="tab">Returns <code class="value">true</code> on success.</p>
+									<p class="tab">Sets the element at the specified <code class="value">index</code> in the <a href="#projectile-caller-2d-property-projectiles">projectiles</a> array, to the projectile with key <code class="value">id</code> from the <a href="../../1.0/nodes/projectile-database.html#projectile-database">Global Database</a>.</p>
+									<p class="tab">If <code class="value">include_blueprints</code> is <code class="value">true</code>, it also sets its <a href="../../1.0/resources/projectile-blueprint-2d.html#projectile-blueprint-2d">ProjectileBlueprint2D</a> counterpart at the specified <code class="value">index</code> of its <a href="#projectile-caller-2d-property-projectile-resources">projectile_resources</a> array.</p>
+									<pre style="margin: 0 0 1.25em 1.5em;"><code class="language-gdscript">extends Node2D
+
+@onready var projectile_caller: ProjectileCaller2D = $ProjectileCaller2D
+
+func _ready() -> void:
+	projectile_caller.set_projectile_from_database(4, "MEGA_LASER")</code></pre>
+								<hr>
+
+								<h4 id="projectile-caller-2d-method-validate-proj"><a href="https://docs.godotengine.org/en/stable/classes/class_bool.html#class-bool" class="link">bool</a> validate_proj<span class="comment-alt">(index: <a href="https://docs.godotengine.org/en/stable/classes/class_int.html#class-int" class="link">int</a>)</span></h4>
+									<p class="tab">Returns <code class="value">true</code> if the projectile at the specified <code class="value">index</code> of its local <a href="#projectile-caller-2d-property-projectiles">projectiles</a> array can be spawned.</p>
+								<hr>
+
+								<h4 id="projectile-caller-2d-method-validate-proj-processor"><a href="https://docs.godotengine.org/en/stable/classes/class_bool.html#class-bool" class="link">bool</a> validate_proj_processor<span class="comment-alt">()</span></h4>
+									<p class="tab">Returns <code class="value">true</code> if there is a valid <a href="../../1.0/nodes/projectile-processor-2d.html#projectile-processor-2d">projectile_processor</a> on scene.</p>
+									<p class="tab">Automatically creates one if none exists.</p>
+								<hr>
+
+								<h4 id="projectile-caller-2d-method-validate-proj-resource"><a href="https://docs.godotengine.org/en/stable/classes/class_bool.html#class-bool" class="link">bool</a> validate_proj_resource<span class="comment-alt">(index: <a href="https://docs.godotengine.org/en/stable/classes/class_int.html#class-int" class="link">int</a>)</span></h4>
+									<p class="tab">Returns <code class="value">true</code> if the blueprint at the specified <code class="value">index</code> of its local <a href="#projectile-caller-2d-property-projectile-resources">projectile_resources</a> array can be used.</p>
+								<hr>
+
+								<h4 id="projectile-caller-2d-method-validate-request"><a href="https://docs.godotengine.org/en/stable/classes/class_bool.html#class-bool" class="link">bool</a> validate_request<span class="comment-alt">(index: <a href="https://docs.godotengine.org/en/stable/classes/class_int.html#class-int" class="link">int</a>)</span></h4>
+									<p class="tab">Returns <code class="value">true</code> if the projectile at the specified <code class="value">index</code> of its local <a href="#projectile-caller-2d-property-projectiles">projectiles</a> array can be spawned on scene.</p>
+									<p class="tab">Checks both the <a href="#projectile-caller-2d-property-projectile-processor">projectile_processor</a> and projectile validity.</p>
+								<hr>
+
+								<h4 id="projectile-caller-2d-method-verify-projectile-from-database"><a href="https://docs.godotengine.org/en/stable/classes/class_bool.html#class-bool" class="link">bool</a> verify_projectile_from_database<span class="comment-alt">(id: <a href="https://docs.godotengine.org/en/stable/classes/class_stringname.html#stringname" class="link">StringName</a>)</span></h4>
+									<p class="tab">Returns <code class="value">true</code> if the <a href="../../1.0/nodes/projectile-database.html#projectile-database">Global Database</a> has a registered projectile under key <code class="value">id</code>.</p>
 								<hr>
 							</section>
 						</div>
@@ -483,6 +712,7 @@
 			<script src="../../assets/js/breakpoints.min.js"></script>
 			<script src="../../assets/js/util.js"></script>
 			<script src="../../assets/js/main.js"></script>
+			<script src="../../assets/js/prism.js"></script>
 
 	</body>
 </html>
