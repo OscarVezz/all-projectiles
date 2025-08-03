@@ -24,7 +24,7 @@
 
 							<!-- Header -->
 							<header id="header">
-								<a href="../../index.html" class="logo"><strong>All Projectiles</strong> 1.0 Documentation</a>
+								<a href="../../index.html" class="logo"><strong>All Projectiles</strong> 1.4 Documentation</a>
 								<ul class="icons">
 									<li><a href="https://github.com/OscarVezz/all-projectiles" class="icon brands fa-github"><span class="label">Github</span></a></li>
 									<li><a href="https://www.patreon.com/OscarVezz" class="icon brands fa-patreon"><span class="label">Patreon</span></a></li>
@@ -52,10 +52,10 @@
 									<h3>Description</h3>
 								</header>
 								<div style="padding-right: 2em;">
-									<p><b>ProjectileProcessor2D</b> is in charge of managing all requested projectiles from all <a href="../../1.0/nodes/projectile-caller-2d.html#projectile-caller-2d">ProjectileCaller2D</a>. It handles projectile <strong>instancing</strong>, <strong>movement</strong>, <strong>drawing</strong>, and <strong>disposal</strong>.</p>
-									<p>A successful <a href="../../1.0/nodes/projectile-caller-2d.html#projectile-caller-2d-method-request-projectile">request_projectile</a> call from any <a href="../../1.0/nodes/projectile-caller-2d.html#projectile-caller-2d">ProjectileCaller2D</a> will create or repurpose a <a href="../../1.0/classes/projectile-2d.html#projectile-2d">Projectile2D</a> from the inactive id queue. The <b>ProjectileProcessor2D</b> will process all projectiles at runtime; lifetime updates every frame, and movement updates on physic frames.</p>
+									<p><b>ProjectileProcessor2D</b> is in charge of managing all requested projectiles from all <a href="../../1.0/nodes/projectile-caller-2d.html#projectile-caller-2d">ProjectileCaller2D</a>s and <a href="../../1.0/nodes/projectile-manager-2d.html#projectile-manager-2d">ProjectileManager2D</a>s. It handles projectile <strong>instancing</strong>, <strong>movement</strong>, <strong>drawing</strong>, and <strong>disposal</strong>.</p>
+									<p>A successful <a href="../../1.0/nodes/projectile-caller-2d.html#projectile-caller-2d-method-request-projectile">request_projectile</a> call from any <a href="../../1.0/nodes/projectile-caller-2d.html#projectile-caller-2d">ProjectileCaller2D</a> will create or repurpose a <a href="../../1.0/classes/projectile-2d.html#projectile-2d">Projectile2D</a> from its <b>inactive id queue</b>. The <b>ProjectileProcessor2D</b> will process all projectiles at runtime; lifetime updates every frame, and movement updates on physic frames. These statements also hold true for both <a href="../../1.0/classes/attack-2d.html#attack-2d">Attack2D</a>s and <a href="../../1.0/classes/timed-modifier.html#timed-modifier">TimedModifier</a>s.</p>
 									<p><b>Note:</b> <b>ProjectileProcessor2D</b> acts as a <strong>singleton</strong> i.e. it's created when needed and actively restricts the creation of more instances.</p>
-									<p><b>Note:</b> <b>ProjectileProcessor2D</b> is intentionally kept obtuse and unapproachable <strong>by design</strong>. Please avoid using it directly in any way that is not strictly necessary and use <a href="../../1.0/nodes/projectile-caller-2d.html#projectile-caller-2d">ProjectileCaller2D</a> instead.</p>
+									<p><b>Note:</b> <b>ProjectileProcessor2D</b> is intentionally kept obtuse and unapproachable <strong>by design</strong>. Please avoid using it directly in any way that is not strictly necessary and use <a href="../../1.0/nodes/projectile-caller-2d.html#projectile-caller-2d">ProjectileCaller2D</a>s or <a href="../../1.0/nodes/projectile-manager-2d.html#projectile-manager-2d">ProjectileManager2D</a>s instead.</p>
 								</div>
 								<br>
 
@@ -84,14 +84,34 @@
 										</colgroup>  
 										<tbody>
 											<tr>
+												<td><a href="https://docs.godotengine.org/en/stable/classes/class_array.html#class-array">Array</a>[<a href="../../1.0/classes/attack-2d.html#attack-2d">Attack2D</a>]</td>
+												<td><a href="#projectile-processor-2d.property-attacks">attacks</a></td>
+												<td></td>
+											</tr>
+											<tr>
+												<td><a href="https://docs.godotengine.org/en/stable/classes/class_array.html#class-array">Array</a>[<a href="https://docs.godotengine.org/en/stable/classes/class_int.html#class-int">int</a>]</td>
+												<td><a href="#projectile-processor-2d-property-inactive-attacks-queue">inactive_attacks_queue</a></td>
+												<td></td>
+											</tr>
+											<tr>
+												<td><a href="https://docs.godotengine.org/en/stable/classes/class_array.html#class-array">Array</a>[<a href="https://docs.godotengine.org/en/stable/classes/class_int.html#class-int">int</a>]</td>
+												<td><a href="#projectile-processor-2d-property-inactive-modifiers-queue">inactive_modifiers_queue</a></td>
+												<td></td>
+											</tr>
+											<tr>
 												<td><a href="https://docs.godotengine.org/en/stable/classes/class_array.html#class-array">Array</a>[<a href="https://docs.godotengine.org/en/stable/classes/class_int.html#class-int">int</a>]</td>
 												<td><a href="#projectile-processor-2d-property-inactive-projectiles-queue">inactive_projectiles_queue</a></td>
-												<td><code class="value">[]</code></td>
+												<td></td>
+											</tr>
+											<tr>
+												<td><a href="https://docs.godotengine.org/en/stable/classes/class_array.html#class-array">Array</a>[<a href="../../1.0/classes/timed-modifier.html#timed-modifier">TimedModifier</a>]</td>
+												<td><a href="#projectile-processor-2d.property-modifiers">modifiers</a></td>
+												<td></td>
 											</tr>
 											<tr>
 												<td><a href="https://docs.godotengine.org/en/stable/classes/class_array.html#class-array">Array</a>[<a href="../../1.0/classes/projectile-2d.html#projectile-2d">Projectile2D</a>]</td>
 												<td><a href="#projectile-processor-2d.property-projectiles">projectiles</a></td>
-												<td><code class="value">[]</code></td>
+												<td></td>
 											</tr>
 										</tbody>
 									</table>
@@ -117,6 +137,14 @@
 											</tr>
 											<tr>
 												<td>void</td>
+												<td><a href="#projectile-processor-2d-method-add-attack">add_attack</a></td>
+											</tr>
+											<tr>
+												<td>void</td>
+												<td><a href="#projectile-processor-2d-method-add-modifier">add_modifier</a></td>
+											</tr>
+											<tr>
+												<td>void</td>
 												<td><a href="#projectile-processor-2d-method-add-projectiles-resource">add_projectiles_resource</a></td>
 											</tr>
 										</tbody>
@@ -131,17 +159,43 @@
 									<h3>Signals</h3>
 								</header>
 
+								<h4>attack_array_expanded<span class="comment-alt">()</span></h4>
+									<p class="tab">Emitted when a new <a href="../../1.0/classes/attack-2d.html#attack-2d">Attack2D</a> is added to the <a href="#projectile-processor-2d.property-attacks">attacks</a> array property.</p>
+									<p class="tab"><b>Note:</b> This signal is not emitted when a new attack is created, only when the <b>attacks</b> array expands its capacity.</p>
+								<hr>
+
+								<h4>attack_inactive_queue_contracted<span class="comment-alt">()</span></h4>
+									<p class="tab">Emitted when an element <b>id</b> is removed from the <a href="#projectile-processor-2d-property-inactive-attacks-queue">inactive_attacks_queue</a> array property.</p>
+								<hr>
+
+								<h4>attack_inactive_queue_expanded<span class="comment-alt">()</span></h4>
+									<p class="tab">Emitted when a new element <b>id</b> is added to the <a href="#projectile-processor-2d-property-inactive-attacks-queue">inactive_attacks_queue</a> array property.</p>
+								<hr>
+
+								<h4>modifier_array_expanded<span class="comment-alt">()</span></h4>
+									<p class="tab">Emitted when a new <a href="../../1.0/classes/timed-modifier.html#timed-modifier">TimedModifier</a> is added to the <a href="#projectile-processor-2d.property-modifiers">modifiers</a> array property.</p>
+									<p class="tab"><b>Note:</b> This signal is not emitted when a new modifier is created, only when the <b>modifiers</b> array expands its capacity.</p>
+								<hr>
+
+								<h4>modifier_inactive_queue_contracted<span class="comment-alt">()</span></h4>
+									<p class="tab">Emitted when an element <b>id</b> is removed from the <a href="#projectile-processor-2d-property-inactive-modifiers-queue">inactive_modifiers_queue</a> array property.</p>
+								<hr>
+
+								<h4>modifier_inactive_queue_expanded<span class="comment-alt">()</span></h4>
+									<p class="tab">Emitted when a new element <b>id</b> is added to the <a href="#projectile-processor-2d-property-inactive-modifiers-queue">inactive_modifiers_queue</a> array property.</p>
+								<hr>
+
 								<h4>projectile_array_expanded<span class="comment-alt">()</span></h4>
 									<p class="tab">Emitted when a new <a href="../../1.0/classes/projectile-2d.html#projectile-2d">Projectile2D</a> is added to the <a href="#projectile-processor-2d.property-projectiles">projectiles</a> array property.</p>
-									<p class="tab"><b>Note:</b> This signal is not emitted when a new projectile is created, only when the projectiles array expands its capacity.</p>
+									<p class="tab"><b>Note:</b> This signal is not emitted when a new projectile is created, only when the <b>projectiles</b> array expands its capacity.</p>
 								<hr>
 
 								<h4>projectile_inactive_queue_contracted<span class="comment-alt">()</span></h4>
-									<p class="tab">Emitted when an element id is removed from the <a href="#projectile-processor-2d-property-inactive-projectiles-queue">inactive_projectiles_queue</a> array property.</p>
+									<p class="tab">Emitted when an element <b>id</b> is removed from the <a href="#projectile-processor-2d-property-inactive-projectiles-queue">inactive_projectiles_queue</a> array property.</p>
 								<hr>
 
 								<h4>projectile_inactive_queue_expanded<span class="comment-alt">()</span></h4>
-									<p class="tab">Emitted when a new element id is added to the <a href="#projectile-processor-2d-property-inactive-projectiles-queue">inactive_projectiles_queue</a> array property.</p>
+									<p class="tab">Emitted when a new element <b>id</b> is added to the <a href="#projectile-processor-2d-property-inactive-projectiles-queue">inactive_projectiles_queue</a> array property.</p>
 								<hr class="strong">
 								<br>
 
@@ -180,12 +234,28 @@
 									<h3>Property Descriptions</h3>
 								</header>
 
-								<h4 id="projectile-processor-2d-property-inactive-projectiles-queue"><a href="https://docs.godotengine.org/en/stable/classes/class_array.html#class-array" class="link">Array</a>[<a href="https://docs.godotengine.org/en/stable/classes/class_int.html#class-int" class="link">int</a>] inactive_projectiles_queue<span class="comment-alt"> = </span><span class="value"> []</span></h4>
-									<p class="tab">A list of all the available indices from inactive <a href="../../1.0/classes/projectile-2d.html#projectile-2d" class="link">Projectile2D</a>'s in the <a href="#projectile-processor-2d.property-projectiles">projectiles</a> property.</p>
+								<h4 id="projectile-processor-2d.property-attacks"><a href="https://docs.godotengine.org/en/stable/classes/class_array.html#class-array" class="link">Array</a>[<a href="../../1.0/classes/attack-2d.html#attack-2d" class="link">Attack2D</a>] attacks<span class="comment-alt"></h4>
+									<p class="tab">A list of all working <a href="../../1.0/classes/attack-2d.html#attack-2d" class="link">Attack2D</a>s managed by the <b>ProjectileProcessor2D</b>.</p>
 								<hr>
 
-								<h4 id="projectile-processor-2d.property-projectiles"><a href="https://docs.godotengine.org/en/stable/classes/class_array.html#class-array" class="link">Array</a>[<a href="../../1.0/classes/projectile-2d.html#projectile-2d" class="link">Projectile2D</a>] projectiles<span class="comment-alt"> = </span><span class="value"> []</span></h4>
-									<p class="tab">A list of all active or inactive <a href="../../1.0/classes/projectile-2d.html#projectile-2d" class="link">Projectile2D</a>'s managed by the <b>ProjectileProcessor2D</b>.</p>
+								<h4 id="projectile-processor-2d-property-inactive-attacks-queue"><a href="https://docs.godotengine.org/en/stable/classes/class_array.html#class-array" class="link">Array</a>[<a href="https://docs.godotengine.org/en/stable/classes/class_int.html#class-int" class="link">int</a>] inactive_attacks_queue<span class="comment-alt"></h4>
+									<p class="tab">A list of all available indices from inactive <a href="../../1.0/classes/attack-2d.html#attack-2d" class="link">Attack2D</a>s in the <a href="#projectile-processor-2d.property-attacks">attacks</a> property.</p>
+								<hr>
+
+								<h4 id="projectile-processor-2d-property-inactive-modifiers-queue"><a href="https://docs.godotengine.org/en/stable/classes/class_array.html#class-array" class="link">Array</a>[<a href="https://docs.godotengine.org/en/stable/classes/class_int.html#class-int" class="link">int</a>] inactive_modifiers_queue<span class="comment-alt"></h4>
+									<p class="tab">A list of all available indices from inactive <a href="../../1.0/classes/timed-modifier.html#timed-modifier" class="link">TimedModifier</a>s in the <a href="#projectile-processor-2d.property-modifiers">modifiers</a> property.</p>
+								<hr>
+
+								<h4 id="projectile-processor-2d-property-inactive-projectiles-queue"><a href="https://docs.godotengine.org/en/stable/classes/class_array.html#class-array" class="link">Array</a>[<a href="https://docs.godotengine.org/en/stable/classes/class_int.html#class-int" class="link">int</a>] inactive_projectiles_queue<span class="comment-alt"></h4>
+									<p class="tab">A list of all available indices from inactive <a href="../../1.0/classes/projectile-2d.html#projectile-2d" class="link">Projectile2D</a>s in the <a href="#projectile-processor-2d.property-projectiles">projectiles</a> property.</p>
+								<hr>
+
+								<h4 id="projectile-processor-2d.property-modifiers"><a href="https://docs.godotengine.org/en/stable/classes/class_array.html#class-array" class="link">Array</a>[<a href="../../1.0/classes/timed-modifier.html#timed-modifier" class="link">TimedModifier</a>] modifiers<span class="comment-alt"></h4>
+									<p class="tab">A list of all working <a href="../../1.0/classes/timed-modifier.html#timed-modifier" class="link">TimedModifier</a>s managed by the <b>ProjectileProcessor2D</b>.</p>
+								<hr>
+
+								<h4 id="projectile-processor-2d.property-projectiles"><a href="https://docs.godotengine.org/en/stable/classes/class_array.html#class-array" class="link">Array</a>[<a href="../../1.0/classes/projectile-2d.html#projectile-2d" class="link">Projectile2D</a>] projectiles<span class="comment-alt"></h4>
+									<p class="tab">A list of all working <a href="../../1.0/classes/projectile-2d.html#projectile-2d" class="link">Projectile2D</a>s managed by the <b>ProjectileProcessor2D</b>.</p>
 								<hr class="strong">
 								<br>
 
@@ -195,12 +265,20 @@
 									<h3>Method Descriptions</h3>
 								</header>
 
-								<h4 id="projectile-processor-2d-method-add-projectile"><span class="comment">void</span> _add_projectile<span class="comment-alt">(resource: <a href="../../1.0/resources/projectile-blueprint-2d.html#projectile-blueprint-2d" class="link">ProjectileBlueprint2D</a>, _position: <a href="https://docs.godotengine.org/en/stable/classes/class_vector2.html#class-vector2" class="link">Vector2</a>, direction: <a href="https://docs.godotengine.org/en/stable/classes/class_vector2.html#class-vector2" class="link">Vector2</a>, destination: <a href="https://docs.godotengine.org/en/stable/classes/class_vector2.html#class-vector2" class="link">Vector2</a>, target: <a href="https://docs.godotengine.org/en/stable/classes/class_node2d.html#class-node2d" class="link">Node2D</a> = null, move_method: <a href="https://docs.godotengine.org/en/stable/classes/class_callable.html#class-callable" class="link">Callable</a> = Callable(), start_method: <a href="https://docs.godotengine.org/en/stable/classes/class_callable.html#class-callable" class="link">Callable</a> = Callable(), collision_method: <a href="https://docs.godotengine.org/en/stable/classes/class_callable.html#class-callable" class="link">Callable</a> = Callable(), expired_method: <a href="https://docs.godotengine.org/en/stable/classes/class_callable.html#class-callable" class="link">Callable</a> = Callable())</span></h4>
-									<p class="tab">Creates a new projectile from the given indications.</p>
+								<h4 id="projectile-processor-2d-method-add-projectile"><span class="comment">void</span> _add_projectile<span class="comment-alt">(projectile: <a href="../../1.0/classes/projectile-2d.html#projectile-2d" class="link">Projectile2D</a>, _packed_info: <a href="../../1.0/classes/packed-info.html#packed-info" class="link">PackedInfo</a>)</span></h4>
+									<p class="tab">Creates one (1) new projectile from the given indications.</p>
 								<hr>
 
-								<h4 id="projectile-processor-2d-method-add-projectiles-resource"><span class="comment">void</span> add_projectiles_resource<span class="comment-alt">(resource: <a href="../../1.0/resources/projectile-blueprint-2d.html#projectile-blueprint-2d" class="link">ProjectileBlueprint2D</a>, _position: <a href="https://docs.godotengine.org/en/stable/classes/class_vector2.html#class-vector2" class="link">Vector2</a>, destination: <a href="https://docs.godotengine.org/en/stable/classes/class_vector2.html#class-vector2" class="link">Vector2</a>, target: <a href="https://docs.godotengine.org/en/stable/classes/class_node2d.html#class-node2d" class="link">Node2D</a> = null, move_method: <a href="https://docs.godotengine.org/en/stable/classes/class_callable.html#class-callable" class="link">Callable</a> = Callable(), start_method: <a href="https://docs.godotengine.org/en/stable/classes/class_callable.html#class-callable" class="link">Callable</a> = Callable(), collision_method: <a href="https://docs.godotengine.org/en/stable/classes/class_callable.html#class-callable" class="link">Callable</a> = Callable(), expired_method: <a href="https://docs.godotengine.org/en/stable/classes/class_callable.html#class-callable" class="link">Callable</a> = Callable())</span></h4>
-									<p class="tab">Creates a new projectile and all its instances from the given <a href="../../1.0/resources/projectile-blueprint-2d.html#projectile-blueprint-2d">ProjectileBlueprint2D</a> resource.</p>
+								<h4 id="projectile-processor-2d-method-add-attack"><span class="comment">void</span> add_attack<span class="comment-alt">(attack: <a href="../../1.0/classes/attack-2d.html#attack-2d" class="link">Attack2D</a>)</span></h4>
+									<p class="tab">Registers a new attack from the given object.</p>
+								<hr>
+
+								<h4 id="projectile-processor-2d-method-add-modifier"><span class="comment">void</span> add_modifier<span class="comment-alt">(modifier: <a href="../../1.0/classes/timed-modifier.html#timed-modifier" class="link">TimedModifier</a>)</span></h4>
+									<p class="tab">Registers a new modifier from the given object.</p>
+								<hr>
+
+								<h4 id="projectile-processor-2d-method-add-projectiles-resource"><span class="comment">void</span> add_projectiles_resource<span class="comment-alt">(projectile: <a href="../../1.0/classes/projectile-2d.html#projectile-2d" class="link">Projectile2D</a>, _position: <a href="https://docs.godotengine.org/en/stable/classes/class_vector2.html#class-vector2" class="link">Vector2</a>, destination: <a href="https://docs.godotengine.org/en/stable/classes/class_vector2.html#class-vector2" class="link">Vector2</a>, target: <a href="https://docs.godotengine.org/en/stable/classes/class_node2d.html#class-node2d" class="link">Node2D</a> = null, move_method: <a href="https://docs.godotengine.org/en/stable/classes/class_callable.html#class-callable" class="link">Callable</a> = Callable(), start_method: <a href="https://docs.godotengine.org/en/stable/classes/class_callable.html#class-callable" class="link">Callable</a> = Callable(), collision_method: <a href="https://docs.godotengine.org/en/stable/classes/class_callable.html#class-callable" class="link">Callable</a> = Callable(), expired_method: <a href="https://docs.godotengine.org/en/stable/classes/class_callable.html#class-callable" class="link">Callable</a> = Callable())</span></h4>
+									<p class="tab">Creates a new projectile, and all its instances, from the given <a href="../../1.0/classes/projectile-2d.html#projectile-2d">Projectile2D</a> object.</p>
 								<hr>
 							</section>
 						</div>
