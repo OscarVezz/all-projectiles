@@ -12,6 +12,7 @@
 		<meta name="autor" content="Oscar Vezz"/>
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="../../assets/css/main.css" />
+		<link rel="stylesheet" href="../../assets/css/prism.css" />
 	</head>
 	<body class="is-preload">
 
@@ -42,8 +43,8 @@
 
 
 									<!-- Inherits -->
-									<p>Inherits: <a href="#">hierarchy_link1</a> < <a href="#">hierarchy_link2</a> < <a href="#">hierarchy_link3</a></p>
-									<p>description short.</p>
+									<p><b>Inherits:</b> <a href="../../1.0/nodes/projectile-caller-2d.html#projectile-caller-2d">ProjectileCaller2D</a> < <a href="https://docs.godotengine.org/en/stable/classes/class_node2d.html#class-node2d">Node2D</a> < <a href="https://docs.godotengine.org/en/stable/classes/class_canvasitem.html#class-canvasitem">CanvasItem</a> < <a href="https://docs.godotengine.org/en/stable/classes/class_node.html#class-node">Node</a> < <a href="https://docs.godotengine.org/en/stable/classes/class_object.html#class-object">Object</a></p>
+									<p>Handles projectile spawning through <b>Attack2D</b> instances.</p>
 									<br>
 
 
@@ -51,19 +52,62 @@
 									<header class="semimajor" id="description">
 										<h3>Description</h3>
 									</header>
-									<p>description long.</p>
+									<p><b>ProjectileManager2D</b> nodes are <b>ProjectileCaller2D</b> extensions, and like the latter, you can use them to request the creation of any of its projectiles.</p>
+									<p>The main difference between these two is that you can use <b>ProjectileManager2D</b>s in conjunction with <a href="../../1.0/resources/attack-blueprint-2d.html#attack-blueprint-2d">AttackBlueprint2D</a>s to <b>convert a</b> <strong>constant Input request</strong> <b>into an</b> <strong>orderly timed projectile barrage</strong>.</p>
+
+									<div class="row gtr-100">
+										<div class="col-6 col-12-small align-center">
+											<p><b>With ProjectileCaller2D</b>:</p>
+										</div>
+
+										<div class="col-6 col-12-small align-center">
+											<p><b>With ProjectileManager2D</b>:</p>
+										</div>
+									</div>
+
+									<div class="row gtr-100">
+										<div class="col-6 col-12-small">
+											<span class="image fit center"><img src="../../gifs/attack-blueprint-example-1.gif" alt="Projectile example without using Attack2D and ProjectileManager2D" /></span>
+										</div>
+
+										<div class="col-6 col-12-small">
+											<span class="image fit center"><img src="../../gifs/attack-blueprint-example-2.gif" alt="Projectile example using Attack2D and ProjectileManager2D" /></span>
+										</div>
+									</div>
+
+									<div class="row gtr-100">
+										<div class="col-6 col-12-small">
+											<pre><code class="language-gdscript">extends Node2D
+
+@onready var projectile_caller: ProjectileCaller2D = $ProjectileCaller2D
+
+func _process(_delta: float) -> void:
+	if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
+		projectile_caller.request_projectile(0, position, get_global_mouse_position())</code></pre>
+										</div>
+
+										<div class="col-6 col-12-small">
+											<pre><code class="language-gdscript">extends Node2D
+
+@onready var projectile_manager: ProjectileManager2D = $ProjectileManager2D
+
+func _process(_delta: float) -> void:
+	if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
+		projectile_manager.request_execution(0, 0, position, get_global_mouse_position())</code></pre>
+										</div>
+									</div>
 									<br>
 
 
 									<!-- Tutorials -->
-									<header class="semimajor" id="tutorials">
+									<!-- <header class="semimajor" id="tutorials">
 										<h3>Tutorials</h3>
 									</header>
 									<ul>
 										<li><a href="#">tutorial_link1</a></li>
 										<li><a href="#">tutorial_link2</a></li>
 										<li><a href="#">tutorial_link3</a></li>
-									</ul>
+									</ul> -->
 
 
 									<!-- Properties -->
@@ -73,35 +117,30 @@
 									<div class="table-wrapper">
 										<table class="alt">
 											<colgroup>
-												<col style="width:22%">
-												<col style="width:48%">
+												<col style="width:27%">
+												<col style="width:43%">
 												<col style="width:30%">
 											</colgroup>  
 											<tbody>
 												<tr>
-													<td><a href="#">property_type_link1</a></td>
-													<td><a href="#">property_link1_to_document</a></td>
-													<td><code class="value">value1</code></td>
+													<td><a href="https://docs.godotengine.org/en/stable/classes/class_array.html#class-array">Array</a>[<a href="../../1.0/resources/attack-blueprint-2d.html#attack-blueprint-2d">AttackBlueprint2D</a>]</td>
+													<td><a href="#projectile-manager-2d-property-attack-resources">attack_resources</a></td>
+													<td></td>
 												</tr>
 												<tr>
-													<td><a href="#">property_type_link2</a></td>
-													<td><a href="#">property_link2_to_document</a></td>
-													<td><code class="value">value2</code></td>
+													<td><a href="https://docs.godotengine.org/en/stable/classes/class_array.html#class-array">Array</a>[<a href="../../1.0/classes/attack-2d.html#attack-2d">Attack2D</a>]</td>
+													<td><a href="#projectile-manager-2d-property-attacks">attacks</a></td>
+													<td></td>
 												</tr>
 												<tr>
-													<td><a href="#">property_type_link3</a></td>
-													<td><a href="#">property_link3_to_document</a></td>
-													<td><code class="value">value3</code></td>
+													<td><a href="https://docs.godotengine.org/en/stable/classes/class_bool.html#class-bool">bool</a></td>
+													<td><a href="#projectile-manager-2d-property-auto-add-attacks-to-database">auto_add_attacks_to_database</a></td>
+													<td><code class="value">true</code></td>
 												</tr>
 												<tr>
-													<td><a href="#">property_type_link4</a></td>
-													<td><a href="#">property_link4_to_document</a></td>
-													<td><code class="value">value4</code></td>
-												</tr>
-												<tr>
-													<td><a href="#">property_type_link5</a></td>
-													<td><a href="#">property_link5_to_document</a></td>
-													<td><code class="value">value5</code></td>
+													<td><a href="https://docs.godotengine.org/en/stable/classes/class_bool.html#class-bool">bool</a></td>
+													<td><a href="#projectile-manager-2d-property-get-attack-copies-from-database">get_attack_copies_from_database</a></td>
+													<td><code class="value">true</code></td>
 												</tr>
 											</tbody>
 										</table>
@@ -117,35 +156,69 @@
 									<div class="table-wrapper">
 										<table class="alt">
 											<colgroup>
-												<col style="width:22%">
-												<col style="width:48%">
-												<col style="width:30%">
+												<col style="width:27%">
+												<col style="width:73%">
 											</colgroup>  
 											<tbody>
 												<tr>
-													<td><a href="#">property_type_link1</a></td>
-													<td><a href="#">property_link1_to_document</a></td>
-													<td><code class="value">value1</code></td>
+													<td><a href="https://docs.godotengine.org/en/stable/classes/class_bool.html#class-bool">bool</a></td>
+													<td><a href="#projectile-manager-2d-method-add-attack-from-database">add_attack_from_database</a></td>
 												</tr>
 												<tr>
-													<td><a href="#">property_type_link2</a></td>
-													<td><a href="#">property_link2_to_document</a></td>
-													<td><code class="value">value2</code></td>
+													<td><a href="https://docs.godotengine.org/en/stable/classes/class_bool.html#class-bool">bool</a></td>
+													<td><a href="#projectile-manager-2d-method-add-attack-modifier">add_attack_modifier</a></td>
 												</tr>
 												<tr>
-													<td><a href="#">property_type_link3</a></td>
-													<td><a href="#">property_link3_to_document</a></td>
-													<td><code class="value">value3</code></td>
+													<td>void</td>
+													<td><a href="#projectile-manager-2d-method-append-attacks-from-database">append_attacks_from_database</a></td>
 												</tr>
 												<tr>
-													<td><a href="#">property_type_link4</a></td>
-													<td><a href="#">property_link4_to_document</a></td>
-													<td><code class="value">value4</code></td>
+													<td><a href="../../1.0/classes/attack-2d.html#attack-2d">Attack2D</a></td>
+													<td><a href="#projectile-manager-2d-method-get-attack">get_attack</a></td>
 												</tr>
 												<tr>
-													<td><a href="#">property_type_link5</a></td>
-													<td><a href="#">property_link5_to_document</a></td>
-													<td><code class="value">value5</code></td>
+													<td><a href="../../1.0/resources/attack-blueprint-2d.html#attack-blueprint-2d">AttackBlueprint2D</a></td>
+													<td><a href="#projectile-manager-2d-method-get-attack-blueprint">get_attack_blueprint</a></td>
+												</tr>
+												<tr>
+													<td>void</td>
+													<td><a href="#projectile-manager-2d-method-reassign-attacks-from-database">reassign_attacks_from_database</a></td>
+												</tr>
+												<tr>
+													<td><a href="https://docs.godotengine.org/en/stable/classes/class_bool.html#class-bool">bool</a></td>
+													<td><a href="#projectile-manager-2d-method-remove-attack-modifier">remove_attack_modifier</a></td>
+												</tr>
+												<tr>
+													<td><a href="https://docs.godotengine.org/en/stable/classes/class_bool.html#class-bool">bool</a></td>
+													<td><a href="#projectile-manager-2d-method-remove-modifier-stacks-from-attack">remove_modifier_stacks_from_attack</a></td>
+												</tr>
+												<tr>
+													<td><a href="https://docs.godotengine.org/en/stable/classes/class_bool.html#class-bool">bool</a></td>
+													<td><a href="#projectile-manager-2d-method-request-execution">request_execution</a></td>
+												</tr>
+												<tr>
+													<td><a href="https://docs.godotengine.org/en/stable/classes/class_bool.html#class-bool">bool</a></td>
+													<td><a href="#projectile-manager-2d-method-request-new-attack-creation">request_new_attack_creation</a></td>
+												</tr>
+												<tr>
+													<td>void</td>
+													<td><a href="#projectile-manager-2d-method-set-attack">set_attack</a></td>
+												</tr>
+												<tr>
+													<td><a href="https://docs.godotengine.org/en/stable/classes/class_bool.html#class-bool">bool</a></td>
+													<td><a href="#projectile-manager-2d-method-set-attack-from-database">set_attack_from_database</a></td>
+												</tr>
+												<tr>
+													<td><a href="https://docs.godotengine.org/en/stable/classes/class_bool.html#class-bool">bool</a></td>
+													<td><a href="#projectile-manager-2d-method-validate-attack">validate_attack</a></td>
+												</tr>
+												<tr>
+													<td><a href="https://docs.godotengine.org/en/stable/classes/class_bool.html#class-bool">bool</a></td>
+													<td><a href="#projectile-manager-2d-method-validate-attack-resource">validate_attack_resource</a></td>
+												</tr>
+												<tr>
+													<td><a href="https://docs.godotengine.org/en/stable/classes/class_bool.html#class-bool">bool</a></td>
+													<td><a href="#projectile-manager-2d-method-verify-attack-from-database">verify_attack_from_database</a></td>
 												</tr>
 											</tbody>
 										</table>
@@ -155,7 +228,7 @@
 
 
 									<!-- Signals -->
-									<header class="semimajor" id="signals">
+									<!-- <header class="semimajor" id="signals">
 										<h3>Signals</h3>
 									</header>
 
@@ -166,11 +239,11 @@
 									<h4>signal_name_2<span class="comment-alt">(property_name_1: </span><a href="#" class="link">property_type_1</a><span class="comment-alt">, property_name_2: </span><a href="#" class="link">property_type_2</a><span class="comment-alt">)</span></h4>
 										<p class="tab">Signal description long</p>
 									<hr class="strong">
-									<br>
+									<br> -->
 
 
 									<!-- Enumerations -->
-									<header class="semimajor" id="enumerations">
+									<!-- <header class="semimajor" id="enumerations">
 										<h3>Enumerations</h3>
 									</header>
 
@@ -195,20 +268,31 @@
 											<p class="tab-alt">Enum element description.</p>
 									</ul>
 									<hr class="strong">
-									<br>
+									<br> -->
 
 
 									<!-- Property Descriptions -->
 									<header class="semimajor" id="property-descriptions">
 										<h3>Property Descriptions</h3>
 									</header>
-
-									<h4><a href="#" class="link">property_type_1</a> property_name_1<span class="comment-alt"> = </span><span class="value"> init_value</h4>
-										<p class="tab">Property description long</p>
+									
+									<h4 id="projectile-manager-2d-property-attack-resources"><a href="https://docs.godotengine.org/en/stable/classes/class_array.html#class-array" class="link">Array</a>[<a href="../../1.0/resources/attack-blueprint-2d.html#attack-blueprint-2d" class="link">AttackBlueprint2D</a>] attack_resources</h4>
+										<p class="tab">List of all <a href="../../1.0/resources/attack-blueprint-2d.html#attack-blueprint-2d">AttackBlueprint2D</a> resources allocated on the <b>ProjectileManager2D</b>.</p>
+										<p class="tab">Each element in the array is used to create its corresponding <a href="../../1.0/classes/attack-2d.html#attack-2d">Attack2D</a> object in the <a href="#projectile-manager-2d-property-attacks">attacks</a> array by the same index.</p>
+									<hr>
+									
+									<h4 id="projectile-manager-2d-property-attacks"><a href="https://docs.godotengine.org/en/stable/classes/class_array.html#class-array" class="link">Array</a>[<a href="../../1.0/classes/attack-2d.html#attack-2d" class="link">Attack2D</a>] attacks</h4>
+										<p class="tab">List of all <a href="../../1.0/classes/attack-2d.html#attack-2d">Attack2D</a> objects that can be used by the <b>ProjectileManager2D</b>.</p>	
+										<p class="tab">Each <b>ProjectileManager2D</b> instance can only modify its own stored attacks.</p>
 									<hr>
 
-									<h4><a href="#" class="link">property_type_2</a> property_name_2<span class="comment-alt"> = </span><span class="value"> init_value</h4>
-										<p class="tab">Property description long</p>
+									<h4 id="projectile-manager-2d-property-auto-add-attacks-to-database"><a href="https://docs.godotengine.org/en/stable/classes/class_bool.html#class-bool" class="link">bool</a> auto_add_attacks_to_database<span class="comment-alt"> = </span><span class="value">true</span></h4>
+										<p class="tab">If <code class="value">true</code> the <b>ProjectileManager2D</b> Node will automatically add its unregistered attacks to the <a href="../../1.0/nodes/projectile-database.html#projectile-database">Global Database</a>; using its blueprint <a href="../../1.0/resources/attack-blueprint-2d.html#attack-blueprint-2d-property-name">name</a> as <code class="value">key</code>.</p>
+									<hr>
+
+									<h4 id="projectile-manager-2d-property-get-attack-copies-from-database"><a href="https://docs.godotengine.org/en/stable/classes/class_bool.html#class-bool" class="link">bool</a> get_attack_copies_from_database<span class="comment-alt"> = </span><span class="value">true</span></h4>
+										<p class="tab">If <code class="value">true</code> the <b>ProjectileManager2D</b> Node will only get <strong>copies</strong> when <b>requesting attacks</b> from the <a href="../../1.0/nodes/projectile-database.html#projectile-database">Global Database</a> instead of <b>direct references</b>.</p>
+										<p class="tab">Consequently, any changes you make on them <strong>will not</strong> be reflected on the attacks allocated on the <b>Global Database</b> itself.</p>
 									<hr class="strong">
 									<br>
 
@@ -218,13 +302,151 @@
 										<h3>Method Descriptions</h3>
 									</header>
 									
-									<h4><a href="#" class="link">return_type_1</a> method_name_1<span class="comment-alt">(property_name_1: </span><a href="#" class="link">property_type_1</a><span class="comment-alt">, property_name_2: </span><a href="#" class="link">property_type_2</a><span class="comment-alt">)</span></h4>
-										<p class="tab">Method description long</p>
-									<hr>
+									<h4 id="projectile-manager-2d-method-add-attack-from-database"><a href="https://docs.godotengine.org/en/stable/classes/class_bool.html#class-bool" class="link">bool</a> add_attack_from_database<span class="comment-alt">(id: <a href="https://docs.godotengine.org/en/stable/classes/class_stringname.html#stringname" class="link">StringName</a>, include_blueprints: <a href="https://docs.godotengine.org/en/stable/classes/class_bool.html#class-bool" class="link">bool</a> = false)</span></h4>
+									<p class="tab">Returns <code class="value">true</code> on success.</p>
+									<p class="tab">Adds the attack with key <code class="value">id</code> from the <a href="../../1.0/nodes/projectile-database.html#projectile-database">Global Database</a> to the end of its local <a href="#projectile-manager-2d-property-attacks">attacks</a> array.</p>
+									<p class="tab">If <code class="value">include_blueprints</code> is <code class="value">true</code>, it also adds its <a href="../../1.0/resources/attack-blueprint-2d.html#attack-blueprint-2d">AttackBlueprint2D</a> counterpart to its <a href="#projectile-manager-2d-property-attack-resources">attack_resources</a> array.</p>
+									<pre style="margin: 0 0 1.25em 1.5em;"><code class="language-gdscript">extends Node2D
 
-									<h4><a href="#" class="link">return_type_1</a> method_name_1<span class="comment-alt">(property_name_1: </span><a href="#" class="link">property_type_1</a><span class="comment-alt">, property_name_2: </span><a href="#" class="link">property_type_2</a><span class="comment-alt">)</span></h4>
-										<p class="tab">Method description long</p>
-									<hr>
+@onready var projectile_manager: ProjectileManager2D = $ProjectileManager2D
+
+func _ready() -> void:
+	projectile_manager.add_attack_from_database("MEGA_LASER")</code></pre>
+								<hr>
+
+								<h4 id="projectile-manager-2d-method-add-attack-modifier"><a href="https://docs.godotengine.org/en/stable/classes/class_bool.html#class-bool" class="link">bool</a> add_attack_modifier<span class="comment-alt">(index: <a href="https://docs.godotengine.org/en/stable/classes/class_int.html#class-int" class="link">int</a>, modifier: <a href="../../1.0/classes/attack-2d-modifier.html#attack-2d-modifier" class="link">Attack2DModifier</a>)</span></h4>
+									<p class="tab">Returns <code class="value">true</code> on success.</p>
+									<p class="tab">Adds a modifier to the attack at the specified <code class="value">index</code> of its local <a href="#projectile-manager-2d-property-attacks">attacks</a> array.</p>
+									<pre style="margin: 0 0 1.25em 1.5em;"><code class="language-gdscript">projectile_manager.add_attack_modifier(0, Attack2DModifier.new("ATTACK_BUFF", 1.0))
+projectile_manager.add_attack_modifier(0, APDatabase.get_attack_2d_modifier("MULTISHOT_BUFF"))</code></pre>
+								<hr>
+
+								<h4 id="projectile-manager-2d-method-append-attacks-from-database"><span class="comment-alt">void</span> append_attacks_from_database<span class="comment-alt">(names: <a href="https://docs.godotengine.org/en/stable/classes/class_array.html#class-array" class="link">Array</a>, include_blueprints: <a href="https://docs.godotengine.org/en/stable/classes/class_bool.html#class-bool" class="link">bool</a> = false)</span></h4>
+									<p class="tab">Adds attacks from the <a href="../../1.0/nodes/projectile-database.html#projectile-database">Global Database</a> to the end of its local <a href="#projectile-manager-2d-property-attacks">attacks</a> array.</p>
+									<p class="tab">If <code class="value">include_blueprints</code> is <code class="value">true</code>, it also adds its <a href="../../1.0/resources/attack-blueprint-2d.html#attack-blueprint-2d">AttackBlueprint2D</a> counterparts to its <a href="#projectile-manager-2d-property-attack-resources">attack_resources</a> array.</p>
+									<pre style="margin: 0 0 1.25em 1.5em;"><code class="language-gdscript">extends Node2D
+
+@onready var projectile_manager: ProjectileManager2D = $ProjectileManager2D
+
+enum Spells{
+	MAGIC_BOLT,
+	SOUL_SEEKER,
+	FIREBALL,
+	ERUPTION,
+	MEGA_LASER
+}
+
+func _ready() -> void:
+	projectile_manager.append_attacks_from_database(Spells.keys())</code></pre>
+								<hr>
+
+								<h4 id="projectile-manager-2d-method-get-attack"><a href="../../1.0/classes/attack-2d.html#attack-2d" class="link">Attack2D</a> get_attack<span class="comment-alt">(index: <a href="https://docs.godotengine.org/en/stable/classes/class_int.html#class-int" class="link">int</a>)</span></h4>
+									<p class="tab">Returns the attack at the specified <code class="value">index</code> of its local <a href="#projectile-manager-2d-property-attacks">attacks</a> array.</p>
+									<p class="tab">Use it to change the <strong>properties and behaviors</strong> of your attacks.</p>
+									<pre style="margin: 0 0 1.25em 1.5em;"><code class="language-gdscript">projectile_manager.get_attack(0)</code></pre>
+								<hr>
+
+								<h4 id="projectile-manager-2d-method-get-attack-blueprint"><a href="../../1.0/resources/attack-blueprint-2d.html#attack-blueprint-2d" class="link">AttackBlueprint2D</a> get_attack_blueprint<span class="comment-alt">(index: <a href="https://docs.godotengine.org/en/stable/classes/class_int.html#class-int" class="link">int</a>)</span></h4>
+									<p class="tab">Returns the blueprint at the specified <code class="value">index</code> of its local <a href="#projectile-manager-2d-property-attack-resources">attack_resources</a> array.</p>
+									<pre style="margin: 0 0 1.25em 1.5em;"><code class="language-gdscript">projectile_manager.get_attack_blueprint(0)</code></pre>
+								<hr>
+
+								<h4 id="projectile-manager-2d-method-reassign-attacks-from-database"><span class="comment-alt">void</span> reassign_attacks_from_database<span class="comment-alt">(names: <a href="https://docs.godotengine.org/en/stable/classes/class_array.html#class-array" class="link">Array</a>, include_blueprints: <a href="https://docs.godotengine.org/en/stable/classes/class_bool.html#class-bool" class="link">bool</a> = false)</span></h4>
+									<p class="tab">Replaces its entire <a href="#projectile-manager-2d-property-attacks">attacks</a> array with attacks from the <a href="../../1.0/nodes/projectile-database.html#projectile-database">Global Database</a>.</p>
+									<p class="tab">If <code class="value">include_blueprints</code> is <code class="value">true</code>, it also replaces its <a href="../../1.0/resources/attack-blueprint-2d.html#attack-blueprint-2d">AttackBlueprint2D</a> counterparts at the <a href="#projectile-manager-2d-property-attack-resources">attack_resources</a> array.</p>
+									<pre style="margin: 0 0 1.25em 1.5em;"><code class="language-gdscript">extends Node2D
+
+@onready var projectile_manager: ProjectileManager2D = $ProjectileManager2D
+
+enum Spells{
+	MAGIC_BOLT,
+	SOUL_SEEKER,
+	FIREBALL,
+	ERUPTION,
+	MEGA_LASER
+}
+
+func _ready() -> void:
+	projectile_manager.reassign_attacks_from_database(Spells.keys())</code></pre>
+								<hr>
+
+								<h4 id="projectile-manager-2d-method-remove-attack-modifier"><a href="https://docs.godotengine.org/en/stable/classes/class_bool.html#class-bool" class="link">bool</a> remove_attack_modifier<span class="comment-alt">(index: <a href="https://docs.godotengine.org/en/stable/classes/class_int.html#class-int" class="link">int</a>, id: <a href="https://docs.godotengine.org/en/stable/classes/class_stringname.html#stringname" class="link">StringName</a>)</span></h4>
+									<p class="tab">Returns <code class="value">true</code> on success.</p>
+									<p class="tab">Removes a modifier from the attack at the specified <code class="value">index</code> of its local <a href="#projectile-manager-2d-property-attacks">attacks</a> array by <code class="value">id</code>.</p>
+									<pre style="margin: 0 0 1.25em 1.5em;"><code class="language-gdscript">projectile_manager.remove_attack_modifier(0, "ATTACK_BUFF")</code></pre>
+								<hr>
+
+								<h4 id="projectile-manager-2d-method-remove-modifier-stacks-from-attack"><a href="https://docs.godotengine.org/en/stable/classes/class_bool.html#class-bool" class="link">bool</a> remove_modifier_stacks_from_attack<span class="comment-alt">(index: <a href="https://docs.godotengine.org/en/stable/classes/class_int.html#class-int" class="link">int</a>, id: <a href="https://docs.godotengine.org/en/stable/classes/class_stringname.html#stringname" class="link">StringName</a>, stacks: <a href="https://docs.godotengine.org/en/stable/classes/class_int.html#class-int" class="link">int</a> = -1)</span></h4>
+									<p class="tab">Returns <code class="value">true</code> on success.</p>
+									<p class="tab">Removes a specific number of modifier stacks from the attack at the specified <code class="value">index</code> of its local <a href="#projectile-manager-2d-property-attacks">attacks</a> array.</p>
+									<p class="tab">If <code class="value">stacks < 0</code>, removes all stacks.</p>
+									<pre style="margin: 0 0 1.25em 1.5em;"><code class="language-gdscript">projectile_manager.remove_modifier_stacks_from_attack(0, "ATTACK_BUFF", 2)</code></pre>
+								<hr>
+								
+								<h4 id="projectile-manager-2d-method-request-execution"><a href="https://docs.godotengine.org/en/stable/classes/class_bool.html#class-bool" class="link">bool</a> request_execution
+									<span class="comment-alt">(attack_index: <a href="https://docs.godotengine.org/en/stable/classes/class_int.html#class-int" class="link">int</a>, proj_index: <a href="https://docs.godotengine.org/en/stable/classes/class_int.html#class-int" class="link">int</a>, _position: <a href="https://docs.godotengine.org/en/stable/classes/class_vector2.html#class-vector2" class="link">Vector2</a>, destination: <a href="https://docs.godotengine.org/en/stable/classes/class_vector2.html#class-vector2" class="link">Vector2</a>, target: <a href="https://docs.godotengine.org/en/stable/classes/class_node2d.html#class-node2d" class="link">Node2D</a> = null, move_method: <a href="https://docs.godotengine.org/en/stable/classes/class_callable.html#class-callable" class="link">Callable</a> = Callable(), start_method: <a href="https://docs.godotengine.org/en/stable/classes/class_callable.html#class-callable" class="link">Callable</a> = Callable(), collision_method: <a href="https://docs.godotengine.org/en/stable/classes/class_callable.html#class-callable" class="link">Callable</a> = Callable(), expired_method: <a href="https://docs.godotengine.org/en/stable/classes/class_callable.html#class-callable" class="link">Callable</a> = Callable())</span></h4>
+									
+									<p class="tab">Returns <code class="value">true</code> if the execution request has been successful.</p>
+									<p class="tab">Requests the creation of the projectile at the specified <code class="value">proj_index</code> of its local <a href="../../1.0/nodes/projectile-caller-2d.html#projectile-caller-2d-property-projectiles">projectiles</a> array, under the conditions of the attack at the specified <code class="value">attack_index</code> of its local <a href="#projectile-manager-2d-property-attacks">attacks</a> array.</p>
+									<p class="tab">Additional parameters and requirements still match those of <a href="../../1.0/nodes/projectile-caller-2d.html#projectile-caller-2d-method-request-projectile">request_projectile</a>.</p>
+									<pre style="margin: 0 0 1.25em 1.5em;"><code class="language-gdscript">extends Node2D
+
+@onready var projectile_manager: ProjectileManager2D = $ProjectileManager2D
+
+func _process(_delta: float) -> void:
+	if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
+		projectile_manager.request_execution(0, 0, position, get_global_mouse_position())</code></pre>
+								<hr>
+
+								<h4 id="projectile-manager-2d-method-request-new-attack-creation"><a href="https://docs.godotengine.org/en/stable/classes/class_bool.html#class-bool" class="link">bool</a> request_new_attack_creation<span class="comment-alt">(attack_index: <a href="https://docs.godotengine.org/en/stable/classes/class_int.html#class-int" class="link">int</a>, proj_index: <a href="https://docs.godotengine.org/en/stable/classes/class_int.html#class-int" class="link">int</a>, _position: <a href="https://docs.godotengine.org/en/stable/classes/class_vector2.html#class-vector2" class="link">Vector2</a>, destination: <a href="https://docs.godotengine.org/en/stable/classes/class_vector2.html#class-vector2" class="link">Vector2</a>, target: <a href="https://docs.godotengine.org/en/stable/classes/class_node2d.html#class-node2d" class="link">Node2D</a> = null, move_method: <a href="https://docs.godotengine.org/en/stable/classes/class_callable.html#class-callable" class="link">Callable</a> = Callable(), start_method: <a href="https://docs.godotengine.org/en/stable/classes/class_callable.html#class-callable" class="link">Callable</a> = Callable(), collision_method: <a href="https://docs.godotengine.org/en/stable/classes/class_callable.html#class-callable" class="link">Callable</a> = Callable(), expired_method: <a href="https://docs.godotengine.org/en/stable/classes/class_callable.html#class-callable" class="link">Callable</a> = Callable())</span></h4>
+									<p class="tab">Returns <code class="value">true</code> if the execution request has been successful.</p>
+									<p class="tab">It works exactly as <a href="#projectile-manager-2d-method-request-execution">request_execution</a>, however each call creates an entirely new, completely unregulated, fully autonomous <a href="../../1.0/classes/attack-2d.html#attack-2d">Attack2D</a> instance.</p>
+									<p class="tab"><strong>Use it at your own discretion</strong>.</p>
+									<pre style="margin: 0 0 1.25em 1.5em;"><code class="language-gdscript">extends Node2D
+
+@onready var projectile_manager: ProjectileManager2D = $ProjectileManager2D
+
+func _input(event) -> void:
+	if event is InputEventMouseButton:
+		if event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
+			projectile_manager.request_new_attack_creation(0, 0, position, get_global_mouse_position())</code></pre>
+								<hr>
+
+								<h4 id="projectile-manager-2d-method-set-attack"><span class="comment-alt">void</span> set_attack<span class="comment-alt">(index: <a href="https://docs.godotengine.org/en/stable/classes/class_int.html#class-int" class="link">int</a>, projectile: <a href="../../1.0/classes/attack-2d.html#attack-2d" class="link">Attack2D</a>, auto_assign_blueprint: <a href="https://docs.godotengine.org/en/stable/classes/class_bool.html#class-bool" class="link">bool</a> = true)</span></h4>
+									<p class="tab">Sets the given <code class="value">attack</code> at the specified <code class="value">index</code> of its local <a href="#projectile-manager-2d-property-attacks">attacks</a> array.</p>
+									<p class="tab">If <code class="value">auto_assign_blueprint</code> is <code class="value">true</code> it sets its blueprint to the same one its method <code class="value">index</code> is replacing.</p>
+									<pre style="margin: 0 0 1.25em 1.5em;"><code class="language-gdscript">func _ready() -> void:
+	# These two statements are the same
+	projectile_manager.set_attack(0, MyAttack.new())
+	projectile_manager.set_attack(0, MyAttack.new(projectile_manager.get_attack_blueprint(0)))
+    
+	# Set it to "false" so it does not auto assing
+	projectile_manager.set_attack(0, MyAttack.new(projectile_manager.get_attack_blueprint(1)), false)</code></pre>
+								<hr>
+
+								<h4 id="projectile-manager-2d-method-set-attack-from-database"><a href="https://docs.godotengine.org/en/stable/classes/class_bool.html#class-bool" class="link">bool</a> set_attack_from_database<span class="comment-alt">(index: <a href="https://docs.godotengine.org/en/stable/classes/class_int.html#class-int" class="link">int</a>, id: <a href="https://docs.godotengine.org/en/stable/classes/class_stringname.html#stringname" class="link">StringName</a>, include_blueprints: <a href="https://docs.godotengine.org/en/stable/classes/class_bool.html#class-bool" class="link">bool</a> = false)</span></h4>
+									<p class="tab">Returns <code class="value">true</code> on success.</p>
+									<p class="tab">Sets the element at the specified <code class="value">index</code> in the <a href="#projectile-manager-2d-property-attacks">attacks</a> array, to the attack with key <code class="value">id</code> from the <a href="../../1.0/nodes/projectile-database.html#projectile-database">Global Database</a>.</p>
+									<p class="tab">If <code class="value">include_blueprints</code> is <code class="value">true</code>, it also sets its <a href="../../1.0/resources/attack-blueprint-2d.html#attack-blueprint-2d">AttackBlueprint2D</a> counterpart at the specified <code class="value">index</code> of its <a href="#projectile-manager-2d-property-attack-resources">attack_resources</a> array.</p>
+									<pre style="margin: 0 0 1.25em 1.5em;"><code class="language-gdscript">extends Node2D
+
+@onready var projectile_manager: ProjectileManager2D = $ProjectileManager2D
+
+func _ready() -> void:
+	projectile_manager.set_attack_from_database(4, "MEGA_LASER")</code></pre>
+								<hr>
+
+								<h4 id="projectile-manager-2d-method-validate-attack"><a href="https://docs.godotengine.org/en/stable/classes/class_bool.html#class-bool" class="link">bool</a> validate_attack<span class="comment-alt">(index: <a href="https://docs.godotengine.org/en/stable/classes/class_int.html#class-int" class="link">int</a>)</span></h4>
+									<p class="tab">Returns <code class="value">true</code> if the attack at the specified <code class="value">index</code> of its local <a href="#projectile-manager-2d-property-attacks">attacks</a> array can be used.</p>
+								<hr>
+
+								<h4 id="projectile-manager-2d-method-validate-attack-resource"><a href="https://docs.godotengine.org/en/stable/classes/class_bool.html#class-bool" class="link">bool</a> validate_attack_resource<span class="comment-alt">(index: <a href="https://docs.godotengine.org/en/stable/classes/class_int.html#class-int" class="link">int</a>)</span></h4>
+									<p class="tab">Returns <code class="value">true</code> if the blueprint at the specified <code class="value">index</code> of its local <a href="#projectile-manager-2d-property-attack-resources">attack_resources</a> array can be used.</p>
+								<hr>
+
+								<h4 id="projectile-manager-2d-method-verify-attack-from-database"><a href="https://docs.godotengine.org/en/stable/classes/class_bool.html#class-bool" class="link">bool</a> verify_attack_from_database<span class="comment-alt">(id: <a href="https://docs.godotengine.org/en/stable/classes/class_stringname.html#stringname" class="link">StringName</a>)</span></h4>
+									<p class="tab">Returns <code class="value">true</code> if the <a href="../../1.0/nodes/projectile-database.html#projectile-database">Global Database</a> has a registered attack under key <code class="value">id</code>.</p>
+								<hr>
 								</section>
 
 						</div>
@@ -384,6 +606,7 @@
 			<script src="../../assets/js/breakpoints.min.js"></script>
 			<script src="../../assets/js/util.js"></script>
 			<script src="../../assets/js/main.js"></script>
+			<script src="../../assets/js/prism.js"></script>
 
 	</body>
 </html>
