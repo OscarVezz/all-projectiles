@@ -12,6 +12,7 @@
 		<meta name="autor" content="Oscar Vezz"/>
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="../../assets/css/main.css" />
+		<link rel="stylesheet" href="../../assets/css/prism.css" />
 	</head>
 	<body class="is-preload">
 
@@ -24,7 +25,7 @@
 
 							<!-- Header -->
 							<header id="header">
-								<a href="../../index.html" class="logo"><strong>All Projectiles</strong> 1.0 Documentation</a>
+								<a href="../../index.html" class="logo"><strong>All Projectiles</strong> 1.4 Documentation</a>
 								<ul class="icons">
 									<li><a href="https://github.com/OscarVezz/all-projectiles" class="icon brands fa-github"><span class="label">Github</span></a></li>
 									<li><a href="https://www.patreon.com/OscarVezz" class="icon brands fa-patreon"><span class="label">Patreon</span></a></li>
@@ -48,6 +49,22 @@
 									<div class="row gtr-75">
 										<div class="col-4 col-12-small">
 											<ol start="1" class="copycat">
+												<li><h4>Enable the <strong>addon</strong> inside <i class="comment-alt">Project/Project Settings/Plugins</i>.</h4></li>
+											  </ol>
+										</div>
+
+										<div class="col-4 col-12-small">
+											<span class="image fit center"><img src="../../images/project_proj_settings.png" alt="From the main menu select -> Project -> Project Settings…" /></span>
+										</div>
+
+										<div class="col-4 col-12-small">
+											<span class="image fit center"><img src="../../images/enable_plugin.png" alt="On the Plugins tab -> Enable All Projectiles checkbox" /></span>
+										</div>
+									</div>
+
+									<div class="row gtr-75">
+										<div class="col-4 col-12-small">
+											<ol start="2" class="copycat">
 												<li><h4>Add a <a href="../../1.0/nodes/projectile-caller-2d.html#projectile-caller-2d"><strong>ProjectileCaller</strong></a> component to your desired node.</h4></li>
 											  </ol>
 										</div>
@@ -64,8 +81,8 @@
 									<br>
 									<div class="row gtr-200">
 										<div class="col-4 col-12-small">
-											<ol start="2" class="copycat">
-												<li><h4>Add any <a href="../../1.0/resources/projectile-blueprint-2d.html#projectile-blueprint-2d"><strong>ProjectileBlueprint</strong></a> in the Projectile Resources Array of the ProjectileCaller node.</h4></li>
+											<ol start="3" class="copycat">
+												<li><h4>Add any <a href="../../1.0/resources/projectile-blueprint-2d.html#projectile-blueprint-2d"><strong>ProjectileBlueprint</strong></a> in the <i class="comment-alt">Projectile Resources</i> Array of the <a href="../../1.0/nodes/projectile-caller-2d.html#projectile-caller-2d" class="link">ProjectileCaller</a> node.</h4></li>
 											  </ol>
 										</div>
 
@@ -81,21 +98,20 @@
 									<br>
 									<div class="row gtr-200">
 										<div class="col-4 col-12-small">
-											<ol start="3" class="copycat">
-												<li><h4><strong>Call</strong> the <a href="../../1.0/nodes/projectile-caller-2d.html#projectile-caller-2d" class="link">ProjectileCaller</a> from any of your scripts <strong>and request</strong> any of its <a href="../../1.0/resources/projectile-blueprint-2d.html#projectile-blueprint-2d" class="link">Projectile Resources</a>.  </h4></li>
+											<ol start="4" class="copycat">
+												<li><h4><strong>Call</strong> the <a href="../../1.0/nodes/projectile-caller-2d.html#projectile-caller-2d" class="link">ProjectileCaller</a> from any of your scripts <strong>and request</strong> any of its <a href="../../1.0/classes/projectile-2d.html#projectile-2d" class="link">Projectiles</a>.  </h4></li>
 											  </ol>
 										</div>
 
 										<div class="col-8 col-12-small">
-											<pre><code><span class="keyword">extends</span> Node2D
+											<pre><code class="language-gdscript">extends Node2D
 
-<span class="exported-property">@onready</span> <span class="keyword">var</span> projectile_caller <span class="operator">= $</span>ProjectileCaller2D
+@onready var projectile_caller = $ProjectileCaller2D
 									
-<span class="keyword">func</span> _process(_delta):
-	<span class="condicional">if</span> Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
-		<span class="keyword">var</span> destination = <span class="data">get_global_mouse_position</span>()
-		projectile_caller.<span class="method">request_projectile</span>(<span class="data">0</span>, position, destination)
-</code></pre>
+func _process(_delta):
+	if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
+		var destination = get_global_mouse_position()
+		projectile_caller.request_projectile(0, position, destination)</code></pre>
 										</div>
 									</div>
 								</section>
@@ -109,7 +125,7 @@
 									<div class="row gtr-75">
 										<div class="col-4 col-12-small">
 											<ol start="1" class="copycat">
-												<li><h4>Right click on any <strong>Godot FileSystem</strong> folder <i class="fa-solid fa-arrow-right-long"></i> Create New <i class="fa-solid fa-arrow-right-long"></i> Resource</h4></li>
+												<li><h4>Right click on any <strong>Godot FileSystem folder</strong> <i class="fa-solid fa-arrow-right-long"></i> Create New <i class="fa-solid fa-arrow-right-long"></i> Resource</h4></li>
 											  </ol>
 										</div>
 
@@ -143,28 +159,67 @@
 									<br>
 
 									<ul class="copycat" style="list-style-type: square;">
-										<li><h4>You can change the behavior of your Projectiles <strong>when requesting its creation</strong> from the <a href="../../1.0/nodes/projectile-caller-2d.html#projectile-caller-2d" class="link">ProjectileCaller</a>.</h4></li>
-										<li><h4>The <a href="../../1.0/nodes/projectile-caller-2d.html#projectile-caller-2d-method-request-projectile"><strong>request_projectile</strong></a> method will take your <strong>custom functions</strong> as parameters.</h4></li>
+										<li><h4>You can change the behavior of your Projectiles <strong>when requesting its creation</strong> to a <a href="../../1.0/nodes/projectile-caller-2d.html#projectile-caller-2d" class="link">ProjectileCaller</a>.</h4></li>
+										<li><h4>The <a href="../../1.0/nodes/projectile-caller-2d.html#projectile-caller-2d-method-request-projectile" class="link">request_projectile</a> method will take your <strong>custom functions</strong> as parameters.</h4></li>
 									</ul>
 									
-									<pre><code><span class="keyword">extends</span> Node2D
+									<pre><code class="language-gdscript">extends Node2D
 
-<span class="exported-property">@onready</span> <span class="keyword">var</span> projectile_caller <span class="operator">= $</span>ProjectileCaller2D
+@onready var projectile_caller = $ProjectileCaller2D
 						
 
-<span class="comment"># In this example the "custom_movement" function is passed as a Callable in the optional "move_method" parameter.</span>
-<span class="comment"># The ProjectileCaller "request_projectile" method can also change the collision, expiration or target of your projectiles.</span>
-<span class="keyword">func</span> _process(_delta):
-	<span class="conditional">if</span> Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
-		<span class="keyword">var</span> destination <span class="operator">=</span> <span class="data">get_global_mouse_position</span>()
-		projectile_caller.<span class="method">request_projectile</span>(<span class="data">0</span>, position, destination, <span class="data">null</span>, custom_movement)
+# In this example the "custom_movement" function is passed as a Callable in the optional "move_method" parameter.
+# The ProjectileCaller "request_projectile" method can also change the collision, expiration or target of your projectiles.
+func _process(_delta):
+	if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
+		var destination = get_global_mouse_position()
+		projectile_caller.request_projectile(0, position, destination, null, custom_movement)
 
 
-<span class="comment"># Each optional Callable argument follows a define pattern and must take a set number of parameters.</span>
-<span class="comment"># To learn more about these custom methods and how to use them go to the ProjectileCaller section.</span>
-<span class="keyword">func</span> custom_movement(proj: <span class="data">Projectile2D</span>, _delta: <span class="data">float</span>) <span class="operator">-></span> <span class="data">Vector2</span>:
-	<span class="conditional">return</span> <span class="data">Vector2</span>.UP
-</code></pre>
+# Each optional Callable argument follows a define pattern and must take a set number of parameters.
+# To learn more about these custom methods and how to use them go to the ProjectileCaller section.
+func custom_movement(proj: Projectile2D, _delta: float) -> Vector2:
+	return Vector2.UP</code></pre>
+									<hr>
+									<ul class="copycat" style="list-style-type: square;">
+										<li><h4>You can also <strong>set</strong> your Projectiles behaviors and properties <strong>beforehand</strong>.</h4></li>
+									</ul>
+
+									<pre><code class="language-gdscript">extends Node2D
+
+@onready var projectile_caller = $ProjectileCaller2D
+						
+
+func _ready() -> void:
+	projectile_caller.get_projectile(0).set_on_start(custom_start).set_on_move(custom_movement).set_on_expired(custom_expired).set_on_collision(custom_collision)
+
+
+# This function will change the projectile "speed" property at projectile creation.
+func custom_start(proj: Projectile2D) -> void:
+	proj.speed = 50
+
+
+# This function will cause the projectile to always move in the UP direction.
+func custom_movement(proj: Projectile2D, _delta: float) -> Vector2:
+	return Vector2.UP
+
+
+# This function will print the projectile "damage" once it runs out of pierce or lifetime.
+func custom_expired(proj: Projectile2D) -> void:
+	print(proj.damage)
+
+
+# This function will change how the projectile collides.
+func custom_collision(proj: Projectile2D, body_rid: RID, body: Node2D, body_shape_index: int, local_shape_index: int) -> void:
+	if not proj.validate_collision(body_rid, body):
+		return
+	
+	# Custom code snippet for immediate expiration on collision with "wall_layer"
+	if wall_layer & body.collision_layer != 0:
+		proj.is_expired = true
+		return
+	
+	proj.on_pierced(body_rid)</code></pre>
 
 								</section>
 						</div>
@@ -324,6 +379,7 @@
 			<script src="../../assets/js/breakpoints.min.js"></script>
 			<script src="../../assets/js/util.js"></script>
 			<script src="../../assets/js/main.js"></script>
+			<script src="../../assets/js/prism.js"></script>
 
 	</body>
 </html>
