@@ -6,7 +6,7 @@
 -->
 <html>
 	<head>
-		<title>The Absolute Basics</title>
+		<title>Dealing damage and other interactions</title>
 		<meta charset="utf-8" />
 		<meta name="description" content="A Projectile Engine for Godot"/>
 		<meta name="autor" content="Oscar Vezz"/>
@@ -38,36 +38,146 @@
 							<!-- Content -->
 								<section>
 									<header class="main" id="title">
-										<h2>Title</h2>
+										<h2>Dealing damage and other interactions</h2>
 									</header>
 
 
 									<!-- Title -->
-									<p>Description.</p>
+									<p>Let's continue working on our previous project. So far, we have a player who shoots an arrow whenever we left click, so let's add some <b>Enemies</b> for him to shoot at.</p>
 
-									<div class="row gtr-75">
-										<div class="col-12 col-12-small">
-											<span class="image fit center"><img src="../../images/tutorials/1-the-absolute-basics/1.png"></span>
+									<div class="row gtr-75 aln-center">
+										<div class="col-12 col-12-medium">
+											<span class="image fit center"><img src="../../images/tutorials/3-dealing-damage-and-other-interactions/0.gif"></span>
 										</div>
 									</div>
 									<br>
 
 
 									<!-- Section -->
-									<header id="section">
-										<h3>Section</h3>
+									<header id="adding-projectile-collisions">
+										<h3>Adding Projectile Collisions</h3>
 									</header>
-									<p>Decription.</p>
+									<p>For our enemy, let's create a new scene. A simple <b>Node2D</b> with an <b>Area2D</b> and <b>Sprite2D</b> as children will do just fine.</p>
 
-									<div class="row gtr-75">
-										<div class="col-6 col-12-small">
-											<span class="image fit center"><img src="../../images/tutorials/1-the-absolute-basics/2.png"></span>
-										</div>
-
-										<div class="col-6 col-12-small">
-											<span class="image fit center"><img src="../../images/tutorials/1-the-absolute-basics/3.png"></span>
+									<div class="row gtr-75 aln-center">
+										<div class="col-6 col-12-medium">
+											<span class="image fit center"><img src="../../images/tutorials/3-dealing-damage-and-other-interactions/1.png"></span>
 										</div>
 									</div>
+
+									<p>So now we just shoot our enemy and...</p>
+
+									<div class="row gtr-75 aln-center">
+										<div class="col-12 col-12-medium">
+											<span class="image fit center"><img src="../../images/tutorials/3-dealing-damage-and-other-interactions/2.gif"></span>
+										</div>
+									</div>
+
+									<p><strong>Nothing happens</strong>. That's because we haven't set our collisions yet!</p>
+									<p>Let's set our enemy on the <b>Collision Layer</b> <code class="value">2</code>, our projectile in layer <code class="value">5</code>, and have their <b>Collision Masks</b> interact with each other.</p>
+
+									<div class="row gtr-75 aln-center">
+										<div class="col-5 col-12-medium">
+											<span class="image fit center"><img src="../../images/tutorials/3-dealing-damage-and-other-interactions/3.png"></span>
+										</div>
+
+										<div class="col-5 col-12-medium">
+											<span class="image fit center"><img src="../../images/tutorials/3-dealing-damage-and-other-interactions/4.png"></span>
+										</div>
+									</div>
+
+									<p>And now our projectile really has collisions!</p>
+
+									<div class="row gtr-75 aln-center">
+										<div class="col-12 col-12-medium">
+											<span class="image fit center"><img src="../../images/tutorials/3-dealing-damage-and-other-interactions/5.gif"></span>
+										</div>
+									</div>
+									<br>
+
+
+									<!-- Section -->
+									<header id="dealing-damage">
+										<h3>Dealing damage</h3>
+									</header>
+									<p>Whenever a projectile collides with an <b>Object</b>, it will try to call a method on it. Which method, you may ask? The one defined in its <a href="../../1.0/classes/projectile-2d.html#projectile-2d-property-on-hit-call">on_hit_call</a> property.</p>
+
+									<div class="row gtr-75 aln-center">
+										<div class="col-6 col-12-medium">
+											<span class="image fit center"><img src="../../images/tutorials/3-dealing-damage-and-other-interactions/6.png"></span>
+										</div>
+									</div>
+									
+									<p>Let's add a simple script to our enemy so it gets deleted when it gets hit by a projectile.</p>
+									
+									<div class="row gtr-75 aln-center">
+										<div class="col-7 col-12-medium">
+											<pre><code class="language-gdscript">extends Node2D
+
+func damage() -> void:
+	queue_free()</code></pre>
+										</div>
+									</div>
+
+									<p>Now we shoot and...</p>
+										
+									<div class="row gtr-75 aln-center">
+										<div class="col-12 col-12-medium">
+											<span class="image fit center"><img src="../../images/tutorials/3-dealing-damage-and-other-interactions/7.gif"></span>
+										</div>
+									</div>
+
+									<p><strong>Nothing happens</strong>. That's because our method is <strong>incorrect</strong>!</p>
+									<p>Your selected method must follow a <strong>defined pattern</strong>, taking the projectile itself as a parameter:</p>
+										
+									<div class="row gtr-75 aln-center">
+										<div class="col-7 col-12-medium">
+											<pre><code class="language-gdscript">extends Node2D
+
+func damage(proj: Projectile2D) -> void:
+	print("I took %d damage!" % proj.damage)
+	queue_free()</code></pre>
+										</div>
+									</div>
+
+									<p>Here you can access all the properties of the projectile that just collided with our enemy. Now let's shoot again and...</p>
+
+									<div class="row gtr-75 aln-center">
+										<div class="col-12 col-12-medium">
+											<span class="image fit center"><img src="../../images/tutorials/3-dealing-damage-and-other-interactions/8.gif"></span>
+										</div>
+									</div>
+
+									<p><strong>Nothing happens again</strong>. That's because we're calling the method on <strong>the wrong target</strong>.</p>
+									<p>You see, when a projectile collides with an <b>Object</b>, it will try to call its given method <strong>on the target with which it collided</strong>. In this case, on our enemy's Area2D node, and since this one doesn't have a script, it will do nothing.</p>
+
+									<div class="row gtr-75 aln-center">
+										<div class="col-6 col-12-medium">
+											<span class="image fit center"><img src="../../images/tutorials/3-dealing-damage-and-other-interactions/9.png"></span>
+										</div>
+									</div>
+
+									<p>To fix this, we will have to set our script on Area2D <strong>or</strong> we will have to tell the projectile to don't communicate with the collided object, and <strong>use its parent</strong> instead.</p>
+									<p>Since that is our case, just add Area2D on the <code class="value">step</code> group and from now on all projectiles will directly communicate with its parent. Of course, this behavior can be chained.</p>
+									
+									<div class="row gtr-75 aln-center">
+										<div class="col-5 col-12-medium">
+											<span class="image fit center"><img src="../../images/tutorials/3-dealing-damage-and-other-interactions/10.png"></span>
+										</div>
+										
+										<div class="col-5 col-12-medium">
+											<span class="image fit center"><img src="../../images/tutorials/3-dealing-damage-and-other-interactions/11.png"></span>
+										</div>
+									</div>
+
+									<p>Now our projectile can finally damage our enemy!</p>
+									
+									<div class="row gtr-75 aln-center">
+										<div class="col-12 col-12-medium">
+											<span class="image fit center"><img src="../../images/tutorials/3-dealing-damage-and-other-interactions/12.gif"></span>
+										</div>
+									</div>
+
 									<br>
 
 

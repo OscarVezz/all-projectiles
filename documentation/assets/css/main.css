@@ -1372,7 +1372,7 @@ a.image {
 /* List */
 ol {
   list-style: decimal;
-  margin: 0 0 2em 0;
+  margin: 0 0 1.5em 0;
   padding-left: 1.25em; }
   ol li {
     padding-left: 0.25em; }
@@ -1381,7 +1381,7 @@ ol.copycat {
 
 ul {
   list-style: disc;
-  margin: 0 0 2em 0;
+  margin: 0 0 1.5em 0;
   padding-left: 1em; }
   ul li {
     padding-left: 0.5em; }

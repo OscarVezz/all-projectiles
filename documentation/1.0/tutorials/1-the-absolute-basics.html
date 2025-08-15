@@ -45,8 +45,8 @@
 									<!-- Title -->
 									<p>Before we do any custom collisions, complex projectile behaviors or modified classes, let's start fresh. Not with any pre-made assets, already built projects or anything fancy, just a standard <strong>empty Godot project</strong>.</p>
 
-									<div class="row gtr-75">
-										<div class="col-12 col-12-small">
+									<div class="row gtr-75 aln-center">
+										<div class="col-12 col-12-medium">
 											<span class="image fit center"><img src="../../images/tutorials/1-the-absolute-basics/1.png"></span>
 										</div>
 									</div>
@@ -60,12 +60,12 @@
 									<p>Once <a href="../../1.0/introduction/installation.html#installation">installed</a>, you will need to activate the addon for it to work properly.</p>
 									<p>Go to your <strong>Project</strong> <i class="fa-solid fa-arrow-right-long"></i> <strong>Project Settings</strong> and under the <strong>Plugins</strong> tab enable the checkbox for the <strong>All Projectiles</strong> plugin.</p>
 
-									<div class="row gtr-75">
-										<div class="col-6 col-12-small">
+									<div class="row gtr-75 aln-center">
+										<div class="col-5 col-12-medium">
 											<span class="image fit center"><img src="../../images/tutorials/1-the-absolute-basics/2.png"></span>
 										</div>
 
-										<div class="col-6 col-12-small">
+										<div class="col-5 col-12-medium">
 											<span class="image fit center"><img src="../../images/tutorials/1-the-absolute-basics/3.png"></span>
 										</div>
 									</div>
@@ -81,12 +81,12 @@
 										<li>Let's create a standard scene. A <b>Camera2D</b> and a <b>Node2D</b> as our <strong>player</strong> will do the job.</li>
 									</ul>
 
-									<div class="row gtr-75">
-										<div class="col-12 col-12-small">
+									<div class="row gtr-75 aln-center">
+										<div class="col-6 col-12-medium">
 											<span class="image fit center"><img src="../../images/tutorials/1-the-absolute-basics/4.png"></span>
 										</div>
 
-										<!-- <div class="col-6 col-12-small">
+										<!-- <div class="col-6 col-12-medium">
 											<span class="image fit center"><img src="../../images/tutorials/1-the-absolute-basics/5.png"></span>
 										</div> -->
 									</div>
@@ -95,12 +95,12 @@
 										<li>In order to spawn <b>Projectiles</b> we will have to add a <a href="../../1.0/nodes/projectile-caller-2d.html#projectile-caller-2d">ProjectileCaller2D</a> Node to our player.</li>
 									</ul>
 
-									<div class="row gtr-75">
-										<div class="col-6 col-12-small">
+									<div class="row gtr-75 aln-center">
+										<div class="col-5 col-12-medium">
 											<span class="image fit center"><img src="../../images/tutorials/1-the-absolute-basics/6.png"></span>
 										</div>
 
-										<div class="col-6 col-12-small">
+										<div class="col-5 col-12-medium">
 											<span class="image fit center"><img src="../../images/tutorials/1-the-absolute-basics/7.png"></span>
 										</div>
 									</div>
@@ -109,12 +109,12 @@
 										<li><b>ProjectileCallers</b> will create the projectiles assigned on their <strong>Projectile Resources</strong> arrays.</li>
 									</ul>
 
-									<div class="row gtr-75">
-										<div class="col-12 col-12-small">
+									<div class="row gtr-75 aln-center">
+										<div class="col-6 col-12-medium">
 											<span class="image fit center"><img src="../../images/tutorials/1-the-absolute-basics/8.png"></span>
 										</div>
 
-										<!-- <div class="col-6 col-12-small">
+										<!-- <div class="col-6 col-12-medium">
 											<span class="image fit center"><img src="../../images/tutorials/1-the-absolute-basics/9.png"></span>
 										</div> -->
 									</div>
@@ -123,12 +123,12 @@
 										<li>For now, select one of the <a href="../../1.0/resources/projectile-blueprint-2d.html#projectile-blueprint-2d">ProjectileBlueprint2D</a>s that already come with the addon.</li>
 									</ul>
 
-									<div class="row gtr-75">
-										<div class="col-6 col-12-small">
+									<div class="row gtr-75 aln-center">
+										<div class="col-5 col-12-medium">
 											<span class="image fit center"><img src="../../images/tutorials/1-the-absolute-basics/10.png"></span>
 										</div>
 
-										<div class="col-6 col-12-small">
+										<div class="col-5 col-12-medium">
 											<span class="image fit center"><img src="../../images/tutorials/1-the-absolute-basics/11.png"></span>
 										</div>
 									</div>
@@ -137,8 +137,8 @@
 										<li>Remember to enable the <i class="comment-alt">"Include files from addons"</i> option.</li>
 									</ul>
 
-									<div class="row gtr-75">
-										<div class="col-12 col-12-small">
+									<div class="row gtr-75 aln-center">
+										<div class="col-6 col-12-medium">
 											<span class="image fit center"><img src="../../images/tutorials/1-the-absolute-basics/12.png"></span>
 										</div>
 									</div>
@@ -153,12 +153,12 @@
 									<p>We have the scene, we have the player, we have the projectiles set up, all we need now is a way to communicate with the <b>ProjectileCaller</b> Node and <strong>request its projectiles</strong>.</p>
 									<p>Let's attach a script to the player and call it from there.</p>
 
-									<div class="row gtr-75">
-										<div class="col-6 col-12-small">
+									<div class="row gtr-75 aln-center">
+										<div class="col-5 col-12-medium">
 											<span class="image fit center"><img src="../../images/tutorials/1-the-absolute-basics/13.png"></span>
 										</div>
 
-										<div class="col-6 col-12-small">
+										<div class="col-5 col-12-medium">
 											<span class="image fit center"><img src="../../images/tutorials/1-the-absolute-basics/14.png"></span>
 										</div>
 									</div>
@@ -178,8 +178,8 @@ func _input(event):
 
 									<p>Congratulations, you have created your first projectile!</p>
 
-									<div class="row gtr-75">
-										<div class="col-12 col-12-small">
+									<div class="row gtr-75 aln-center">
+										<div class="col-12 col-12-medium">
 											<span class="image fit center"><img src="../../images/tutorials/1-the-absolute-basics/15.gif"></span>
 										</div>
 									</div>

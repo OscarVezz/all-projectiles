@@ -45,6 +45,12 @@
 									<!-- Title -->
 									<p><a href="../../1.0/resources/projectile-blueprint-2d.html#projectile-blueprint-2d">ProjectileBlueprint</a>s are the desing models of your <b>Projectiles</b>. They serve as data containers used by the <a href="../../1.0/nodes/projectile-processor-2d.html#projectile-processor-2d">AP engine</a> to create the <strong>real-time</strong>, <strong>in-game</strong> <a href="../../1.0/classes/projectile-2d.html#projectile-2d">Projectile Objects</a>.</p>
 									<p><b>Projectile Blueprints</b> are custom Godot <a href="https://docs.godotengine.org/en/stable/classes/class_resource.html#class-resource">Resource</a>s, so treat them as they were <b>Textures</b> or <b>Materials</b>.</p>
+									
+									<div class="row gtr-75 aln-center">
+										<div class="col-6 col-12-medium">
+											<span class="image fit center"><img src="../../images/tutorials/2-using-projectile-blueprints/0.gif"></span>
+										</div>
+									</div>
 									<br>
 
 
@@ -54,28 +60,28 @@
 									</header>
 									<p>Inside any folder off your <strong>File System Dock</strong>, right click and select <strong>Create New</strong> <i class="fa-solid fa-arrow-right-long"></i> <strong>Resource</strong> and search for <b>ProjectileBlueprint2D</b>.</p>
 
-									<div class="row gtr-75">
-										<div class="col-6 col-12-small">
+									<div class="row gtr-75 aln-center">
+										<div class="col-5 col-12-medium">
 											<span class="image fit center"><img src="../../images/tutorials/2-using-projectile-blueprints/1.png"></span>
 										</div>
 
-										<div class="col-6 col-12-small">
+										<div class="col-5 col-12-medium">
 											<span class="image fit center"><img src="../../images/tutorials/2-using-projectile-blueprints/2.png"></span>
 										</div>
 									</div>
 
 									<p>Once created, drag and drop it into your <b>ProjectileCaller2D</b> <strong>Resources</strong> array.</p>
 
-									<div class="row gtr-75">
-										<div class="col-12 col-12-small">
+									<div class="row gtr-75 aln-center">
+										<div class="col-6 col-12-medium">
 											<span class="image fit center"><img src="../../images/tutorials/2-using-projectile-blueprints/3.png"></span>
 										</div>
 									</div>
 
 									<p>Now you have a simple way to alter the behavior and properties of your <b>Projectiles</b>.</p>
 
-									<div class="row gtr-75">
-										<div class="col-12 col-12-small">
+									<div class="row gtr-75 aln-center">
+										<div class="col-6 col-12-medium">
 											<span class="image fit center"><img src="../../images/tutorials/2-using-projectile-blueprints/4.png"></span>
 										</div>
 									</div>
@@ -93,20 +99,20 @@
 
 									<p>To create an <b>Area Projectile</b>, simply create a standard <b>ProjectileBlueprint2D</b> and set its <strong>Texture</strong>.</p>
 
-									<div class="row gtr-75">
-										<div class="col-6 col-12-small">
+									<div class="row gtr-75 aln-center">
+										<div class="col-5 col-12-medium">
 											<span class="image fit center"><img src="../../images/tutorials/2-using-projectile-blueprints/5.png"></span>
 										</div>
 
-										<div class="col-6 col-12-small">
+										<div class="col-5 col-12-medium">
 											<span class="image fit center"><img src="../../images/tutorials/2-using-projectile-blueprints/6.png"></span>
 										</div>
 									</div>
 
 									<p>Here you can see the result, continuing on from our previous project.</p>
 									
-									<div class="row gtr-uniform">
-										<div class="col-12 col-12-small">
+									<div class="row gtr-uniform aln-center">
+										<div class="col-12 col-12-medium">
 											<span class="image fit center"><img src="../../images/tutorials/2-using-projectile-blueprints/7.gif"></span>
 										</div>
 									</div>
@@ -126,12 +132,12 @@
 
 									<p>To create an <b>InstancedProjectile2D</b> you first need to create the <b>Scene</b> that you want to use as a <b>Projectile</b>. A basic <b>Node2D</b> with a <b>Sprite2D</b> child will do the job.</p>
 
-									<div class="row gtr-75">
-										<div class="col-6 col-12-small">
+									<div class="row gtr-75 aln-center">
+										<div class="col-5 col-12-medium">
 											<span class="image fit center"><img src="../../images/tutorials/2-using-projectile-blueprints/8.png"></span>
 										</div>
 
-										<div class="col-6 col-12-small">
+										<div class="col-5 col-12-medium">
 											<span class="image fit center"><img src="../../images/tutorials/2-using-projectile-blueprints/9.png"></span>
 										</div>
 									</div>
@@ -139,26 +145,26 @@
 									<p>Now this is important, all your <b>InstancedProjectile2D</b> scenes must have a <strong>mandatory</strong> <a href="https://docs.godotengine.org/en/stable/classes/class_area2d.html#area2d">Area2D</a> component. Once again, <strong>this requirement is mandatory</strong> so your instanced projectiles can work properly.</p>
 									<p>Add an <b>Area2D</b> node as a child of your projectile along with its <b>CollisionShape</b>. Remember his name because we will use it later.</p>
 
-									<div class="row gtr-75">
-										<div class="col-12 col-12-small">
+									<div class="row gtr-75 aln-center">
+										<div class="col-6 col-12-medium">
 											<span class="image fit center"><img src="../../images/tutorials/2-using-projectile-blueprints/10.png"></span>
 										</div>
 									</div>
 
 									<p>Now that we have our <b>Scene</b> to instantiate as a projectile simply create a standard <b>ProjectileBlueprint2D</b>, change its type to <strong>Instantiated</strong> and assign the <b>Scene</b> as its <strong>Instance</strong>.</p>
 
-									<div class="row gtr-75">
-										<div class="col-6 col-12-small">
+									<div class="row gtr-75 aln-center">
+										<div class="col-5 col-12-medium">
 											<span class="image fit center"><img src="../../images/tutorials/2-using-projectile-blueprints/11.png"></span>
 										</div>
 
-										<div class="col-6 col-12-small">
+										<div class="col-5 col-12-medium">
 											<span class="image fit center"><img src="../../images/tutorials/2-using-projectile-blueprints/12.png"></span>
 										</div>
 									</div>
 
-									<div class="row gtr-uniform">
-										<div class="col-12 col-12-small">
+									<div class="row gtr-uniform aln-center">
+										<div class="col-6 col-12-medium">
 											<span class="image fit center"><img src="../../images/tutorials/2-using-projectile-blueprints/13.png"></span>
 										</div>
 									</div>
@@ -167,8 +173,8 @@
 
 									<p>Here you can see the result, once again, continuing on from our previous project.</p>
 
-									<div class="row gtr-uniform">
-										<div class="col-12 col-12-small">
+									<div class="row gtr-uniform aln-center">
+										<div class="col-12 col-12-medium">
 											<span class="image fit center"><img src="../../images/tutorials/2-using-projectile-blueprints/14.gif"></span>
 										</div>
 									</div>
