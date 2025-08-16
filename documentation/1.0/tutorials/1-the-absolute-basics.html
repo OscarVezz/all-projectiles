@@ -167,7 +167,7 @@
 									<p>From the script, access the <b>ProjectileCaller</b> Node and call the <a href="../../1.0/nodes/projectile-caller-2d.html#projectile-caller-2d-method-request-projectile">request_projectile</a> method each time you click your mouse. You will need to pass the projectile <strong>index</strong>, the start <strong>position</strong> and the desired <strong>destination</strong>.</p>
 									<pre><code class="language-gdscript">extends Node2D
 
-@onready var projectile_caller = $ProjectileCaller2D
+@onready var projectile_caller: ProjectileCaller2D = $ProjectileCaller2D
 
 
 func _input(event):

@@ -149,7 +149,7 @@ func damage(proj: Projectile2D) -> void:
 									</div>
 
 									<p><strong>Nothing happens again</strong>. That's because we're calling the method on <strong>the wrong target</strong>.</p>
-									<p>You see, when a projectile collides with an <b>Object</b>, it will try to call its given method <strong>on the target with which it collided</strong>. In this case, on our enemy's Area2D node, and since this one doesn't have a script, it will do nothing.</p>
+									<p id="step-explanation">You see, when a projectile collides with an <b>Object</b>, it will try to call its <a href="../../1.0/classes/projectile-2d.html#projectile-2d-property-on-hit-call">on_hit_call</a> method <strong>on the target it has collided with</strong>. In this case, on our enemy's <b>Area2D Node</b>, and since it has no script, it will do nothing.</p>
 
 									<div class="row gtr-75 aln-center">
 										<div class="col-6 col-12-medium">
@@ -157,8 +157,8 @@ func damage(proj: Projectile2D) -> void:
 										</div>
 									</div>
 
-									<p>To fix this, we will have to set our script on Area2D <strong>or</strong> we will have to tell the projectile to don't communicate with the collided object, and <strong>use its parent</strong> instead.</p>
-									<p>Since that is our case, just add Area2D on the <code class="value">step</code> group and from now on all projectiles will directly communicate with its parent. Of course, this behavior can be chained.</p>
+									<p>To fix this, we will have to set our script <b>on the Area2D Node</b> <strong>or</strong> we will have to tell the projectile to don't communicate with the collided object, and <strong>use its parent</strong> instead.</p>
+									<p><strong>All Projectiles</strong> allows us to do this just by adding <b>Area2D</b> on the <code class="value">step</code> <a href="https://docs.godotengine.org/en/stable/tutorials/scripting/groups.html#groups">group</a>. After setting up the group, all colliding projectiles will directly communicate with <b>Area2D's parent</b> and, of course, this behavior can be chained.</p>
 									
 									<div class="row gtr-75 aln-center">
 										<div class="col-5 col-12-medium">

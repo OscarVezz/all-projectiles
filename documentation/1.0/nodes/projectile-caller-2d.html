@@ -385,25 +385,24 @@ func _ready() -> void:
 									
 									<ul>
 										<li>
-											<p>The <code class="value">move_method</code> callable <strong>must return</strong> a <code class="value">Vector2</code> and take the following two parameters:</p>
+											<p>The <code class="value">move_method</code> callable <strong>must return</strong> a <code class="value">Vector2</code> <span class="comment">(as an element representing the direction in which the projectile will move)</span> and take the following two parameters:</p>
 											<p><code class="value">proj</code>: A representation of the projectile object to be changed.</p>
 											<p><code class="value">delta</code>: The time elapsed in seconds since the previous call to <b>move_method</b>.</p>
-											<pre><code><span class="keyword">extends</span> Node2D
+											<pre><code class="language-gdscript">extends Node2D
 
-<span class="exported-property">@onready</span> <span class="keyword">var</span> projectile_caller <span class="operator">= $</span>ProjectileCaller2D
+@onready var projectile_caller = $ProjectileCaller2D
 						
 
-<span class="comment"># In this example the "custom_movement" function is passed as a Callable in the optional "move_method" parameter.</span>
-<span class="keyword">func</span> _process(_delta):
-	<span class="conditional">if</span> Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
-		<span class="keyword">var</span> destination <span class="operator">=</span> <span class="data">get_global_mouse_position</span>()
-		projectile_caller.<span class="method">request_projectile</span>(<span class="data">0</span>, position, destination, <span class="data">null</span>, custom_movement)
+# In this example the "custom_movement" function is passed as a Callable in the optional "move_method" parameter.
+func _process(_delta):
+	if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
+		var destination = get_global_mouse_position()
+		projectile_caller.request_projectile(0, position, destination, null, custom_movement)
 
 
-<span class="comment"># This function will cause the projectile to always move in the UP direction.</span>
-<span class="keyword">func</span> custom_movement(proj: <span class="data">Projectile2D</span>, _delta: <span class="data">float</span>) <span class="operator">-></span> <span class="data">Vector2</span>:
-	<span class="conditional">return</span> <span class="data">Vector2</span>.UP
-</code></pre>
+# This function will cause the projectile to always move in the UP direction.
+func custom_movement(proj: Projectile2D, _delta: float) -> Vector2:
+	return Vector2.UP</code></pre>
 										</li>
 									</ul>
 									<hr class="tab">
@@ -412,22 +411,21 @@ func _ready() -> void:
 										<li>
 											<p>The <code class="value">start_method</code> callable returns <code class="value">void</code> and takes the following parameter:</p>
 											<p><code class="value">proj</code>: A representation of the projectile object to be changed.</p>
-											<pre><code><span class="keyword">extends</span> Node2D
+											<pre><code class="language-gdscript">extends Node2D
 
-<span class="exported-property">@onready</span> <span class="keyword">var</span> projectile_caller <span class="operator">= $</span>ProjectileCaller2D
+@onready var projectile_caller = $ProjectileCaller2D
 						
 
-<span class="comment"># In this example the "custom_start" function is passed as a Callable in the optional "start_method" parameter.</span>
-<span class="keyword">func</span> _process(_delta):
-	<span class="conditional">if</span> Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
-		<span class="keyword">var</span> destination <span class="operator">=</span> <span class="data">get_global_mouse_position</span>()
-		projectile_caller.<span class="method">request_projectile</span>(<span class="data">0</span>, position, destination, <span class="data">null</span>, Callable(), custom_start)
+# In this example the "custom_start" function is passed as a Callable in the optional "start_method" parameter.
+func _process(_delta):
+	if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
+		var destination = get_global_mouse_position()
+		projectile_caller.request_projectile(0, position, destination, null, Callable(), custom_start)
 
 
-<span class="comment"># This function will change the projectile "speed" property at projectile creation.</span>
-<span class="keyword">func</span> custom_start(proj: <span class="data">Projectile2D</span>) <span class="operator">-></span> <span class="data">void</span>:
-	proj.speed <span class="operator">=</span> <span class="data">50</span>
-</code></pre>
+# This function will change the projectile "speed" property at projectile creation.
+func custom_start(proj: Projectile2D) -> void:
+	proj.speed = 50</code></pre>
 										</li>
 									</ul>
 									<hr class="tab">
@@ -437,43 +435,43 @@ func _ready() -> void:
 											<p>The <code class="value">collision_method</code> callable returns <code class="value">void</code> and takes the following parameters:</p>
 											<p><code class="value">proj</code>: A representation of the projectile object to be changed.</p>
 											<p><code class="value">area_rid</code>: The <a href="https://docs.godotengine.org/en/stable/classes/class_rid.html#class-rid">RID</a> of the area/body that entered the projectile.</p>
-											<p><code class="value">area</code>: The <a href="https://docs.godotengine.org/en/stable/classes/class_node.html#class-node">Node</a> of the area/body that entered the projectile.</p>
+											<p><code class="value">area_node</code>: The <a href="https://docs.godotengine.org/en/stable/classes/class_node.html#class-node">Node</a> of the area/body that entered the projectile.</p>
+											<p><code class="value">target_node</code>: The main processor <a href="https://docs.godotengine.org/en/stable/classes/class_node.html#class-node">Node</a> of the object that collided with the projectile. <span class="comment"><i>Learn more <a href="../../1.0/tutorials/3-dealing-damage-and-projectile-interactions.html#step-explanation">here</a>.</i></span></p>
 											<p><code class="value">area_shape_index</code>: Index of the interacting shape from the collidiong area/body.</p>
 											<p><code class="value">local_shape_index</code>: Index of the interacting shape from the projectile area.</p>
-											<pre><code><span class="keyword">extends</span> Node2D
+											<pre><code class="language-gdscript">extends Node2D
 
-<span class="comment"># The projectiles will immediately expire upon collision with objects in this layer.</span>
-<span class="exported-property">@export_flags_2d_physics</span> <span class="keyword">var</span> wall_layer: <span class="data">int</span>
-<span class="exported-property">@onready</span> <span class="keyword">var</span> projectile_caller <span class="operator">= $</span>ProjectileCaller2D
+# The projectiles will immediately expire upon collision with objects in this layer.
+@export_flags_2d_physics var wall_layer: int
+@onready var projectile_caller = $ProjectileCaller2D
 						
 
-<span class="comment"># In this example the "custom_collision" function is passed as a Callable in the optional "collision_method" parameter.</span>
-<span class="keyword">func</span> _process(_delta):
-	<span class="conditional">if</span> Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
-		<span class="keyword">var</span> destination <span class="operator">=</span> <span class="data">get_global_mouse_position</span>()
-		projectile_caller.<span class="method">request_projectile</span>(<span class="data">0</span>, position, destination, <span class="data">null</span>, Callable(), Callable(), custom_collision)
+# In this example the "custom_collision" function is passed as a Callable in the optional "collision_method" parameter.
+func _process(_delta):
+	if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
+		var destination = get_global_mouse_position()
+		projectile_caller.request_projectile(0, position, destination, null, Callable(), Callable(), custom_collision)
 
 
-<span class="comment"># This function will change the way projectiles collide.</span>
-<span class="keyword">func</span> custom_collision(proj: <span class="data">Projectile2D</span>, area_rid: <span class="data">RID</span>, area: <span class="data">Node2D</span>, area_shape_index: <span class="data">int</span>, local_shape_index: <span class="data">int</span>) <span class="operator">-></span> <span class="data">void</span>:
-	<span class="comment"># The "validate_collision" method makes sure that:
+# This function will change the way projectiles collide.
+func custom_collision(proj: Projectile2D, area_rid: RID, area_node: Node2D, target_node: Node2D, area_shape_index: int, local_shape_index: int) -> void:
+	# The "validate_collision" method makes sure that:
 	# -> The projectile is not expired.
 	# -> A lock projectile will only collide with its assigned target.
-	# -> The projectile is not colliding with areas/bodies it already collided.</span>
-	<span class="conditional">if</span> <span class="keyword">not</span> proj.<span class="method">validate_collision</span>(area_rid, area):
-		<span class="conditional">return</span>
+	# -> The projectile is not colliding with areas/bodies it already collided.
+	if not proj.validate_collision(area_rid, area_node):
+		return
 	
-	<span class="comment"># Custom code snippet for immediate expiration on collision with "wall_layer"</span>
-	<span class="conditional">if</span> wall_layer <span class="operator">&</span> area.collision_layer <span class="operator">!=</span> <span class="data">0</span>:
-		proj.is_expired <span class="operator">=</span> <span class="keyword">true</span>
-		<span class="conditional">return</span>
+	# Custom code snippet for immediate expiration on collision with "wall_layer"
+	if wall_layer & area_node.collision_layer != 0:
+		proj.is_expired = true
+		return
 	
-	<span class="comment"># The "on_pierced" method makes sure that:
+	# The "on_pierced" method makes sure that:
 	# -> The projectile refreshes its rehit cooldown and angular speed.
 	# -> The projectile appends colliding areas/bodies to its excluded targets.
-	# -> The projectile instance reduces its remaining pierce.</span>
-	proj.<span class="method">on_pierced</span>(area_rid)
-</code></pre>
+	# -> The projectile instance reduces its remaining pierce.
+	proj.on_pierced(area_rid)</code></pre>
 										</li>
 									</ul>
 									<hr class="tab">
@@ -482,22 +480,21 @@ func _ready() -> void:
 										<li>
 											<p>The <code class="value">expired_method</code> callable returns <code class="value">void</code> and takes the following parameter:</p>
 											<p><code class="value">proj</code>: A representation of the projectile object to be changed.</p>
-											<pre><code><span class="keyword">extends</span> Node2D
+											<pre><code class="language-gdscript">extends Node2D
 
-<span class="exported-property">@onready</span> <span class="keyword">var</span> projectile_caller <span class="operator">= $</span>ProjectileCaller2D
+@onready var projectile_caller = $ProjectileCaller2D
 						
 
-<span class="comment"># In this example the "custom_expired" function is passed as a Callable in the optional "expired_method" parameter.</span>
-<span class="keyword">func</span> _process(_delta):
-	<span class="conditional">if</span> Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
-		<span class="keyword">var</span> destination <span class="operator">=</span> <span class="data">get_global_mouse_position</span>()
-		projectile_caller.<span class="method">request_projectile</span>(<span class="data">0</span>, position, destination, <span class="data">null</span>, Callable(), Callable(), Callable(), custom_expired)
+# In this example the "custom_expired" function is passed as a Callable in the optional "expired_method" parameter.
+func _process(_delta):
+	if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
+		var destination = get_global_mouse_position()
+		projectile_caller.request_projectile(0, position, destination, null, Callable(), Callable(), Callable(), custom_expired)
 
 
-<span class="comment"># This function will print "expired" on the console once the projectile runs out of pierce or lifetime.</span>
-<span class="keyword">func</span> custom_expired(proj: <span class="data">Projectile2D</span>) <span class="operator">-></span> <span class="data">void</span>:
-	<span class="data">print</span>(<span class="string">"expired"</span>)
-</code></pre>
+# This function will print "expired" on the console once the projectile runs out of pierce or lifetime.
+func custom_expired(proj: Projectile2D) -> void:
+	print("expired")</code></pre>
 										</li>
 									</ul>
 									</div>

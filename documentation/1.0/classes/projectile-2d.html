@@ -1047,7 +1047,8 @@ proj.remove_modifier("PROJECTILE_BUFF")</code></pre>
 											<p>The given <code class="value">method</code> must <strong>follow a define pattern</strong>. It must return <code class="value">void</code> and take the following parameters:</p>
 											<p><code class="value">proj</code>: A representation of the projectile object to be changed.</p>
 											<p><code class="value">area_rid</code>: The <a href="https://docs.godotengine.org/en/stable/classes/class_rid.html#class-rid">RID</a> of the area that entered the projectile.</p>
-											<p><code class="value">area</code>: The <a href="https://docs.godotengine.org/en/stable/classes/class_node.html#class-node">Node</a> of the area that entered the projectile.</p>
+											<p><code class="value">area_node</code>: The <a href="https://docs.godotengine.org/en/stable/classes/class_node.html#class-node">Node</a> of the area that entered the projectile.</p>
+											<p><code class="value">target_node</code>: The main processor <a href="https://docs.godotengine.org/en/stable/classes/class_node.html#class-node">Node</a> of the object that collided with the projectile. <span class="comment"><i>Learn more <a href="../../1.0/tutorials/3-dealing-damage-and-projectile-interactions.html#step-explanation">here</a>.</i></span></p>
 											<p><code class="value">area_shape_index</code>: Index of the interacting shape from the collidiong area.</p>
 											<p><code class="value">local_shape_index</code>: Index of the interacting shape from the projectile area.</p>
 											<pre><code class="language-gdscript">extends Node2D
@@ -1063,16 +1064,16 @@ func _ready() -> void:
 
 
 # This function will change the way projectiles collide.
-func custom_collision(proj: Projectile2D, area_rid: RID, area: Node2D, area_shape_index: int, local_shape_index: int) -> void:
+func custom_collision(proj: Projectile2D, area_rid: RID, area_node: Node2D, target_node: Node2D, area_shape_index: int, local_shape_index: int) -> void:
 	# The "validate_collision" method makes sure that:
 	# -> The projectile is not expired.
 	# -> A lock projectile will only collide with its assigned target.
 	# -> The projectile is not colliding with areas it already collided.
-	if not proj.validate_collision(area_rid, area):
+	if not proj.validate_collision(area_rid, area_node):
 		return
 	
 	# Custom code snippet for immediate expiration on collision with "wall_layer"
-	if wall_layer & area.collision_layer != 0:
+	if wall_layer & area_node.collision_layer != 0:
 		proj.is_expired = true
 		return
 	
@@ -1093,7 +1094,8 @@ func custom_collision(proj: Projectile2D, area_rid: RID, area: Node2D, area_shap
 											<p>The given <code class="value">method</code> must <strong>follow a define pattern</strong>. It must return <code class="value">void</code> and take the following parameters:</p>
 											<p><code class="value">proj</code>: A representation of the projectile object to be changed.</p>
 											<p><code class="value">body_rid</code>: The <a href="https://docs.godotengine.org/en/stable/classes/class_rid.html#class-rid">RID</a> of the body that entered the projectile.</p>
-											<p><code class="value">body</code>: The <a href="https://docs.godotengine.org/en/stable/classes/class_node.html#class-node">Node</a> of the body that entered the projectile.</p>
+											<p><code class="value">body_node</code>: The <a href="https://docs.godotengine.org/en/stable/classes/class_node.html#class-node">Node</a> of the body that entered the projectile.</p>
+											<p><code class="value">target_node</code>: The main processor <a href="https://docs.godotengine.org/en/stable/classes/class_node.html#class-node">Node</a> of the object that collided with the projectile. <span class="comment"><i>Learn more <a href="../../1.0/tutorials/3-dealing-damage-and-projectile-interactions.html#step-explanation">here</a>.</i></span></p>
 											<p><code class="value">body_shape_index</code>: Index of the interacting shape from the collidiong body.</p>
 											<p><code class="value">local_shape_index</code>: Index of the interacting shape from the projectile area.</p>
 											<pre><code class="language-gdscript">extends Node2D
@@ -1109,16 +1111,16 @@ func _ready() -> void:
 
 
 # This function will change the way projectiles collide.
-func custom_collision(proj: Projectile2D, body_rid: RID, body: Node2D, body_shape_index: int, local_shape_index: int) -> void:
+func custom_collision(proj: Projectile2D, body_rid: RID, body_node: Node2D, target_node: Node2D, body_shape_index: int, local_shape_index: int) -> void:
 	# The "validate_collision" method makes sure that:
 	# -> The projectile is not expired.
 	# -> A lock projectile will only collide with its assigned target.
 	# -> The projectile is not colliding with bodies it already collided.
-	if not proj.validate_collision(body_rid, body):
+	if not proj.validate_collision(body_rid, body_node):
 		return
 	
 	# Custom code snippet for immediate expiration on collision with "wall_layer"
-	if wall_layer & body.collision_layer != 0:
+	if wall_layer & body_node.collision_layer != 0:
 		proj.is_expired = true
 		return
 	
@@ -1166,7 +1168,7 @@ func custom_expired(proj: Projectile2D) -> void:
 									<p class="tab">Sets <a href="#projectile-2d-property-on-move">on_move</a> callback.</p>
 									<ul class="tab">
 										<li>
-											<p>The given <code class="value">method</code> must <strong>follow a define pattern</strong>. It <strong>must return</strong> a <code class="value">Vector2</code> and take the following two parameters:</p>
+											<p>The given <code class="value">method</code> must <strong>follow a define pattern</strong>. It <strong>must return</strong> a <code class="value">Vector2</code> <span class="comment">(as an element representing the direction in which the projectile will move)</span> and take the following two parameters:</p>
 											<p><code class="value">proj</code>: A representation of the projectile object to be changed.</p>
 											<p><code class="value">delta</code>: The time elapsed in seconds since the previous call to <b>move_method</b>.</p>
 											<pre><code class="language-gdscript">extends Node2D

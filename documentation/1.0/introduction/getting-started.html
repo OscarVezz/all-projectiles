@@ -210,12 +210,12 @@ func custom_expired(proj: Projectile2D) -> void:
 
 
 # This function will change how the projectile collides.
-func custom_collision(proj: Projectile2D, body_rid: RID, body: Node2D, body_shape_index: int, local_shape_index: int) -> void:
-	if not proj.validate_collision(body_rid, body):
+func custom_collision(proj: Projectile2D, body_rid: RID, body_node: Node2D, target_node: Node2D, body_shape_index: int, local_shape_index: int) -> void:
+	if not proj.validate_collision(body_rid, body_node):
 		return
 	
 	# Custom code snippet for immediate expiration on collision with "wall_layer"
-	if wall_layer & body.collision_layer != 0:
+	if wall_layer & body_node.collision_layer != 0:
 		proj.is_expired = true
 		return
 	

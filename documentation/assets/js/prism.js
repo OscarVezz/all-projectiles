@@ -2293,7 +2293,7 @@ Prism.languages.gdscript = {
 		lookbehind: true
 	},
 	'property': /\b(?:Array|bool|Callable|Color|Dictionary|int|float|get_global_mouse_position|print|preload|randf|range|RID|String|StringName|Variant|Vector2|Vector3|Transform2D|Transform3D|weakref)\b/,
-	'keyword': /\b(?:and|as|assert|await|breakpoint|class|class_name|const|enum|export|extends|func|in|is|master|mastersync|not|null|onready|or|preload|puppet|puppetsync|remote|remotesync|self|setget|signal|static|super|tool|var|yield)\b/,
+	'keyword': /\b(?:and|as|assert|await|breakpoint|class|class_name|const|enum|export|extends|func|in|is|master|mastersync|not|onready|or|preload|puppet|puppetsync|remote|remotesync|self|setget|signal|static|super|tool|var|yield)\b/,
 	'builtin': /\b(?:break|continue|elif|else|for|if|match|pass|return|while|when)\b/,
 	'function': {
 		// pattern: /(^[ \t]*)\b[a-z_]\w*(?=[ \t]*\()/im,
@@ -2311,7 +2311,7 @@ Prism.languages.gdscript = {
 		/\b(?:INF|NAN|PI|TAU)\b/
 	],
 	'constant': /\b[A-Z][A-Z_\d]*\b/,
-	'boolean': /\b(?:false|true)\b/,
+	'boolean': /\b(?:false|true|null)\b/,
 	'operator': /->|\.\.\.|:=|&&|\|\||<<|>>|[-+*/%$&|!<>=]=?|[~^]/,
 	'punctuation': /[.:,;()[\]{}]/
 };
