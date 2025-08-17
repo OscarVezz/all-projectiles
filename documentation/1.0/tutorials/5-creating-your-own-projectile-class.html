@@ -6,7 +6,7 @@
 -->
 <html>
 	<head>
-		<title>The Absolute Basics</title>
+		<title>Creating your own Projectile class</title>
 		<meta charset="utf-8" />
 		<meta name="description" content="A Projectile Engine for Godot"/>
 		<meta name="autor" content="Oscar Vezz"/>
@@ -38,37 +38,221 @@
 							<!-- Content -->
 								<section>
 									<header class="main" id="title">
-										<h2>Title</h2>
+										<h2>Creating your own Projectile class</h2>
 									</header>
 
 
 									<!-- Title -->
-									<p>Description.</p>
+									<p>So far, we have only seen external ways to alternate your projectiles, however <strong>All Projectiles</strong> also allows you to create your own <b>Projectile classes</b>, <b>Attack classes</b> and more.</p>
+									<p>You can use the templates at the <span class="comment-alt"><i>addons/all_projectiles/scripts/templates</i></span> folder as a guide.</p>
 
 									<div class="row gtr-75 aln-center">
-										<div class="col-6 col-12-medium">
-											<span class="image fit center"><img src="../../images/tutorials/1-the-absolute-basics/1.png"></span>
+										<div class="col-5 col-12-medium">
+											<span class="image fit center"><img src="../../images/tutorials/5-creating-your-own-projectile-class/1.png"></span>
+										</div>
+										
+										<div class="col-5 col-12-medium">
+											<span class="image fit center"><img src="../../images/tutorials/5-creating-your-own-projectile-class/2.png"></span>
 										</div>
 									</div>
 									<br>
 
 
 									<!-- Section -->
-									<header id="section">
-										<h3>Section</h3>
+									<header id="creating-custom-projectile-classes">
+										<h3>Creating custom projectile classes</h3>
 									</header>
-									<p>Decription.</p>
+									<p>To create your own custom projectile class, either duplicate the selected template or copy and paste its contents into a new script.</p>
 
 									<div class="row gtr-75 aln-center">
-										<div class="col-5 col-12-medium">
-											<span class="image fit center"><img src="../../images/tutorials/"></span>
-										</div>
-
-										<div class="col-5 col-12-medium">
-											<span class="image fit center"><img src="../../images/tutorials/"></span>
+										<div class="col-6 col-12-medium">
+											<span class="image fit center"><img src="../../images/tutorials/5-creating-your-own-projectile-class/3.png"></span>
 										</div>
 									</div>
+
+									<p>If you are using an external text editor, you can easily replace the placeholder name by using the <code class="value">Ctrl + H</code> shortcut.</p>
+
+									<div class="row gtr-75 aln-center">
+										<div class="col-6 col-12-medium">
+											<span class="image fit center"><img src="../../images/tutorials/5-creating-your-own-projectile-class/4.png"></span>
+										</div>
+									</div>
+
+									<p>Continuing with our previous project, this is what our projectile script would look like <strong>if it used its own custom class</strong>:</p>
+
+									<pre><code class="language-gdscript">class_name WaveProjectile
+extends AreaProjectile2D
+
+
+var wall_layer: int
+
+var amplitude: float
+var frecuency: float
+var local_time: float
+
+var collision_object: CollisionObject2D 
+
+
+func _init(_resource: ProjectileBlueprint2D = null, _pi: PackedInfo = null) -> void:
+	if (_resource == null):
+		return
+	super(_resource, _pi)
+	
+	wall_layer = _resource.global_properties.get("WALL_LAYER", 0)
+
+	amplitude = _resource.global_properties.get("AMPLITUDE", 1)
+	frecuency = _resource.global_properties.get("FRECUENCY", 1)
+	local_time = _resource.individual_properties.get("LOCAL_TIME", 0)
+
+	if (_pi != null):
+		assign(_pi)
+
+
+# This is Your Projectile Start Method
+func assign(pi: PackedInfo) -> void:
+	super(pi)
+	collision_object = null
+
+
+func move(delta: float) -> void:
+	if !(can_move):
+		return
+
+	var angle: float
+	if (seeking):
+		if (target != null):
+			angle = seek_target(delta)
+		else:
+			try_retarget()
+
+	local_time += delta
+	var dir: Vector2 = direction + (direction.orthogonal() * cos(local_time * frecuency)) * amplitude
+	if (use_custom_movement):
+		dir += on_move.call(self, delta)
+	position += dir * speed * delta
+
+	if (look_at):
+		angle = transform.x.angle_to(dir)
+		transform = transform.rotated(angle)
+	transform.origin = position
+
+
+func validate_collision(colliding_rid: RID, colliding_node: Node) -> bool:
+	if (wall_layer & collision_object.collision_layer != 0):
+		is_expired = true
+		return false
+	return super(colliding_rid, colliding_node)
+
+
+func area_monitor_callback(status: int, area_rid: RID, instance_id: int, area_shape_index: int, self_shape_index: int) -> void:
+	collision_object = instance_from_id(instance_id)
+	super(status, area_rid, instance_id, area_shape_index, self_shape_index)
+
+
+func body_monitor_callback(status: int, body_rid: RID, instance_id: int, body_shape_index: int, self_shape_index: int) -> void:
+	collision_object = instance_from_id(instance_id)
+	super(status, body_rid, instance_id, body_shape_index, self_shape_index)
+
+
+func expire() -> void:
+	super()
+
+
+
+func copy(base: Projectile2D, pi: PackedInfo = null) -> void:
+	super(base, pi)
+
+	if (base is WaveProjectile):
+		var buffer: WaveProjectile = base as WaveProjectile
+		
+		wall_layer = buffer.wall_layer
+
+		amplitude = buffer.amplitude
+		frecuency = buffer.frecuency
+		local_time = buffer.local_time
+	
+	if (pi != null):
+		assign(pi)
+
+
+# Match the return types with your own 'class_name'
+# Otherwise your 'custom projectile' will not work properly
+func clone(_pi: PackedInfo = null) -> WaveProjectile:
+	var proj: WaveProjectile = WaveProjectile.new()
+	proj.copy(self)
+
+	if (_pi != null):
+		proj.assign(_pi)
+	
+	return proj</code></pre>
+
+									<div class="row gtr-75 aln-center">
+										<div class="col-12 col-12-medium">
+											<span class="image fit center"><img src="../../images/tutorials/5-creating-your-own-projectile-class/5.gif"></span>
+										</div>
+									</div>
+
+									<p><b>Note:</b> It is <strong>extremely important</strong> that you copy all your new variables in the <b>"copy"</b> method for your projectiles to work properly. <strong>All Projectiles</strong> is a tool based entirely on <b>copying and cloning objects</b>, so completing this step is absolutely crucial.</b></p>
+
+									<pre><code class="language-gdscript"># Filling this method with your own variables is absolutely important.
+func copy(base: Projectile2D, pi: PackedInfo = null) -> void:
+	super(base, pi)
+
+	if (base is WaveProjectile):
+		var buffer: WaveProjectile = base as WaveProjectile
+		
+		wall_layer = buffer.wall_layer
+
+		amplitude = buffer.amplitude
+		frecuency = buffer.frecuency
+		local_time = buffer.local_time
+	
+	if (pi != null):
+		assign(pi)
+
+
+# Match the return types with your own 'class_name'
+# Otherwise your 'custom projectile' will not work properly
+func clone(_pi: PackedInfo = null) -> WaveProjectile:
+	var proj: WaveProjectile = WaveProjectile.new()
+	proj.copy(self)
+
+	if (_pi != null):
+		proj.assign(_pi)
+	
+	return proj</code></pre>
+
 									<br>
+
+
+									<!-- Section -->
+									<header id="assigning-custom-projectile-classes">
+										<h3>Assigning custom projectile classes</h3>
+									</header>
+									<p>Assigning a custom class to a projectile is very easy; you simply have to set it up through your <b>ProjectileCaller2D</b>.</p>
+
+									<pre><code class="language-gdscript">extends Node2D
+
+@onready var projectile_caller: ProjectileCaller2D = $ProjectileCaller2D
+
+
+func _ready() -> void:
+	projectile_caller.set_projectile(0, WaveProjectile.new())
+
+
+func _input(event):
+	if event is InputEventMouseButton:
+		if event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
+			projectile_caller.request_projectile(0, position, get_global_mouse_position())</code></pre>
+
+									<p>By default, the <b>ProjectileCaller2D</b> will assign it the same <b>ProjectileBlueprint2D</b> stored at the specified index.</p>
+
+									<pre><code class="language-gdscript">func _ready() -> void:
+	# These two statements are the same
+	projectile_caller.set_projectile(0, WaveProjectile.new())
+	projectile_caller.set_projectile(0, WaveProjectile.new(projectile_caller.get_projectile_blueprint(0)))</code></pre>
+
+									<p>See more at <a href="../../1.0/nodes/projectile-caller-2d.html#projectile-caller-2d-method-set-projectile">set_projectile</a>.</p>
 
 
 								</section>
