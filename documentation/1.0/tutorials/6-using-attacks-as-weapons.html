@@ -43,29 +43,231 @@
 
 
 									<!-- Title -->
-									<p>Description.</p>
+									<p><a href="../../1.0/classes/attack-2d.html#attack-2d">Attacks2D</a>s are a convenient way to convert a <strong>constant input stream</strong> into an <strong>orderly timed projectile barrage</strong>. They work practically the same way as <b>Projectiles</b>, using <a href="../../1.0/resources/attack-blueprint-2d.html#attack-blueprint-2d">AttackBlueprint2D</a>s as <b>Resources</b> that create the actual <strong>in-game</strong> objects.</p>
+									<p>Let's use them to create a bow for our arrows!</p>
 
 									<div class="row gtr-75 aln-center">
-										<div class="col-6 col-12-medium">
-											<span class="image fit center"><img src="../../images/tutorials/1-the-absolute-basics/1.png"></span>
+										<div class="col-12 col-12-medium">
+											<span class="image fit center"><img src="../../images/tutorials/6-using-attacks-as-weapons/0.gif"></span>
 										</div>
 									</div>
 									<br>
 
 
 									<!-- Section -->
-									<header id="section">
-										<h3>Section</h3>
+									<header id="creating-attack-blueprints">
+										<h3>Creating Attack Blueprints</h3>
 									</header>
-									<p>Decription.</p>
+									<p>Inside any folder off your <strong>File System Dock</strong>, right click and select <strong>Create New</strong> <i class="fa-solid fa-arrow-right-long"></i> <strong>Resource</strong> and search for <b>AttackBlueprint2D</b>.</p>
 
 									<div class="row gtr-75 aln-center">
 										<div class="col-5 col-12-medium">
-											<span class="image fit center"><img src="../../images/tutorials/"></span>
+											<span class="image fit center"><img src="../../images/tutorials/6-using-attacks-as-weapons/1.png"></span>
 										</div>
 
 										<div class="col-5 col-12-medium">
-											<span class="image fit center"><img src="../../images/tutorials/"></span>
+											<span class="image fit center"><img src="../../images/tutorials/6-using-attacks-as-weapons/2.png"></span>
+										</div>
+									</div>
+
+									<p>Now you have a simple way to alter the behavior and properties of your <b>Attacks</b>.</p>
+
+									<div class="row gtr-75 aln-center">
+										<div class="col-6 col-12-medium">
+											<span class="image fit center"><img src="../../images/tutorials/6-using-attacks-as-weapons/3.png"></span>
+										</div>
+									</div>
+									<br>
+
+
+									<!-- Section -->
+									<header id="using-projectile-managers">
+										<h3>Using Projectile Managers</h3>
+									</header>
+									<p>To use <b>Attacks</b>, you will need the help of <a href="../../1.0/nodes/projectile-manager-2d.html#projectile-manager-2d">ProjectileManager2D</a>s. <b>ProjectileManagers</b> are an extension of <b>ProjectileCallers</b>, and like the latter, you can use them to request the creation of any of your projectiles.</p>
+									<p>The main difference between these two is that <b>ProjectileManager2Ds</b> work in conjunction with <b>AttackBlueprint2D</b> to handle the firerate of your projectiles, <strong>even under constant request</strong>.</p>
+
+									<div class="row gtr-100">
+										<div class="col-6 col-12-small align-center">
+											<p><b>With</b> <strong>ProjectileCaller2D</strong>:</p>
+										</div>
+
+										<div class="col-6 col-12-small align-center">
+											<p><b>With</b> <strong>ProjectileManager2D</strong>:</p>
+										</div>
+									</div>
+
+									<div class="row gtr-100">
+										<div class="col-6 col-12-small">
+											<span class="image fit center"><img src="../../gifs/attack-blueprint-example-1.gif" alt="Projectile example without using Attack2D and ProjectileManager2D" /></span>
+										</div>
+
+										<div class="col-6 col-12-small">
+											<span class="image fit center"><img src="../../gifs/attack-blueprint-example-2.gif" alt="Projectile example using Attack2D and ProjectileManager2D" /></span>
+										</div>
+									</div>
+
+									<div class="row gtr-100">
+										<div class="col-6 col-12-small">
+											<pre><code class="language-gdscript">extends Node2D
+
+@onready var projectile_caller: ProjectileCaller2D = $ProjectileCaller2D
+
+func _process(_delta: float) -> void:
+	if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
+		projectile_caller.request_projectile(0, position, get_global_mouse_position())</code></pre>
+										</div>
+
+										<div class="col-6 col-12-small">
+											<pre><code class="language-gdscript">extends Node2D
+
+@onready var projectile_manager: ProjectileManager2D = $ProjectileManager2D
+
+func _process(_delta: float) -> void:
+	if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
+		projectile_manager.request_execution(0, 0, position, get_global_mouse_position())</code></pre>
+										</div>
+									</div>
+									<br>
+
+									<ul style="list-style-type: square;">
+										<li>Let's replace our player's <b>ProjectileCaller2D</b> with a <b>ProjectileManager2D</b>.</li>
+									</ul>
+
+									<div class="row gtr-75 aln-center">
+										<div class="col-6 col-12-medium">
+											<span class="image fit center"><img src="../../images/tutorials/6-using-attacks-as-weapons/4.png"></span>
+										</div>
+									</div>
+
+									<div class="row gtr-75 aln-center">
+										<div class="col-5 col-12-medium">
+											<span class="image fit center"><img src="../../images/tutorials/1-the-absolute-basics/6.png"></span>
+										</div>
+
+										<div class="col-5 col-12-medium">
+											<span class="image fit center"><img src="../../images/tutorials/6-using-attacks-as-weapons/5.png"></span>
+										</div>
+									</div>
+
+									<ul style="list-style-type: square;">
+										<li>Now assign your <b>Attacks</b> and <b>Projectile Blueprints</b> on the <b>ProjectileManager2D</b> node.</li>
+									</ul>
+
+									<div class="row gtr-75 aln-center">
+										<div class="col-6 col-12-medium">
+											<span class="image fit center"><img src="../../images/tutorials/6-using-attacks-as-weapons/6.png"></span>
+										</div>
+									</div>
+
+									<ul style="list-style-type: square;">
+										<li>And request the execution of your desired <b>Attack</b> and <b>Projectile</b>.</li>
+									</ul>
+
+									<pre><code class="language-gdscript">extends Node2D
+
+@onready var projectile_manager: ProjectileManager2D = $ProjectileManager2D
+
+
+func _process(_delta: float) -> void:
+	if (Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT)):
+		projectile_manager.request_execution(0, 0, position, get_global_mouse_position())</code></pre>
+
+									<div class="row gtr-75 aln-center">
+										<div class="col-12 col-12-medium">
+											<span class="image fit center"><img src="../../images/tutorials/6-using-attacks-as-weapons/7.gif"></span>
+										</div>
+									</div>
+									<br>
+
+
+									<!-- Section -->
+									<header id="modifying-attacks-through-code">
+										<h3>Modifying Attacks through code</h3>
+									</header>
+									<p>So I created this <b>cool bow</b> and some <b>animations</b> that I want to <strong>attach</strong> to my <strong>attack charge</strong>. How do I do that?</p>
+
+									<div class="row gtr-75 aln-center">
+										<div class="col-5 col-12-medium">
+											<span class="image fit center"><img src="../../images/tutorials/6-using-attacks-as-weapons/8.png"></span>
+										</div>
+
+										<div class="col-5 col-12-medium">
+											<span class="image fit center"><img src="../../images/tutorials/6-using-attacks-as-weapons/9.gif"></span>
+										</div>
+									</div>
+
+									<div class="row gtr-75 aln-center">
+										<div class="col-9 col-12-medium">
+											<span class="image fit center"><img src="../../images/tutorials/6-using-attacks-as-weapons/10.png"></span>
+										</div>
+									</div>
+
+									<div class="row gtr-75 aln-center">
+										<div class="col-9 col-12-medium">
+											<span class="image fit center"><img src="../../images/tutorials/6-using-attacks-as-weapons/11.png"></span>
+										</div>
+									</div>
+
+									<p>Just like your <b>Projectiles</b>, your <b>Attacks</b> also store <a href="https://docs.godotengine.org/en/stable/classes/class_callable.html#callable">Callable</a>s that are called at specific situations and that <strong>can be replaced</strong>. <span class="comment"><i>See <a href="../../1.0/classes/attack-2d.html#attack-2d">Attack2D</a> for more information.</i></span></p>
+									<p>Inside our <b>Player's</b> script, let's add two methods, one that plays an animation at the beginning and other at the end of the attack <strong>charging phase</strong>. Then we attach them to our main attack.</p>
+
+									<pre><code class="language-gdscript">extends Node2D
+
+@export var separation: int = 30
+
+@onready var projectile_manager: ProjectileManager2D = $ProjectileManager2D
+
+@onready var bow: Sprite2D = $Bow
+@onready var animation_player: AnimationPlayer = $AnimationPlayer
+
+
+# In this example we set our custom charging functions at our attack with index (0).
+func _ready() -> void:
+	animation_player.play("idle")
+	projectile_manager.get_attack(0).set_on_charge_enter(on_charge_enter).set_on_charge_exit(on_charge_exit)
+
+
+# Attacks work even under constant requests.
+func _process(_delta: float) -> void:
+	var direction: Vector2 = (get_global_mouse_position() - position).normalized()
+	bow.position = direction * separation
+	bow.rotation = direction.angle()
+
+	if (Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT)):
+		projectile_manager.request_execution(0, 0, position + (direction * separation), get_global_mouse_position())
+
+
+# In order to function, your custom method must follow a defined pattern.
+func on_charge_enter(attack: Attack2D) -> void:
+	animation_player.play("charge")
+	attack.charge_enter()
+
+
+# Note: Unlike projectiles, assigning custom methods to your attacks will overwrite its “normal” funcionality.
+# If you want to keep its default functionanily you will have to invoke these “normal functions” inside your custom methods
+func on_charge_exit(attack: Attack2D) -> void:
+	animation_player.play("idle")
+	attack.pi.destination = get_global_mouse_position()
+	attack.charge_exit() # <- Like this!</code></pre>
+
+									<div class="row gtr-uniform aln-center">
+										<div class="col-12 col-12-medium">
+											<span class="image fit center"><img src="../../images/tutorials/6-using-attacks-as-weapons/0.gif"></span>
+										</div>
+									</div>
+									<p style="text-align: center;" class="comment"><i>You can download the used <b>bow</b> textures <a href="../../images/tutorials/6-using-attacks-as-weapons/bow_sprites.zip" download="arrow">here</a>.</i></p>
+									<br>
+
+									<p>Remember that you can also change the properties of your attack <strong>charge phase</strong> from your <b>AttackBlueprint2D</b>.</p>
+
+									<div class="row gtr-75 aln-center">
+										<div class="col-4 col-12-medium">
+											<span class="image fit center"><img src="../../images/tutorials/6-using-attacks-as-weapons/12.png"></span>
+										</div>
+
+										<div class="col-7 col-12-medium">
+											<span class="image fit center"><img src="../../images/tutorials/6-using-attacks-as-weapons/13.gif"></span>
 										</div>
 									</div>
 									<br>

@@ -60,7 +60,7 @@
 										<h3>Custom Projectile movement</h3>
 									</header>
 									<p>Continuing with our previous project, let's modify the trajectory of our projectiles.</p>
-									<p>Inside our player's script, let's add a method that makes a projectile to <strong>always move up</strong> and set it to our projectile in use. I recommend you check out the <b>Projectile2D</b> <a href="../../1.0/classes/projectile-2d.html#projectile-2d-method-set-on-move">set_on_move</a> method to learn more.</p>
+									<p>Inside our <b>Player's</b> script, let's add a method that makes a projectile to <strong>always move up</strong> and set it to our projectile in use. I recommend you check out the <b>Projectile2D</b> <a href="../../1.0/classes/projectile-2d.html#projectile-2d-method-set-on-move">set_on_move</a> method to learn more.</p>
 									
 									<pre><code class="language-gdscript">extends Node2D
 
@@ -90,7 +90,7 @@ func custom_movement(proj: Projectile2D, _delta: float) -> Vector2:
 										</div>
 									</div>
 
-									<p>With this in mind, let's create a more complex behavior and make our projectile move in a <strong>wave-like</strong> manner. By modifying our <b>custom_movement</b> method, we would get something like this:</p>
+									<p>With this in mind, let's create a more complex behavior and make our projectile move in a <strong>wave-like</strong> pattern. By modifying our <b>custom_movement</b> method, we would get something like this:</p>
 									
 									<pre><code class="language-gdscript">func custom_movement(proj: Projectile2D, _delta: float) -> Vector2:
 	var local_time: float = proj.resource.lifetime - proj.lifetime
