@@ -302,7 +302,7 @@ func custom_recovery_update(attack: Attack2D, delta: float) -> void:
 												</tr>
 												<tr>
 													<td><a href="https://docs.godotengine.org/en/stable/classes/class_bool.html#class-bool">bool</a></td>
-													<td><a href="#attack-2d-property-override-destination">override_destination</a></td>
+													<td><a href="#attack-2d-property-override-direction">override_direction</a></td>
 													<td><code class="value">false</code></td>
 												</tr>
 												<tr>
@@ -818,12 +818,12 @@ func custom_recovery_update(attack: Attack2D, delta: float) -> void:
 										<p class="tab">If <code class="value">true</code> <strong>overrides</strong> the <a href="#attack-2d-property-attack-duration-time">attack_duration_time</a> property with its <b>assign projectile</b> <a href="../../1.0/classes/projectile-2d.html#projectile-2d-property-spawn-interval">spawn_interval</a> value.</p>
 									<hr>
 
-									<h4 id="attack-2d-property-override-destination"><a href="https://docs.godotengine.org/en/stable/classes/class_bool.html#class-bool" class="link">bool</a> override_destination<span class="comment-alt"> = </span><span class="value"> false</span></h4>
-										<p class="tab">If <code class="value">true</code> the attack will constantly update its projectile <b>direction</b> even if its execution request was unsuccessful.</p>
+									<h4 id="attack-2d-property-override-direction"><a href="https://docs.godotengine.org/en/stable/classes/class_bool.html#class-bool" class="link">bool</a> override_direction<span class="comment-alt"> = </span><span class="value"> false</span></h4>
+										<p class="tab">If <code class="value">true</code> the attack ignores the given requested destinations and uses its own <a href="../../1.0/nodes/projectile-manager-2d.html#projectile-manager-2d">ProjectileManager2D</a> <b>Node</b> <b>right direction</b> instead. <span class="comment"><i>See <a href="https://docs.godotengine.org/en/stable/classes/class_transform2d.html#class-transform2d-property-x">Transform2D.x</a></i>.</span></p>
 									<hr>
 
 									<h4 id="attack-2d-property-override-position"><a href="https://docs.godotengine.org/en/stable/classes/class_bool.html#class-bool" class="link">bool</a> override_position<span class="comment-alt"> = </span><span class="value"> false</span></h4>
-										<p class="tab">If <code class="value">true</code> the attack ignores the given spawn positions and uses its own <a href="../../1.0/nodes/projectile-manager-2d.html#projectile-manager-2d">ProjectileManager2D</a> node <b>global position</b> instead.</p>
+										<p class="tab">If <code class="value">true</code> the attack ignores the given spawn positions and uses its own <a href="../../1.0/nodes/projectile-manager-2d.html#projectile-manager-2d">ProjectileManager2D</a> <b>Node</b> <b>global position</b> instead.</p>
 									<hr>
 
 									<h4 id="attack-2d-property-pi"><a href="../../1.0/classes/packed-info.html#packed-info" class="link">PackedInfo</a> pi</h4>
@@ -998,8 +998,8 @@ attack.add_modifier(Attack2DModifier.new("ATTACK_BUFF", 1.0))</code></pre>
 										<p class="tab">Default behavior for recovery phase update.</p>
 									<hr>
 
-									<h4 id="attack-2d-method-reload"><span class="comment-alt">void</span> reload<span class="comment-alt">()</span></h4>
-										<p class="tab">Resets <a href="#attack-2d-property-remaining-shots">remaining_shots</a> on <a href="#attack-2d-property-spawn-type">ONE_BY_ONE</a> executions.</p>
+									<h4 id="attack-2d-method-reload"><span class="comment-alt">void</span> reload<span class="comment-alt">(proj: <a href="../../1.0/classes/projectile-2d.html#projectile-2d" class="link">Projectile2D</a>)</span></h4>
+										<p class="tab">Sets <code class="value">proj</code> as its <b>projectile</b> and <code class="value">proj.instances</code> as its <a href="#attack-2d-property-remaining-shots">remaining_shots</a> on <a href="#attack-2d-property-spawn-type">ONE_BY_ONE</a> executions.</p>
 									<hr>
 
 									<h4 id="attack-2d-method-remove-modifier"><a href="https://docs.godotengine.org/en/stable/classes/class_bool.html#class-bool" class="link">bool</a> remove_modifier<span class="comment-alt">(modifier_name: </span><a href="https://docs.godotengine.org/en/stable/classes/class_stringname.html#stringname" class="link">StringName</a><span class="comment-alt">)</span></h4>

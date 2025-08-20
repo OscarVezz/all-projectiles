@@ -6,7 +6,7 @@
 -->
 <html>
 	<head>
-		<title>The Absolute Basics</title>
+		<title>Understanding ONE_BY_ONE Attacks</title>
 		<meta charset="utf-8" />
 		<meta name="description" content="A Projectile Engine for Godot"/>
 		<meta name="autor" content="Oscar Vezz"/>
@@ -38,34 +38,209 @@
 							<!-- Content -->
 								<section>
 									<header class="main" id="title">
-										<h2>Title</h2>
+										<h2>Understanding ONE_BY_ONE Attacks</h2>
 									</header>
 
 
 									<!-- Title -->
-									<p>Description.</p>
+									<p>All your <b>Projectiles</b> have the ability to spawn with <strong>multiple instances</strong>.</p>
 
 									<div class="row gtr-75 aln-center">
-										<div class="col-6 col-12-medium">
-											<span class="image fit center"><img src="../../images/tutorials/1-the-absolute-basics/1.png"></span>
+										<div class="col-5 col-12-medium">
+											<span class="image fit center"><img src="../../images/tutorials/7-understanding-one-by-one-attacks/1.png"></span>
+										</div>
+
+										<div class="col-5 col-12-medium">
+											<span class="image fit center"><img src="../../images/tutorials/7-understanding-one-by-one-attacks/2.gif"></span>
 										</div>
 									</div>
+
+									<p>In conjunction with this, there is a property called <strong>spawn_interval</strong> that allows you to set a <b>fixed time interval</b> between each instance generation.</p>
+
+									<div class="row gtr-75 aln-center">
+										<div class="col-5 col-12-medium">
+											<span class="image fit center"><img src="../../images/tutorials/7-understanding-one-by-one-attacks/3.png"></span>
+										</div>
+
+										<div class="col-5 col-12-medium">
+											<span class="image fit center"><img src="../../images/tutorials/7-understanding-one-by-one-attacks/4.gif"></span>
+										</div>
+									</div>
+
+									<p>The biggest drawback is that all these instances <b>are created at the very moment they are requested</b>, and are only activated after a period of time to create this “illusion".</p>
+									<p>And while <strong>this behavior is intentional</strong>, it can create certain unexpected results on moving objects.</p>
+
+									<div class="row gtr-75 aln-center">
+										<div class="col-12 col-12-medium">
+											<span class="image fit center"><img src="../../images/tutorials/7-understanding-one-by-one-attacks/5.gif"></span>
+										</div>
+									</div>
+
+									<p>To solve this, we can rely on <b>Attacks</b>.</p>
 									<br>
 
 
 									<!-- Section -->
-									<header id="section">
-										<h3>Section</h3>
+									<header id="overwriting-your-requested-parameters">
+										<h3>Overwriting your requested parameters</h3>
 									</header>
-									<p>Decription.</p>
+									<p>Continuing with our previous project, we can see that this problem also applies to our bow attack.</p>
+
+									<div class="row gtr-75 aln-center">
+										<div class="col-12 col-12-medium">
+											<span class="image fit center"><img src="../../images/tutorials/7-understanding-one-by-one-attacks/6.gif"></span>
+										</div>
+									</div>
+
+									<p>Your <b>Attack Blueprints</b> have a section dedicated entirely to the positioning of your attacks.</p>
+
+									<div class="row gtr-75 aln-center">
+										<div class="col-6 col-12-medium">
+											<span class="image fit center"><img src="../../images/tutorials/7-understanding-one-by-one-attacks/7.png"></span>
+										</div>
+									</div>
+
+									<p>When you activate <b>position overwriting</b>, you are telling the <b>Attack</b> to no longer obey the requested positions and to use its <b>ProjectileManager2D</b> <strong>position instead</strong>.</p>
+									<p>After a brief alteration to our <b>Player's</b> script, our problem is no more.</p>
+
+									<pre><code class="language-gdscript">func _process(_delta: float) -> void:
+	var direction: Vector2 = (get_global_mouse_position() - position).normalized()
+	bow.position = direction * separation
+	bow.rotation = direction.angle()
+	
+	# New code
+	projectile_manager.position = bow.position
+	projectile_manager.rotation = bow.rotation</code></pre>
+
+									<div class="row gtr-75 aln-center">
+										<div class="col-12 col-12-medium">
+											<span class="image fit center"><img src="../../images/tutorials/7-understanding-one-by-one-attacks/8.gif"></span>
+										</div>
+									</div>
+
+									<p>You can also <b>overwrite the direction</b> of your attacks:</p>
+
+									<div class="row gtr-75 aln-center">
+										<div class="col-6 col-12-medium">
+											<span class="image fit center"><img src="../../images/tutorials/7-understanding-one-by-one-attacks/9.png"></span>
+										</div>
+									</div>
+
+									<p>Checking this option causes the <b>Attack</b> to ignore the given requested destinations and to use its <b>ProjectileManager2D</b> <strong>right direction instead</strong>. <span class="comment"><i>See <a href="https://docs.godotengine.org/en/stable/classes/class_transform2d.html#class-transform2d-property-x">Transform2D.x</a></i>.</p>
+
+									<div class="row gtr-75 aln-center">
+										<div class="col-12 col-12-medium">
+											<span class="image fit center"><img src="../../images/tutorials/7-understanding-one-by-one-attacks/10.gif"></span>
+										</div>
+									</div>
+
+									<p>At the end of this exercise, your <b>Player's</b> script should look something like this:</p>
+
+									<pre><code class="language-gdscript">extends Node2D
+
+@export var speed: float = 300
+@export var separation: int = 30
+
+@onready var projectile_manager: ProjectileManager2D = $ProjectileManager2D
+
+@onready var bow: Sprite2D = $Bow
+@onready var animation_player: AnimationPlayer = $AnimationPlayer
+
+
+func _ready() -> void:
+	animation_player.play("idle")
+	projectile_manager.get_attack(0).set_on_charge_enter(on_charge_enter).set_on_charge_exit(on_charge_exit)
+
+
+func _process(_delta: float) -> void:
+	var direction: Vector2 = (get_global_mouse_position() - position).normalized()
+	bow.position = direction * separation
+	bow.rotation = direction.angle()
+	
+	projectile_manager.position = bow.position
+	projectile_manager.rotation = bow.rotation
+
+	if (Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT)):
+		projectile_manager.request_execution(0, 0, position + (direction * separation), get_global_mouse_position())
+	
+	var input_direction: Vector2 = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
+	position += input_direction * speed * _delta
+
+
+func on_charge_enter(attack: Attack2D) -> void:
+	animation_player.play("charge")
+	attack.charge_enter()
+
+
+func on_charge_exit(attack: Attack2D) -> void:
+	animation_player.play("idle")
+	attack.charge_exit()</code></pre>
+
+									<br>
+
+
+									<!-- Section -->
+									<header id="one-by-one-attacks">
+										<h3>ONE_BY_ONE Attacks</h3>
+									</header>
+									<p>So there is actually a way to prevent your <b>Projectiles</b> from being created all at once. In fact, your <b>Attacks</b> have an entire section dedicated to that.</p>
 
 									<div class="row gtr-75 aln-center">
 										<div class="col-5 col-12-medium">
-											<span class="image fit center"><img src="../../images/tutorials/"></span>
+											<span class="image fit center"><img src="../../images/tutorials/7-understanding-one-by-one-attacks/11.png"></span>
 										</div>
 
 										<div class="col-5 col-12-medium">
-											<span class="image fit center"><img src="../../images/tutorials/"></span>
+											<span class="image fit center"><img src="../../images/tutorials/7-understanding-one-by-one-attacks/12.png"></span>
+										</div>
+									</div>
+
+									<p>When you set your attacks to <b>ONE_BY_ONE</b>, your projectiles will be generated, well, one by one.</p>
+
+									<ul style="list-style-type: square;">
+										<li>This means that you can <strong>interrupt your attack</strong> before it is fully completed.</li>
+									</ul>
+
+									<div class="row gtr-75 aln-center">
+										<div class="col-5 col-12-medium">
+											<span class="image fit center"><img src="../../images/tutorials/7-understanding-one-by-one-attacks/13.png"></span>
+										</div>
+
+										<div class="col-5 col-12-medium">
+											<span class="image fit center"><img src="../../images/tutorials/7-understanding-one-by-one-attacks/14.gif"></span>
+										</div>
+									</div>
+
+									<ul style="list-style-type: square;">
+										<li><strong>Continue</strong> your attack from where it was interrupted.</li>
+									</ul>
+
+									<div class="row gtr-75 aln-center">
+										<div class="col-5 col-12-medium">
+											<span class="image fit center"><img src="../../images/tutorials/7-understanding-one-by-one-attacks/15.png"></span>
+										</div>
+
+										<div class="col-5 col-12-medium">
+											<span class="image fit center"><img src="../../images/tutorials/7-understanding-one-by-one-attacks/16.gif"></span>
+										</div>
+									</div>
+
+									<ul style="list-style-type: square;">
+										<li>Or force your players to <strong>reload</strong> before they can attack again.</li>
+									</ul>
+
+									<pre><code class="language-gdscript">func _input(event):
+	if event is InputEventMouseButton:
+		if event.button_index == MOUSE_BUTTON_RIGHT and event.pressed:
+			projectile_manager.get_attack(0).reload(projectile_manager.get_projectile(0))</code></pre>
+
+									<div class="row gtr-75 aln-center">
+										<div class="col-5 col-12-medium">
+											<span class="image fit center"><img src="../../images/tutorials/7-understanding-one-by-one-attacks/17.png"></span>
+										</div>
+
+										<div class="col-5 col-12-medium">
+											<span class="image fit center"><img src="../../images/tutorials/7-understanding-one-by-one-attacks/18.gif"></span>
 										</div>
 									</div>
 									<br>
