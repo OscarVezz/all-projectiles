@@ -6,7 +6,7 @@
 -->
 <html>
 	<head>
-		<title>The Absolute Basics</title>
+		<title>Creating Attack patterns</title>
 		<meta charset="utf-8" />
 		<meta name="description" content="A Projectile Engine for Godot"/>
 		<meta name="autor" content="Oscar Vezz"/>
@@ -38,36 +38,421 @@
 							<!-- Content -->
 								<section>
 									<header class="main" id="title">
-										<h2>Title</h2>
+										<h2>Creating Attack patterns</h2>
 									</header>
 
 
 									<!-- Title -->
-									<p>Description.</p>
+									<p>As we saw previously, your <b>Projectiles</b> can spawn inactive to <strong>re-activate</strong> after a certain amount of time.</p>
+									<p>Fortunately, you can alter this behavior by modifying the <a href="../../1.0/classes/projectile-2d.html#projectile-2d-property-wait-time">wait_time</a> property of your projectiles.</p>
 
+									<pre><code class="language-gdscript">extends  Node2D
+
+@onready var projectile_caller: ProjectileCaller2D = $ProjectileCaller2D
+
+
+func _ready() -> void:
+	projectile_caller.get_projectile(0).set_on_start(custom_start)
+
+
+func _input(event):
+	if event is InputEventMouseButton:
+		if event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
+			projectile_caller.request_projectile(0, position, get_global_mouse_position())
+
+
+# We will modify the "wait_time" property right at the start of the projectile lifecycle.
+func custom_start(proj: Projectile2D) -> void:
+	proj.wait_time = 0.5</code></pre>
+
+									<div class="row gtr-75 aln-middle">
+										<div class="col-12 col-12-medium">
+											<span class="image fit center"><img src="../../images/tutorials/8-creating-attack-patterns/1.gif"></span>
+										</div>
+									</div>
+
+									<p>Here is a collection of different <strong>attack patterns</strong> for both <b>ALL_AT_ONCE</b> and <b>ONE_BY_ONE</b> instances.</p>
+									<br>
+
+
+									<!-- Section -->
+									<header id="all-at-once-patterns">
+										<h3>ALL_AT_ONCE patterns</h3>
+									</header>
+									<p>We will be working under the next <b>Player</b> script, only modifying the <span class="comment">“custom_start”</span> method:</p>
+
+									<pre><code class="language-gdscript">extends  Node2D
+
+@onready var projectile_caller: ProjectileCaller2D = $ProjectileCaller2D
+
+
+func _ready() -> void:
+	projectile_caller.get_projectile(0).set_on_start(custom_start)
+
+
+func _input(event):
+	if event is InputEventMouseButton:
+		if event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
+			projectile_caller.request_projectile(0, position, get_global_mouse_position())
+
+
+# We will be modifying this method.
+func custom_start(proj: Projectile2D) -> void:
+	proj.wait_time = 0.5</code></pre>
+									<br>
+
+
+									<ul style="list-style-type: square;">
+										<li><b>Forwards (Default)</b></li>
+									</ul>
 									<div class="row gtr-75 aln-center">
+
 										<div class="col-6 col-12-medium">
-											<span class="image fit center"><img src="../../images/tutorials/1-the-absolute-basics/1.png"></span>
+											<pre><code class="language-gdscript">func custom_start(proj: Projectile2D) -> void:
+	pass</code></pre>
+										</div>
+										<div class="col-6 col-12-medium">
+											<span class="image fit center"><img src="../../images/tutorials/8-creating-attack-patterns/2.gif"></span>
 										</div>
 									</div>
 									<br>
 
 
-									<!-- Section -->
-									<header id="section">
-										<h3>Section</h3>
-									</header>
-									<p>Decription.</p>
-
+									<ul style="list-style-type: square;">
+										<li><b>Backwards</b></li>
+									</ul>
 									<div class="row gtr-75 aln-center">
-										<div class="col-5 col-12-medium">
-											<span class="image fit center"><img src="../../images/tutorials/"></span>
-										</div>
 
-										<div class="col-5 col-12-medium">
-											<span class="image fit center"><img src="../../images/tutorials/"></span>
+										<div class="col-6 col-12-medium">
+											<pre><code class="language-gdscript">func custom_start(proj: Projectile2D) -> void:
+	var index: int = (proj.instances - proj.index) - 1
+	proj.wait_time = index * proj.spawn_interval</code></pre>
+										</div>
+										<div class="col-6 col-12-medium">
+											<span class="image fit center"><img src="../../images/tutorials/8-creating-attack-patterns/3.gif"></span>
 										</div>
 									</div>
+									<br>
+
+
+									<ul style="list-style-type: square;">
+										<li><b>Center to extremes</b></li>
+									</ul>
+									<div class="row gtr-75 aln-center">
+
+										<div class="col-6 col-12-medium">
+											<pre><code class="language-gdscript">func custom_start(proj: Projectile2D) -> void:
+	var index: int = proj.instances / 2
+	index = abs(proj.index - index)
+	proj.wait_time = index * proj.spawn_interval</code></pre>
+										</div>
+										<div class="col-6 col-12-medium">
+											<span class="image fit center"><img src="../../images/tutorials/8-creating-attack-patterns/4.gif"></span>
+										</div>
+									</div>
+									<br>
+									
+
+									<ul style="list-style-type: square;">
+										<li><b>Extremes to center</b></li>
+									</ul>
+									<div class="row gtr-75 aln-center">
+
+										<div class="col-6 col-12-medium">
+											<pre><code class="language-gdscript">func custom_start(proj: Projectile2D) -> void:
+	var index: int = proj.instances / 2
+	index = abs(abs(proj.index - index) - index)
+	proj.wait_time = index * proj.spawn_interval</code></pre>
+										</div>
+										<div class="col-6 col-12-medium">
+											<span class="image fit center"><img src="../../images/tutorials/8-creating-attack-patterns/5.gif"></span>
+										</div>
+									</div>
+									<br>
+									
+									
+									<ul style="list-style-type: square;">
+										<li><b>n Divided</b></li>
+									</ul>
+									<div class="row gtr-75 aln-center">
+
+										<div class="col-6 col-12-medium">
+											<pre><code class="language-gdscript">func custom_start(proj: Projectile2D) -> void:
+	var n: int = 4
+	var div: int = proj.instances / n
+	var rem: int = proj.index % div
+	var index: int = (rem * n) + (proj.index / div)
+	proj.wait_time = index * proj.spawn_interval</code></pre>
+										</div>
+										<div class="col-6 col-12-medium">
+											<span class="image fit center"><img src="../../images/tutorials/8-creating-attack-patterns/6.gif"></span>
+										</div>
+									</div>
+									<br>
+									
+									
+									<ul style="list-style-type: square;">
+										<li><b>n Divided (Reverse)</b></li>
+									</ul>
+									<div class="row gtr-75 aln-center">
+
+										<div class="col-6 col-12-medium">
+											<pre><code class="language-gdscript">func custom_start(proj: Projectile2D) -> void:
+	var n: int = 4
+	var div: int = proj.instances / n
+	var rem: int = proj.index % div
+	var index: int = ((div - rem - 1) * n) + (proj.index / div)
+	proj.wait_time = index * proj.spawn_interval</code></pre>
+										</div>
+										<div class="col-6 col-12-medium">
+											<span class="image fit center"><img src="../../images/tutorials/8-creating-attack-patterns/7.gif"></span>
+										</div>
+									</div>
+									<br>
+									
+									
+									<ul style="list-style-type: square;">
+										<li><b>n Divided (Centered)</b></li>
+									</ul>
+									<div class="row gtr-75 aln-center">
+
+										<div class="col-6 col-12-medium">
+											<pre><code class="language-gdscript">func custom_start(proj: Projectile2D) -> void:
+	var n: int = 4
+	var div: int = proj.instances / n
+	var rem: int = proj.index % div
+	var index: int = (abs(rem - (div / 2)) * n) + (proj.index / div)
+	proj.wait_time = index * proj.spawn_interval</code></pre>
+										</div>
+										<div class="col-6 col-12-medium">
+											<span class="image fit center"><img src="../../images/tutorials/8-creating-attack-patterns/8.gif"></span>
+										</div>
+									</div>
+									<br>
+									
+									
+									<ul style="list-style-type: square;">
+										<li><b>n Divided (Extremes)</b></li>
+									</ul>
+									<div class="row gtr-75 aln-center">
+
+										<div class="col-6 col-12-medium">
+											<pre><code class="language-gdscript">func custom_start(proj: Projectile2D) -> void:
+	var n: int = 4
+	var div: int = proj.instances / n
+	var rem: int = proj.index % div
+	var index: int = (abs(abs(rem - (div / 2)) - (div / 2)) * n) + (proj.index / div)
+	proj.wait_time = index * proj.spawn_interval</code></pre>
+										</div>
+										<div class="col-6 col-12-medium">
+											<span class="image fit center"><img src="../../images/tutorials/8-creating-attack-patterns/9.gif"></span>
+										</div>
+									</div>
+									<br>
+									<br>
+
+
+									<!-- Section -->
+									<header id="one-by-one-patterns">
+										<h3>ONE_BY_ONE patterns</h3>
+									</header>
+									<p>We will be working under the next <b>Player</b> script, only modifying the <span class="comment">“on_main_enter”</span> method:</p>
+									<pre><code class="language-gdscript">extends  Node2D
+
+@export var separation: int = 30
+
+@onready var projectile_manager: ProjectileManager2D = $ProjectileManager2D
+
+@onready var bow: Sprite2D = $Bow
+@onready var animation_player: AnimationPlayer = $AnimationPlayer
+
+
+func _ready() -> void:
+	animation_player.play("idle")
+	projectile_manager.get_attack(0).set_on_charge_enter(on_charge_enter).set_on_charge_exit(on_charge_exit).set_on_main_enter(on_main_enter)
+
+
+func _process(_delta: float) -> void:
+	var direction: Vector2 = (get_global_mouse_position() - position).normalized()
+	bow.position = direction * separation
+	bow.rotation = direction.angle()
+
+	projectile_manager.position = bow.position
+	projectile_manager.rotation = bow.rotation
+
+	if (Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT)):
+		projectile_manager.request_execution(0, 0, position + (direction * separation), get_global_mouse_position())
+
+
+func on_charge_enter(attack: Attack2D) -> void:
+	animation_player.play("charge")
+	attack.charge_enter()
+
+func on_charge_exit(attack: Attack2D) -> void:
+	animation_player.play("idle")
+	attack.charge_exit()
+
+
+# We will be modifying this method.
+func on_main_enter(attack: Attack2D) -> void:
+	attack.main_enter()
+	attack.pi.instance_id = attack.remaining_shots - 1</code></pre>
+
+									<ul style="list-style-type: square;">
+										<li><b>Forwards (Default)</b></li>
+									</ul>
+									<div class="row gtr-75 aln-center">
+
+										<div class="col-6 col-12-medium">
+											<pre><code class="language-gdscript">func on_main_enter(attack: Attack2D) -> void:
+	attack.main_enter()</code></pre>
+										</div>
+										<div class="col-6 col-12-medium">
+											<span class="image fit center"><img src="../../images/tutorials/8-creating-attack-patterns/10.gif"></span>
+										</div>
+									</div>
+									<br>
+
+
+									<ul style="list-style-type: square;">
+										<li><b>Backwards</b></li>
+									</ul>
+									<div class="row gtr-75 aln-center">
+
+										<div class="col-6 col-12-medium">
+											<pre><code class="language-gdscript">func on_main_enter(attack: Attack2D) -> void:
+	attack.main_enter()
+	var index: int = attack.remaining_shots - 1
+	attack.pi.instance_id = index</code></pre>
+										</div>
+										<div class="col-6 col-12-medium">
+											<span class="image fit center"><img src="../../images/tutorials/8-creating-attack-patterns/11.gif"></span>
+										</div>
+									</div>
+									<br>
+
+
+									<ul style="list-style-type: square;">
+										<li><b>Center to extremes</b></li>
+									</ul>
+									<div class="row gtr-75 aln-center">
+
+										<div class="col-6 col-12-medium">
+											<pre><code class="language-gdscript">func on_main_enter(attack: Attack2D) -> void:
+	attack.main_enter()
+	var index: int = attack.instances / 2
+	var div: int = (attack.pi.instance_id + 1) / 2
+	var sig: int = attack.pi.instance_id % 2
+	sig = -1 if (sig == 1) else 1 
+	index += div * sig
+	attack.pi.instance_id = index</code></pre>
+										</div>
+										<div class="col-6 col-12-medium">
+											<span class="image fit center"><img src="../../images/tutorials/8-creating-attack-patterns/12.gif"></span>
+										</div>
+									</div>
+									<br>
+									
+
+									<ul style="list-style-type: square;">
+										<li><b>Extremes to center</b></li>
+									</ul>
+									<div class="row gtr-75 aln-center">
+
+										<div class="col-6 col-12-medium">
+											<pre><code class="language-gdscript">func on_main_enter(attack: Attack2D) -> void:
+	attack.main_enter()
+	var index: int = attack.instances / 2
+	var div: int = (attack.pi.instance_id + 1) / 2
+	var rem: int = attack.pi.instance_id % 2
+	index = div if (rem == 0) else attack.instances - div 
+	attack.pi.instance_id = index</code></pre>
+										</div>
+										<div class="col-6 col-12-medium">
+											<span class="image fit center"><img src="../../images/tutorials/8-creating-attack-patterns/13.gif"></span>
+										</div>
+									</div>
+									<br>
+									
+									
+									<ul style="list-style-type: square;">
+										<li><b>n Divided</b></li>
+									</ul>
+									<div class="row gtr-75 aln-center">
+
+										<div class="col-6 col-12-medium">
+											<pre><code class="language-gdscript">func custom_start(proj: Projectile2D) -> void:
+	var n: int = 4
+	var div: int = proj.instances / n
+	var rem: int = proj.index % div
+	var index: int = (rem * n) + (proj.index / div)
+	proj.wait_time = index * proj.spawn_interval</code></pre>
+										</div>
+										<div class="col-6 col-12-medium">
+											<span class="image fit center"><img src="../../images/tutorials/8-creating-attack-patterns/6.gif"></span>
+										</div>
+									</div>
+									<br>
+									
+									
+									<ul style="list-style-type: square;">
+										<li><b>n Divided (Reverse)</b></li>
+									</ul>
+									<div class="row gtr-75 aln-center">
+
+										<div class="col-6 col-12-medium">
+											<pre><code class="language-gdscript">func custom_start(proj: Projectile2D) -> void:
+	var n: int = 4
+	var div: int = proj.instances / n
+	var rem: int = proj.index % div
+	var index: int = ((div - rem - 1) * n) + (proj.index / div)
+	proj.wait_time = index * proj.spawn_interval</code></pre>
+										</div>
+										<div class="col-6 col-12-medium">
+											<span class="image fit center"><img src="../../images/tutorials/8-creating-attack-patterns/7.gif"></span>
+										</div>
+									</div>
+									<br>
+									
+									
+									<ul style="list-style-type: square;">
+										<li><b>n Divided (Centered)</b></li>
+									</ul>
+									<div class="row gtr-75 aln-center">
+
+										<div class="col-6 col-12-medium">
+											<pre><code class="language-gdscript">func custom_start(proj: Projectile2D) -> void:
+	var n: int = 4
+	var div: int = proj.instances / n
+	var rem: int = proj.index % div
+	var index: int = (abs(rem - (div / 2)) * n) + (proj.index / div)
+	proj.wait_time = index * proj.spawn_interval</code></pre>
+										</div>
+										<div class="col-6 col-12-medium">
+											<span class="image fit center"><img src="../../images/tutorials/8-creating-attack-patterns/8.gif"></span>
+										</div>
+									</div>
+									<br>
+									
+									
+									<ul style="list-style-type: square;">
+										<li><b>n Divided (Extremes)</b></li>
+									</ul>
+									<div class="row gtr-75 aln-center">
+
+										<div class="col-6 col-12-medium">
+											<pre><code class="language-gdscript">func custom_start(proj: Projectile2D) -> void:
+	var n: int = 4
+	var div: int = proj.instances / n
+	var rem: int = proj.index % div
+	var index: int = (abs(abs(rem - (div / 2)) - (div / 2)) * n) + (proj.index / div)
+	proj.wait_time = index * proj.spawn_interval</code></pre>
+										</div>
+										<div class="col-6 col-12-medium">
+											<span class="image fit center"><img src="../../images/tutorials/8-creating-attack-patterns/9.gif"></span>
+										</div>
+									</div>
+									<br>
 									<br>
 
 
