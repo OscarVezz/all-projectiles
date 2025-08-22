@@ -79,7 +79,7 @@ func custom_start(proj: Projectile2D) -> void:
 									<header id="all-at-once-patterns">
 										<h3>ALL_AT_ONCE patterns</h3>
 									</header>
-									<p>We will be working under the next <b>Player</b> script, only modifying the <span class="comment">“custom_start”</span> method:</p>
+									<p>We will continue working on our previous project under the next <b>Player</b> script, only modifying the <span class="comment">“custom_start”</span> method:</p>
 
 									<pre><code class="language-gdscript">extends  Node2D
 
@@ -256,7 +256,7 @@ func custom_start(proj: Projectile2D) -> void:
 									<header id="one-by-one-patterns">
 										<h3>ONE_BY_ONE patterns</h3>
 									</header>
-									<p>We will be working under the next <b>Player</b> script, only modifying the <span class="comment">“on_main_enter”</span> method:</p>
+									<p>We will continue working on our previous project under the next <b>Player</b> script, only modifying the <span class="comment">“on_main_enter”</span> method:</p>
 									<pre><code class="language-gdscript">extends  Node2D
 
 @export var separation: int = 30
@@ -381,15 +381,18 @@ func on_main_enter(attack: Attack2D) -> void:
 									<div class="row gtr-75 aln-center">
 
 										<div class="col-6 col-12-medium">
-											<pre><code class="language-gdscript">func custom_start(proj: Projectile2D) -> void:
+											<pre><code class="language-gdscript">func on_main_enter(attack: Attack2D) -> void:
+	attack.main_enter()
 	var n: int = 4
-	var div: int = proj.instances / n
-	var rem: int = proj.index % div
-	var index: int = (rem * n) + (proj.index / div)
-	proj.wait_time = index * proj.spawn_interval</code></pre>
+	var div: int = attack.pi.instance_id / n
+	var rem: int = attack.pi.instance_id % n
+	var sep: int = attack.instances % n
+	sep = attack.instances / n if (sep == 0) else (attack.instances / n) + 1
+	var index: int = (sep * rem) + div
+	attack.pi.instance_id = index</code></pre>
 										</div>
 										<div class="col-6 col-12-medium">
-											<span class="image fit center"><img src="../../images/tutorials/8-creating-attack-patterns/6.gif"></span>
+											<span class="image fit center"><img src="../../images/tutorials/8-creating-attack-patterns/14.gif"></span>
 										</div>
 									</div>
 									<br>
@@ -401,15 +404,19 @@ func on_main_enter(attack: Attack2D) -> void:
 									<div class="row gtr-75 aln-center">
 
 										<div class="col-6 col-12-medium">
-											<pre><code class="language-gdscript">func custom_start(proj: Projectile2D) -> void:
+											<pre><code class="language-gdscript">func on_main_enter(attack: Attack2D) -> void:
+	attack.main_enter()
 	var n: int = 4
-	var div: int = proj.instances / n
-	var rem: int = proj.index % div
-	var index: int = ((div - rem - 1) * n) + (proj.index / div)
-	proj.wait_time = index * proj.spawn_interval</code></pre>
+	var div: int = attack.pi.instance_id / n
+	var rem: int = attack.pi.instance_id % n
+	var sep: int = attack.instances % n
+	sep = attack.instances / n if (sep == 0) else (attack.instances / n) + 1
+	div = abs(sep - div - 1)
+	var index: int = (sep * rem) + div
+	attack.pi.instance_id = index</code></pre>
 										</div>
 										<div class="col-6 col-12-medium">
-											<span class="image fit center"><img src="../../images/tutorials/8-creating-attack-patterns/7.gif"></span>
+											<span class="image fit center"><img src="../../images/tutorials/8-creating-attack-patterns/15.gif"></span>
 										</div>
 									</div>
 									<br>
@@ -421,15 +428,22 @@ func on_main_enter(attack: Attack2D) -> void:
 									<div class="row gtr-75 aln-center">
 
 										<div class="col-6 col-12-medium">
-											<pre><code class="language-gdscript">func custom_start(proj: Projectile2D) -> void:
+											<pre><code class="language-gdscript">func on_main_enter(attack: Attack2D) -> void:
+	attack.main_enter()
 	var n: int = 4
-	var div: int = proj.instances / n
-	var rem: int = proj.index % div
-	var index: int = (abs(rem - (div / 2)) * n) + (proj.index / div)
-	proj.wait_time = index * proj.spawn_interval</code></pre>
+	var div: int = attack.pi.instance_id / n
+	var rem: int = attack.pi.instance_id % n
+	var sep: int = attack.instances % n
+	sep = attack.instances / n if (sep == 0) else (attack.instances / n) + 1
+	var sem: int = (div + 1) / 2
+	var sig: int = div % 2
+	sig = -1 if (sig == 0) else 1 
+	div = (sep / 2) + (sem * sig)
+	var index: int = (sep * rem) + div
+	attack.pi.instance_id = index</code></pre>
 										</div>
 										<div class="col-6 col-12-medium">
-											<span class="image fit center"><img src="../../images/tutorials/8-creating-attack-patterns/8.gif"></span>
+											<span class="image fit center"><img src="../../images/tutorials/8-creating-attack-patterns/16.gif"></span>
 										</div>
 									</div>
 									<br>
@@ -441,18 +455,45 @@ func on_main_enter(attack: Attack2D) -> void:
 									<div class="row gtr-75 aln-center">
 
 										<div class="col-6 col-12-medium">
-											<pre><code class="language-gdscript">func custom_start(proj: Projectile2D) -> void:
+											<pre><code class="language-gdscript">func on_main_enter(attack: Attack2D) -> void:
+	attack.main_enter()
 	var n: int = 4
-	var div: int = proj.instances / n
-	var rem: int = proj.index % div
-	var index: int = (abs(abs(rem - (div / 2)) - (div / 2)) * n) + (proj.index / div)
-	proj.wait_time = index * proj.spawn_interval</code></pre>
+	var div: int = attack.pi.instance_id / n
+	var rem: int = attack.pi.instance_id % n
+	var sep: int = attack.instances % n
+	sep = attack.instances / n if (sep == 0) else (attack.instances / n) + 1
+	var sem: int = (div + 1) / 2
+	div = sem if (div % 2 == 0) else (sep - sem) 
+	var index: int = (sep * rem) + div
+	attack.pi.instance_id = index</code></pre>
 										</div>
 										<div class="col-6 col-12-medium">
-											<span class="image fit center"><img src="../../images/tutorials/8-creating-attack-patterns/9.gif"></span>
+											<span class="image fit center"><img src="../../images/tutorials/8-creating-attack-patterns/17.gif"></span>
 										</div>
 									</div>
 									<br>
+									
+									
+									<ul style="list-style-type: square;">
+										<li><b>n By n</b></li>
+									</ul>
+									<div class="row gtr-75 aln-center">
+
+										<div class="col-6 col-12-medium">
+											<pre><code class="language-gdscript">func on_main_enter(attack: Attack2D) -> void:
+	attack.main_enter()
+	var n: int = 4
+	var div: int = attack.pi.instance_id / n
+	var rem: int = attack.pi.instance_id % n
+	var sep: int = attack.instances % n
+	sep = attack.instances / n if (sep == 0) else (attack.instances / n) + 1
+	var index: int = (sep * rem) + (div * n)
+	attack.pi.instance_id = index</code></pre>
+										</div>
+										<div class="col-6 col-12-medium">
+											<span class="image fit center"><img src="../../images/tutorials/8-creating-attack-patterns/18.gif"></span>
+										</div>
+									</div>
 									<br>
 
 
