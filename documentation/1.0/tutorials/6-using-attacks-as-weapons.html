@@ -88,37 +88,11 @@
 									<p>The main difference between these two is that <b>ProjectileManager2Ds</b> work in conjunction with <b>AttackBlueprint2D</b> to handle the firerate of your projectiles, <strong>even under constant request</strong>.</p>
 
 									<div class="row gtr-100">
-										<div class="col-6 col-12-small align-center">
-											<p><b>With</b> <strong>ProjectileCaller2D</strong>:</p>
-										</div>
-
-										<div class="col-6 col-12-small align-center">
-											<p><b>With</b> <strong>ProjectileManager2D</strong>:</p>
-										</div>
-									</div>
-
-									<div class="row gtr-100">
 										<div class="col-6 col-12-small">
-											<span class="image fit center"><img src="../../gifs/attack-blueprint-example-1.gif" alt="Projectile example without using Attack2D and ProjectileManager2D" /></span>
-										</div>
-
-										<div class="col-6 col-12-small">
+											<p class="align-center"><b>With</b> <strong>ProjectileManager2D</strong>:</p>
+											
 											<span class="image fit center"><img src="../../gifs/attack-blueprint-example-2.gif" alt="Projectile example using Attack2D and ProjectileManager2D" /></span>
-										</div>
-									</div>
-
-									<div class="row gtr-100">
-										<div class="col-6 col-12-small">
-											<pre><code class="language-gdscript">extends Node2D
-
-@onready var projectile_caller: ProjectileCaller2D = $ProjectileCaller2D
-
-func _process(_delta: float) -> void:
-	if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
-		projectile_caller.request_projectile(0, position, get_global_mouse_position())</code></pre>
-										</div>
-
-										<div class="col-6 col-12-small">
+										
 											<pre><code class="language-gdscript">extends Node2D
 
 @onready var projectile_manager: ProjectileManager2D = $ProjectileManager2D
@@ -126,6 +100,20 @@ func _process(_delta: float) -> void:
 func _process(_delta: float) -> void:
 	if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
 		projectile_manager.request_execution(0, 0, position, get_global_mouse_position())</code></pre>
+										</div>
+
+										<div class="col-6 col-12-small">
+											<p class="align-center"><b>With</b> <strong>ProjectileCaller2D</strong>:</p>
+										
+											<span class="image fit center"><img src="../../gifs/attack-blueprint-example-1.gif" alt="Projectile example without using Attack2D and ProjectileManager2D" /></span>
+										
+											<pre><code class="language-gdscript">extends Node2D
+
+@onready var projectile_caller: ProjectileCaller2D = $ProjectileCaller2D
+
+func _process(_delta: float) -> void:
+	if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
+		projectile_caller.request_projectile(0, position, get_global_mouse_position())</code></pre>
 										</div>
 									</div>
 									<br>

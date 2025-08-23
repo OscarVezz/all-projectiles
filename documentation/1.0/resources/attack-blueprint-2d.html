@@ -55,36 +55,24 @@
 									<p><b>Attack Blueprints</b> are custom Godot <a href="https://docs.godotengine.org/en/stable/classes/class_resource.html#class-resource">Resource</a>s that serves as templates defining the configuration of your projectile-based attacks. <b>Attack Blueprints</b> are used by the <a href="../../1.0/nodes/projectile-processor-2d.html#projectile-processor-2d">AP engine</a> in conjunction with <a href="../../1.0/nodes/projectile-manager-2d.html#projectile-manager-2d">ProjectileManager2D</a>s to <b>convert a</b> <strong>constant Input request</strong> <b>into an</b> <strong>orderly timed projectile barrage</strong>.</p>
 
 									<div class="row gtr-100">
-										<div class="col-6 col-12-small align-center">
-											<p><b>Without Attack2D</b>:</p>
-										</div>
-
-										<div class="col-6 col-12-small align-center">
-											<p><b>With Attack2D</b>:</p>
-										</div>
-									</div>
-
-									<div class="row gtr-100">
 										<div class="col-6 col-12-small">
-											<span class="image fit center"><img src="../../gifs/attack-blueprint-example-1.gif" alt="Projectile example without using Attack2D and ProjectileManager2D" /></span>
-										</div>
-
-										<div class="col-6 col-12-small">
+											<p class="align-center"><b>With Attack2D</b>:</p>
+											
 											<span class="image fit center"><img src="../../gifs/attack-blueprint-example-2.gif" alt="Projectile example using Attack2D and ProjectileManager2D" /></span>
-										</div>
-									</div>
-
-									<div class="row gtr-100">
-										<div class="col-6 col-12-small">
-											<pre><code class="language-gdscript">func _process(_delta: float) -> void:
-	if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
-		projectile_manager.request_projectile(0, position, get_global_mouse_position())</code></pre>
-										</div>
-
-										<div class="col-6 col-12-small">
+										
 											<pre><code class="language-gdscript">func _process(_delta: float) -> void:
 	if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
 		projectile_manager.request_execution(0, 0, position, get_global_mouse_position())</code></pre>
+										</div>
+
+										<div class="col-6 col-12-small">
+											<p class="align-center"><b>Without Attack2D</b>:</p>
+											
+											<span class="image fit center"><img src="../../gifs/attack-blueprint-example-1.gif" alt="Projectile example without using Attack2D and ProjectileManager2D" /></span>
+										
+											<pre><code class="language-gdscript">func _process(_delta: float) -> void:
+	if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
+		projectile_manager.request_projectile(0, position, get_global_mouse_position())</code></pre>
 										</div>
 									</div>
 
@@ -119,8 +107,8 @@
 									<div class="table-wrapper">
 										<table class="alt">
 											<colgroup>
-												<col style="width:30%">
-												<col style="width:40%">
+												<col style="width:27%">
+												<col style="width:43%">
 												<col style="width:30%">
 											</colgroup>  
 											<tbody>

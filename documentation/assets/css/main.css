@@ -1553,7 +1553,7 @@ ul.pagination {
 
 /* Table */
 .table-wrapper {
-  padding-right: 3em;
+  /* padding-right: 3em; */
   -webkit-overflow-scrolling: touch;
   overflow-x: auto; 
   scrollbar-color: #fcfcfc #505356 ;}

@@ -6,7 +6,7 @@
 -->
 <html>
 	<head>
-		<title>The Absolute Basics</title>
+		<title>The Global Database</title>
 		<meta charset="utf-8" />
 		<meta name="description" content="A Projectile Engine for Godot"/>
 		<meta name="autor" content="Oscar Vezz"/>
@@ -38,34 +38,204 @@
 							<!-- Content -->
 								<section>
 									<header class="main" id="title">
-										<h2>Title</h2>
+										<h2>The Global Database</h2>
 									</header>
 
 
 									<!-- Title -->
-									<p>Description.</p>
+									<p>All your <b>Attack</b> and <b>Projectile Blueprints</b> have a <strong>name property</strong> that is used to archive them, along with their in-game objects, in the <a href="../../1.0/nodes/projectile-database.html#projectile-database">Global Database</a>.</p>
 
 									<div class="row gtr-75 aln-center">
-										<div class="col-6 col-12-medium">
-											<span class="image fit center"><img src="../../images/tutorials/1-the-absolute-basics/1.png"></span>
+										<div class="col-5 col-12-medium">
+											<span class="image fit center"><img src="../../images/tutorials/9-the-global-database/1.png"></span>
+										</div>
+
+										<div class="col-5 col-12-medium">
+											<span class="image fit center"><img src="../../images/tutorials/9-the-global-database/2.png"></span>
 										</div>
 									</div>
+
+									<p>By default all your <b>Attacks</b> and <b>Projectiles</b> are automatically added to the <b>Global Database</b> so you can access them anytime, anywhere.</p>
+
+									<div class="row gtr-75 aln-center">
+										<div class="col-5 col-12-medium">
+											<span class="image fit center"><img src="../../images/tutorials/9-the-global-database/3.png"></span>
+										</div>
+
+										<div class="col-5 col-12-medium">
+											<span class="image fit center"><img src="../../images/tutorials/9-the-global-database/4.png"></span>
+										</div>
+									</div>
+
+									<p>Keep in mind that your objects will be stored only if <strong>there is no other item</strong> from the same category <strong>with the same name</strong> already in the database.</p>
+									<br>
 									<br>
 
 
 									<!-- Section -->
-									<header id="section">
-										<h3>Section</h3>
+									<header id="modifying-database-elements">
+										<h3>Modifying Database elements in real-time</h3>
 									</header>
-									<p>All your attacks and projectiles blueprints have a name that is used to archive them in the Global Database.</p>
+									<p>With the default configuration you will get <strong>copies</strong> of the requested <b>attacks/projectiles</b>, so any changes you make on them <strong>will not</strong> be reflected on the allocated objects and resources in the <b>Global Database</b>.</p>
+
+									<p>If you want your changes to be reflected in the instances allocated in the <b>Global Database</b>, you will have to uncheck the <strong>Get X Copies From Database</strong> option.</p>
+									
 
 									<div class="row gtr-75 aln-center">
 										<div class="col-5 col-12-medium">
-											<span class="image fit center"><img src="../../images/tutorials/"></span>
+											<span class="image fit center"><img src="../../images/tutorials/9-the-global-database/5.png"></span>
 										</div>
 
 										<div class="col-5 col-12-medium">
-											<span class="image fit center"><img src="../../images/tutorials/"></span>
+											<span class="image fit center"><img src="../../images/tutorials/9-the-global-database/6.png"></span>
+										</div>
+									</div>
+
+									<p>Now all the changes you make to your objects will be reflected on the objects in the database itself.</p>
+									
+									<p>You can also specify whether you want a copy or not when requesting your objects through code:</p>
+									
+									<pre><code class="language-gdscript">func _ready() -> void:
+	# This will return a copy
+	var proj_1: Projectile2D = APDatabase.get_projectile_2d("MAGIC_BOLT")
+	# This will not
+	var proj_2: Projectile2D = APDatabase.get_projectile_2d("MAGIC_BOLT", false)</code></pre>
+									
+									<br>
+
+
+									<!-- Section -->
+									<header id="using-the-database-across-your-project">
+										<h3>Using the Database across your Project</h3>
+									</header>
+									<p>It is advisable to set your objects in a <b>different node</b> from the one in where you use them in. If we apply this statement to our previous project, it would look something like this:</p>
+									
+									<div class="row gtr-75 aln-center">
+										<div class="col-6 col-12-medium">
+											<p class="align-center"><b>Player's Node</b>:</p>
+											<span class="image fit center"><img src="../../images/tutorials/9-the-global-database/7.png"></span>
+										</div>
+
+										<div class="col-6 col-12-medium">
+											<p class="align-center"><b>Setter's Node</b>:</p>
+											<span class="image fit center"><img src="../../images/tutorials/9-the-global-database/8.png"></span>
+										</div>
+									</div>
+									<div class="row gtr-75 aln-center">
+										<div class="col-6 col-12-medium">
+											<p class="align-center"><b>Player's Script</b>:</p>
+											<pre><code class="language-gdscript">extends Node2D
+
+@export var can_move: bool
+@export var speed: float = 300
+@export var separation: int = 30
+
+@onready var projectile_manager: ProjectileManager2D = $ProjectileManager2D
+@onready var bow: Sprite2D = $Bow
+
+# Using enums will allow us to expand and read our code more easily
+enum Attacks{
+	BOW
+}
+
+enum Projectiles{
+	AREA_PROJECTILE
+}
+
+
+func _ready() -> void:
+	projectile_manager.reassing_projectiles_from_database(Projectiles.keys())
+	projectile_manager.reassing_attacks_from_database(Attacks.keys())
+
+	for attack: Attack2D in projectile_manager.attacks:
+		attack.individual_properties.set("TARGET", self)
+
+
+func _process(_delta: float) -> void:
+	var direction: Vector2 = (get_global_mouse_position() - position).normalized()
+	bow.position = direction * separation
+	bow.rotation = direction.angle()
+	
+	projectile_manager.position = bow.position
+	projectile_manager.rotation = bow.rotation
+
+	if (Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT)):
+		projectile_manager.request_execution(Attacks.BOW, Projectiles.AREA_PROJECTILE, bow.position, get_global_mouse_position())
+	
+	if (can_move):
+		position += input_direction * speed * _delta</code></pre>
+										</div>
+
+										<div class="col-6 col-12-medium">
+											<p class="align-center"><b>Setter's Script</b>:</p>
+											<pre><code class="language-gdscript">extends Node2D
+
+@onready var projectile_manager: ProjectileManager2D = $ProjectileManager2D
+
+
+func _ready() -> void:
+	projectile_manager.get_attack(0).set_on_start(on_start).set_on_charge_enter(on_charge_enter).set_on_charge_exit(on_charge_exit)
+	projectile_manager.get_projectile(0).set_on_move(custom_movement).set_on_collision(custom_collision)
+
+
+
+func on_start(attack: Attack2D) -> void:
+	var target: Node2D = attack.individual_properties.get("TARGET")
+	if (target != null):
+		attack.individual_properties["ANIMATION_PLAYER"] = target.get_node("AnimationPlayer")
+
+
+func on_charge_enter(attack: Attack2D) -> void:
+	var animation_player: AnimationPlayer = attack.individual_properties.get("ANIMATION_PLAYER")
+	if (animation_player != null):
+		animation_player.play("charge")
+	attack.charge_enter()
+
+
+func on_charge_exit(attack: Attack2D) -> void:
+	var animation_player: AnimationPlayer = attack.individual_properties.get("ANIMATION_PLAYER")
+	if (animation_player != null):
+		animation_player.play("idle")
+	attack.charge_exit()
+
+
+
+func custom_collision(proj: Projectile2D, area_rid: RID, area_node: Node2D, target_node: Node2D, area_shape_index: int, local_shape_index: int) -> void:
+	if not proj.validate_collision(area_rid, area_node):
+		return
+	
+	var wall_layer: int = proj.global_properties["WALL_LAYER"]
+	if wall_layer & area_node.collision_layer != 0:
+		proj.is_expired = true
+		return
+
+	if target_node.has_method(proj.on_hit_call):
+		target_node.call(proj.on_hit_call, proj)
+	proj.on_pierced(area_rid)
+
+
+func custom_movement(proj: Projectile2D, _delta: float) -> Vector2:
+	var local_time: float = proj.individual_properties["LOCAL_TIME"] + _delta
+	proj.individual_properties["LOCAL_TIME"] = local_time
+
+	var frecuency: float = proj.global_properties["FRECUENCY"]
+	var amplitude: float = proj.global_properties["AMPLITUDE"]
+
+	return proj.direction + (proj.direction.orthogonal() * cos(local_time * frecuency)) * amplitude</code></pre>
+										</div>
+									</div>
+
+									<div class="row gtr-75 aln-center">
+										<div class="col-12 col-12-medium">
+											<span class="image fit center"><img src="../../images/tutorials/9-the-global-database/9.gif"></span>
+										</div>
+									</div>
+
+									<p><b>Note:</b> Remember to place your setter hierarchically <strong>above your Player's node</strong>. That way, Godot will call it first!</p>
+
+									<div class="row gtr-75 aln-center">
+										<div class="col-12 col-12-medium">
+											<span class="image fit center"><img src="../../images/tutorials/9-the-global-database/10.png"></span>
 										</div>
 									</div>
 									<br>

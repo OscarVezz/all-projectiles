@@ -52,12 +52,15 @@
 									<header class="semimajor" id="description">
 										<h3>Description</h3>
 									</header>
-									<p>The <b>Global Database</b> is an <a href="https://docs.godotengine.org/en/stable/tutorials/scripting/singletons_autoload.html">Autoload</a> script specifically designed to store <b>Projectiles</b>, <b>Attacks</b> and all other main plugin resources. You can access it at any time by calling the <strong>APDatabase</strong> name.</p>
+									<p>The <b>Global Database</b> is an <a href="https://docs.godotengine.org/en/stable/tutorials/scripting/singletons_autoload.html">Autoload</a> script specifically designed to store <b>Projectiles</b>, <b>Attacks</b> and all other plugin resources. You can access it at any time by calling the <strong>APDatabase</strong> name.</p>
 									<pre><code class="language-gdscript">@onready var projectile_manager: ProjectileManager2D = $ProjectileManager2D
 
 func _ready() -> void:
-    var proj: Projectile2D = APDatabase.get_projectile("MAGIC_BOLT")
-    projectile_manager.set_projectile(0, APDatabase.get_projectile("FIREBALL"))</code></pre>
+    var example: Projectile2D = APDatabase.get_projectile("MAGIC_BOLT")
+
+    projectile_manager.set_projectile(0, APDatabase.get_projectile("FIREBALL"), false)
+
+	projectile_manager.set_projectile_from_database(1, "SOUL_SEEKER")</code></pre>
 									<p>By default any <a href="../../1.0/nodes/projectile-caller-2d.html#projectile-caller-2d">ProjectileCaller2D</a> or <a href="../../1.0/nodes/projectile-manager-2d.html#projectile-manager-2d">ProjectileManager2D</a> you create will automatically add its projectiles and attacks to the <b>Global Database</b> at runtime. Of course, you can modify this behavior.</p>
 									
 									<div class="row gtr-100">
