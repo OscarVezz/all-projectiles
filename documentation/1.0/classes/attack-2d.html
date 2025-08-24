@@ -70,7 +70,8 @@
 func _ready() -> void:
 	projectile_manager.get_attack(0).set_on_recovery_enter(custom_recovery_enter).set_on_recovery_exit(custom_recovery_exit).set_on_recovery_update(custom_recovery_update)
 
-	
+
+# As with Projectiles, your Attack methods must follow a defined pattern:
 func custom_recovery_enter(attack: Attack2D) -> void:
 	attack.recovery_enter()	# Calling the default behavior for recovery phase start
 	print("Hi from recovery start")

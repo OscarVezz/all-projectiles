@@ -355,8 +355,169 @@
 									</header>
 
 									<h4 id="timed-modifier-method-init"><span class="comment-alt">void</span> _init<span class="comment-alt">(_name: <a href="https://docs.godotengine.org/en/stable/classes/class_stringname.html#stringname" class="link">StringName</a><span class="comment-alt"> = StringName(), _duration: </span><a href="https://docs.godotengine.org/en/stable/classes/class_float.html#class-float" class="link">float</a><span class="comment-alt"> = 1.0, _on_enter: </span><a href="https://docs.godotengine.org/en/stable/classes/class_callable.html#callable" class="link">Callable</a><span class="comment-alt"> = Calllable(), _on_exit: </span><a href="https://docs.godotengine.org/en/stable/classes/class_callable.html#callable" class="link">Callable</a><span class="comment-alt"> = Calllable(), _on_update: </span><a href="https://docs.godotengine.org/en/stable/classes/class_callable.html#callable" class="link">Callable</a><span class="comment-alt"> = Calllable(), _on_validation: </span><a href="https://docs.godotengine.org/en/stable/classes/class_callable.html#callable" class="link">Callable</a><span class="comment-alt"> = Calllable())</span></h4>
-										<p class="tab">Initializes a new modifier object from the given values.</p>
-										<p class="tab">You can also set your custom methods here.</p>
+										<p class="tab">Initializes a new modifier from the given values.</p>
+										
+										<div class="tab">
+											<hr>
+											<p><strong>Takes the following arguments:</strong></p>
+											<p><code class="value">_name</code>: Modifier global identifier.</p>
+											<p><code class="value">_duration</code>: Active time span of the modifier in seconds.</p>
+											<p><code class="value">_on_enter</code>: Optional <a href="https://docs.godotengine.org/en/stable/classes/class_callable.html#class-callable" class="link">Callable</a> to overwrite the set <a href="../../1.0/classes/timed-modifier.html#timed-modifier-property-on-enter">on_enter</a> modifier property.</p> 
+											<p><code class="value">_on_exit</code>: Optional <a href="https://docs.godotengine.org/en/stable/classes/class_callable.html#class-callable" class="link">Callable</a> to overwrite the set <a href="../../1.0/classes/timed-modifier.html#timed-modifier-property-on-exit">on_exit</a> modifier property.</p>
+											<p><code class="value">_on_update</code>: Optional <a href="https://docs.godotengine.org/en/stable/classes/class_callable.html#class-callable" class="link">Callable</a> to overwrite both <a href="../../1.0/classes/timed-modifier.html#timed-modifier-property-on-update">on_update</a> modifier property.</p>
+											<p><code class="value">_on_validation</code>: Optional <a href="https://docs.godotengine.org/en/stable/classes/class_callable.html#class-callable" class="link">Callable</a> to overwrite the set <a href="../../1.0/classes/timed-modifier.html#timed-modifier-property-on-validation">on_validation</a> modifier property.</p>
+
+											<hr>
+											<p><strong>Each Callable</strong> argument <strong>follows a define pattern</strong> and must take a set number of parameters and return a specific value.</p>
+										
+											<ul>
+												<li>
+													<p>The <code class="value">_on_enter</code> callable returns <code class="value">void</code> and takes the following parameters:</p>
+													<p><code class="value">modifier</code>: A representation of the modifier itself.</p>
+													<p><code class="value">target</code>: A representation of the object that the modifier is targeting, whether it is a <b>Projectile</b> or an <b>Attack</b>.</p>
+													<pre><code class="language-gdscript">extends Node2D
+
+@onready var projectile_caller = $ProjectileCaller2D
+						
+
+func _process(_delta):
+	if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
+		var destination = get_global_mouse_position()
+		projectile_caller.request_projectile(0, position, destination)
+
+
+# In this example the "on_projectile_buff_enter" function is passed as a Callable in the optional "_on_enter" parameter.
+func _input(event):
+	if event is InputEventMouseButton:
+		if event.button_index == MOUSE_BUTTON_RIGHT and event.pressed:
+			projectile_caller.add_projectile_modifier(0, Projectile2DModifier.new("PROJ_BUFF", 1.0, on_projectile_buff_enter, on_projectile_buff_exit))
+
+
+# This function will be called when the modifier is applied.
+func on_projectile_buff_enter(_modifier: Projectile2DModifier, proj: Projectile2D) -> void:
+	proj.instances += 2
+	proj.proj_spread = Projectile2D.ProjectileSpread.ANGULAR
+	proj.angular_spread = 90
+
+
+func on_projectile_buff_exit(_modifier: Projectile2DModifier, proj: Projectile2D) -> void:
+	proj.instances -= 2
+	proj.proj_spread = proj.resource.proj_spread
+	proj.angular_spread = proj.resource.angular_spread</code></pre>
+												</li>
+											</ul>
+											<hr class="tab">
+
+											<ul>
+												<li>
+													<p>The <code class="value">_on_exit</code> callable returns <code class="value">void</code> and takes the following parameters:</p>
+													<p><code class="value">modifier</code>: A representation of the modifier itself.</p>
+													<p><code class="value">target</code>: A representation of the object that the modifier is targeting, whether it is a <b>Projectile</b> or an <b>Attack</b>.</p>
+													<pre><code class="language-gdscript">extends Node2D
+
+@onready var projectile_caller = $ProjectileCaller2D
+						
+
+func _process(_delta):
+	if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
+		var destination = get_global_mouse_position()
+		projectile_caller.request_projectile(0, position, destination)
+
+
+# In this example the "on_projectile_buff_exit" function is passed as a Callable in the optional "_on_exit" parameter.
+func _input(event):
+	if event is InputEventMouseButton:
+		if event.button_index == MOUSE_BUTTON_RIGHT and event.pressed:
+			projectile_caller.add_projectile_modifier(0, Projectile2DModifier.new("PROJ_BUFF", 1.0, on_projectile_buff_enter, on_projectile_buff_exit))
+
+
+func on_projectile_buff_enter(_modifier: Projectile2DModifier, proj: Projectile2D) -> void:
+	proj.instances += 2
+	proj.proj_spread = Projectile2D.ProjectileSpread.ANGULAR
+	proj.angular_spread = 90
+
+
+# This function will be called when the modifier is expired.
+func on_projectile_buff_exit(_modifier: Projectile2DModifier, proj: Projectile2D) -> void:
+	proj.instances -= 2
+	proj.proj_spread = proj.resource.proj_spread
+	proj.angular_spread = proj.resource.angular_spread</code></pre>
+												</li>
+											</ul>
+											<hr class="tab">
+
+											<ul>
+												<li>
+													<p>The <code class="value">_on_update</code> callable returns <code class="value">void</code> and takes the following parameters:</p>
+													<p><code class="value">modifier</code>: A representation of the modifier itself.</p>
+													<p><code class="value">target</code>: A representation of the object that the modifier is targeting, whether it is a <b>Projectile</b> or an <b>Attack</b>.</p>
+													<p><code class="value">delta</code>: The time elapsed in seconds since the previous call to <b>_on_update</b>.</p>
+													<pre><code class="language-gdscript">extends Node2D
+
+@onready var projectile_caller = $ProjectileCaller2D
+						
+
+func _process(_delta):
+	if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
+		var destination = get_global_mouse_position()
+		projectile_caller.request_projectile(0, position, destination)
+
+
+# In this example the "on_projectile_buff_update" function is passed as a Callable in the optional "_on_update" parameter.
+func _input(event):
+	if event is InputEventMouseButton:
+		if event.button_index == MOUSE_BUTTON_RIGHT and event.pressed:
+			projectile_caller.add_projectile_modifier(0, Projectile2DModifier.new("PROJ_BUFF", 1.0, Callable(), Callable(), on_projectile_buff_update)) #on_projectile_buff_enter, on_projectile_buff_exit))
+
+
+# This function will be called on every frame.
+func on_projectile_buff_update(_modifier: Projectile2DModifier, proj: Projectile2D, delta: float) -> void:
+	print("Projectile buff is active!")</code></pre>
+												</li>
+											</ul>
+											<hr class="tab">
+
+											<ul>
+												<li>
+													<p>The <code class="value">_on_validation</code> callable <strong>must return</strong> a <code class="value">bool</code> <span class="comment">(as an element representing whether the modifier can be applied or not)</span> and take the following two parameters:</p>
+													<p><code class="value">modifier</code>: A representation of the modifier itself.</p>
+													<p><code class="value">target</code>: A representation of the object that the modifier is targeting, whether it is a <b>Projectile</b> or an <b>Attack</b>.</p>
+													<pre><code class="language-gdscript">extends Node2D
+
+@onready var projectile_caller = $ProjectileCaller2D
+						
+
+func _process(_delta):
+	if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
+		var destination = get_global_mouse_position()
+		projectile_caller.request_projectile(0, position, destination)
+
+	# In this example the "refresh_projectile_validation" function is passed as a Callable in the optional "_on_validation" parameter.
+	if Input.is_mouse_button_pressed(MOUSE_BUTTON_RIGHT):
+		projectile_caller.add_projectile_modifier(0, Projectile2DModifier.new("PROJ_BUFF", 1.0, on_projectile_buff_enter, on_projectile_buff_exit, Callable(), refresh_projectile_validation))
+
+
+func on_projectile_buff_enter(_modifier: Projectile2DModifier, proj: Projectile2D) -> void:
+	proj.instances += 2
+	proj.proj_spread = Projectile2D.ProjectileSpread.ANGULAR
+	proj.angular_spread = 90
+
+
+func on_projectile_buff_exit(_modifier: Projectile2DModifier, proj: Projectile2D) -> void:
+	proj.instances -= 2
+	proj.proj_spread = proj.resource.proj_spread
+	proj.angular_spread = proj.resource.angular_spread
+
+
+# This function will determine whether or not the modifier is applied.
+func refresh_projectile_validation(_modifier: Projectile2DModifier, _proj: Projectile2D) -> bool:
+	if (_proj.projectile_modifiers.has(_modifier.name)):
+		_proj.projectile_modifiers[_modifier.name].lifetime = _modifier.duration
+		return false
+	return true</code></pre>
+												</li>
+											</ul>
+										</div>
 									<hr>
 
 									<h4 id="timed-modifier-method-add-global-property"><span class="comment-alt"><a href="../../1.0/classes/timed-modifier.html#timed-modifier" class="link">TimedModifier</a></span> add_global_property<span class="comment-alt">(property: <a href="https://docs.godotengine.org/en/stable/classes/class_stringname.html#stringname" class="link">StringName</a>, value: <a href="https://docs.godotengine.org/en/stable/classes/class_variant.html#variant" class="link">Variant</a>)</span></h4>

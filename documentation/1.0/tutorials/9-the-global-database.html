@@ -100,6 +100,14 @@
 	var proj_1: Projectile2D = APDatabase.get_projectile_2d("MAGIC_BOLT")
 	# This will not
 	var proj_2: Projectile2D = APDatabase.get_projectile_2d("MAGIC_BOLT", false)</code></pre>
+
+									<p>Or set new elements yourself:</p>
+
+									<pre><code class="language-gdscript">func _ready() -> void:
+	APDatabase.set_projectile_2d("BLIZZARD", MyProjectile.new())
+	APDatabase.set_attack_2d("AK_47", MyAttack.new())
+	APDatabase.set_modifier(Projectile2DModifier.new("PROJECTILE_MODIFIER", 1.0))
+	APDatabase.set_modifier(Attack2DModifier.new("ATTACK_MODIFIER", 1.0))</code></pre>
 									
 									<br>
 

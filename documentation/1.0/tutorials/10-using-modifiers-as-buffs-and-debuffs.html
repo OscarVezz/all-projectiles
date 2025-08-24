@@ -6,7 +6,7 @@
 -->
 <html>
 	<head>
-		<title>The Absolute Basics</title>
+		<title>Using Modifiers as buffs and debuffs</title>
 		<meta charset="utf-8" />
 		<meta name="description" content="A Projectile Engine for Godot"/>
 		<meta name="autor" content="Oscar Vezz"/>
@@ -38,34 +38,270 @@
 							<!-- Content -->
 								<section>
 									<header class="main" id="title">
-										<h2>Title</h2>
+										<h2>Using Modifiers as buffs and debuffs</h2>
 									</header>
 
 
 									<!-- Title -->
-									<p>Description.</p>
+									<p><strong>All Projectiles</strong> comes with a <b>built-in</b> method to temporarily modify your <b>Projectiles</b> and <b>Attacks</b>.</p>
+									<p><a href="../../1.0/classes/timed-modifier.html#timed-modifier">Timed Modifiers</a> are <a href="https://docs.godotengine.org/en/stable/classes/class_refcounted.html#refcounted">RefCouted</a>s used to modify objects over a period of time. You can use them to apply <strong>buffs</strong> and <strong>debuffs</strong> to your <b>Projectiles</b> and <b>Attacks</b>.</p>
 
 									<div class="row gtr-75 aln-center">
-										<div class="col-6 col-12-medium">
-											<span class="image fit center"><img src="../../images/tutorials/1-the-absolute-basics/1.png"></span>
+										<div class="col-12 col-12-medium">
+											<span class="image fit center"><img src="../../images/tutorials/10-using-modifiers-as-buffs-and-debuffs/3.gif"></span>
 										</div>
 									</div>
 									<br>
 
 
 									<!-- Section -->
-									<header id="section">
-										<h3>Section</h3>
+									<header id="creating-and-using-modifiers">
+										<h3>Creating and using Modifiers</h3>
 									</header>
-									<p>Decription.</p>
+
+									<p>As you can see <a href="../../1.0/classes/timed-modifier.html#timed-modifier-method-init">here</a>, the <b>TimedModifier</b> constructor can take a wide range of arguments, the most important of which are:</p>
+									<ul class="tab">
+										<li><code class="value">name</code>: Modifier global identifier.</li>
+										<li><code class="value">duration</code>: Active time span of the modifier in seconds.</li>
+										<li><code class="value">on_enter</code>: Optional <a href="https://docs.godotengine.org/en/stable/classes/class_callable.html#class-callable" class="link">Callable</a> to overwrite the set <a href="../../1.0/classes/timed-modifier.html#timed-modifier-property-on-enter">on_enter</a> modifier property.</li> 
+										<li><code class="value">on_exit</code>: Optional <a href="https://docs.godotengine.org/en/stable/classes/class_callable.html#class-callable" class="link">Callable</a> to overwrite the set <a href="../../1.0/classes/timed-modifier.html#timed-modifier-property-on-exit">on_exit</a> modifier property.</li>
+									</ul>
+
+									<ul style="list-style-type: square;">
+										<li>Working with only these parameters, we can create simple <b>Projectile</b> buffs:</li>
+									</ul>
+
+									<pre><code class="language-gdscript">...
+func _input(event):
+	if event is InputEventMouseButton:
+		if event.button_index == MOUSE_BUTTON_RIGHT and event.pressed:
+			projectile_manager.add_projectile_modifier(0, Projectile2DModifier.new("PROJ_BUFF", 1.0, on_projectile_buff_enter, on_projectile_buff_exit))
+
+
+func on_projectile_buff_enter(_modifier: Projectile2DModifier, proj: Projectile2D) -> void:
+	proj.instances += 2
+	proj.proj_spread = Projectile2D.ProjectileSpread.ANGULAR
+	proj.angular_spread = 90
+
+
+func on_projectile_buff_exit(_modifier: Projectile2DModifier, proj: Projectile2D) -> void:
+	proj.instances -= 2
+	proj.proj_spread = proj.resource.proj_spread
+	proj.angular_spread = proj.resource.angular_spread</code></pre>
 
 									<div class="row gtr-75 aln-center">
-										<div class="col-5 col-12-medium">
-											<span class="image fit center"><img src="../../images/tutorials/"></span>
+										<div class="col-12 col-12-medium">
+											<span class="image fit center"><img src="../../images/tutorials/10-using-modifiers-as-buffs-and-debuffs/1.gif"></span>
 										</div>
+									</div>
 
-										<div class="col-5 col-12-medium">
-											<span class="image fit center"><img src="../../images/tutorials/"></span>
+									<ul style="list-style-type: square;">
+										<li><b>Attack</b> buffs:</li>
+									</ul>
+
+									<pre><code class="language-gdscript">...
+func _input(event):
+	if event is InputEventMouseButton:
+		if event.button_index == MOUSE_BUTTON_RIGHT and event.pressed:
+			projectile_manager.add_attack_modifier(0, Attack2DModifier.new("ATTACK_BUFF", 1.0, on_attack_buff_enter, on_attack_buff_exit))
+
+
+func on_attack_buff_enter(_modifier: Attack2DModifier, attack: Attack2D) -> void:
+	var previous_state_duration: float = attack.get_current_state_duration()
+
+	attack.attack_charge_time *= 0.15
+	attack.attack_anticipate_time *= 0.15
+	attack.attack_duration_time *= 0.15
+	attack.attack_recovery_time *= 0.15
+
+	attack.current_state_lifetime += (attack.get_current_state_duration() - previous_state_duration)
+
+
+func on_attack_buff_exit(_modifier: Attack2DModifier, attack: Attack2D) -> void:
+	attack.attack_charge_time = attack.resource.attack_charge_time
+	attack.attack_anticipate_time = attack.resource.attack_anticipate_time
+	attack.attack_duration_time = attack.resource.attack_duration_time
+	attack.attack_recovery_time = attack.resource.attack_recovery_time</code></pre>
+
+									<div class="row gtr-75 aln-center">
+										<div class="col-12 col-12-medium">
+											<span class="image fit center"><img src="../../images/tutorials/10-using-modifiers-as-buffs-and-debuffs/2.gif"></span>
+										</div>
+									</div>
+
+									<ul style="list-style-type: square;">
+										<li>Or both:</li>
+									</ul>
+
+									<pre><code class="language-gdscript">...
+func _input(event):
+	if event is InputEventMouseButton:
+		if event.button_index == MOUSE_BUTTON_RIGHT and event.pressed:
+			projectile_manager.add_projectile_modifier(0, Projectile2DModifier.new("PROJ_BUFF", 1.0, on_projectile_buff_enter, on_projectile_buff_exit))
+			projectile_manager.add_attack_modifier(0, Attack2DModifier.new("ATTACK_BUFF", 1.0, on_attack_buff_enter, on_attack_buff_exit))
+...</code></pre>
+
+									<div class="row gtr-75 aln-center">
+										<div class="col-12 col-12-medium">
+											<span class="image fit center"><img src="../../images/tutorials/10-using-modifiers-as-buffs-and-debuffs/3.gif"></span>
+										</div>
+									</div>
+									<br>
+
+
+									<!-- Section -->
+									<header id="understanding-modifier-verification">
+										<h3>Understanding Modifier verification</h3>
+									</header>
+									<p>By default, all your modifiers will check if the object they are targeting <strong>already has a modifier with the same name</strong>. If that is the case, the modifier <b>will not be applied</b> or reapplied as long as the previous one is active. Fortunately, you can modify this behavior by assigning your own <strong>custom validation method</strong>.</p>
+									<p>Here is a collection of some useful examples of verification functions:</p>
+
+									<ul style="list-style-type: square;">
+										<li><b>Refreshable Buff</b></li>
+									</ul>
+
+									<pre><code class="language-gdscript">...
+func _process(_delta: float) -> void:
+	if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
+		var destination = get_global_mouse_position()
+		projectile_manager.request_execution(0, 0, position, destination)
+	
+	if Input.is_mouse_button_pressed(MOUSE_BUTTON_RIGHT):
+		projectile_manager.add_projectile_modifier(0, Projectile2DModifier.new("PROJ_BUFF", 1.0, on_projectile_buff_enter, on_projectile_buff_exit, Callable(), refresh_projectile_validation))
+		projectile_manager.add_attack_modifier(0, Attack2DModifier.new("ATTACK_BUFF", 1.0, on_attack_buff_enter, on_attack_buff_exit, Callable(), refresh_attack_validation))
+...
+
+
+func refresh_projectile_validation(_modifier: Projectile2DModifier, _proj: Projectile2D) -> bool:
+	if (_proj.projectile_modifiers.has(_modifier.name)):
+		_proj.projectile_modifiers[_modifier.name].lifetime = _modifier.duration
+		return false
+	return true
+
+
+func refresh_attack_validation(_modifier: Attack2DModifier, _attack: Attack2D) -> bool:
+	if (_attack.attack_modifiers.has(_modifier.name)):
+		_attack.attack_modifiers[_modifier.name].lifetime = _modifier.duration
+		return false
+	return true</code></pre>
+
+									<div class="row gtr-75 aln-center">
+										<div class="col-12 col-12-medium">
+											<span class="image fit center"><img src="../../images/tutorials/10-using-modifiers-as-buffs-and-debuffs/4.gif"></span>
+										</div>
+									</div>
+
+									<ul style="list-style-type: square;">
+										<li><b>Stackable Buff</b></li>
+									</ul>
+
+									<pre><code class="language-gdscript">...
+func _input(event):
+	if event is InputEventMouseButton:
+		if event.button_index == MOUSE_BUTTON_RIGHT and event.pressed:
+			projectile_manager.add_projectile_modifier(0, Projectile2DModifier.new("PROJ_BUFF", 2.0, on_projectile_buff_enter, on_projectile_buff_exit, Callable(), stackable_projectile_validation))
+			projectile_manager.add_attack_modifier(0, Attack2DModifier.new("ATTACK_BUFF", 2.0, on_attack_buff_enter, on_attack_buff_exit, Callable(), stackable_attack_validation))
+...
+
+
+func stackable_projectile_validation(_modifier: Projectile2DModifier, _proj: Projectile2D) -> bool:
+	if !(_proj.projectile_modifiers.has(_modifier.name)):
+		return true
+
+	# I would recommend using (_modifier.stacks < _modifier.global_properties["MAX_STACKS"])
+	if (_modifier.stacks < 3):
+		return true
+	
+	return false
+
+
+func stackable_attack_validation(_modifier: Attack2DModifier, _attack: Attack2D) -> bool:
+	if !(_attack.attack_modifiers.has(_modifier.name)):
+		return true
+
+	# I would recommend using (_modifier.stacks < _modifier.global_properties["MAX_STACKS"])
+	if (_modifier.stacks < 3):
+		return true
+	
+	return false</code></pre>
+
+									<div class="row gtr-75 aln-center">
+										<div class="col-12 col-12-medium">
+											<span class="image fit center"><img src="../../images/tutorials/10-using-modifiers-as-buffs-and-debuffs/5.gif"></span>
+										</div>
+									</div>
+
+									<ul style="list-style-type: square;">
+										<li><b>Stackable and Refreshable Buff</b></li>
+									</ul>
+
+									<pre><code class="language-gdscript">...
+func _input(event):
+	if event is InputEventMouseButton:
+		if event.button_index == MOUSE_BUTTON_RIGHT and event.pressed:
+			projectile_manager.add_projectile_modifier(0, Projectile2DModifier.new("PROJ_BUFF", 2.0, on_projectile_buff_enter, on_projectile_buff_exit, Callable(), stackable_and_refreshable_projectile_validation))
+			projectile_manager.add_attack_modifier(0, Attack2DModifier.new("ATTACK_BUFF", 2.0, on_attack_buff_enter, on_attack_buff_exit, Callable(), stackable_and_refreshable_attack_validation))
+...
+
+
+func stackable_and_refreshable_projectile_validation(_modifier: Projectile2DModifier, _proj: Projectile2D) -> bool:
+	if !(_proj.projectile_modifiers.has(_modifier.name)):
+		return true
+
+	# I would recommend using (_modifier.stacks < _modifier.global_properties["MAX_STACKS"])
+	if (_modifier.stacks < 3):
+		return true
+	
+	for i: int in _modifier.copies.size():
+		_modifier.copies[i].lifetime = _modifier.copies[i].duration
+	return false
+
+
+func stackable_and_refreshable_attack_validation(_modifier: Attack2DModifier, _attack: Attack2D) -> bool:
+	if !(_attack.attack_modifiers.has(_modifier.name)):
+		return true
+
+	# I would recommend using (_modifier.stacks < _modifier.global_properties["MAX_STACKS"])
+	if (_modifier.stacks < 3):
+		return true
+	
+	for i: int in _modifier.copies.size():
+		_modifier.copies[i].lifetime = _modifier.copies[i].duration
+	return false
+	
+	return false</code></pre>
+
+									<div class="row gtr-75 aln-center">
+										<div class="col-12 col-12-medium">
+											<span class="image fit center"><img src="../../images/tutorials/10-using-modifiers-as-buffs-and-debuffs/6.gif"></span>
+										</div>
+									</div>
+									<br>
+
+
+									<!-- Section -->
+									<header id="integration-with-the-global-database">
+										<h3>Integration with the Global Database</h3>
+									</header>
+
+									<p><b>Timed Modifiers</b> are also fully incorporated into the Global Database.</p>
+
+									<pre><code class="language-gdscript">...
+func _ready() -> void:
+	APDatabase.set_modifier(Projectile2DModifier.new("PROJ_BUFF", 2.0, on_projectile_buff_enter, on_projectile_buff_exit, Callable(), stackable_and_refreshable_projectile_validation))
+	APDatabase.set_modifier(Attack2DModifier.new("ATTACK_BUFF", 2.0, on_attack_buff_enter, on_attack_buff_exit, Callable(), stackable_and_refreshable_attack_validation))
+...
+
+
+func _input(event):
+	if event is InputEventMouseButton:
+		if event.button_index == MOUSE_BUTTON_RIGHT and event.pressed:
+			projectile_manager.add_projectile_modifier(0, APDatabase.get_projectile_2d_modifier("PROJ_BUFF"))
+			projectile_manager.add_attack_modifier(0, APDatabase.get_attack_2d_modifier("ATTACK_BUFF"))</code></pre>
+
+									<div class="row gtr-75 aln-center">
+										<div class="col-12 col-12-medium">
+											<span class="image fit center"><img src="../../images/tutorials/10-using-modifiers-as-buffs-and-debuffs/7.gif"></span>
 										</div>
 									</div>
 									<br>
