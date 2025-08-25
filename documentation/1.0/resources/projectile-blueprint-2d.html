@@ -12,6 +12,7 @@
 		<meta name="autor" content="Oscar Vezz"/>
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="../../assets/css/main.css" />
+		<link rel="stylesheet" href="../../assets/css/prism.css" />
 	</head>
 	<body class="is-preload">
 
@@ -24,7 +25,7 @@
 
 							<!-- Header -->
 							<header id="header">
-								<a href="../../index.html" class="logo"><strong>All Projectiles</strong> 1.0 Documentation</a>
+								<a href="../../index.html" class="logo"><strong>All Projectiles</strong> 1.4 Documentation</a>
 								<ul class="icons">
 									<li><a href="https://github.com/OscarVezz/all-projectiles" class="icon brands fa-github"><span class="label">Github</span></a></li>
 									<li><a href="https://www.patreon.com/OscarVezz" class="icon brands fa-patreon"><span class="label">Patreon</span></a></li>
@@ -36,7 +37,7 @@
 
 							<!-- Content -->
 							<section>
-								<header class="main"id="projectile-blueprint-2d">
+								<header class="main" id="projectile-blueprint-2d">
 									<h2>ProjectileBlueprint2D</h2>
 								</header>
 
@@ -51,20 +52,28 @@
 								<header class="semimajor" id="description">
 									<h3>Description</h3>
 								</header>
-									<p><b>Projectile Blueprints</b> are custom Godot <a href="https://docs.godotengine.org/en/stable/classes/class_resource.html#class-resource">Resource</a>s, and like Textures and Materials they only serve as data containers. <b>Projectile Blueprints</b> are used by the <a href="../../1.0/nodes/projectile-processor-2d.html#projectile-processor-2d">AP engine</a> to create the real-time <a href="../../1.0/classes/projectile-2d.html#projectile-2d">Projectile Objects</a>.</p>
-									<p><b>Note:</b> <strong>Do not change</strong> the <b>ProjectileBlueprint2D</b> <strong>at run time</strong>, these serve strictly as static data. Any changes you want to make at runtime must be made to the <a href="../../1.0/classes/projectile-2d.html#projectile-2d">Projectile2D</a> themselves through the Callables passed in the <a href="../../1.0/nodes/projectile-caller-2d.html#projectile-caller-2d">ProjectileCaller2D</a> <a href="../../1.0/nodes/projectile-caller-2d.html#projectile-caller-2d-method-request-projectile">request_projectile</a> method.</p>
+									<p><b>Projectile Blueprints</b> are custom Godot <a href="https://docs.godotengine.org/en/stable/classes/class_resource.html#class-resource">Resource</a>s, and like <b>Textures</b> and <b>Materials</b> they only serve as data containers. <b>Projectile Blueprints</b> are used by the <a href="../../1.0/nodes/projectile-processor-2d.html#projectile-processor-2d">AP engine</a> to create the real-time <a href="../../1.0/classes/projectile-2d.html#projectile-2d">Projectile Objects</a>.</p>
+									<p><b>Note:</b> <strong>Do not change</strong> <b>ProjectileBlueprint2D</b>s <strong>at run time</strong>, these serve strictly as static data. Any changes you want to make at runtime must be done on the <a href="../../1.0/classes/projectile-2d.html#projectile-2d">Projectile2D</a> themselves, through any of the <a href="../../1.0/nodes/projectile-caller-2d.html#projectile-caller-2d">ProjectileCaller2D</a> methods.</p>
+									<p><b>Good</b>:</p>
+									<pre style="border-left: 1rem solid #3fb950;"><code class="language-gdscript">projectile_manager.get_projectile(0).set_property("lifetime", 10.0)</code></pre>
+									<p><b>Also Good</b>:</p>
+									<pre style="border-left: 1rem solid #3fb950;"><code class="language-gdscript">projectile_manager.get_projectile(0).lifetime = 10.0</code></pre>
+									<p><b>Bad</b>:</p>
+									<pre style="border-left: 1rem solid #f85149;"><code class="language-gdscript">projectile_manager.get_projectile_blueprint(0).lifetime = 10.0</code></pre>
+									<p><b>Horrible</b>:</p>
+									<pre style="border-left: 1rem solid #f85149;"><code class="language-gdscript">projectile_manager.get_projectile(0).resource.lifetime = 10.0</code></pre>
 								<br>
 
 
 								<!-- Tutorials -->
-								<!-- <header class="semimajor" id="tutorials">
+								<header class="semimajor" id="tutorials">
 									<h3>Tutorials</h3>
 								</header>
 								<ul>
-									<li><a href="#">tutorial_link1</a></li>
-									<li><a href="#">tutorial_link2</a></li>
-									<li><a href="#">tutorial_link3</a></li>
-								</ul> -->
+									<li><a href="../../1.0/tutorials/2-using-projectile-blueprints.html">Using Projectile Blueprints</a></li>
+									<li><a href="../../1.0/tutorials/3-dealing-damage-and-projectile-interactions.html">Dealing damage and other interactions</a></li>
+								</ul>
+								<br>
 
 
 								<!-- Properties -->
@@ -82,7 +91,7 @@
 											<tr>
 												<td><a href="https://docs.godotengine.org/en/stable/classes/class_float.html#class-float">float</a></td>
 												<td><a href="#projectile-blueprint-2d-property-after-hit-angular-speed">after_hit_angular_speed</a></td>
-												<td><code class="value">0</code></td>
+												<td><code class="value">100</code></td>
 											</tr>
 											<tr>
 												<td><a href="https://docs.godotengine.org/en/stable/classes/class_bool.html#class-bool">bool</a></td>
@@ -92,7 +101,7 @@
 											<tr>
 												<td><a href="https://docs.godotengine.org/en/stable/classes/class_float.html#class-float">float</a></td>
 												<td><a href="#projectile-blueprint-2d-property-angular-speed">angular_speed</a></td>
-												<td><code class="value">0</code></td>
+												<td><code class="value">100</code></td>
 											</tr>
 											<tr>
 												<td><a href="https://docs.godotengine.org/en/stable/classes/class_float.html#class-float">float</a></td>
@@ -130,9 +139,19 @@
 												<td><code class="value">1</code></td>
 											</tr>
 											<tr>
+												<td><a href="https://docs.godotengine.org/en/stable/classes/class_dictionary.html#dictionary">Dictionary</a>[<a href="https://docs.godotengine.org/en/stable/classes/class_stringname.html#stringname">StringName</a>, <a href="https://docs.godotengine.org/en/stable/classes/class_variant.html#variant">Variant</a>]</td>
+												<td><a href="#projectile-blueprint-2d-property-global-properties">global_properties</a></td>
+												<td><code class="value">{}</code></td>
+											</tr>
+											<tr>
+												<td><a href="https://docs.godotengine.org/en/stable/classes/class_dictionary.html#dictionary">Dictionary</a>[<a href="https://docs.godotengine.org/en/stable/classes/class_stringname.html#stringname">StringName</a>, <a href="https://docs.godotengine.org/en/stable/classes/class_variant.html#variant">Variant</a>]</td>
+												<td><a href="#projectile-blueprint-2d-property-individual-properties">individual_properties</a></td>
+												<td><code class="value">{}</code></td>
+											</tr>
+											<tr>
 												<td><a href="https://docs.godotengine.org/en/stable/classes/class_packedscene.html#class-packedscene">PackedScene</a></td>
 												<td><a href="#projectile-blueprint-2d-property-instance">instance</a></td>
-											<td></td>
+												<td></td>
 											</tr>
 											<tr>
 												<td><a href="https://docs.godotengine.org/en/stable/classes/class_int.html#class-int">int</a></td>
@@ -165,8 +184,13 @@
 												<td><code class="value">true</code></td>
 											</tr>
 											<tr>
-												<td><a href="../../1.0/resources/projectile-blueprint-2d.html#projectile-blueprint-2d">ProjectileBlueprint2D</a></td>
-												<td><a href="#projectile-blueprint-2d-property-on-expired-projectile">on_expired_projectile</a></td>
+												<td><a href="https://docs.godotengine.org/en/stable/classes/class_stringname.html#stringname">StringName</a></td>
+												<td><a href="#projectile-blueprint-2d-property-name">name</a></td>
+												<td></td>
+											</tr>
+											<tr>
+												<td><a href="https://docs.godotengine.org/en/stable/classes/class_stringname.html#stringname">StringName</a></td>
+												<td><a href="#projectile-blueprint-2d-property-on-expired-projectile_id">on_expired_projectile_id</a></td>
 												<td></td>
 											</tr>
 											<tr>
@@ -180,28 +204,33 @@
 												<td><code class="value">1</code></td>
 											</tr>
 											<tr>
-												<td><a href="#enum-projectile-blueprint-2d-projectile-directionality">ProjectileDirectionality</a></td>
+												<td><a href="../../1.0/classes/projectile-2d.html#enum-projectile-2d-projectile-directionality">ProjectileDirectionality</a></td>
 												<td><a href="#projectile-blueprint-2d-property-proj-directionality">proj_directionality</a></td>
 												<td><code class="value">2</code></td>
 											</tr>
 											<tr>
-												<td><a href="#enum-projectile-blueprint-2d-projectile-spread">ProjectileSpread</a></td>
+												<td><a href="../../1.0/classes/projectile-2d.html#enum-projectile-2d-projectile-spread">ProjectileSpread</a></td>
 												<td><a href="#projectile-blueprint-2d-property-proj-spread">proj_spread</a></td>
 												<td><code class="value">0</code></td>
 											</tr>
 											<tr>
-												<td><a href="#enum-projectile-blueprint-2d-projectile-type">ProjectileType</a></td>
+												<td><a href="../../1.0/classes/projectile-2d.html#enum-projectile-2d-projectile-type">ProjectileType</a></td>
 												<td><a href="#projectile-blueprint-2d-property-proj-type">proj_type</a></td>
 												<td><code class="value">0</code></td>
 											</tr>
 											<tr>
 												<td><a href="https://docs.godotengine.org/en/stable/classes/class_int.html#class-int">int</a></td>
 												<td><a href="#projectile-blueprint-2d-property-radius">radius</a></td>
-												<td><code class="value">50</code></td>
+												<td><code class="value">20</code></td>
 											</tr>
 											<tr>
 												<td><a href="https://docs.godotengine.org/en/stable/classes/class_bool.html#class-bool">bool</a></td>
 												<td><a href="#projectile-blueprint-2d-property-randomize-positions">randomize_positions</a></td>
+												<td><code class="value">false</code></td>
+											</tr>
+											<tr>
+												<td><a href="https://docs.godotengine.org/en/stable/classes/class_bool.html#class-bool">bool</a></td>
+												<td><a href="#projectile-blueprint-2d-property-randomize-positions">randomize_spread</a></td>
 												<td><code class="value">false</code></td>
 											</tr>
 											<tr>
@@ -223,6 +252,11 @@
 												<td><a href="https://docs.godotengine.org/en/stable/classes/class_float.html#class-float">float</a></td>
 												<td><a href="#projectile-blueprint-2d-property-size">size</a></td>
 												<td><code class="value">1.0</code></td>
+											</tr>
+											<tr>
+												<td><a href="https://docs.godotengine.org/en/stable/classes/class_float.html#class-float">float</a></td>
+												<td><a href="#projectile-blueprint-2d-property-size">spawn_interval</a></td>
+												<td><code class="value">0</code></td>
 											</tr>
 											<tr>
 												<td><a href="https://docs.godotengine.org/en/stable/classes/class_texture2d.html#class-texture2d">Texture2D</a></td>
@@ -301,7 +335,7 @@
 
 
 								<!-- Enumerations -->
-								<header class="semimajor" id="enumerations">
+								<!-- <header class="semimajor" id="enumerations">
 									<h3>Enumerations</h3>
 								</header>
 
@@ -341,7 +375,7 @@
 										<p class="tab-alt"><a href="../../1.0/classes/instanced-projectile-2d.html#instanced-projectile-2d">InstancedProjectile2D</a> are more performance intensive than <a href="../../1.0/classes/area-projectile-2d.html#area-projectile-2d">AreaProjectile2D</a> but not significantly, you would have to generate thousands to see a clear difference.</p>
 								</ul>
 								<hr class="strong">
-								<br>
+								<br> -->
 
 
 								<!-- Property Descriptions -->
@@ -349,7 +383,7 @@
 									<h3>Property Descriptions</h3>
 								</header>
 
-								<h4 id="projectile-blueprint-2d-property-after-hit-angular-speed"><a href="https://docs.godotengine.org/en/stable/classes/class_float.html#class-float" class="link">float</a> after_hit_angular_speed<span class="comment-alt"> = </span><span class="value"> 0</span></h4>
+								<h4 id="projectile-blueprint-2d-property-after-hit-angular-speed"><a href="https://docs.godotengine.org/en/stable/classes/class_float.html#class-float" class="link">float</a> after_hit_angular_speed<span class="comment-alt"> = </span><span class="value"> 100</span></h4>
 									<p class="tab">Angular speed used in seeking projectiles after the first hit (Useful for ricochet behaviors).</p>
 								<hr>
 
@@ -357,21 +391,20 @@
 									<p class="tab">If <code class="value">true</code> the projectile will be able to hit already hit targets.</p>
 								<hr>
 
-								<h4 id="projectile-blueprint-2d-property-angular-speed"><a href="https://docs.godotengine.org/en/stable/classes/class_float.html#class-float" class="link">float</a> angular_speed<span class="comment-alt"> = </span><span class="value"> 0</span></h4>
-									<p class="tab">Max distance rotated in degrees per second in seeking projectiles.</p>
+								<h4 id="projectile-blueprint-2d-property-angular-speed"><a href="https://docs.godotengine.org/en/stable/classes/class_float.html#class-float" class="link">float</a> angular_speed<span class="comment-alt"> = </span><span class="value"> 100</span></h4>
+									<p class="tab">Maximum allowed rotation, in degrees per second, in seeking projectiles.</p>
 								<hr>
 
 								<h4 id="projectile-blueprint-2d-property-angular-spread"><a href="https://docs.godotengine.org/en/stable/classes/class_float.html#class-float" class="link">float</a> angular_spread<span class="comment-alt"> = </span><span class="value"> 0</span></h4>
-									<p class="tab">Fixed radial extension in which angular spread projectiles will evenly distribute (in degrees).</p>
+									<p class="tab">Fixed radial extension in which <a href="../../1.0/classes/projectile-2d.html#enum-projectile-2d-projectile-spread">angular spread</a> projectiles will evenly distribute (in degrees).</p>
 								<hr>
 
 								<h4 id="projectile-blueprint-2d-property-area-monitoreable"><a href="https://docs.godotengine.org/en/stable/classes/class_bool.html#class-bool" class="link">bool</a> area_monitoreable<span class="comment-alt"> = </span><span class="value"> true</span></h4>
-									<p class="tab"><b>AREA Projectiles ONLY</b></p>	
-									<p class="tab">If <code class="value">true</code> the projectile can interact with other areas.</p>
+									<p class="tab">If <code class="value">true</code> the projectile can interact with other monitoring <a href="https://docs.godotengine.org/en/stable/classes/class_area2d.html#area2d">Area2D</a>s.</p>
 								<hr>
 
 								<h4 id="projectile-blueprint-2d-property-cast-radius"><a href="https://docs.godotengine.org/en/stable/classes/class_float.html#class-float" class="link">float</a> cast_radius<span class="comment-alt"> = </span><span class="value"> 200</span></h4>
-									<p class="tab">Radius of the sphere cast used to search for secondary targets on seeking projectiles.</p>
+									<p class="tab">Radius of the circle cast shape searching for secondary targets on seeking projectiles.</p>
 								<hr>
 
 								<h4 id="projectile-blueprint-2d-property-collision-layer"><a href="https://docs.godotengine.org/en/stable/classes/class_int.html#class-int" class="link">int</a> collision_layer<span class="comment-alt"> = </span><span class="value"> 0</span></h4>
@@ -379,29 +412,39 @@
 								<hr>
 
 								<h4 id="projectile-blueprint-2d-property-collision-mask"><a href="https://docs.godotengine.org/en/stable/classes/class_int.html#class-int" class="link">int</a> collision_mask<span class="comment-alt"> = </span><span class="value"> 0</span></h4>
-									<p class="tab">Physics layers that can interact with this projectile.</p>
+									<p class="tab">Physics layers that can interact with the projectile.</p>
 								<hr>
 
 								<h4 id="projectile-blueprint-2d-property-collision-path"><a href="https://docs.godotengine.org/en/stable/classes/class_string.html#class-string" class="link">String</a> collision_path<span class="comment-alt"> = </span><span class="value"> "Collision"</span></h4>
 									<p class="tab"><b>INSTANTIATED Projectiles ONLY</b></p>		
-									<p class="tab">Path to the <strong>mandatory</strong> Area2D element or child component in the Projectile2D <a href="#projectile-blueprint-2d-property-instance">instance</a> Scene.</p>
+									<p class="tab">Path to the <strong>mandatory</strong> <a href="https://docs.godotengine.org/en/stable/classes/class_area2d.html#area2d">Area2D</a> element or child component in the InstancedProjectile2D <a href="#projectile-blueprint-2d-property-instance">instance</a> Scene.</p>
 								<hr>
 
 								<h4 id="projectile-blueprint-2d-property-damage"><a href="https://docs.godotengine.org/en/stable/classes/class_int.html#class-int" class="link">int</a> damage<span class="comment-alt"> = </span><span class="value"> 1</span></h4>
-									<p class="tab">Sum of health points that this projectile removes from targets.</p>
+									<p class="tab">Sum of health points that this projectile removes from targets on collision.</p>
+								<hr>
+
+								<h4 id="projectile-blueprint-2d-property-global-properties"><a href="https://docs.godotengine.org/en/stable/classes/class_dictionary.html#dictionary" class="link">Dictionary</a>[<a href="https://docs.godotengine.org/en/stable/classes/class_stringname.html#stringname" class="link">StringName</a>, <a href="https://docs.godotengine.org/en/stable/classes/class_variant.html#variant" class="link">Variant</a>] global_properties<span class="comment-alt"> = </span><span class="value"> {}</span></h4>
+									<p class="tab">This dictionary is <strong>shared</strong> between all projectiles created by <strong>this blueprint</strong>.</p>
+									<p class="tab">If you change its values on any of its projectiles, you will change them in all the rest.</p>
+								<hr>
+
+								<h4 id="projectile-blueprint-2d-property-individual-properties"><a href="https://docs.godotengine.org/en/stable/classes/class_dictionary.html#dictionary" class="link">Dictionary</a>[<a href="https://docs.godotengine.org/en/stable/classes/class_stringname.html#stringname" class="link">StringName</a>, <a href="https://docs.godotengine.org/en/stable/classes/class_variant.html#variant" class="link">Variant</a>] individual_properties<span class="comment-alt"> = </span><span class="value"> {}</span></h4>
+									<p class="tab">This dictionary is <strong>independent</strong> in all projectiles created by this blueprint.</p>
+									<p class="tab">Modifying it will only affect the targeted projectile.</p>
 								<hr>
 
 								<h4 id="projectile-blueprint-2d-property-instance"><a href="https://docs.godotengine.org/en/stable/classes/class_packedscene.html#class-packedscene" class="link">PackedScene</a> instance</h4>
 									<p class="tab"><b>INSTANTIATED Projectiles ONLY</b></p>		
-									<p class="tab">The Scene to instantiate as a Projectile2D.</p>
+									<p class="tab">The Scene to instantiate as a <a href="../../1.0/classes/instanced-projectile-2d.html#instanced-projectile-2d">InstancedProjectile2D</a>.</p>
 								<hr>
 
 								<h4 id="projectile-blueprint-2d-property-instances"><a href="https://docs.godotengine.org/en/stable/classes/class_int.html#class-int" class="link">int</a> instances<span class="comment-alt"> = </span><span class="value"> 1</span></h4>
-									<p class="tab">Amount of projectiles to instantiate.</p>
+									<p class="tab">Amount of projectiles instantiated on creation.</p>
 								<hr>
 
 								<h4 id="projectile-blueprint-2d-property-lifetime"><a href="https://docs.godotengine.org/en/stable/classes/class_float.html#class-float" class="link">float</a> lifetime<span class="comment-alt"> = </span><span class="value"> 1.0</span></h4>
-									<p class="tab">Active duration in Seconds.</p>
+									<p class="tab">Active duration in seconds.</p>
 								<hr>
 
 								<h4 id="projectile-blueprint-2d-property-linear-deviation"><a href="https://docs.godotengine.org/en/stable/classes/class_float.html#class-float" class="link">float</a> linear_deviation<span class="comment-alt"> = </span><span class="value"> 0</span></h4>
@@ -409,7 +452,7 @@
 								<hr>
 
 								<h4 id="projectile-blueprint-2d-property-linear-speed"><a href="https://docs.godotengine.org/en/stable/classes/class_float.html#class-float" class="link">float</a> linear_speed<span class="comment-alt"> = </span><span class="value"> 1000</span></h4>
-									<p class="tab">Distance traveled in Pixels per Second.</p>
+									<p class="tab">Distance traveled in pixels per second.</p>
 								<hr>
 
 								<h4 id="projectile-blueprint-2d-property-lock-to-target"><a href="https://docs.godotengine.org/en/stable/classes/class_bool.html#class-bool" class="link">bool</a> lock_to_target<span class="comment-alt"> = </span><span class="value"> false</span></h4>
@@ -420,40 +463,50 @@
 									<p class="tab">If <code class="value">true</code> the projectile will actively look at the direction it travels.</p>
 								<hr>
 
-								<h4 id="projectile-blueprint-2d-property-on-expired-projectile"><a href="../../1.0/resources/projectile-blueprint-2d.html#projectile-blueprint-2d" class="link">ProjectileBlueprint2D</a> on_expired_projectile</h4>
-									<p class="tab">Secondary projectile to be instantiated once the main projectile runs out of pierce or runs out of lifetime.</p>
+								<h4 id="projectile-blueprint-2d-property-name"><a href="https://docs.godotengine.org/en/stable/classes/class_stringname.html#stringname" class="link">StringName</a> name</h4>
+									<p class="tab">Unique identifier. Used to distinguish between different projectiles on the <a href="../../1.0/nodes/projectile-database.html#projectile-database">Global Database</a>.</p>
+								<hr>
+
+								<h4 id="projectile-blueprint-2d-property-on-expired-projectile_id"><a href="https://docs.godotengine.org/en/stable/classes/class_stringname.html#stringname" class="link">StringName</a> on_expired_projectile_id</h4>
+									<p class="tab">Name of the <b>Secondary</b> projectile on the <a href="../../1.0/nodes/projectile-database.html#projectile-database">Global Database</a> to be instantiated once the main projectile runs out of pierce or lifetime.</p>
 								<hr>
 
 								<h4 id="projectile-blueprint-2d-property-on-hit-call"><a href="https://docs.godotengine.org/en/stable/classes/class_string.html#class-string" class="link">String</a> on_hit_call<span class="comment-alt"> = </span><span class="value"> "damage"</span></h4>
-									<p class="tab">Name of the method that the projectile will call upon collision (On the objects it collided with).</p>
+									<p class="tab">Name of the method that the projectile will try to call upon collision.</p>
 								<hr>
 
 								<h4 id="projectile-blueprint-2d-property-pierce"><a href="https://docs.godotengine.org/en/stable/classes/class_int.html#class-int" class="link">int</a> pierce<span class="comment-alt"> = </span><span class="value"> 1</span></h4>
-									<p class="tab">How many different targets this projectile can Hit.</p>
+									<p class="tab">How many different targets this projectile can hit before expiration.</p>
 								<hr>
 
-								<h4 id="projectile-blueprint-2d-property-proj-directionality"><a href="#enum-projectile-blueprint-2d-projectile-directionality" class="link">ProjectileDirectionality</a> proj_directionality<span class="comment-alt"> = </span><span class="value"> 2</span></h4>
-									<p class="tab">The type of direction the projectiles will take once instantiated.</p>
+								<h4 id="projectile-blueprint-2d-property-proj-directionality"><a href="../../1.0/classes/projectile-2d.html#enum-projectile-2d-projectile-directionality" class="link">ProjectileDirectionality</a> proj_directionality<span class="comment-alt"> = </span><span class="value"> 2</span></h4>
+									<p class="tab">Type of direction the projectile will take once instantiated.</p>
 								<hr>
 
-								<h4 id="projectile-blueprint-2d-property-proj-spread"><a href="#enum-projectile-blueprint-2d-projectile-spread" class="link">ProjectileSpread</a> proj_spread<span class="comment-alt"> = </span><span class="value"> 0</span></h4>
-									<p class="tab">The type of spread the projectile instances will take once instantiated.</p>
+								<h4 id="projectile-blueprint-2d-property-proj-spread"><a href="../../1.0/classes/projectile-2d.html#enum-projectile-2d-projectile-spread" class="link">ProjectileSpread</a> proj_spread<span class="comment-alt"> = </span><span class="value"> 0</span></h4>
+									<p class="tab">Type of spread the projectile instances will have once instantiated.</p>
 								<hr>
 
-								<h4 id="projectile-blueprint-2d-property-proj-type"><a href="#enum-projectile-blueprint-2d-projectile-type" class="link">ProjectileType</a> proj_type<span class="comment-alt"> = </span><span class="value"> 0</span></h4>
-									<p class="tab">Specific projectile sub-class this projectile will use.</p>
+								<h4 id="projectile-blueprint-2d-property-proj-type"><a href="../../1.0/classes/projectile-2d.html#enum-projectile-2d-projectile-type" class="link">ProjectileType</a> proj_type<span class="comment-alt"> = </span><span class="value"> 0</span></h4>
+									<p class="tab">Specific projectile sub-class the projectile will use.</p>
 								<hr>
 
-								<h4 id="projectile-blueprint-2d-property-radius"><a href="https://docs.godotengine.org/en/stable/classes/class_int.html#class-int" class="link">int</a> radius<span class="comment-alt"> = </span><span class="value"> 50</span></h4>
-									<p class="tab">Size of the projectile Collision in pixels (The Collision radius of the projectile is affected by the size of the projectile itself).</p>
+								<h4 id="projectile-blueprint-2d-property-radius"><a href="https://docs.godotengine.org/en/stable/classes/class_int.html#class-int" class="link">int</a> radius<span class="comment-alt"> = </span><span class="value"> 20</span></h4>
+									<p class="tab"><b>AREA Projectiles ONLY</b></p>
+									<p class="tab">Size of the projectile <b>circle collision</b> in pixels.</p>
+									<p class="tab">The <strong>collision radius</strong> of the projectile is affected by the <a href="../../1.0/resources/projectile-blueprint-2d.html#projectile-blueprint-2d-property-size">size</a> of the projectile itself.</p>
 								<hr>
 
 								<h4 id="projectile-blueprint-2d-property-randomize-positions"><a href="https://docs.godotengine.org/en/stable/classes/class_bool.html#class-bool" class="link">bool</a> randomize_positions<span class="comment-alt"> = </span><span class="value"> false</span></h4>
-									<p class="tab">If <code class="value">true</code> the linear and angular projectiles positions will be randomly spread.</p>
+									<p class="tab">If <code class="value">true</code> <a href="../../1.0/classes/projectile-2d.html#enum-projectile-2d-projectile-spread">linear and angular</a> projectiles positions will be randomly spread.</p>
+								<hr>
+
+								<h4 id="projectile-blueprint-2d-property-randomize-spread"><a href="https://docs.godotengine.org/en/stable/classes/class_bool.html#class-bool" class="link">bool</a> randomize_spread<span class="comment-alt"> = </span><span class="value"> false</span></h4>
+									<p class="tab">If <code class="value">true</code> the spread of <a href="../../1.0/classes/projectile-2d.html#enum-projectile-2d-projectile-spread">angular and circular</a> projectiles will be randomized exclusively between its edges.</p>
 								<hr>
 
 								<h4 id="projectile-blueprint-2d-property-rehit-cooldown"><a href="https://docs.godotengine.org/en/stable/classes/class_float.html#class-float" class="link">float</a> rehit_cooldown<span class="comment-alt"> = </span><span class="value"> 0.1</span></h4>
-									<p class="tab">Minimum amount of time between consecutive collisions.</p>
+									<p class="tab">Minimum amount of time between consecutive collisions on identical targets.</p>
 								<hr>
 
 								<h4 id="projectile-blueprint-2d-property-seeking-mask"><a href="https://docs.godotengine.org/en/stable/classes/class_int.html#class-int" class="link">int</a> seeking_mask<span class="comment-alt"> = </span><span class="value"> 0</span></h4>
@@ -468,13 +521,17 @@
 									<p class="tab">Applied uniform Scale of the projectile.</p>
 								<hr>
 
+								<h4 id="projectile-blueprint-2d-property-spawn-interval"><a href="https://docs.godotengine.org/en/stable/classes/class_float.html#class-float" class="link">float</a> spawn_interval<span class="comment-alt"> = </span><span class="value"> 0</span></h4>
+									<p class="tab">Fixed time between each instance generation.</p>
+								<hr>
+
 								<h4 id="projectile-blueprint-2d-property-texture"><a href="https://docs.godotengine.org/en/stable/classes/class_texture2d.html#class-texture2d" class="link">Texture2D</a> texture<span class="comment-alt"> = </span><span class="value"> null</span></h4>
 									<p class="tab"><b>AREA Projectiles ONLY</b></p>	
 									<p class="tab">Main projectile graphic texture.</p>
 								<hr>
 
 								<h4 id="projectile-blueprint-2d-property-vertical-spread"><a href="https://docs.godotengine.org/en/stable/classes/class_float.html#class-float" class="link">float</a> vertical_spread<span class="comment-alt"> = </span><span class="value"> 0</span></h4>
-									<p class="tab">Fixed amount of linear extension in which linear and angular projectiles will be evenly distributed (in pixels).</p>
+									<p class="tab">Fixed amount of linear extension in which <a href="../../1.0/classes/projectile-2d.html#enum-projectile-2d-projectile-spread">linear and angular</a> projectiles will be evenly distributed (in pixels).</p>
 								<hr>
 								<br>
 
@@ -543,18 +600,122 @@
 									</li>
 
 									<li>
-										<span class="opener max">Nodes</span>
+										<span class="opener max">Tutorials</span>
+										<ul>
+											<span class="opener mini"><a href="../../1.0/tutorials/1-the-absolute-basics.html">The Absolute Basics</a></span>
+											<ul>
+												<li><a href="../../1.0/tutorials/1-the-absolute-basics.html#enablin-the-plugin">Enabling the Plugin</a></li>
+												<li><a href="../../1.0/tutorials/1-the-absolute-basics.html#setting-up-the-scene">Setting up the scene</a></li>
+												<li><a href="../../1.0/tutorials/1-the-absolute-basics.html#creating-a-projectile">Creating a Projectile</a></li>
+											</ul>
+
+											<span class="opener mini"><a href="../../1.0/tutorials/2-using-projectile-blueprints.html">Using projectile blueprints</a></span>
+											<ul>
+												<li><a href="../../1.0/tutorials/2-using-projectile-blueprints.html#creating-projectile-blueprints">Creating Projectile Blueprints</a></li>
+												<li><a href="../../1.0/tutorials/2-using-projectile-blueprints.html#creating-an-area-projectile">Creating an Area Projectile</a></li>
+												<li><a href="../../1.0/tutorials/2-using-projectile-blueprints.html#creating-an-instanced-projectile">Creating an Instantiated Projectile</a></li>
+											</ul>
+
+											<span class="opener mini"><a href="../../1.0/tutorials/3-dealing-damage-and-projectile-interactions.html">Dealing damage and other interactions</a></span>
+											<ul>
+												<li><a href="../../1.0/tutorials/3-dealing-damage-and-projectile-interactions.html#adding-projectile-collisions">Adding Projectile Collisions</a></li>
+												<li><a href="../../1.0/tutorials/3-dealing-damage-and-projectile-interactions.html#dealing-damage">Dealing damage</a></li>
+											</ul>
+
+											<span class="opener mini"><a href="../../1.0/tutorials/4-modifying-projectiles-through-code.html">Modifying projectiles through code</a></span>
+											<ul>
+												<li><a href="../../1.0/tutorials/4-modifying-projectiles-through-code.html#custom-projectile-movement">Custom Projectile movement</a></li>
+												<li><a href="../../1.0/tutorials/4-modifying-projectiles-through-code.html#custom-projectile-collisions">Custom Projectile collisions</a></li>
+											</ul>
+
+											<span class="opener mini"><a href="../../1.0/tutorials/5-creating-your-own-projectile-class.html">Creating your own projectile class</a></span>
+											<ul>
+												<li><a href="../../1.0/tutorials/5-creating-your-own-projectile-class.html#creating-custom-projectile-classes">Creating custom projectile classes</a></li>
+												<li><a href="../../1.0/tutorials/5-creating-your-own-projectile-class.html#assigning-custom-projectile-classes">Assigning custom projectile classes</a></li>
+											</ul>
+
+											<span class="opener mini"><a href="../../1.0/tutorials/6-using-attacks-as-weapons.html">Using attacks as weapons</a></span>
+											<ul>
+												<li><a href="../../1.0/tutorials/6-using-attacks-as-weapons.html#creating-attack-blueprints">Creating Attack Blueprints</a></li>
+												<li><a href="../../1.0/tutorials/6-using-attacks-as-weapons.html#using-projectile-managers">Using Projectile Managers</a></li>
+												<li><a href="../../1.0/tutorials/6-using-attacks-as-weapons.html#modifying-attacks-through-code">Modifying Attacks through code</a></li>
+											</ul>
+
+											<span class="opener mini"><a href="../../1.0/tutorials/7-understanding-one-by-one-attacks.html">Understanding ONE_BY_ONE attacks</a></span>
+											<ul>
+												<li><a href="../../1.0/tutorials/7-understanding-one-by-one-attacks.html#overwriting-your-requested-parameters">Overwriting your requested parameters</a></li>
+												<li><a href="../../1.0/tutorials/7-understanding-one-by-one-attacks.html#one-by-one-attacks">ONE_BY_ONE Attacks</a></li>
+											</ul>
+
+											<span class="opener mini"><a href="../../1.0/tutorials/8-creating-attack-patterns.html">Creating attack patterns</a></span>
+											<ul>
+												<li><a href="../../1.0/tutorials/8-creating-attack-patterns.html#all-at-once-patterns">ALL_AT_ONCE patterns</a></li>
+												<li><a href="../../1.0/tutorials/8-creating-attack-patterns.html#one-by-one-patterns">ONE_BY_ONE patterns</a></li>
+											</ul>
+
+											<span class="opener mini"><a href="../../1.0/tutorials/9-the-global-database.html">The Global Database</a></span>
+											<ul>
+												<li><a href="../../1.0/tutorials/9-the-global-database.html#modifying-database-elements">Modifying Database elements</a></li>
+												<li><a href="../../1.0/tutorials/9-the-global-database.html#using-the-database-across-your-project">Using the Database across your Project</a></li>
+											</ul>
+
+											<span class="opener mini"><a href="../../1.0/tutorials/10-using-modifiers-as-buffs-and-debuffs.html">Using modifiers as buffs and debuffs</a></span>
+											<ul>
+												<li><a href="../../1.0/tutorials/10-using-modifiers-as-buffs-and-debuffs.html#creating-and-using-modifiers">Creating and using Modifiers</a></li>
+												<li><a href="../../1.0/tutorials/10-using-modifiers-as-buffs-and-debuffs.html#understanding-modifier-verification">Understanding Modifier verification</a></li>
+												<li><a href="../../1.0/tutorials/10-using-modifiers-as-buffs-and-debuffs.html#integration-with-the-global-database">Integration with the Global Database</a></li>
+											</ul>
+
+											<span class="opener mini"><a href="../../1.0/tutorials/11-common-projectiles-examples.html">Common projectiles examples</a></span>
+											<ul>
+												<li><a href="../../1.0/tutorials/11-common-projectiles-examples.html#variable-speed-over-lifetime">Variable Speed over Lifetime</a></li>
+												<li><a href="../../1.0/tutorials/11-common-projectiles-examples.html#bouncing-projectile">Bouncing Projectile</a></li>
+											</ul>
+
+											<span class="opener mini"><a href="../../1.0/tutorials/12-common-attack-examples.html">Common attacks examples</a></span>
+											<ul>
+												<li><a href="../../1.0/tutorials/12-common-attack-examples.html#single-charge-on-start">Single Charge on Start</a></li>
+											</ul>
+										</ul>
+									</li>
+
+									<li>
+										<span class="opener max">Core Nodes</span>
 										<ul>
 											<span class="opener mini"><a href="../../1.0/nodes/projectile-caller-2d.html">ProjectileCaller2D</a></span>
 											<ul>
 												<li><a href="../../1.0/nodes/projectile-caller-2d.html#description">Description</a></li>
-												<!-- <li><a href="../../1.0/nodes/projectile-caller-2d.html#tutorials">Tutorials</a></li> -->
+												<li><a href="../../1.0/nodes/projectile-caller-2d.html#tutorials">Tutorials</a></li>
 												<li><a href="../../1.0/nodes/projectile-caller-2d.html#properties">Properties</a></li>
 												<li><a href="../../1.0/nodes/projectile-caller-2d.html#methods">Methods</a></li>
 												<!-- <li><a href="../../1.0/nodes/projectile-caller-2d.html#signals">Signals</a></li> -->
 												<!-- <li><a href="../../1.0/nodes/projectile-caller-2d.html#enumerations">Enumerations</a></li> -->
 												<li><a href="../../1.0/nodes/projectile-caller-2d.html#property-descriptions">Property Descriptions</a></li>
 												<li><a href="../../1.0/nodes/projectile-caller-2d.html#method-descriptions">Method Descriptions</a></li>
+											</ul>
+
+											<span class="opener mini"><a href="../../1.0/nodes/projectile-database.html">ProjectileDatabase</a></span>
+											<ul>
+												<li><a href="../../1.0/nodes/projectile-database.html#description">Description</a></li>
+												<li><a href="../../1.0/nodes/projectile-database.html#tutorials">Tutorials</a></li>
+												<li><a href="../../1.0/nodes/projectile-database.html#properties">Properties</a></li>
+												<li><a href="../../1.0/nodes/projectile-database.html#methods">Methods</a></li>
+												<!-- <li><a href="../../1.0/nodes/projectile-database.html#signals">Signals</a></li> -->
+												<!-- <li><a href="../../1.0/nodes/projectile-database.html#enumerations">Enumerations</a></li> -->
+												<li><a href="../../1.0/nodes/projectile-database.html#property-descriptions">Property Descriptions</a></li>
+												<li><a href="../../1.0/nodes/projectile-database.html#method-descriptions">Method Descriptions</a></li>
+											</ul>
+
+											<span class="opener mini"><a href="../../1.0/nodes/projectile-manager-2d.html">ProjectileManager2D</a></span>
+											<ul>
+												<li><a href="../../1.0/nodes/projectile-manager-2d.html#description">Description</a></li>
+												<li><a href="../../1.0/nodes/projectile-manager-2d.html#tutorials">Tutorials</a></li>
+												<li><a href="../../1.0/nodes/projectile-manager-2d.html#properties">Properties</a></li>
+												<li><a href="../../1.0/nodes/projectile-manager-2d.html#methods">Methods</a></li>
+												<!-- <li><a href="../../1.0/nodes/projectile-manager-2d.html#signals">Signals</a></li> -->
+												<!-- <li><a href="../../1.0/nodes/projectile-manager-2d.html#enumerations">Enumerations</a></li> -->
+												<li><a href="../../1.0/nodes/projectile-manager-2d.html#property-descriptions">Property Descriptions</a></li>
+												<li><a href="../../1.0/nodes/projectile-manager-2d.html#method-descriptions">Method Descriptions</a></li>
 											</ul>
 
 											<span class="opener mini"><a href="../../1.0/nodes/projectile-processor-2d.html">ProjectileProcessor2D</a></span>
@@ -572,29 +733,12 @@
 									</li>
 
 									<li>
-										<span class="opener active max">Resources</span>
-										<ul>
-											<span class="opener active mini"><a href="../../1.0/resources/projectile-blueprint-2d.html">ProjectileBlueprint2D</a></span>
-											<ul>
-												<li><a href="../../1.0/resources/projectile-blueprint-2d.html#description">Description</a></li>
-												<!-- <li><a href="../../1.0/resources/projectile-blueprint-2d.html#tutorials">Tutorials</a></li> -->
-												<li><a href="../../1.0/resources/projectile-blueprint-2d.html#properties">Properties</a></li>
-												<!-- <li><a href="../../1.0/resources/projectile-blueprint-2d.html#methods">Methods</a></li> -->
-												<!-- <li><a href="../../1.0/resources/projectile-blueprint-2d.html#signals">Signals</a></li> -->
-												<li><a href="../../1.0/resources/projectile-blueprint-2d.html#enumerations">Enumerations</a></li>
-												<li><a href="../../1.0/resources/projectile-blueprint-2d.html#property-descriptions">Property Descriptions</a></li>
-												<!-- <li><a href="../../1.0/resources/projectile-blueprint-2d.html#method-descriptions">Method Descriptions</a></li> -->
-											</ul>
-										</ul>
-									</li>
-
-									<li>
 										<span class="opener max">Classes</span>
 										<ul>
 											<span class="opener mini"><a href="../../1.0/classes/area-projectile-2d.html">AreaProjectile2D</a></span>
 											<ul>
 												<li><a href="../../1.0/classes/area-projectile-2d.html#description">Description</a></li>
-												<!-- <li><a href="../../1.0/classes/area-projectile-2d.html#tutorials">Tutorials</a></li> -->
+												<li><a href="../../1.0/classes/area-projectile-2d.html#tutorials">Tutorials</a></li>
 												<li><a href="../../1.0/classes/area-projectile-2d.html#properties">Properties</a></li>
 												<li><a href="../../1.0/classes/area-projectile-2d.html#methods">Methods</a></li>
 												<!-- <li><a href="../../1.0/classes/area-projectile-2d.html#signals">Signals</a></li> -->
@@ -606,7 +750,7 @@
 											<span class="opener mini"><a href="../../1.0/classes/instanced-projectile-2d.html">InstancedProjectile2D</a></span>
 											<ul>
 												<li><a href="../../1.0/classes/instanced-projectile-2d.html#description">Description</a></li>
-												<!-- <li><a href="../../1.0/classes/instanced-projectile-2d.html#tutorials">Tutorials</a></li> -->
+												<li><a href="../../1.0/classes/instanced-projectile-2d.html#tutorials">Tutorials</a></li>
 												<li><a href="../../1.0/classes/instanced-projectile-2d.html#properties">Properties</a></li>
 												<li><a href="../../1.0/classes/instanced-projectile-2d.html#methods">Methods</a></li>
 												<!-- <li><a href="../../1.0/classes/instanced-projectile-2d.html#signals">Signals</a></li> -->
@@ -618,17 +762,115 @@
 											<span class="opener mini"><a href="../../1.0/classes/projectile-2d.html">Projectile2D</a></span>
 											<ul>
 												<li><a href="../../1.0/classes/projectile-2d.html#description">Description</a></li>
-												<!-- <li><a href="../../1.0/classes/projectile-2d.html#tutorials">Tutorials</a></li> -->
+												<li><a href="../../1.0/classes/projectile-2d.html#tutorials">Tutorials</a></li>
 												<li><a href="../../1.0/classes/projectile-2d.html#properties">Properties</a></li>
 												<li><a href="../../1.0/classes/projectile-2d.html#methods">Methods</a></li>
 												<li><a href="../../1.0/classes/projectile-2d.html#signals">Signals</a></li>
-												<!-- <li><a href="../../1.0/classes/projectile-2d.html#enumerations">Enumerations</a></li> -->
+												<li><a href="../../1.0/classes/projectile-2d.html#enumerations">Enumerations</a></li>
 												<li><a href="../../1.0/classes/projectile-2d.html#property-descriptions">Property Descriptions</a></li>
 												<li><a href="../../1.0/classes/projectile-2d.html#method-descriptions">Method Descriptions</a></li>
+											</ul>
+											<hr class="mini">
+
+
+											<span class="opener mini"><a href="../../1.0/classes/attack-2d.html">Attack2D</a></span>
+											<ul>
+												<li><a href="../../1.0/classes/attack-2d.html#description">Description</a></li>
+												<li><a href="../../1.0/classes/attack-2d.html#tutorials">Tutorials</a></li>
+												<li><a href="../../1.0/classes/attack-2d.html#properties">Properties</a></li>
+												<li><a href="../../1.0/classes/attack-2d.html#methods">Methods</a></li>
+												<li><a href="../../1.0/classes/attack-2d.html#signals">Signals</a></li>
+												<li><a href="../../1.0/classes/attack-2d.html#enumerations">Enumerations</a></li>
+												<li><a href="../../1.0/classes/attack-2d.html#property-descriptions">Property Descriptions</a></li>
+												<li><a href="../../1.0/classes/attack-2d.html#method-descriptions">Method Descriptions</a></li>
+											</ul>
+											<hr class="mini">
+
+
+											<span class="opener mini"><a href="../../1.0/classes/attack-2d-modifier.html">Attack2DModifier</a></span>
+											<ul>
+												<li><a href="../../1.0/classes/attack-2d-modifier.html#description">Description</a></li>
+												<li><a href="../../1.0/classes/attack-2d-modifier.html#tutorials">Tutorials</a></li>
+												<li><a href="../../1.0/classes/attack-2d-modifier.html#properties">Properties</a></li>
+												<li><a href="../../1.0/classes/attack-2d-modifier.html#methods">Methods</a></li>
+												<!-- <li><a href="../../1.0/classes/attack-2d-modifier.html#signals">Signals</a></li> -->
+												<!-- <li><a href="../../1.0/classes/attack-2d-modifier.html#enumerations">Enumerations</a></li> -->
+												<li><a href="../../1.0/classes/attack-2d-modifier.html#property-descriptions">Property Descriptions</a></li>
+												<li><a href="../../1.0/classes/attack-2d-modifier.html#method-descriptions">Method Descriptions</a></li>
+											</ul>
+
+											<span class="opener mini"><a href="../../1.0/classes/projectile-2d-modifier.html">Projectile2DModifier</a></span>
+											<ul>
+												<li><a href="../../1.0/classes/projectile-2d-modifier.html#description">Description</a></li>
+												<li><a href="../../1.0/classes/projectile-2d-modifier.html#tutorials">Tutorials</a></li>
+												<li><a href="../../1.0/classes/projectile-2d-modifier.html#properties">Properties</a></li>
+												<li><a href="../../1.0/classes/projectile-2d-modifier.html#methods">Methods</a></li>
+												<!-- <li><a href="../../1.0/classes/projectile-2d-modifier.html#signals">Signals</a></li> -->
+												<!-- <li><a href="../../1.0/classes/projectile-2d-modifier.html#enumerations">Enumerations</a></li> -->
+												<li><a href="../../1.0/classes/projectile-2d-modifier.html#property-descriptions">Property Descriptions</a></li>
+												<li><a href="../../1.0/classes/projectile-2d-modifier.html#method-descriptions">Method Descriptions</a></li>
+											</ul>
+
+											<span class="opener mini"><a href="../../1.0/classes/timed-modifier.html">TimedModifier</a></span>
+											<ul>
+												<li><a href="../../1.0/classes/timed-modifier.html#description">Description</a></li>
+												<li><a href="../../1.0/classes/timed-modifier.html#tutorials">Tutorials</a></li>
+												<li><a href="../../1.0/classes/timed-modifier.html#properties">Properties</a></li>
+												<li><a href="../../1.0/classes/timed-modifier.html#methods">Methods</a></li>
+												<!-- <li><a href="../../1.0/classes/timed-modifier.html#signals">Signals</a></li> -->
+												<!-- <li><a href="../../1.0/classes/timed-modifier.html#enumerations">Enumerations</a></li> -->
+												<li><a href="../../1.0/classes/timed-modifier.html#property-descriptions">Property Descriptions</a></li>
+												<li><a href="../../1.0/classes/timed-modifier.html#method-descriptions">Method Descriptions</a></li>
+											</ul>
+											<hr class="mini">
+	
+
+											<span class="opener mini"><a href="../../1.0/classes/packed-info.html">PackedInfo</a></span>
+											<ul>
+												<li><a href="../../1.0/classes/packed-info.html#description">Description</a></li>
+												<!-- <li><a href="../../1.0/classes/packed-info.html#tutorials">Tutorials</a></li> -->
+												<li><a href="../../1.0/classes/packed-info.html#properties">Properties</a></li>
+												<li><a href="../../1.0/classes/packed-info.html#methods">Methods</a></li>
+												<!-- <li><a href="../../1.0/classes/packed-info.html#signals">Signals</a></li> -->
+												<!-- <li><a href="../../1.0/classes/packed-info.html#enumerations">Enumerations</a></li> -->
+												<li><a href="../../1.0/classes/packed-info.html#property-descriptions">Property Descriptions</a></li>
+												<li><a href="../../1.0/classes/packed-info.html#method-descriptions">Method Descriptions</a></li>
 											</ul>
 										</ul>
 									</li>
 
+									<li>
+										<span class="opener active max">Resources</span>
+										<ul>
+											<span class="opener mini"><a href="../../1.0/resources/attack-blueprint-2d.html">AttackBlueprint2D</a></span>
+											<ul>
+												<li><a href="../../1.0/resources/attack-blueprint-2d.html#description">Description</a></li>
+												<li><a href="../../1.0/resources/attack-blueprint-2d.html#tutorials">Tutorials</a></li>
+												<li><a href="../../1.0/resources/attack-blueprint-2d.html#properties">Properties</a></li>
+												<!-- <li><a href="../../1.0/resources/attack-blueprint-2d.html#methods">Methods</a></li> -->
+												<!-- <li><a href="../../1.0/resources/attack-blueprint-2d.html#signals">Signals</a></li> -->
+												<!-- <li><a href="../../1.0/resources/attack-blueprint-2d.html#enumerations">Enumerations</a></li> -->
+												<li><a href="../../1.0/resources/attack-blueprint-2d.html#property-descriptions">Property Descriptions</a></li>
+												<!-- <li><a href="../../1.0/resources/attack-blueprint-2d.html#method-descriptions">Method Descriptions</a></li> -->
+											</ul>
+
+											<span class="opener active mini"><a href="../../1.0/resources/projectile-blueprint-2d.html">ProjectileBlueprint2D</a></span>
+											<ul>
+												<li><a href="../../1.0/resources/projectile-blueprint-2d.html#description">Description</a></li>
+												<li><a href="../../1.0/resources/projectile-blueprint-2d.html#tutorials">Tutorials</a></li>
+												<li><a href="../../1.0/resources/projectile-blueprint-2d.html#properties">Properties</a></li>
+												<!-- <li><a href="../../1.0/resources/projectile-blueprint-2d.html#methods">Methods</a></li> -->
+												<!-- <li><a href="../../1.0/resources/projectile-blueprint-2d.html#signals">Signals</a></li> -->
+												<!-- <li><a href="../../1.0/resources/projectile-blueprint-2d.html#enumerations">Enumerations</a></li> -->
+												<li><a href="../../1.0/resources/projectile-blueprint-2d.html#property-descriptions">Property Descriptions</a></li>
+												<!-- <li><a href="../../1.0/resources/projectile-blueprint-2d.html#method-descriptions">Method Descriptions</a></li> -->
+											</ul>
+										</ul>
+									</li>
+
+									<!-- <li><a href="index.html">Homepage</a></li>
+									<li><a href="generic.html">Generic</a></li>
+									<li><a href="elements.html">Elements</a></li> -->
 								</ul>
 							</nav>
 
@@ -649,6 +891,7 @@
 			<script src="../../assets/js/breakpoints.min.js"></script>
 			<script src="../../assets/js/util.js"></script>
 			<script src="../../assets/js/main.js"></script>
+			<script src="../../assets/js/prism.js"></script>
 
 	</body>
 </html>

@@ -1,0 +1,698 @@
+<!DOCTYPE HTML>
+<!--
+	Editorial by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>Modifying Projectiles through code</title>
+		<meta charset="utf-8" />
+		<meta name="description" content="A Projectile Engine for Godot"/>
+		<meta name="autor" content="Oscar Vezz"/>
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="../../assets/css/main.css" />
+		<link rel="stylesheet" href="../../assets/css/prism.css" />
+	</head>
+	<body class="is-preload">
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Main -->
+					<div id="main">
+						<div class="inner">
+
+							<!-- Header -->
+							<header id="header">
+								<a href="../../index.html" class="logo"><strong>All Projectiles</strong> 1.4 Documentation</a>
+								<ul class="icons">
+									<li><a href="https://github.com/OscarVezz/all-projectiles" class="icon brands fa-github"><span class="label">Github</span></a></li>
+									<li><a href="https://www.patreon.com/OscarVezz" class="icon brands fa-patreon"><span class="label">Patreon</span></a></li>
+									<li><a href="https://oscarvezz.itch.io/" class="icon brands fa-itch-io"><span class="label">Itch.io</span></a></li>
+									<li><a href="https://x.com/Oscar_Vezz" class="icon brands fa-x-twitter"><span class="label">Twitter</span></a></li>
+									<li><a href="https://www.youtube.com/@oscarvezz5826" class="icon brands fa-youtube"><span class="label">YouTube</span></a></li>
+								</ul>
+							</header>
+
+							<!-- Content -->
+								<section>
+									<header class="main" id="title">
+										<h2>Modifying Projectiles through code</h2>
+									</header>
+
+
+									<!-- Title -->
+									<p>While <a href="../../1.0/resources/projectile-blueprint-2d.html#projectile-blueprint-2d">ProjectileBlueprint2D</a> customization is very extensive and complete, there are certain <strong>complex behaviors</strong> that can only be achieved through code. Fortunately, <strong>All Projectiles</strong> allows you to attach any custom behavior you want to your projectiles.</p>
+									<p>In short, your projectiles can store custom <a href="https://docs.godotengine.org/en/stable/classes/class_callable.html#callable">Callable</a>s to be called at specific times. Each Callable follows a <strong>define pattern</strong> and must take a set number of <b>parameters</b> and <b>return a specific value</b>.</p>
+									<p class="comment"><i>See: <a href="../../1.0/classes/projectile-2d.html#projectile-2d-method-set-on-move">set_on_move</a>, <a href="../../1.0/classes/projectile-2d.html#projectile-2d-method-set-on-start">set_on_start</a>, <a href="../../1.0/classes/projectile-2d.html#projectile-2d-method-set-on-collision">set_on_collision</a> and <a href="../../1.0/classes/projectile-2d.html#projectile-2d-method-set-on-expired">set_on_expired</a>.</i></p>
+
+									<div class="row gtr-75 aln-center">
+										<div class="col-12 col-12-medium">
+											<span class="image fit center"><img src="../../images/tutorials/4-modifying-projectiles-through-code/9.gif"></span>
+										</div>
+									</div>
+									<br>
+
+
+									<!-- Section -->
+									<header id="custom-projectile-movement">
+										<h3>Custom Projectile movement</h3>
+									</header>
+									<p>Continuing with our previous project, let's modify the trajectory of our projectiles.</p>
+									<p>Inside our <b>Player's</b> script, let's add a method that makes a projectile to <strong>always move up</strong> and set it to our projectile in use. I recommend you check out the <b>Projectile2D</b> <a href="../../1.0/classes/projectile-2d.html#projectile-2d-method-set-on-move">set_on_move</a> method to learn more.</p>
+									
+									<pre><code class="language-gdscript">extends Node2D
+
+@onready var projectile_caller: ProjectileCaller2D = $ProjectileCaller2D
+
+
+func _input(event):
+	if event is InputEventMouseButton:
+		if event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
+			projectile_caller.request_projectile(0, position, get_global_mouse_position())
+
+
+# In this example we set the "custom_movement" function at our projectile with index (0).
+func _ready() -> void:
+	projectile_caller.get_projectile(0).set_on_move(custom_movement)
+
+
+# In order to function, your movement method must follow this design pattern.
+func custom_movement(proj: Projectile2D, _delta: float) -> Vector2:
+	return Vector2.UP</code></pre>
+
+									<p>And just like that, all your projectiles will always go upwards!</p>
+
+									<div class="row gtr-75 aln-center">
+										<div class="col-12 col-12-medium">
+											<span class="image fit center"><img src="../../images/tutorials/4-modifying-projectiles-through-code/1.gif"></span>
+										</div>
+									</div>
+
+									<p>With this in mind, let's create a more complex behavior and make our projectile move in a <strong>wave-like</strong> pattern. By modifying our <b>custom_movement</b> method, we would get something like this:</p>
+									
+									<pre><code class="language-gdscript">func custom_movement(proj: Projectile2D, _delta: float) -> Vector2:
+	var local_time: float = proj.resource.lifetime - proj.lifetime
+	return proj.direction + (proj.direction.orthogonal() * cos(local_time * 20))</code></pre>
+										
+									<div class="row gtr-75 aln-center">
+										<div class="col-12 col-12-medium">
+											<span class="image fit center"><img src="../../images/tutorials/4-modifying-projectiles-through-code/2.gif"></span>
+										</div>
+									</div>
+
+									<p>We can go further and parameterize our expression:</p>
+
+									<pre><code class="language-gdscript">func custom_movement(proj: Projectile2D, _delta: float) -> Vector2:
+	var local_time: float = proj.resource.lifetime - proj.lifetime
+	var frecuency: float = 20
+	var amplitude: float = 2
+
+	return proj.direction + (proj.direction.orthogonal() * cos(local_time * frecuency)) * amplitude</code></pre>
+									
+									<div class="row gtr-75 aln-center">
+										<div class="col-12 col-12-medium">
+											<span class="image fit center"><img src="../../images/tutorials/4-modifying-projectiles-through-code/3.gif"></span>
+										</div>
+									</div>
+
+									<p>So now we can incorporate these <strong>new variables</strong> in our <b>ProjectileBlueprint2D</b>.</p>
+
+									<div class="row gtr-75 aln-center">
+										<div class="col-6 col-12-medium">
+											<span class="image fit center"><img src="../../images/tutorials/4-modifying-projectiles-through-code/4.png"></span>
+										</div>
+									</div>
+
+									<div class="row gtr-75 aln-center">
+										<div class="col-12 col-12-medium">
+											<pre><code class="language-gdscript">func custom_movement(proj: Projectile2D, _delta: float) -> Vector2:
+	var local_time: float = proj.individual_properties["LOCAL_TIME"] + _delta
+	proj.individual_properties["LOCAL_TIME"] = local_time
+
+	var frecuency: float = proj.global_properties["FRECUENCY"]
+	var amplitude: float = proj.global_properties["AMPLITUDE"]
+
+	return proj.direction + (proj.direction.orthogonal() * cos(local_time * frecuency)) * amplitude</code></pre>
+										</div>
+									</div>
+
+									<div class="row gtr-75 aln-center">
+										<div class="col-12 col-12-medium">
+											<span class="image fit center"><img src="../../images/tutorials/4-modifying-projectiles-through-code/5.gif"></span>
+										</div>
+									</div>
+
+									<p>This method ensures that all other parameters continue to work <strong>even if there is any custom movement</strong>.</p>
+									<p>If you set your projectiles to don't look at the direction they travel, they do.</p>
+
+									<div class="row gtr-75 aln-center">
+										<div class="col-6 col-12-medium">
+											<span class="image fit center"><img src="../../images/tutorials/4-modifying-projectiles-through-code/6.png"></span>
+										</div>
+
+										<div class="col-6 col-12-medium">
+											<span class="image fit center"><img src="../../images/tutorials/4-modifying-projectiles-through-code/7.gif"></span>
+										</div>
+									</div>
+
+									<p>If you set your projectiles to seek its targets, they do. All without the need of any extra code.</p>
+
+									<div class="row gtr-75 aln-center">
+										<div class="col-6 col-12-medium">
+											<span class="image fit center"><img src="../../images/tutorials/4-modifying-projectiles-through-code/8.png"></span>
+										</div>
+										
+										<div class="col-6 col-12-medium">
+											<span class="image fit center"><img src="../../images/tutorials/4-modifying-projectiles-through-code/9.gif"></span>
+										</div>
+									</div>
+
+									<p>At the end of this exercise, your <b>player</b> script should look something like this:</p>
+
+									<pre><code class="language-gdscript">extends Node2D
+
+@onready var projectile_caller: ProjectileCaller2D = $ProjectileCaller2D
+
+
+func _ready() -> void:
+	projectile_caller.get_projectile(0).set_on_move(custom_movement)
+
+
+func _input(event):
+	if event is InputEventMouseButton:
+		if event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
+			projectile_caller.request_projectile(0, position, get_global_mouse_position())
+
+
+func custom_movement(proj: Projectile2D, _delta: float) -> Vector2:
+	var local_time: float = proj.individual_properties["LOCAL_TIME"] + _delta
+	proj.individual_properties["LOCAL_TIME"] = local_time
+
+	var frecuency: float = proj.global_properties["FRECUENCY"]
+	var amplitude: float = proj.global_properties["AMPLITUDE"]
+
+	return proj.direction + (proj.direction.orthogonal() * cos(local_time * frecuency)) * amplitude</code></pre>
+
+									<br>
+
+
+									<!-- Section -->
+									<header id="custom-projectile-collisions">
+										<h3>Custom Projectile collisions</h3>
+									</header>
+									<p>Now, let's say I have a projectile with some <a href="../../1.0/resources/projectile-blueprint-2d.html#projectile-blueprint-2d-property-pierce">pierce</a> and I want it to be destroyed immediately after hitting a wall. Well, even if I set my walls on a different <b>Collision Layer</b> and modify my projectiles to <b>interact with them</b>.</p>
+
+									<div class="row gtr-75 aln-center">
+										<div class="col-5 col-12-medium">
+											<span class="image fit center"><img src="../../images/tutorials/4-modifying-projectiles-through-code/10.png"></span>
+										</div>
+										
+										<div class="col-5 col-12-medium">
+											<span class="image fit center"><img src="../../images/tutorials/4-modifying-projectiles-through-code/11.png"></span>
+										</div>
+									</div>
+
+									<p>Their collisions are still treated as the same and the projectile just goes through the walls.</p>
+
+									<div class="row gtr-75 aln-center">
+										<div class="col-12 col-12-medium">
+											<span class="image fit center"><img src="../../images/tutorials/4-modifying-projectiles-through-code/12.gif"></span>
+										</div>
+									</div>
+
+									<p>What we need to achieve this behavior is some kind of <strong>custom collision</strong>. Fortunately, <b>All Projectiles</b> allows this.</p>
+									<p>So, just like our custom movement example, let's add a method that <strong>replaces</strong> the collision behavior of our projectiles inside our player script. Once again, you can learn more about its defined pattern by consulting the <a href="../../1.0/classes/projectile-2d.html#projectile-2d-method-set-on-area-collision">set_on_area_collision</a> method</p>
+
+									<pre><code class="language-gdscript">extends Node2D
+
+@onready var projectile_caller: ProjectileCaller2D = $ProjectileCaller2D
+
+
+func _input(event):
+	if event is InputEventMouseButton:
+		if event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
+			projectile_caller.request_projectile(0, position, get_global_mouse_position())
+
+
+# In this example we set the "custom_collision" function at our projectile with index (0).
+func _ready() -> void:
+	projectile_caller.get_projectile(0).set_on_collision(custom_collision)
+
+
+# In order to function, your collision method must follow this design pattern.
+func custom_collision(proj: Projectile2D, area_rid: RID, area_node: Node2D, target_node: Node2D, area_shape_index: int, local_shape_index: int) -> void:
+	pass</code></pre>
+
+									<p>The first thing you will notice is that we have lost our collisions, like all of them.</p>
+
+									<div class="row gtr-75 aln-center">
+										<div class="col-12 col-12-medium">
+											<span class="image fit center"><img src="../../images/tutorials/4-modifying-projectiles-through-code/13.gif"></span>
+										</div>
+									</div>
+
+									<p>Don't worry, we just need to add its default code to recover our collisions.</p>
+
+									<pre><code class="language-gdscript">func custom_collision(proj: Projectile2D, area_rid: RID, area_node: Node2D, target_node: Node2D, area_shape_index: int, local_shape_index: int) -> void:
+	if not proj.validate_collision(area_rid, area_node):
+		return
+	
+	# -> Our custom code should go here. <-
+
+	proj.on_pierced(area_rid)</code></pre>
+									
+									<div class="row gtr-75 aln-center">
+										<div class="col-12 col-12-medium">
+											<span class="image fit center"><img src="../../images/tutorials/4-modifying-projectiles-through-code/14.gif"></span>
+										</div>
+									</div>
+
+									<p>Now we can check if our projectile collided with a wall and eliminate it ipso facto.</p>
+
+									<div class="row gtr-75 aln-center">
+										<div class="col-12 col-12-medium">
+											<span class="image fit center"><img src="../../images/tutorials/4-modifying-projectiles-through-code/15.png"></span>
+										</div>
+									</div>
+
+									<pre><code class="language-gdscript">func custom_collision(proj: Projectile2D, area_rid: RID, area_node: Node2D, target_node: Node2D, area_shape_index: int, local_shape_index: int) -> void:
+	if not proj.validate_collision(area_rid, area_node):
+		return
+	
+	var wall_layer: int = proj.global_properties["WALL_LAYER"]
+	if wall_layer & area_node.collision_layer != 0:
+		proj.is_expired = true
+		return
+
+	proj.on_pierced(area_rid)</code></pre>
+									
+									<div class="row gtr-75 aln-center">
+										<div class="col-12 col-12-medium">
+											<span class="image fit center"><img src="../../images/tutorials/4-modifying-projectiles-through-code/16.gif"></span>
+										</div>
+									</div>
+
+									<p>Remember to recall your <a href="../../1.0/classes/projectile-2d.html#projectile-2d-property-on-hit-call">on_hit_call</a> method to restore your projectile original behavior.</p>
+
+									<pre><code class="language-gdscript">func custom_collision(proj: Projectile2D, area_rid: RID, area_node: Node2D, target_node: Node2D, area_shape_index: int, local_shape_index: int) -> void:
+	if not proj.validate_collision(area_rid, area_node):
+		return
+	
+	var wall_layer: int = proj.global_properties["WALL_LAYER"]
+	if wall_layer & area_node.collision_layer != 0:
+		proj.is_expired = true
+		return
+
+	if target_node.has_method(proj.on_hit_call):
+		target_node.call(proj.on_hit_call, proj)
+	proj.on_pierced(area_rid)</code></pre>
+									
+									<div class="row gtr-75 aln-center">
+										<div class="col-12 col-12-medium">
+											<span class="image fit center"><img src="../../images/tutorials/4-modifying-projectiles-through-code/17.gif"></span>
+										</div>
+									</div>
+
+									<p>At the end of this exercise, your <b>player</b> script should look something like this:</p>
+
+									<pre><code class="language-gdscript">extends Node2D
+
+@onready var projectile_caller: ProjectileCaller2D = $ProjectileCaller2D
+
+
+func _ready() -> void:
+	projectile_caller.get_projectile(0).set_on_collision(custom_collision)
+
+
+func _input(event):
+	if event is InputEventMouseButton:
+		if event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
+			projectile_caller.request_projectile(0, position, get_global_mouse_position())
+
+
+func custom_collision(proj: Projectile2D, area_rid: RID, area_node: Node2D, target_node: Node2D, area_shape_index: int, local_shape_index: int) -> void:
+	if not proj.validate_collision(area_rid, area_node):
+		return
+	
+	var wall_layer: int = proj.global_properties["WALL_LAYER"]
+	if wall_layer & area_node.collision_layer != 0:
+		proj.is_expired = true
+		return
+
+	if target_node.has_method(proj.on_hit_call):
+		target_node.call(proj.on_hit_call, proj)
+	proj.on_pierced(area_rid)</code></pre>
+
+									<br>
+
+
+								</section>
+
+						</div>
+					</div>
+
+				<!-- Sidebar -->
+				<div id="sidebar">
+					<div class="inner">
+
+						<!-- Search -->
+							<!-- <section id="search" class="alt">
+								<form method="post" action="#">
+									<input type="text" name="query" id="query" placeholder="Search" />
+								</form>
+							</section> -->
+
+						<!-- Menu -->
+							<nav id="menu">
+								<header class="major">
+									<h2> <span class="image mini_left mini">
+										<a href="../../index.html"><img src="../../images/icon.svg" alt="All Projectiles Logo" /></a></span> 
+										<a href="../../index.html" class="test"> All Projectiles </a>
+									</h2>
+									<!-- <p><span class="image left"><img src="images/icon.svg" alt="" /></span>All Projectiles -->
+								</header>
+								<ul>
+									<li>
+										<span class="opener max">Introduction</span>
+										<ul>
+											<span class="opener mini"><a href="../../1.0/introduction/whats-this.html">What is This?</a></span>
+											<ul>
+												<li><a href="../../1.0/introduction/whats-this.html#whats-this">What is All Projectiles?</a></li>
+												<li><a href="../../1.0/introduction/whats-this.html#addon-nodes">Addon Nodes</a></li>
+											</ul>
+
+											<span class="opener mini"><a href="../../1.0/introduction/installation.html">Installation</a></span>
+											<ul>
+												<li><a href="../../1.0/introduction/installation.html#asset-library">Asset Library</a></li>
+												<li><a href="../../1.0/introduction/installation.html#patreon">Patreon</a></li>
+												<li><a href="../../1.0/introduction/installation.html#github">GitHub</a></li>
+												<li><a href="../../1.0/introduction/installation.html#itchio">Itchio</a></li>
+											</ul>
+
+											<span class="opener mini"><a href="../../1.0/introduction/getting-started.html">Getting Started</a></span>
+											<ul>
+												<li><a href="../../1.0/introduction/getting-started.html#spawning-projectiles">Spawning Projectiles</a></li>
+												<li><a href="../../1.0/introduction/getting-started.html#creating-projectile-blueprints">Creating Projectile Blueprints</a></li>
+												<li><a href="../../1.0/introduction/getting-started.html#modifying-projectile-behavior">Modifying projectile behavior</a></li>
+											</ul>
+										</ul>
+									</li>
+
+									<li>
+										<span class="opener active max">Tutorials</span>
+										<ul>
+											<span class="opener mini"><a href="../../1.0/tutorials/1-the-absolute-basics.html">The Absolute Basics</a></span>
+											<ul>
+												<li><a href="../../1.0/tutorials/1-the-absolute-basics.html#enablin-the-plugin">Enabling the Plugin</a></li>
+												<li><a href="../../1.0/tutorials/1-the-absolute-basics.html#setting-up-the-scene">Setting up the scene</a></li>
+												<li><a href="../../1.0/tutorials/1-the-absolute-basics.html#creating-a-projectile">Creating a Projectile</a></li>
+											</ul>
+
+											<span class="opener mini"><a href="../../1.0/tutorials/2-using-projectile-blueprints.html">Using projectile blueprints</a></span>
+											<ul>
+												<li><a href="../../1.0/tutorials/2-using-projectile-blueprints.html#creating-projectile-blueprints">Creating Projectile Blueprints</a></li>
+												<li><a href="../../1.0/tutorials/2-using-projectile-blueprints.html#creating-an-area-projectile">Creating an Area Projectile</a></li>
+												<li><a href="../../1.0/tutorials/2-using-projectile-blueprints.html#creating-an-instanced-projectile">Creating an Instantiated Projectile</a></li>
+											</ul>
+
+											<span class="opener mini"><a href="../../1.0/tutorials/3-dealing-damage-and-projectile-interactions.html">Dealing damage and other interactions</a></span>
+											<ul>
+												<li><a href="../../1.0/tutorials/3-dealing-damage-and-projectile-interactions.html#adding-projectile-collisions">Adding Projectile Collisions</a></li>
+												<li><a href="../../1.0/tutorials/3-dealing-damage-and-projectile-interactions.html#dealing-damage">Dealing damage</a></li>
+											</ul>
+
+											<span class="opener active mini"><a href="../../1.0/tutorials/4-modifying-projectiles-through-code.html">Modifying projectiles through code</a></span>
+											<ul>
+												<li><a href="../../1.0/tutorials/4-modifying-projectiles-through-code.html#custom-projectile-movement">Custom Projectile movement</a></li>
+												<li><a href="../../1.0/tutorials/4-modifying-projectiles-through-code.html#custom-projectile-collisions">Custom Projectile collisions</a></li>
+											</ul>
+
+											<span class="opener mini"><a href="../../1.0/tutorials/5-creating-your-own-projectile-class.html">Creating your own projectile class</a></span>
+											<ul>
+												<li><a href="../../1.0/tutorials/5-creating-your-own-projectile-class.html#creating-custom-projectile-classes">Creating custom projectile classes</a></li>
+												<li><a href="../../1.0/tutorials/5-creating-your-own-projectile-class.html#assigning-custom-projectile-classes">Assigning custom projectile classes</a></li>
+											</ul>
+
+											<span class="opener mini"><a href="../../1.0/tutorials/6-using-attacks-as-weapons.html">Using attacks as weapons</a></span>
+											<ul>
+												<li><a href="../../1.0/tutorials/6-using-attacks-as-weapons.html#creating-attack-blueprints">Creating Attack Blueprints</a></li>
+												<li><a href="../../1.0/tutorials/6-using-attacks-as-weapons.html#using-projectile-managers">Using Projectile Managers</a></li>
+												<li><a href="../../1.0/tutorials/6-using-attacks-as-weapons.html#modifying-attacks-through-code">Modifying Attacks through code</a></li>
+											</ul>
+
+											<span class="opener mini"><a href="../../1.0/tutorials/7-understanding-one-by-one-attacks.html">Understanding ONE_BY_ONE attacks</a></span>
+											<ul>
+												<li><a href="../../1.0/tutorials/7-understanding-one-by-one-attacks.html#overwriting-your-requested-parameters">Overwriting your requested parameters</a></li>
+												<li><a href="../../1.0/tutorials/7-understanding-one-by-one-attacks.html#one-by-one-attacks">ONE_BY_ONE Attacks</a></li>
+											</ul>
+
+											<span class="opener mini"><a href="../../1.0/tutorials/8-creating-attack-patterns.html">Creating attack patterns</a></span>
+											<ul>
+												<li><a href="../../1.0/tutorials/8-creating-attack-patterns.html#all-at-once-patterns">ALL_AT_ONCE patterns</a></li>
+												<li><a href="../../1.0/tutorials/8-creating-attack-patterns.html#one-by-one-patterns">ONE_BY_ONE patterns</a></li>
+											</ul>
+
+											<span class="opener mini"><a href="../../1.0/tutorials/9-the-global-database.html">The Global Database</a></span>
+											<ul>
+												<li><a href="../../1.0/tutorials/9-the-global-database.html#modifying-database-elements">Modifying Database elements</a></li>
+												<li><a href="../../1.0/tutorials/9-the-global-database.html#using-the-database-across-your-project">Using the Database across your Project</a></li>
+											</ul>
+
+											<span class="opener mini"><a href="../../1.0/tutorials/10-using-modifiers-as-buffs-and-debuffs.html">Using modifiers as buffs and debuffs</a></span>
+											<ul>
+												<li><a href="../../1.0/tutorials/10-using-modifiers-as-buffs-and-debuffs.html#creating-and-using-modifiers">Creating and using Modifiers</a></li>
+												<li><a href="../../1.0/tutorials/10-using-modifiers-as-buffs-and-debuffs.html#understanding-modifier-verification">Understanding Modifier verification</a></li>
+												<li><a href="../../1.0/tutorials/10-using-modifiers-as-buffs-and-debuffs.html#integration-with-the-global-database">Integration with the Global Database</a></li>
+											</ul>
+
+											<span class="opener mini"><a href="../../1.0/tutorials/11-common-projectiles-examples.html">Common projectiles examples</a></span>
+											<ul>
+												<li><a href="../../1.0/tutorials/11-common-projectiles-examples.html#variable-speed-over-lifetime">Variable Speed over Lifetime</a></li>
+												<li><a href="../../1.0/tutorials/11-common-projectiles-examples.html#bouncing-projectile">Bouncing Projectile</a></li>
+											</ul>
+
+											<span class="opener mini"><a href="../../1.0/tutorials/12-common-attack-examples.html">Common attacks examples</a></span>
+											<ul>
+												<li><a href="../../1.0/tutorials/12-common-attack-examples.html#single-charge-on-start">Single Charge on Start</a></li>
+											</ul>
+										</ul>
+									</li>
+
+									<li>
+										<span class="opener max">Core Nodes</span>
+										<ul>
+											<span class="opener mini"><a href="../../1.0/nodes/projectile-caller-2d.html">ProjectileCaller2D</a></span>
+											<ul>
+												<li><a href="../../1.0/nodes/projectile-caller-2d.html#description">Description</a></li>
+												<li><a href="../../1.0/nodes/projectile-caller-2d.html#tutorials">Tutorials</a></li>
+												<li><a href="../../1.0/nodes/projectile-caller-2d.html#properties">Properties</a></li>
+												<li><a href="../../1.0/nodes/projectile-caller-2d.html#methods">Methods</a></li>
+												<!-- <li><a href="../../1.0/nodes/projectile-caller-2d.html#signals">Signals</a></li> -->
+												<!-- <li><a href="../../1.0/nodes/projectile-caller-2d.html#enumerations">Enumerations</a></li> -->
+												<li><a href="../../1.0/nodes/projectile-caller-2d.html#property-descriptions">Property Descriptions</a></li>
+												<li><a href="../../1.0/nodes/projectile-caller-2d.html#method-descriptions">Method Descriptions</a></li>
+											</ul>
+
+											<span class="opener mini"><a href="../../1.0/nodes/projectile-database.html">ProjectileDatabase</a></span>
+											<ul>
+												<li><a href="../../1.0/nodes/projectile-database.html#description">Description</a></li>
+												<li><a href="../../1.0/nodes/projectile-database.html#tutorials">Tutorials</a></li>
+												<li><a href="../../1.0/nodes/projectile-database.html#properties">Properties</a></li>
+												<li><a href="../../1.0/nodes/projectile-database.html#methods">Methods</a></li>
+												<!-- <li><a href="../../1.0/nodes/projectile-database.html#signals">Signals</a></li> -->
+												<!-- <li><a href="../../1.0/nodes/projectile-database.html#enumerations">Enumerations</a></li> -->
+												<li><a href="../../1.0/nodes/projectile-database.html#property-descriptions">Property Descriptions</a></li>
+												<li><a href="../../1.0/nodes/projectile-database.html#method-descriptions">Method Descriptions</a></li>
+											</ul>
+
+											<span class="opener mini"><a href="../../1.0/nodes/projectile-manager-2d.html">ProjectileManager2D</a></span>
+											<ul>
+												<li><a href="../../1.0/nodes/projectile-manager-2d.html#description">Description</a></li>
+												<li><a href="../../1.0/nodes/projectile-manager-2d.html#tutorials">Tutorials</a></li>
+												<li><a href="../../1.0/nodes/projectile-manager-2d.html#properties">Properties</a></li>
+												<li><a href="../../1.0/nodes/projectile-manager-2d.html#methods">Methods</a></li>
+												<!-- <li><a href="../../1.0/nodes/projectile-manager-2d.html#signals">Signals</a></li> -->
+												<!-- <li><a href="../../1.0/nodes/projectile-manager-2d.html#enumerations">Enumerations</a></li> -->
+												<li><a href="../../1.0/nodes/projectile-manager-2d.html#property-descriptions">Property Descriptions</a></li>
+												<li><a href="../../1.0/nodes/projectile-manager-2d.html#method-descriptions">Method Descriptions</a></li>
+											</ul>
+
+											<span class="opener mini"><a href="../../1.0/nodes/projectile-processor-2d.html">ProjectileProcessor2D</a></span>
+											<ul>
+												<li><a href="../../1.0/nodes/projectile-processor-2d.html#description">Description</a></li>
+												<!-- <li><a href="../../1.0/nodes/projectile-processor-2d.html#tutorials">Tutorials</a></li> -->
+												<li><a href="../../1.0/nodes/projectile-processor-2d.html#properties">Properties</a></li>
+												<li><a href="../../1.0/nodes/projectile-processor-2d.html#methods">Methods</a></li>
+												<li><a href="../../1.0/nodes/projectile-processor-2d.html#signals">Signals</a></li>
+												<!-- <li><a href="../../1.0/nodes/projectile-processor-2d.html#enumerations">Enumerations</a></li> -->
+												<li><a href="../../1.0/nodes/projectile-processor-2d.html#property-descriptions">Property Descriptions</a></li>
+												<li><a href="../../1.0/nodes/projectile-processor-2d.html#method-descriptions">Method Descriptions</a></li>
+											</ul>
+										</ul>
+									</li>
+
+									<li>
+										<span class="opener max">Classes</span>
+										<ul>
+											<span class="opener mini"><a href="../../1.0/classes/area-projectile-2d.html">AreaProjectile2D</a></span>
+											<ul>
+												<li><a href="../../1.0/classes/area-projectile-2d.html#description">Description</a></li>
+												<li><a href="../../1.0/classes/area-projectile-2d.html#tutorials">Tutorials</a></li>
+												<li><a href="../../1.0/classes/area-projectile-2d.html#properties">Properties</a></li>
+												<li><a href="../../1.0/classes/area-projectile-2d.html#methods">Methods</a></li>
+												<!-- <li><a href="../../1.0/classes/area-projectile-2d.html#signals">Signals</a></li> -->
+												<!-- <li><a href="../../1.0/classes/area-projectile-2d.html#enumerations">Enumerations</a></li> -->
+												<li><a href="../../1.0/classes/area-projectile-2d.html#property-descriptions">Property Descriptions</a></li>
+												<li><a href="../../1.0/classes/area-projectile-2d.html#method-descriptions">Method Descriptions</a></li>
+											</ul>
+
+											<span class="opener mini"><a href="../../1.0/classes/instanced-projectile-2d.html">InstancedProjectile2D</a></span>
+											<ul>
+												<li><a href="../../1.0/classes/instanced-projectile-2d.html#description">Description</a></li>
+												<li><a href="../../1.0/classes/instanced-projectile-2d.html#tutorials">Tutorials</a></li>
+												<li><a href="../../1.0/classes/instanced-projectile-2d.html#properties">Properties</a></li>
+												<li><a href="../../1.0/classes/instanced-projectile-2d.html#methods">Methods</a></li>
+												<!-- <li><a href="../../1.0/classes/instanced-projectile-2d.html#signals">Signals</a></li> -->
+												<!-- <li><a href="../../1.0/classes/instanced-projectile-2d.html#enumerations">Enumerations</a></li> -->
+												<li><a href="../../1.0/classes/instanced-projectile-2d.html#property-descriptions">Property Descriptions</a></li>
+												<li><a href="../../1.0/classes/instanced-projectile-2d.html#method-descriptions">Method Descriptions</a></li>
+											</ul>
+
+											<span class="opener mini"><a href="../../1.0/classes/projectile-2d.html">Projectile2D</a></span>
+											<ul>
+												<li><a href="../../1.0/classes/projectile-2d.html#description">Description</a></li>
+												<li><a href="../../1.0/classes/projectile-2d.html#tutorials">Tutorials</a></li>
+												<li><a href="../../1.0/classes/projectile-2d.html#properties">Properties</a></li>
+												<li><a href="../../1.0/classes/projectile-2d.html#methods">Methods</a></li>
+												<li><a href="../../1.0/classes/projectile-2d.html#signals">Signals</a></li>
+												<li><a href="../../1.0/classes/projectile-2d.html#enumerations">Enumerations</a></li>
+												<li><a href="../../1.0/classes/projectile-2d.html#property-descriptions">Property Descriptions</a></li>
+												<li><a href="../../1.0/classes/projectile-2d.html#method-descriptions">Method Descriptions</a></li>
+											</ul>
+											<hr class="mini">
+
+
+											<span class="opener mini"><a href="../../1.0/classes/attack-2d.html">Attack2D</a></span>
+											<ul>
+												<li><a href="../../1.0/classes/attack-2d.html#description">Description</a></li>
+												<li><a href="../../1.0/classes/attack-2d.html#tutorials">Tutorials</a></li>
+												<li><a href="../../1.0/classes/attack-2d.html#properties">Properties</a></li>
+												<li><a href="../../1.0/classes/attack-2d.html#methods">Methods</a></li>
+												<li><a href="../../1.0/classes/attack-2d.html#signals">Signals</a></li>
+												<li><a href="../../1.0/classes/attack-2d.html#enumerations">Enumerations</a></li>
+												<li><a href="../../1.0/classes/attack-2d.html#property-descriptions">Property Descriptions</a></li>
+												<li><a href="../../1.0/classes/attack-2d.html#method-descriptions">Method Descriptions</a></li>
+											</ul>
+											<hr class="mini">
+
+
+											<span class="opener mini"><a href="../../1.0/classes/attack-2d-modifier.html">Attack2DModifier</a></span>
+											<ul>
+												<li><a href="../../1.0/classes/attack-2d-modifier.html#description">Description</a></li>
+												<li><a href="../../1.0/classes/attack-2d-modifier.html#tutorials">Tutorials</a></li>
+												<li><a href="../../1.0/classes/attack-2d-modifier.html#properties">Properties</a></li>
+												<li><a href="../../1.0/classes/attack-2d-modifier.html#methods">Methods</a></li>
+												<!-- <li><a href="../../1.0/classes/attack-2d-modifier.html#signals">Signals</a></li> -->
+												<!-- <li><a href="../../1.0/classes/attack-2d-modifier.html#enumerations">Enumerations</a></li> -->
+												<li><a href="../../1.0/classes/attack-2d-modifier.html#property-descriptions">Property Descriptions</a></li>
+												<li><a href="../../1.0/classes/attack-2d-modifier.html#method-descriptions">Method Descriptions</a></li>
+											</ul>
+
+											<span class="opener mini"><a href="../../1.0/classes/projectile-2d-modifier.html">Projectile2DModifier</a></span>
+											<ul>
+												<li><a href="../../1.0/classes/projectile-2d-modifier.html#description">Description</a></li>
+												<li><a href="../../1.0/classes/projectile-2d-modifier.html#tutorials">Tutorials</a></li>
+												<li><a href="../../1.0/classes/projectile-2d-modifier.html#properties">Properties</a></li>
+												<li><a href="../../1.0/classes/projectile-2d-modifier.html#methods">Methods</a></li>
+												<!-- <li><a href="../../1.0/classes/projectile-2d-modifier.html#signals">Signals</a></li> -->
+												<!-- <li><a href="../../1.0/classes/projectile-2d-modifier.html#enumerations">Enumerations</a></li> -->
+												<li><a href="../../1.0/classes/projectile-2d-modifier.html#property-descriptions">Property Descriptions</a></li>
+												<li><a href="../../1.0/classes/projectile-2d-modifier.html#method-descriptions">Method Descriptions</a></li>
+											</ul>
+
+											<span class="opener mini"><a href="../../1.0/classes/timed-modifier.html">TimedModifier</a></span>
+											<ul>
+												<li><a href="../../1.0/classes/timed-modifier.html#description">Description</a></li>
+												<li><a href="../../1.0/classes/timed-modifier.html#tutorials">Tutorials</a></li>
+												<li><a href="../../1.0/classes/timed-modifier.html#properties">Properties</a></li>
+												<li><a href="../../1.0/classes/timed-modifier.html#methods">Methods</a></li>
+												<!-- <li><a href="../../1.0/classes/timed-modifier.html#signals">Signals</a></li> -->
+												<!-- <li><a href="../../1.0/classes/timed-modifier.html#enumerations">Enumerations</a></li> -->
+												<li><a href="../../1.0/classes/timed-modifier.html#property-descriptions">Property Descriptions</a></li>
+												<li><a href="../../1.0/classes/timed-modifier.html#method-descriptions">Method Descriptions</a></li>
+											</ul>
+											<hr class="mini">
+	
+
+											<span class="opener mini"><a href="../../1.0/classes/packed-info.html">PackedInfo</a></span>
+											<ul>
+												<li><a href="../../1.0/classes/packed-info.html#description">Description</a></li>
+												<!-- <li><a href="../../1.0/classes/packed-info.html#tutorials">Tutorials</a></li> -->
+												<li><a href="../../1.0/classes/packed-info.html#properties">Properties</a></li>
+												<li><a href="../../1.0/classes/packed-info.html#methods">Methods</a></li>
+												<!-- <li><a href="../../1.0/classes/packed-info.html#signals">Signals</a></li> -->
+												<!-- <li><a href="../../1.0/classes/packed-info.html#enumerations">Enumerations</a></li> -->
+												<li><a href="../../1.0/classes/packed-info.html#property-descriptions">Property Descriptions</a></li>
+												<li><a href="../../1.0/classes/packed-info.html#method-descriptions">Method Descriptions</a></li>
+											</ul>
+										</ul>
+									</li>
+
+									<li>
+										<span class="opener max">Resources</span>
+										<ul>
+											<span class="opener mini"><a href="../../1.0/resources/attack-blueprint-2d.html">AttackBlueprint2D</a></span>
+											<ul>
+												<li><a href="../../1.0/resources/attack-blueprint-2d.html#description">Description</a></li>
+												<li><a href="../../1.0/resources/attack-blueprint-2d.html#tutorials">Tutorials</a></li>
+												<li><a href="../../1.0/resources/attack-blueprint-2d.html#properties">Properties</a></li>
+												<!-- <li><a href="../../1.0/resources/attack-blueprint-2d.html#methods">Methods</a></li> -->
+												<!-- <li><a href="../../1.0/resources/attack-blueprint-2d.html#signals">Signals</a></li> -->
+												<!-- <li><a href="../../1.0/resources/attack-blueprint-2d.html#enumerations">Enumerations</a></li> -->
+												<li><a href="../../1.0/resources/attack-blueprint-2d.html#property-descriptions">Property Descriptions</a></li>
+												<!-- <li><a href="../../1.0/resources/attack-blueprint-2d.html#method-descriptions">Method Descriptions</a></li> -->
+											</ul>
+
+											<span class="opener mini"><a href="../../1.0/resources/projectile-blueprint-2d.html">ProjectileBlueprint2D</a></span>
+											<ul>
+												<li><a href="../../1.0/resources/projectile-blueprint-2d.html#description">Description</a></li>
+												<li><a href="../../1.0/resources/projectile-blueprint-2d.html#tutorials">Tutorials</a></li>
+												<li><a href="../../1.0/resources/projectile-blueprint-2d.html#properties">Properties</a></li>
+												<!-- <li><a href="../../1.0/resources/projectile-blueprint-2d.html#methods">Methods</a></li> -->
+												<!-- <li><a href="../../1.0/resources/projectile-blueprint-2d.html#signals">Signals</a></li> -->
+												<!-- <li><a href="../../1.0/resources/projectile-blueprint-2d.html#enumerations">Enumerations</a></li> -->
+												<li><a href="../../1.0/resources/projectile-blueprint-2d.html#property-descriptions">Property Descriptions</a></li>
+												<!-- <li><a href="../../1.0/resources/projectile-blueprint-2d.html#method-descriptions">Method Descriptions</a></li> -->
+											</ul>
+										</ul>
+									</li>
+
+									<!-- <li><a href="index.html">Homepage</a></li>
+									<li><a href="generic.html">Generic</a></li>
+									<li><a href="elements.html">Elements</a></li> -->
+								</ul>
+							</nav>
+
+
+						<!-- Footer -->
+							<footer id="footer">
+								<p class="copyright">Copyright &copy; 2025. All rights reserved. Demo Images: <a href="https://unsplash.com">Unsplash</a>. Design: <a href="https://html5up.net">HTML5 UP</a>.</p>
+							</footer>
+
+					</div>
+				</div>
+
+			</div>
+
+		<!-- Scripts -->
+			<script src="../../assets/js/jquery.min.js"></script>
+			<script src="../../assets/js/browser.min.js"></script>
+			<script src="../../assets/js/breakpoints.min.js"></script>
+			<script src="../../assets/js/util.js"></script>
+			<script src="../../assets/js/main.js"></script>
+			<script src="../../assets/js/prism.js"></script>
+
+	</body>
+</html>

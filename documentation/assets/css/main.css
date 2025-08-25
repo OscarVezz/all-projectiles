@@ -305,6 +305,9 @@ hr {
     margin: 3em 0; }
   hr.strong {
     border-bottom: solid 2px #f56a6a }
+  hr.mini {
+    margin: 0.5em 0;
+  }
 
 .align-left {
   text-align: left; }
@@ -342,7 +345,7 @@ hr {
   .row > .col-1 {
     width: 8.33333%; }
   .row > .off-1 {
-    margin-left: 8.33333%; }
+    margin-left: 6.33333%; }
   .row > .col-2 {
     width: 16.66667%; }
   .row > .off-2 {
@@ -1369,7 +1372,7 @@ a.image {
 /* List */
 ol {
   list-style: decimal;
-  margin: 0 0 2em 0;
+  margin: 0 0 1.5em 0;
   padding-left: 1.25em; }
   ol li {
     padding-left: 0.25em; }
@@ -1378,7 +1381,7 @@ ol.copycat {
 
 ul {
   list-style: disc;
-  margin: 0 0 2em 0;
+  margin: 0 0 1.5em 0;
   padding-left: 1em; }
   ul li {
     padding-left: 0.5em; }
@@ -1550,9 +1553,10 @@ ul.pagination {
 
 /* Table */
 .table-wrapper {
-  padding-right: 3em;
+  /* padding-right: 3em; */
   -webkit-overflow-scrolling: touch;
-  overflow-x: auto; }
+  overflow-x: auto; 
+  scrollbar-color: #fcfcfc #505356 ;}
 
 table {
   margin: 0 0 0 0;

@@ -1,0 +1,638 @@
+<!DOCTYPE HTML>
+<!--
+	Editorial by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>PackedInfo</title>
+		<meta charset="utf-8" />
+		<meta name="description" content="A Projectile Engine for Godot"/>
+		<meta name="autor" content="Oscar Vezz"/>
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="../../assets/css/main.css" />
+	</head>
+	<body class="is-preload">
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Main -->
+					<div id="main">
+						<div class="inner">
+
+							<!-- Header -->
+							<header id="header">
+								<a href="../../index.html" class="logo"><strong>All Projectiles</strong> 1.4 Documentation</a>
+								<ul class="icons">
+									<li><a href="https://github.com/OscarVezz/all-projectiles" class="icon brands fa-github"><span class="label">Github</span></a></li>
+									<li><a href="https://www.patreon.com/OscarVezz" class="icon brands fa-patreon"><span class="label">Patreon</span></a></li>
+									<li><a href="https://oscarvezz.itch.io/" class="icon brands fa-itch-io"><span class="label">Itch.io</span></a></li>
+									<li><a href="https://x.com/Oscar_Vezz" class="icon brands fa-x-twitter"><span class="label">Twitter</span></a></li>
+									<li><a href="https://www.youtube.com/@oscarvezz5826" class="icon brands fa-youtube"><span class="label">YouTube</span></a></li>
+								</ul>
+							</header>
+
+							<!-- Content -->
+								<section>
+									<header class="main" id="packed-info">
+										<h2>PackedInfo</h2>
+									</header>
+
+
+									<!-- Inherits -->
+									<p>Inherits: <a href="https://docs.godotengine.org/en/stable/classes/class_refcounted.html#class-refcounted">RefCounted</a> < <a href="https://docs.godotengine.org/en/stable/classes/class_object.html#class-object">Object</a></p>
+									<p>Projectile creation data container.</p>
+									<br>
+
+
+									<!-- Description -->
+									<header class="semimajor" id="description">
+										<h3>Description</h3>
+									</header>
+									<p><b>PackedInfo</b> is a data container class that holds <strong>initialization parameters</strong> for projectiles. It acts as a configuration package that can be passed to projectile creation methods to set up their initial state.</p>
+          							<p><b>Note: PackedInfo</b> is used extensively by the <a href="../../1.0/nodes/projectile-processor-2d.html#projectile-processor-2d">ProjectileProcessor2D</a> for projectile initialization.</p>
+									<br>
+
+
+									<!-- Tutorials -->
+									<!-- <header class="semimajor" id="tutorials">
+										<h3>Tutorials</h3>
+									</header>
+									<ul>
+										<li><a href="#">tutorial_link1</a></li>
+										<li><a href="#">tutorial_link2</a></li>
+										<li><a href="#">tutorial_link3</a></li>
+									</ul> -->
+
+
+									<!-- Properties -->
+									<header class="semimajor" id="properties">
+										<h3>Properties</h3>
+									</header>
+									<div class="table-wrapper">
+										<table class="alt">
+											<colgroup>
+												<col style="width:27%">
+												<col style="width:43%">
+												<col style="width:30%">
+											</colgroup>  
+											<tbody>
+												<tr>
+													<td><a href="https://docs.godotengine.org/en/stable/classes/class_callable.html#callable">Callable</a></td>
+													<td><a href="#packed-info-property-collision-method">collision_method</a></td>
+													<td><code class="value">Callable()</code></td>
+												</tr>
+												<tr>
+													<td><a href="https://docs.godotengine.org/en/stable/classes/class_vector2.html#class-vector2">Vector2</a></td>
+													<td><a href="#packed-info-property-destination">destination</a></td>
+													<td><code class="value">Vector2.ZERO</code></td>
+												</tr>
+												<tr>
+													<td><a href="https://docs.godotengine.org/en/stable/classes/class_vector2.html#class-vector2">Vector2</a></td>
+													<td><a href="#packed-info-property-direction">direction</a></td>
+													<td><code class="value">Vector2.ZERO</code></td>
+												</tr>
+												<tr>
+													<td><a href="https://docs.godotengine.org/en/stable/classes/class_callable.html#callable">Callable</a></td>
+													<td><a href="#packed-info-property-expired-method">expired_method</a></td>
+													<td><code class="value">Callable()</code></td>
+												</tr>
+												<tr>
+													<td><a href="https://docs.godotengine.org/en/stable/classes/class_float.html#class-float">float</a></td>
+													<td><a href="#packed-info-property-headstart">headstart</a></td>
+													<td><code class="value">0</code></td>
+												</tr>
+												<tr>
+													<td><a href="https://docs.godotengine.org/en/stable/classes/class_int.html#class-int">int</a></td>
+													<td><a href="#packed-info-property-instance-id">instance_id</a></td>
+													<td><code class="value">1</code></td>
+												</tr>
+												<tr>
+													<td><a href="https://docs.godotengine.org/en/stable/classes/class_callable.html#callable">Callable</a></td>
+													<td><a href="#packed-info-property-move-method">move_method</a></td>
+													<td><code class="value">Callable()</code></td>
+												</tr>
+												<tr>
+													<td><a href="https://docs.godotengine.org/en/stable/classes/class_bool.html#class-bool">bool</a></td>
+													<td><a href="#packed-info-property-override-wait-time">override_wait_time</a></td>
+													<td><code class="value">false</code></td>
+												</tr>
+												<tr>
+													<td><a href="https://docs.godotengine.org/en/stable/classes/class_vector2.html#class-vector2">Vector2</a></td>
+													<td><a href="#packed-info-property-position">position</a></td>
+													<td><code class="value">Vector2.ZERO</code></td>
+												</tr>
+												<tr>
+													<td><a href="https://docs.godotengine.org/en/stable/classes/class_callable.html#callable">Callable</a></td>
+													<td><a href="#packed-info-property-start-method">start_method</a></td>
+													<td><code class="value">Callable()</code></td>
+												</tr>
+												<tr>
+													<td><a href="https://docs.godotengine.org/en/stable/classes/class_node2d.html#node2d">Node2D</a></td>
+													<td><a href="#packed-info-property-target">target</a></td>
+													<td><code class="value">null</code></td>
+												</tr>
+												<tr>
+													<td><a href="https://docs.godotengine.org/en/stable/classes/class_rid.html#rid">RID</a></td>
+													<td><a href="#packed-info-property-world-2d">world_2d</a></td>
+													<td><code class="value">RID()</code></td>
+												</tr>
+											</tbody>
+										</table>
+									</div>
+									<br>
+									<br>
+
+
+									<!-- Methods -->
+									<header class="semimajor" id="methods">
+										<h3>Methods</h3>
+									</header>
+									<div class="table-wrapper">
+										<table class="alt">
+											<colgroup>
+												<col style="width:27%">
+												<col style="width:73%">
+											</colgroup>  
+											<tbody>
+												<tr>
+													<td>void</td>
+													<td><a href="#packed-info-method-reassign-all">reassign_all</a></td>
+												</tr>
+												<tr>
+													<td>void</td>
+													<td><a href="#packed-info-method-reassign-simple">reassign_simple</a></td>
+												</tr>
+											</tbody>
+										</table>
+									</div>
+									<hr class="strong">
+									<br>
+
+
+									<!-- Signals -->
+									<!-- <header class="semimajor" id="signals">
+										<h3>Signals</h3>
+									</header>
+
+									<h4>signal_name_1<span class="comment-alt">(property_name_1: </span><a href="#" class="link">property_type_1</a><span class="comment-alt">, property_name_2: </span><a href="#" class="link">property_type_2</a><span class="comment-alt">)</span></h4>
+										<p class="tab">Signal description long</p>
+									<hr>
+
+									<h4>signal_name_2<span class="comment-alt">(property_name_1: </span><a href="#" class="link">property_type_1</a><span class="comment-alt">, property_name_2: </span><a href="#" class="link">property_type_2</a><span class="comment-alt">)</span></h4>
+										<p class="tab">Signal description long</p>
+									<hr class="strong">
+									<br> -->
+
+
+									<!-- Enumerations -->
+									<!-- <header class="semimajor" id="enumerations">
+										<h3>Enumerations</h3>
+									</header>
+
+									<h4><span class="comment-alt">enum </span>EnumName1 <span class="comment-alt">:</span></h4>
+									<ul style="list-style-type: none">
+										<li><h4><a href="#" class="link">EnumName1</a> ENUM_ELEMENT_NAME_1<span class="comment-alt"> = 0</span></h4></li>
+											<p class="tab-alt">Enum element description.</p>
+										<li><h4><a href="#" class="link">EnumName1</a> ENUM_ELEMENT_NAME_2<span class="comment-alt"> = 1</span></h4></li>
+											<p class="tab-alt">Enum element description.</p>
+										<li><h4><a href="#" class="link">EnumName1</a> ENUM_ELEMENT_NAME_3<span class="comment-alt"> = 2</span></h4></li>
+											<p class="tab-alt">Enum element description.</p>
+									</ul>
+									<hr>
+
+									<h4><span class="comment-alt">enum </span>EnumName2 <span class="comment-alt">:</span></h4>
+									<ul style="list-style-type: none">
+										<li><h4><a href="#" class="link">EnumName2</a> ENUM_ELEMENT_NAME_1<span class="comment-alt"> = 0</span></h4></li>
+											<p class="tab-alt">Enum element description.</p>
+										<li><h4><a href="#" class="link">EnumName2</a> ENUM_ELEMENT_NAME_2<span class="comment-alt"> = 1</span></h4></li>
+											<p class="tab-alt">Enum element description.</p>
+										<li><h4><a href="#" class="link">EnumName2</a> ENUM_ELEMENT_NAME_3<span class="comment-alt"> = 2</span></h4></li>
+											<p class="tab-alt">Enum element description.</p>
+									</ul>
+									<hr class="strong">
+									<br> -->
+
+
+									<!-- Property Descriptions -->
+									<header class="semimajor" id="property-descriptions">
+										<h3>Property Descriptions</h3>
+									</header>
+
+									<h4 id="packed-info-property-collision-method"><a href="https://docs.godotengine.org/en/stable/classes/class_callable.html#callable" class="link">Callable</a> collision_method<span class="comment-alt"> = </span><span class="value"> Callable()</span></h4>
+										<p class="tab">Projectile custom collision handling callback.</p>
+									<hr>
+
+									<h4 id="packed-info-property-destination"><a href="https://docs.godotengine.org/en/stable/classes/class_vector2.html#class-vector2" class="link">Vector2</a> destination<span class="comment-alt"> = </span><span class="value"> Vector2.ZERO</span></h4>
+										<p class="tab">Original destination the projectile is being headed.</p>
+										<p class="tab">Used for <b>non-seeking</b> projectiles with <b>fixed destinations</b>.</p>
+									<hr>
+
+									<h4 id="packed-info-property-direction"><a href="https://docs.godotengine.org/en/stable/classes/class_vector2.html#class-vector2" class="link">Vector2</a> direction<span class="comment-alt"> = </span><span class="value"> Vector2.ZERO</span></h4>
+										<p class="tab">Initial projectile movement direction.</p>
+									<hr>
+
+									<h4 id="packed-info-property-expired-method"><a href="https://docs.godotengine.org/en/stable/classes/class_callable.html#callable" class="link">Callable</a> expired_method<span class="comment-alt"> = </span><span class="value"> Callable()</span></h4>
+										<p class="tab">Projectile custom expiration callback.</p>
+									<hr>
+
+									<h4 id="packed-info-property-headstart"><a href="https://docs.godotengine.org/en/stable/classes/class_float.html#class-float" class="link">float</a> headstart<span class="comment-alt"> = </span><span class="value"> 0</span></h4>
+										<p class="tab">Projectile initial movement advantage.</p>
+										<p class="tab">Simulates projectiles that have been already moving before creation.</p>
+									<hr>
+
+									<h4 id="packed-info-property-instance-id"><a href="https://docs.godotengine.org/en/stable/classes/class_int.html#class-int" class="link">int</a> instance_id<span class="comment-alt"> = </span><span class="value"> 1</span></h4>
+										<p class="tab">Individual <strong>instance identifier</strong> for projectiles with <b>multiple instances</b>.</p>
+									<hr>
+
+									<h4 id="packed-info-property-move-method"><a href="https://docs.godotengine.org/en/stable/classes/class_callable.html#callable" class="link">Callable</a> move_method<span class="comment-alt"> = </span><span class="value"> Callable()</span></h4>
+										<p class="tab">Projectile custom movement callback.</p>
+									<hr>
+
+									<h4 id="packed-info-property-override-wait-time"><a href="https://docs.godotengine.org/en/stable/classes/class_bool.html#class-bool" class="link">bool</a> override_wait_time<span class="comment-alt"> = </span><span class="value"> false</span></h4>
+										<p class="tab">Flag to bypass built-in wait time behavior.</p>
+										<p class="tab">Used for complex attack patterns with custom timing.</p>
+									<hr>
+
+									<h4 id="packed-info-property-position"><a href="https://docs.godotengine.org/en/stable/classes/class_vector2.html#class-vector2" class="link">Vector2</a> position<span class="comment-alt"> = </span><span class="value"> Vector2.ZERO</span></h4>
+										<p class="tab">Projectile start position.</p>
+									<hr>
+
+									<h4 id="packed-info-property-start-method"><a href="https://docs.godotengine.org/en/stable/classes/class_callable.html#callable" class="link">Callable</a> start_method<span class="comment-alt"> = </span><span class="value"> Callable()</span></h4>
+										<p class="tab">Projectile custom initialization callback.</p>
+									<hr>
+
+									<h4 id="packed-info-property-target"><a href="https://docs.godotengine.org/en/stable/classes/class_node2d.html#node2d" class="link">Node2D</a> target<span class="comment-alt"> = </span><span class="value"> null</span></h4>
+										<p class="tab">The <b>target node</b> that projectiles should home-in.</p>
+										<p class="tab">Required for <b>seeking projectiles</b> with target-tracking behavior.</p>
+									<hr>
+
+									<h4 id="packed-info-property-world-2d"><a href="https://docs.godotengine.org/en/stable/classes/class_rid.html#rid" class="link">RID</a> world_2d<span class="comment-alt"> = </span><span class="value"> RID()</span></h4>
+										<p class="tab">The <b>physics server</b> world RID for <b>non-instanced</b> projectiles.</p>
+									<hr class="strong">
+									<br>
+
+
+									<!-- Method Descriptions -->
+									<header class="semimajor" id="method-descriptions">
+										<h3>Method Descriptions</h3>
+									</header>
+									
+									<h4 id="packed-info-method-reassign-all"><span class="comment-alt">void</span> reassign_all<span class="comment-alt">(_position: </span><a href="https://docs.godotengine.org/en/stable/classes/class_vector2.html#vector2" class="link">Vector2</a><span class="comment-alt">, _direction: </span><a href="https://docs.godotengine.org/en/stable/classes/class_vector2.html#vector2" class="link">Vector2</a><span class="comment-alt">, _destination: </span><a href="https://docs.godotengine.org/en/stable/classes/class_vector2.html#vector2" class="link">Vector2</a><span class="comment-alt">, _target: </span><a href="https://docs.godotengine.org/en/stable/classes/class_node2d.html#node2d" class="link">Node2D</a><span class="comment-alt">, _instance_id: </span><a href="https://docs.godotengine.org/en/stable/classes/class_int.html#class-int" class="link">int</a><span class="comment-alt">, _world_2d: </span><a href="https://docs.godotengine.org/en/stable/classes/class_rid.html#rid" class="link">RID</a><span class="comment-alt">, _move_method: </span><a href="https://docs.godotengine.org/en/stable/classes/class_callable.html#callable" class="link">Callable</a><span class="comment-alt">, _start_method: </span><a href="https://docs.godotengine.org/en/stable/classes/class_callable.html#callable" class="link">Callable</a><span class="comment-alt">, _collision_method: </span><a href="https://docs.godotengine.org/en/stable/classes/class_callable.html#callable" class="link">Callable</a><span class="comment-alt">, _expired_method: </span><a href="https://docs.godotengine.org/en/stable/classes/class_callable.html#callable" class="link">Callable</a><span class="comment-alt">, _override_wait_time: </span><a href="https://docs.godotengine.org/en/stable/classes/class_bool.html#class-bool" class="link">bool</a><span class="comment-alt"> = false, _headstart: </span><a href="https://docs.godotengine.org/en/stable/classes/class_float.html#class-float" class="link">float</a><span class="comment-alt"> = 0)</span></h4>
+										<p class="tab">Completely reconfigures all properties of the <b>PackedInfo</b> object.</p>
+										<p class="tab">Used for <b>complex projectile setups</b> requiring full parameter control.</p>
+									<hr>
+
+									<h4 id="packed-info-method-reassign-simple"><span class="comment-alt">void</span> reassign_simple<span class="comment-alt">(_position: </span><a href="https://docs.godotengine.org/en/stable/classes/class_vector2.html#vector2" class="link">Vector2</a><span class="comment-alt">, _destination: </span><a href="https://docs.godotengine.org/en/stable/classes/class_vector2.html#vector2" class="link">Vector2</a><span class="comment-alt">, _target: </span><a href="https://docs.godotengine.org/en/stable/classes/class_node2d.html#node2d" class="link">Node2D</a><span class="comment-alt">, _move_method: </span><a href="https://docs.godotengine.org/en/stable/classes/class_callable.html#callable" class="link">Callable</a><span class="comment-alt">, _start_method: </span><a href="https://docs.godotengine.org/en/stable/classes/class_callable.html#callable" class="link">Callable</a><span class="comment-alt">, _collision_method: </span><a href="https://docs.godotengine.org/en/stable/classes/class_callable.html#callable" class="link">Callable</a><span class="comment-alt">, _expired_method: </span><a href="https://docs.godotengine.org/en/stable/classes/class_callable.html#callable" class="link">Callable</a><span class="comment-alt">)</span></h4>
+										<p class="tab">Reconfigures essential properties for standard projectile setups.</p>
+										<p class="tab">Simplified version for common use cases that don't require advanced parameters.</p>
+									<hr>
+								</section>
+
+						</div>
+					</div>
+
+				<!-- Sidebar -->
+				<div id="sidebar">
+					<div class="inner">
+
+						<!-- Search -->
+							<!-- <section id="search" class="alt">
+								<form method="post" action="#">
+									<input type="text" name="query" id="query" placeholder="Search" />
+								</form>
+							</section> -->
+
+						<!-- Menu -->
+							<nav id="menu">
+								<header class="major">
+									<h2> <span class="image mini_left mini">
+										<a href="../../index.html"><img src="../../images/icon.svg" alt="All Projectiles Logo" /></a></span> 
+										<a href="../../index.html" class="test"> All Projectiles </a>
+									</h2>
+									<!-- <p><span class="image left"><img src="images/icon.svg" alt="" /></span>All Projectiles -->
+								</header>
+								<ul>
+									<li>
+										<span class="opener max">Introduction</span>
+										<ul>
+											<span class="opener mini"><a href="../../1.0/introduction/whats-this.html">What is This?</a></span>
+											<ul>
+												<li><a href="../../1.0/introduction/whats-this.html#whats-this">What is All Projectiles?</a></li>
+												<li><a href="../../1.0/introduction/whats-this.html#addon-nodes">Addon Nodes</a></li>
+											</ul>
+
+											<span class="opener mini"><a href="../../1.0/introduction/installation.html">Installation</a></span>
+											<ul>
+												<li><a href="../../1.0/introduction/installation.html#asset-library">Asset Library</a></li>
+												<li><a href="../../1.0/introduction/installation.html#patreon">Patreon</a></li>
+												<li><a href="../../1.0/introduction/installation.html#github">GitHub</a></li>
+												<li><a href="../../1.0/introduction/installation.html#itchio">Itchio</a></li>
+											</ul>
+
+											<span class="opener mini"><a href="../../1.0/introduction/getting-started.html">Getting Started</a></span>
+											<ul>
+												<li><a href="../../1.0/introduction/getting-started.html#spawning-projectiles">Spawning Projectiles</a></li>
+												<li><a href="../../1.0/introduction/getting-started.html#creating-projectile-blueprints">Creating Projectile Blueprints</a></li>
+												<li><a href="../../1.0/introduction/getting-started.html#modifying-projectile-behavior">Modifying projectile behavior</a></li>
+											</ul>
+										</ul>
+									</li>
+
+									<li>
+										<span class="opener max">Tutorials</span>
+										<ul>
+											<span class="opener mini"><a href="../../1.0/tutorials/1-the-absolute-basics.html">The Absolute Basics</a></span>
+											<ul>
+												<li><a href="../../1.0/tutorials/1-the-absolute-basics.html#enablin-the-plugin">Enabling the Plugin</a></li>
+												<li><a href="../../1.0/tutorials/1-the-absolute-basics.html#setting-up-the-scene">Setting up the scene</a></li>
+												<li><a href="../../1.0/tutorials/1-the-absolute-basics.html#creating-a-projectile">Creating a Projectile</a></li>
+											</ul>
+
+											<span class="opener mini"><a href="../../1.0/tutorials/2-using-projectile-blueprints.html">Using projectile blueprints</a></span>
+											<ul>
+												<li><a href="../../1.0/tutorials/2-using-projectile-blueprints.html#creating-projectile-blueprints">Creating Projectile Blueprints</a></li>
+												<li><a href="../../1.0/tutorials/2-using-projectile-blueprints.html#creating-an-area-projectile">Creating an Area Projectile</a></li>
+												<li><a href="../../1.0/tutorials/2-using-projectile-blueprints.html#creating-an-instanced-projectile">Creating an Instantiated Projectile</a></li>
+											</ul>
+
+											<span class="opener mini"><a href="../../1.0/tutorials/3-dealing-damage-and-projectile-interactions.html">Dealing damage and other interactions</a></span>
+											<ul>
+												<li><a href="../../1.0/tutorials/3-dealing-damage-and-projectile-interactions.html#adding-projectile-collisions">Adding Projectile Collisions</a></li>
+												<li><a href="../../1.0/tutorials/3-dealing-damage-and-projectile-interactions.html#dealing-damage">Dealing damage</a></li>
+											</ul>
+
+											<span class="opener mini"><a href="../../1.0/tutorials/4-modifying-projectiles-through-code.html">Modifying projectiles through code</a></span>
+											<ul>
+												<li><a href="../../1.0/tutorials/4-modifying-projectiles-through-code.html#custom-projectile-movement">Custom Projectile movement</a></li>
+												<li><a href="../../1.0/tutorials/4-modifying-projectiles-through-code.html#custom-projectile-collisions">Custom Projectile collisions</a></li>
+											</ul>
+
+											<span class="opener mini"><a href="../../1.0/tutorials/5-creating-your-own-projectile-class.html">Creating your own projectile class</a></span>
+											<ul>
+												<li><a href="../../1.0/tutorials/5-creating-your-own-projectile-class.html#creating-custom-projectile-classes">Creating custom projectile classes</a></li>
+												<li><a href="../../1.0/tutorials/5-creating-your-own-projectile-class.html#assigning-custom-projectile-classes">Assigning custom projectile classes</a></li>
+											</ul>
+
+											<span class="opener mini"><a href="../../1.0/tutorials/6-using-attacks-as-weapons.html">Using attacks as weapons</a></span>
+											<ul>
+												<li><a href="../../1.0/tutorials/6-using-attacks-as-weapons.html#creating-attack-blueprints">Creating Attack Blueprints</a></li>
+												<li><a href="../../1.0/tutorials/6-using-attacks-as-weapons.html#using-projectile-managers">Using Projectile Managers</a></li>
+												<li><a href="../../1.0/tutorials/6-using-attacks-as-weapons.html#modifying-attacks-through-code">Modifying Attacks through code</a></li>
+											</ul>
+
+											<span class="opener mini"><a href="../../1.0/tutorials/7-understanding-one-by-one-attacks.html">Understanding ONE_BY_ONE attacks</a></span>
+											<ul>
+												<li><a href="../../1.0/tutorials/7-understanding-one-by-one-attacks.html#overwriting-your-requested-parameters">Overwriting your requested parameters</a></li>
+												<li><a href="../../1.0/tutorials/7-understanding-one-by-one-attacks.html#one-by-one-attacks">ONE_BY_ONE Attacks</a></li>
+											</ul>
+
+											<span class="opener mini"><a href="../../1.0/tutorials/8-creating-attack-patterns.html">Creating attack patterns</a></span>
+											<ul>
+												<li><a href="../../1.0/tutorials/8-creating-attack-patterns.html#all-at-once-patterns">ALL_AT_ONCE patterns</a></li>
+												<li><a href="../../1.0/tutorials/8-creating-attack-patterns.html#one-by-one-patterns">ONE_BY_ONE patterns</a></li>
+											</ul>
+
+											<span class="opener mini"><a href="../../1.0/tutorials/9-the-global-database.html">The Global Database</a></span>
+											<ul>
+												<li><a href="../../1.0/tutorials/9-the-global-database.html#modifying-database-elements">Modifying Database elements</a></li>
+												<li><a href="../../1.0/tutorials/9-the-global-database.html#using-the-database-across-your-project">Using the Database across your Project</a></li>
+											</ul>
+
+											<span class="opener mini"><a href="../../1.0/tutorials/10-using-modifiers-as-buffs-and-debuffs.html">Using modifiers as buffs and debuffs</a></span>
+											<ul>
+												<li><a href="../../1.0/tutorials/10-using-modifiers-as-buffs-and-debuffs.html#creating-and-using-modifiers">Creating and using Modifiers</a></li>
+												<li><a href="../../1.0/tutorials/10-using-modifiers-as-buffs-and-debuffs.html#understanding-modifier-verification">Understanding Modifier verification</a></li>
+												<li><a href="../../1.0/tutorials/10-using-modifiers-as-buffs-and-debuffs.html#integration-with-the-global-database">Integration with the Global Database</a></li>
+											</ul>
+
+											<span class="opener mini"><a href="../../1.0/tutorials/11-common-projectiles-examples.html">Common projectiles examples</a></span>
+											<ul>
+												<li><a href="../../1.0/tutorials/11-common-projectiles-examples.html#variable-speed-over-lifetime">Variable Speed over Lifetime</a></li>
+												<li><a href="../../1.0/tutorials/11-common-projectiles-examples.html#bouncing-projectile">Bouncing Projectile</a></li>
+											</ul>
+
+											<span class="opener mini"><a href="../../1.0/tutorials/12-common-attack-examples.html">Common attacks examples</a></span>
+											<ul>
+												<li><a href="../../1.0/tutorials/12-common-attack-examples.html#single-charge-on-start">Single Charge on Start</a></li>
+											</ul>
+										</ul>
+									</li>
+
+									<li>
+										<span class="opener max">Core Nodes</span>
+										<ul>
+											<span class="opener mini"><a href="../../1.0/nodes/projectile-caller-2d.html">ProjectileCaller2D</a></span>
+											<ul>
+												<li><a href="../../1.0/nodes/projectile-caller-2d.html#description">Description</a></li>
+												<li><a href="../../1.0/nodes/projectile-caller-2d.html#tutorials">Tutorials</a></li>
+												<li><a href="../../1.0/nodes/projectile-caller-2d.html#properties">Properties</a></li>
+												<li><a href="../../1.0/nodes/projectile-caller-2d.html#methods">Methods</a></li>
+												<!-- <li><a href="../../1.0/nodes/projectile-caller-2d.html#signals">Signals</a></li> -->
+												<!-- <li><a href="../../1.0/nodes/projectile-caller-2d.html#enumerations">Enumerations</a></li> -->
+												<li><a href="../../1.0/nodes/projectile-caller-2d.html#property-descriptions">Property Descriptions</a></li>
+												<li><a href="../../1.0/nodes/projectile-caller-2d.html#method-descriptions">Method Descriptions</a></li>
+											</ul>
+
+											<span class="opener mini"><a href="../../1.0/nodes/projectile-database.html">ProjectileDatabase</a></span>
+											<ul>
+												<li><a href="../../1.0/nodes/projectile-database.html#description">Description</a></li>
+												<li><a href="../../1.0/nodes/projectile-database.html#tutorials">Tutorials</a></li>
+												<li><a href="../../1.0/nodes/projectile-database.html#properties">Properties</a></li>
+												<li><a href="../../1.0/nodes/projectile-database.html#methods">Methods</a></li>
+												<!-- <li><a href="../../1.0/nodes/projectile-database.html#signals">Signals</a></li> -->
+												<!-- <li><a href="../../1.0/nodes/projectile-database.html#enumerations">Enumerations</a></li> -->
+												<li><a href="../../1.0/nodes/projectile-database.html#property-descriptions">Property Descriptions</a></li>
+												<li><a href="../../1.0/nodes/projectile-database.html#method-descriptions">Method Descriptions</a></li>
+											</ul>
+
+											<span class="opener mini"><a href="../../1.0/nodes/projectile-manager-2d.html">ProjectileManager2D</a></span>
+											<ul>
+												<li><a href="../../1.0/nodes/projectile-manager-2d.html#description">Description</a></li>
+												<li><a href="../../1.0/nodes/projectile-manager-2d.html#tutorials">Tutorials</a></li>
+												<li><a href="../../1.0/nodes/projectile-manager-2d.html#properties">Properties</a></li>
+												<li><a href="../../1.0/nodes/projectile-manager-2d.html#methods">Methods</a></li>
+												<!-- <li><a href="../../1.0/nodes/projectile-manager-2d.html#signals">Signals</a></li> -->
+												<!-- <li><a href="../../1.0/nodes/projectile-manager-2d.html#enumerations">Enumerations</a></li> -->
+												<li><a href="../../1.0/nodes/projectile-manager-2d.html#property-descriptions">Property Descriptions</a></li>
+												<li><a href="../../1.0/nodes/projectile-manager-2d.html#method-descriptions">Method Descriptions</a></li>
+											</ul>
+
+											<span class="opener mini"><a href="../../1.0/nodes/projectile-processor-2d.html">ProjectileProcessor2D</a></span>
+											<ul>
+												<li><a href="../../1.0/nodes/projectile-processor-2d.html#description">Description</a></li>
+												<!-- <li><a href="../../1.0/nodes/projectile-processor-2d.html#tutorials">Tutorials</a></li> -->
+												<li><a href="../../1.0/nodes/projectile-processor-2d.html#properties">Properties</a></li>
+												<li><a href="../../1.0/nodes/projectile-processor-2d.html#methods">Methods</a></li>
+												<li><a href="../../1.0/nodes/projectile-processor-2d.html#signals">Signals</a></li>
+												<!-- <li><a href="../../1.0/nodes/projectile-processor-2d.html#enumerations">Enumerations</a></li> -->
+												<li><a href="../../1.0/nodes/projectile-processor-2d.html#property-descriptions">Property Descriptions</a></li>
+												<li><a href="../../1.0/nodes/projectile-processor-2d.html#method-descriptions">Method Descriptions</a></li>
+											</ul>
+										</ul>
+									</li>
+
+									<li>
+										<span class="opener active max">Classes</span>
+										<ul>
+											<span class="opener mini"><a href="../../1.0/classes/area-projectile-2d.html">AreaProjectile2D</a></span>
+											<ul>
+												<li><a href="../../1.0/classes/area-projectile-2d.html#description">Description</a></li>
+												<li><a href="../../1.0/classes/area-projectile-2d.html#tutorials">Tutorials</a></li>
+												<li><a href="../../1.0/classes/area-projectile-2d.html#properties">Properties</a></li>
+												<li><a href="../../1.0/classes/area-projectile-2d.html#methods">Methods</a></li>
+												<!-- <li><a href="../../1.0/classes/area-projectile-2d.html#signals">Signals</a></li> -->
+												<!-- <li><a href="../../1.0/classes/area-projectile-2d.html#enumerations">Enumerations</a></li> -->
+												<li><a href="../../1.0/classes/area-projectile-2d.html#property-descriptions">Property Descriptions</a></li>
+												<li><a href="../../1.0/classes/area-projectile-2d.html#method-descriptions">Method Descriptions</a></li>
+											</ul>
+
+											<span class="opener mini"><a href="../../1.0/classes/instanced-projectile-2d.html">InstancedProjectile2D</a></span>
+											<ul>
+												<li><a href="../../1.0/classes/instanced-projectile-2d.html#description">Description</a></li>
+												<li><a href="../../1.0/classes/instanced-projectile-2d.html#tutorials">Tutorials</a></li>
+												<li><a href="../../1.0/classes/instanced-projectile-2d.html#properties">Properties</a></li>
+												<li><a href="../../1.0/classes/instanced-projectile-2d.html#methods">Methods</a></li>
+												<!-- <li><a href="../../1.0/classes/instanced-projectile-2d.html#signals">Signals</a></li> -->
+												<!-- <li><a href="../../1.0/classes/instanced-projectile-2d.html#enumerations">Enumerations</a></li> -->
+												<li><a href="../../1.0/classes/instanced-projectile-2d.html#property-descriptions">Property Descriptions</a></li>
+												<li><a href="../../1.0/classes/instanced-projectile-2d.html#method-descriptions">Method Descriptions</a></li>
+											</ul>
+
+											<span class="opener mini"><a href="../../1.0/classes/projectile-2d.html">Projectile2D</a></span>
+											<ul>
+												<li><a href="../../1.0/classes/projectile-2d.html#description">Description</a></li>
+												<li><a href="../../1.0/classes/projectile-2d.html#tutorials">Tutorials</a></li>
+												<li><a href="../../1.0/classes/projectile-2d.html#properties">Properties</a></li>
+												<li><a href="../../1.0/classes/projectile-2d.html#methods">Methods</a></li>
+												<li><a href="../../1.0/classes/projectile-2d.html#signals">Signals</a></li>
+												<li><a href="../../1.0/classes/projectile-2d.html#enumerations">Enumerations</a></li>
+												<li><a href="../../1.0/classes/projectile-2d.html#property-descriptions">Property Descriptions</a></li>
+												<li><a href="../../1.0/classes/projectile-2d.html#method-descriptions">Method Descriptions</a></li>
+											</ul>
+											<hr class="mini">
+
+
+											<span class="opener mini"><a href="../../1.0/classes/attack-2d.html">Attack2D</a></span>
+											<ul>
+												<li><a href="../../1.0/classes/attack-2d.html#description">Description</a></li>
+												<li><a href="../../1.0/classes/attack-2d.html#tutorials">Tutorials</a></li>
+												<li><a href="../../1.0/classes/attack-2d.html#properties">Properties</a></li>
+												<li><a href="../../1.0/classes/attack-2d.html#methods">Methods</a></li>
+												<li><a href="../../1.0/classes/attack-2d.html#signals">Signals</a></li>
+												<li><a href="../../1.0/classes/attack-2d.html#enumerations">Enumerations</a></li>
+												<li><a href="../../1.0/classes/attack-2d.html#property-descriptions">Property Descriptions</a></li>
+												<li><a href="../../1.0/classes/attack-2d.html#method-descriptions">Method Descriptions</a></li>
+											</ul>
+											<hr class="mini">
+
+
+											<span class="opener mini"><a href="../../1.0/classes/attack-2d-modifier.html">Attack2DModifier</a></span>
+											<ul>
+												<li><a href="../../1.0/classes/attack-2d-modifier.html#description">Description</a></li>
+												<li><a href="../../1.0/classes/attack-2d-modifier.html#tutorials">Tutorials</a></li>
+												<li><a href="../../1.0/classes/attack-2d-modifier.html#properties">Properties</a></li>
+												<li><a href="../../1.0/classes/attack-2d-modifier.html#methods">Methods</a></li>
+												<!-- <li><a href="../../1.0/classes/attack-2d-modifier.html#signals">Signals</a></li> -->
+												<!-- <li><a href="../../1.0/classes/attack-2d-modifier.html#enumerations">Enumerations</a></li> -->
+												<li><a href="../../1.0/classes/attack-2d-modifier.html#property-descriptions">Property Descriptions</a></li>
+												<li><a href="../../1.0/classes/attack-2d-modifier.html#method-descriptions">Method Descriptions</a></li>
+											</ul>
+
+											<span class="opener mini"><a href="../../1.0/classes/projectile-2d-modifier.html">Projectile2DModifier</a></span>
+											<ul>
+												<li><a href="../../1.0/classes/projectile-2d-modifier.html#description">Description</a></li>
+												<li><a href="../../1.0/classes/projectile-2d-modifier.html#tutorials">Tutorials</a></li>
+												<li><a href="../../1.0/classes/projectile-2d-modifier.html#properties">Properties</a></li>
+												<li><a href="../../1.0/classes/projectile-2d-modifier.html#methods">Methods</a></li>
+												<!-- <li><a href="../../1.0/classes/projectile-2d-modifier.html#signals">Signals</a></li> -->
+												<!-- <li><a href="../../1.0/classes/projectile-2d-modifier.html#enumerations">Enumerations</a></li> -->
+												<li><a href="../../1.0/classes/projectile-2d-modifier.html#property-descriptions">Property Descriptions</a></li>
+												<li><a href="../../1.0/classes/projectile-2d-modifier.html#method-descriptions">Method Descriptions</a></li>
+											</ul>
+
+											<span class="opener mini"><a href="../../1.0/classes/timed-modifier.html">TimedModifier</a></span>
+											<ul>
+												<li><a href="../../1.0/classes/timed-modifier.html#description">Description</a></li>
+												<li><a href="../../1.0/classes/timed-modifier.html#tutorials">Tutorials</a></li>
+												<li><a href="../../1.0/classes/timed-modifier.html#properties">Properties</a></li>
+												<li><a href="../../1.0/classes/timed-modifier.html#methods">Methods</a></li>
+												<!-- <li><a href="../../1.0/classes/timed-modifier.html#signals">Signals</a></li> -->
+												<!-- <li><a href="../../1.0/classes/timed-modifier.html#enumerations">Enumerations</a></li> -->
+												<li><a href="../../1.0/classes/timed-modifier.html#property-descriptions">Property Descriptions</a></li>
+												<li><a href="../../1.0/classes/timed-modifier.html#method-descriptions">Method Descriptions</a></li>
+											</ul>
+											<hr class="mini">
+	
+
+											<span class="opener active mini"><a href="../../1.0/classes/packed-info.html">PackedInfo</a></span>
+											<ul>
+												<li><a href="../../1.0/classes/packed-info.html#description">Description</a></li>
+												<!-- <li><a href="../../1.0/classes/packed-info.html#tutorials">Tutorials</a></li> -->
+												<li><a href="../../1.0/classes/packed-info.html#properties">Properties</a></li>
+												<li><a href="../../1.0/classes/packed-info.html#methods">Methods</a></li>
+												<!-- <li><a href="../../1.0/classes/packed-info.html#signals">Signals</a></li> -->
+												<!-- <li><a href="../../1.0/classes/packed-info.html#enumerations">Enumerations</a></li> -->
+												<li><a href="../../1.0/classes/packed-info.html#property-descriptions">Property Descriptions</a></li>
+												<li><a href="../../1.0/classes/packed-info.html#method-descriptions">Method Descriptions</a></li>
+											</ul>
+										</ul>
+									</li>
+
+									<li>
+										<span class="opener max">Resources</span>
+										<ul>
+											<span class="opener mini"><a href="../../1.0/resources/attack-blueprint-2d.html">AttackBlueprint2D</a></span>
+											<ul>
+												<li><a href="../../1.0/resources/attack-blueprint-2d.html#description">Description</a></li>
+												<li><a href="../../1.0/resources/attack-blueprint-2d.html#tutorials">Tutorials</a></li>
+												<li><a href="../../1.0/resources/attack-blueprint-2d.html#properties">Properties</a></li>
+												<!-- <li><a href="../../1.0/resources/attack-blueprint-2d.html#methods">Methods</a></li> -->
+												<!-- <li><a href="../../1.0/resources/attack-blueprint-2d.html#signals">Signals</a></li> -->
+												<!-- <li><a href="../../1.0/resources/attack-blueprint-2d.html#enumerations">Enumerations</a></li> -->
+												<li><a href="../../1.0/resources/attack-blueprint-2d.html#property-descriptions">Property Descriptions</a></li>
+												<!-- <li><a href="../../1.0/resources/attack-blueprint-2d.html#method-descriptions">Method Descriptions</a></li> -->
+											</ul>
+
+											<span class="opener mini"><a href="../../1.0/resources/projectile-blueprint-2d.html">ProjectileBlueprint2D</a></span>
+											<ul>
+												<li><a href="../../1.0/resources/projectile-blueprint-2d.html#description">Description</a></li>
+												<li><a href="../../1.0/resources/projectile-blueprint-2d.html#tutorials">Tutorials</a></li>
+												<li><a href="../../1.0/resources/projectile-blueprint-2d.html#properties">Properties</a></li>
+												<!-- <li><a href="../../1.0/resources/projectile-blueprint-2d.html#methods">Methods</a></li> -->
+												<!-- <li><a href="../../1.0/resources/projectile-blueprint-2d.html#signals">Signals</a></li> -->
+												<!-- <li><a href="../../1.0/resources/projectile-blueprint-2d.html#enumerations">Enumerations</a></li> -->
+												<li><a href="../../1.0/resources/projectile-blueprint-2d.html#property-descriptions">Property Descriptions</a></li>
+												<!-- <li><a href="../../1.0/resources/projectile-blueprint-2d.html#method-descriptions">Method Descriptions</a></li> -->
+											</ul>
+										</ul>
+									</li>
+
+									<!-- <li><a href="index.html">Homepage</a></li>
+									<li><a href="generic.html">Generic</a></li>
+									<li><a href="elements.html">Elements</a></li> -->
+								</ul>
+							</nav>
+
+
+						<!-- Footer -->
+							<footer id="footer">
+								<p class="copyright">Copyright &copy; 2025. All rights reserved. Demo Images: <a href="https://unsplash.com">Unsplash</a>. Design: <a href="https://html5up.net">HTML5 UP</a>.</p>
+							</footer>
+
+					</div>
+				</div>
+
+			</div>
+
+		<!-- Scripts -->
+			<script src="../../assets/js/jquery.min.js"></script>
+			<script src="../../assets/js/browser.min.js"></script>
+			<script src="../../assets/js/breakpoints.min.js"></script>
+			<script src="../../assets/js/util.js"></script>
+			<script src="../../assets/js/main.js"></script>
+
+	</body>
+</html>
