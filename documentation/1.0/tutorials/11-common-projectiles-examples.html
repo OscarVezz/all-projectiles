@@ -6,7 +6,7 @@
 -->
 <html>
 	<head>
-		<title>The Absolute Basics</title>
+		<title>Common Projectiles examples</title>
 		<meta charset="utf-8" />
 		<meta name="description" content="A Projectile Engine for Godot"/>
 		<meta name="autor" content="Oscar Vezz"/>
@@ -38,34 +38,101 @@
 							<!-- Content -->
 								<section>
 									<header class="main" id="title">
-										<h2>Title</h2>
+										<h2>Common Projectiles examples</h2>
 									</header>
 
 
 									<!-- Title -->
-									<p>Description.</p>
+									<p>Here is a collection of regularly requested <b>Projectiles</b> and their implementation in <strong>All Projectiles</strong>.</p>
+									<p>The list will be continuously updated as requested.</p>
+									<br>
+
+
+									<!-- Section -->
+									<header id="variable-speed-over-lifetime">
+										<h3><i class="fa-solid fa-square-caret-right"></i> Variable Speed over Lifetime</h3>
+									</header>
+
+									<pre><code class="language-gdscript">extends  Node2D
+
+@onready var projectile_caller: ProjectileCaller2D = $ProjectileCaller2D
+
+
+func _ready() -> void:
+	projectile_caller.get_projectile(0).set_on_move(custom_update)
+
+
+func _input(event):
+	if event is InputEventMouseButton:
+		if event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
+			projectile_caller.request_projectile(0, position, get_global_mouse_position())
+
+
+func custom_update(proj: Projectile2D, _delta: float) -> Vector2:
+	var delta: float = (proj.resource.lifetime - proj.lifetime) / proj.resource.lifetime
+	var curve: Curve = proj.global_properties.get("SPEED_CURVE")
+	if (curve != null):
+		proj.speed = proj.resource.linear_speed * curve.sample(delta)
+
+	return proj.direction</code></pre>
 
 									<div class="row gtr-75 aln-center">
-										<div class="col-6 col-12-medium">
-											<span class="image fit center"><img src="../../images/tutorials/1-the-absolute-basics/1.png"></span>
+										<div class="col-12 col-12-medium">
+											<span class="image fit center"><img src="../../images/tutorials/11-common-projectiles-examples/1.png"></span>
+											<span class="image fit center"><img src="../../images/tutorials/11-common-projectiles-examples/2.gif"></span>
 										</div>
 									</div>
 									<br>
 
 
 									<!-- Section -->
-									<header id="section">
-										<h3>Section</h3>
+									<header id="bouncing-projectile">
+										<h3><i class="fa-solid fa-square-caret-right"></i> Bouncing Projectile</h3>
 									</header>
-									<p>Decription.</p>
+
+									<pre><code class="language-gdscript">extends  Node2D
+
+@onready var projectile_caller: ProjectileCaller2D = $ProjectileCaller2D
+
+
+func _ready() -> void:
+	projectile_caller.get_projectile(0).set_on_collision(custom_collision)
+
+
+func _input(event):
+	if event is InputEventMouseButton:
+		if event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
+			projectile_caller.request_projectile(0, position, get_global_mouse_position())
+
+
+func custom_collision(proj: Projectile2D, area_rid: RID, area_node: Node2D, target_node: Node2D, area_shape_index: int, local_shape_index: int) -> void:
+	if not proj.validate_collision(area_rid, area_node):
+		return
+	
+	var wall_layer: int = proj.global_properties["WALL_LAYER"]
+	if wall_layer & area_node.collision_layer != 0:
+
+		var query: PhysicsRayQueryParameters2D = PhysicsRayQueryParameters2D.create(proj.position - (proj.direction * 10), target_node.global_position, proj.collision_mask)
+		query.collide_with_areas = true;
+		var result: Dictionary = proj.current_space.intersect_ray(query)
+		if (result):
+			var prev: float = proj.direction.angle()
+			proj.direction = proj.direction.bounce(result.normal)
+			if (proj.look_at):
+				proj.transform = proj.transform.rotated(proj.direction.angle() - prev)
+			return
+
+		proj.is_expired = true
+		return
+
+	if target_node.has_method(proj.on_hit_call):
+		target_node.call(proj.on_hit_call, proj)
+	proj.on_pierced(area_rid)</code></pre>
 
 									<div class="row gtr-75 aln-center">
-										<div class="col-5 col-12-medium">
-											<span class="image fit center"><img src="../../images/tutorials/"></span>
-										</div>
-
-										<div class="col-5 col-12-medium">
-											<span class="image fit center"><img src="../../images/tutorials/"></span>
+										<div class="col-12 col-12-medium">
+											<span class="image fit center"><img src="../../images/tutorials/11-common-projectiles-examples/3.png"></span>
+											<span class="image fit center"><img src="../../images/tutorials/11-common-projectiles-examples/4.gif"></span>
 										</div>
 									</div>
 									<br>

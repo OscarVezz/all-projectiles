@@ -6,7 +6,7 @@
 -->
 <html>
 	<head>
-		<title>The Absolute Basics</title>
+		<title>Common Attacks examples</title>
 		<meta charset="utf-8" />
 		<meta name="description" content="A Projectile Engine for Godot"/>
 		<meta name="autor" content="Oscar Vezz"/>
@@ -38,34 +38,66 @@
 							<!-- Content -->
 								<section>
 									<header class="main" id="title">
-										<h2>Title</h2>
+										<h2>Common Attacks examples</h2>
 									</header>
 
 
 									<!-- Title -->
-									<p>Description.</p>
-
-									<div class="row gtr-75 aln-center">
-										<div class="col-6 col-12-medium">
-											<span class="image fit center"><img src="../../images/tutorials/1-the-absolute-basics/1.png"></span>
-										</div>
-									</div>
+									<p>Here is a collection of regularly requested <b>Attacks</b> and their implementation in <strong>All Projectiles</strong>.</p>
+									<p>The list will be continuously updated as requested.</p>
 									<br>
 
 
 									<!-- Section -->
-									<header id="section">
-										<h3>Section</h3>
+									<header id="single-charge-on-start">
+										<h3><i class="fa-solid fa-square-caret-right"></i> Single Charge on Start</h3>
 									</header>
-									<p>Decription.</p>
+
+									<pre><code class="language-gdscript">extends  Node2D
+
+@export var separation: int = 30
+
+@onready var projectile_manager: ProjectileManager2D = $ProjectileManager2D
+
+@onready var bow: Sprite2D = $Bow
+@onready var animation_player: AnimationPlayer = $AnimationPlayer
+
+
+func _ready() -> void:
+	animation_player.play("idle")
+	projectile_manager.get_attack(0).set_on_charge_enter(on_charge_enter).set_on_charge_exit(on_charge_exit).set_on_main_exit(on_main_exit)
+
+
+func _process(_delta: float) -> void:
+	var direction: Vector2 = (get_global_mouse_position() - position).normalized()
+	bow.position = direction * separation
+	bow.rotation = direction.angle()
+
+	projectile_manager.position = bow.position
+	projectile_manager.rotation = bow.rotation
+
+	if (Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT)):
+		projectile_manager.request_execution(0, 0, position + (direction * separation), get_global_mouse_position())
+
+
+func on_main_exit(attack: Attack2D) -> void:
+	if (attack.is_under_uninterrupted_request):
+		attack.change_state(attack.AttackState.ATTACK_MAIN)
+	else:
+		attack.main_exit()
+
+
+func on_charge_enter(attack: Attack2D) -> void:
+	animation_player.play("charge")
+	attack.charge_enter()
+
+func on_charge_exit(attack: Attack2D) -> void:
+	animation_player.play("idle")
+	attack.charge_exit()</code></pre>
 
 									<div class="row gtr-75 aln-center">
-										<div class="col-5 col-12-medium">
-											<span class="image fit center"><img src="../../images/tutorials/"></span>
-										</div>
-
-										<div class="col-5 col-12-medium">
-											<span class="image fit center"><img src="../../images/tutorials/"></span>
+										<div class="col-12 col-12-medium">
+											<span class="image fit center"><img src="../../images/tutorials/12-common-attack-examples/1.gif"></span>
 										</div>
 									</div>
 									<br>
